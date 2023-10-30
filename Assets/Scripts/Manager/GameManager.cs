@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         audioMng = FindFirstObjectByType<AudioManager>();
     }
 
