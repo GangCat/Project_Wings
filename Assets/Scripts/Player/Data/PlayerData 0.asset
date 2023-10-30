@@ -17,11 +17,11 @@ MonoBehaviour:
   inputHandler: {fileID: 0}
   maxHealth: 100
   stamina: 100
-  maxSpeed: 20
-  accle: 10
+  maxSpeed: 50
+  accle: 20
   isDash: 1
   isDodge: 0
-  maxRotSpeed: 3
-  rotAccle: 20
+  maxRotSpeed: 6
+  rotAccle: 30
   rotMaxVelocityDeg: 80
-  rotAccleDeg: 100
+  rotAccleDeg: 200

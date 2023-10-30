@@ -61,6 +61,9 @@ public class PlayerMoveState : PlayerState
         destAngleDeg += velocityDeg * Time.deltaTime;
         destAngleDeg = Mathf.Clamp(destAngleDeg, -maxAngle, maxAngle);
 
+        if (Mathf.Abs(destAngleDeg).Equals(maxAngle))
+            velocityDeg = 0f;
+
         tr.rotation = Quaternion.Euler(Vector3.forward * destAngleDeg);
 
         //tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.Euler(Vector3.forward * angulerVelocityDeg), 0.5f);
