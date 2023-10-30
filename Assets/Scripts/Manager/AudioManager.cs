@@ -23,6 +23,7 @@ public enum EPlayerAudio
 public enum EBackgroundAudio
 {
     NONE = -1,
+    BACKGROUND_CAMPUS,
     BACKGROUND_AUDIO,
     BACKGROUND_AMBIENCE,
     BACKGROUND_EFFECT
@@ -42,59 +43,35 @@ public class AudioManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         #region TestAudioManager
-        buttons[0].onClick.AddListener(
-            () =>
-            {
-                PlayBackgroundAudio(EBackgroundAudio.BACKGROUND_EFFECT);
-            });
+        //buttons[0].onClick.AddListener(
+        //    () =>
+        //    {
+        //        PlayBackgroundAudio(EBackgroundAudio.BACKGROUND_EFFECT);
+        //    });
 
-        buttons[1].onClick.AddListener(
-            () =>
-            {
-                PlayPlayerAudio(EPlayerAudio.PLAYER_SECOND);
-            });
+        //buttons[1].onClick.AddListener(
+        //    () =>
+        //    {
+        //        PlayPlayerAudio(EPlayerAudio.PLAYER_SECOND);
+        //    });
 
-        buttons[2].onClick.AddListener(
-            () =>
-            {
-                PlayEffectAudio(EEffectAudio.EFFECT_THIRD);
-            });
+        //buttons[2].onClick.AddListener(
+        //    () =>
+        //    {
+        //        PlayEffectAudio(EEffectAudio.EFFECT_THIRD);
+        //    });
 
-        buttons[3].onClick.AddListener(
-            () =>
-            {
-                SetBGMVolume(0.8f);
-            });
+        //sliders[0].onValueChanged.AddListener(
+        //    (float _value) =>
+        //    {
+        //        SetBGMVolume(_value * 0.1f);
+        //    });
 
-        buttons[4].onClick.AddListener(
-            () =>
-            {
-                SetBGMVolume(0.2f);
-            });
-
-        buttons[5].onClick.AddListener(
-            () =>
-            {
-                SetEffectVolume(0.8f);
-            });
-
-        buttons[6].onClick.AddListener(
-            () =>
-            {
-                SetEffectVolume(0.2f);
-            });
-
-        sliders[0].onValueChanged.AddListener(
-            (float _value) =>
-            {
-                SetBGMVolume(_value * 0.1f);
-            });
-
-        sliders[1].onValueChanged.AddListener(
-            (float _value) =>
-            {
-                SetEffectVolume(_value * 0.1f);
-            });
+        //sliders[1].onValueChanged.AddListener(
+        //    (float _value) =>
+        //    {
+        //        SetEffectVolume(_value * 0.1f);
+        //    });
         #endregion
         foreach (AudioPlayer AP in arrAudioPlayer)
             AP.Init();
