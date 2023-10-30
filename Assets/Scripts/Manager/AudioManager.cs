@@ -83,6 +83,18 @@ public class AudioManager : MonoBehaviour
             {
                 SetEffectVolume(0.2f);
             });
+
+        sliders[0].onValueChanged.AddListener(
+            (float _value) =>
+            {
+                SetBGMVolume(_value * 0.1f);
+            });
+
+        sliders[1].onValueChanged.AddListener(
+            (float _value) =>
+            {
+                SetEffectVolume(_value * 0.1f);
+            });
         #endregion
         foreach (AudioPlayer AP in arrAudioPlayer)
             AP.Init();
@@ -134,6 +146,8 @@ public class AudioManager : MonoBehaviour
     private AudioPlayer[] arrAudioPlayer = null;
     [SerializeField]
     private Button[] buttons = null;
+    [SerializeField]
+    private Slider[] sliders = null;
 
     private float bgmVolume = 1f;
     private float effectVolume = 1f;
