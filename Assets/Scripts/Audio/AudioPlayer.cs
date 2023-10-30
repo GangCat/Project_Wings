@@ -10,13 +10,13 @@ public class AudioPlayer : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public virtual void PlayAudio<T>(T audioEnum) where T : Enum
+    public virtual void PlayAudio(Enum _audioEnum)
     {
-        audioIdx = Convert.ToInt32(audioEnum);
+        audioIdx = Convert.ToInt32(_audioEnum);
 
         if (audioIdx >= 0 && audioIdx < myAudioClips.Length)
         {
-            Debug.Log(audioEnum.GetType());
+            Debug.Log(_audioEnum.GetType());
             Debug.Log(audioIdx);
             //audioSource.clip = myAudioClips[audioIndex];
             //audioSource.Play();
@@ -30,8 +30,8 @@ public class AudioPlayer : MonoBehaviour
 
     // EPlayerAudio Enum에 대응하는 오디오 클립을 저장할 배열
     [SerializeField]
-    private AudioClip[] myAudioClips;
+    protected AudioClip[] myAudioClips;
 
-    private AudioSource audioSource;
-    private int audioIdx = 0;
+    protected AudioSource audioSource;
+    protected int audioIdx = 0;
 }
