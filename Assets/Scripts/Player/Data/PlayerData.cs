@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public Rigidbody rb;
+    public Transform tr;
+    public PlayerInputHandler inputHandler;
 
     [Header("Status Data")]
     public int maxHealth = 100;
@@ -14,6 +16,10 @@ public class PlayerData : ScriptableObject
     [Header("Move Data")]
     public float maxSpeed = 10;
     public float accle = 5;
+    public bool isDash = false;
+    public bool isDodge = false;
 
+    public float maxRotSpeed = 10;
+    public float rotAccle = 10;
 
 }

@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    private int inputX;
-    private int inputZ;
+    private float inputX;
+    private float inputZ;
 
     void Update()
     {
-        inputX = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
-        inputZ = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
+        inputX = Input.GetAxis("Horizontal");
+        inputZ = Input.GetAxis("Vertical");
     }
 
-    public int GetInputX()
+    public float GetInputX()
     {
         return inputX;
     }
 
-    public int GetInputZ()
+    public float GetInputZ()
     {
         return inputZ;
     }
