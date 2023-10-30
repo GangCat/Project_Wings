@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,8 +23,6 @@ public class GameManager : MonoBehaviour, IPublisher
 
         //SceneManager.sceneLoaded += OnSceneLoaded;
 
-        audioMng = FindFirstObjectByType<AudioManager>();
-
         StartGame();
     }
 
@@ -44,14 +43,24 @@ public class GameManager : MonoBehaviour, IPublisher
 
     public void StartGame()
     {
-        
+        FindManager();
         InitManagers();
+    }
+
+    private void FindManager()
+    {
+        audioMng = FindFirstObjectByType<AudioManager>();
+        bossMng = FindFirstObjectByType<BossManager>();
+        uiMng = FindFirstObjectByType<UIManager>();
+        camMng = FindFirstObjectByType<CameraManager>();
     }
 
     private void InitManagers()
     {
-
         audioMng.Init();
+        bossMng.Init();
+        uiMng.Init();
+        camMng.Init();
     }
 
     public void RegisterBroker()
@@ -65,4 +74,7 @@ public class GameManager : MonoBehaviour, IPublisher
     }
 
     private AudioManager audioMng = null;
+    private BossManager bossMng = null;
+    private UIManager uiMng = null;
+    private CameraManager camMng = null;
 }
