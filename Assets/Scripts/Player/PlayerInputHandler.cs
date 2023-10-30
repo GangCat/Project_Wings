@@ -9,7 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     void Update()
     {
-        inputX = Input.GetAxis("Horizontal");
+        inputX = Input.GetAxisRaw("Horizontal");
         inputZ = Input.GetAxis("Vertical");
     }
 

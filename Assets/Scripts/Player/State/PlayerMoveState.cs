@@ -13,7 +13,10 @@ public class PlayerMoveState : PlayerState
 
     public override void Enter()
     {
-        maxAngle = 90;
+        angulerVelocity = 0f;
+        maxAngle = 45;
+        diffAngle = 0f;
+        maxVelocityDeg = 10f;
     }
 
     public override void Exit()
@@ -26,54 +29,50 @@ public class PlayerMoveState : PlayerState
         accleTime = playerData.accle * Time.deltaTime;
         rb.velocity = Vector3.MoveTowards(rb.velocity, accleVelocity, accleTime);
 
-        rotateAngle = playerData.inputHandler.GetInputX()* maxAngle/* * playerData.maxRotSpeed  Time.deltaTime*/;
-        rotAccleTime = playerData.rotAccle /* Time.deltaTime * Time.deltaTime*/;
-        //float tempAngle = playerData.inputHandler.GetInputX();
-        currentRotation = tr.rotation;
+        //angulerVelocity += playerData.rotAccle * -playerData.inputHandler.GetInputX() * Time.deltaTime;
+        ////angulerVelocity = Mathf.Clamp(angulerVelocity, -playerData.maxRotSpeed, playerData.maxRotSpeed);
+        //angulerVelocity = Mathf.Clamp(angulerVelocity, -maxAngle, maxAngle);
+        ////rb.angularVelocity = Vector3.forward * angulerVelocity;
 
-        //tr.Rotate(new Vector3(0, 0, -rotateVelocity));
-        //tr.rotation = Quaternion.Euler(new Vector3(0f, 0f, Mathf.MoveTowards(tr.rotation.z * 90, rotateVelocity, rotAccleTime)));
-        //tr.rotation = Quaternion.Euler(new Vector3(0f, 0f, playerData.inputHandler.GetInputX() * maxAngle));
-        //tr.rotation = Quaternion.Lerp(currentRotation, Quaternion.Euler(new Vector3(0f,0f,-rotateAngle)), rotAccleTime);
-        //tr.rotation = Quaternion.Euler(new Vector3(0f, 0f, Mathf.MoveTowards(tr.rotation.z * 180, playerData.inputHandler.GetInputX() * maxAngle, rotAccleTime)));
+        //// playerData.rotAccle * -playerData.inputHandler.GetInputX() * Time.deltaTime; 각 가속도
 
+        //targetAngle = -playerData.inputHandler.GetInputX() * maxAngle;
 
-
-        //tr.rotation = Quaternion.Euler(new Vector3(0f, 0f, Mathf.MoveTowardsAngle(tr.rotation.z, playerData.inputHandler.GetInputX(), rotAccleTime) * -90));
-
-        //float currentAngle = tr.rotation.z * Mathf.Rad2Deg;
-        //currentAngle = Mathf.SmoothDampAngle(currentAngle, rotateAngle, ref angleVelocity, rotAccleTime * (rotateAngle < 10 ? currentAngle / maxAngle : 1));
-        //tr.rotation = Quaternion.Euler(new Vector3(0f, 0f, -currentAngle));
-
-
-        //tr.Rotate(new Vector3(0, 0, Mathf.MoveTowards(tr.rotation.z, rotateVelocity, rotAccleTime)));
-        Debug.Log("Rotate.z " + currentAngle);
-        //Debug.Log("TempAngle " + tempAngle);
-        //Debug.Log("RotateV " + -rotateVelocity);
-        //Debug.Log("RotAcc " + rotAccleTime);
-
-
-        // 현재 각도를 부드럽게 목표 각도로 이동시킵니다.
-        float newAngle = Mathf.MoveTowardsAngle(tr.rotation.eulerAngles.z, -rotateAngle, rotAccleTime * Time.deltaTime);
-
-        // 새로운 각도로 회전시킵니다.
-        tr.rotation = Quaternion.Euler(0, 0, newAngle);
+        // 라디안을 넣어야함.
+        // 현재 내가 위치해야할 위치의 각도를 넣어야함.
+        // 아예 디그리를 처음부터 넣자
+        // 그러면 최대, 최소 디그리가 필요함.
+        // 그리고 디그리 기반 각속도, 각가속도가 필요함.
 
 
 
-        //Quaternion targetRotation = Quaternion.Euler(0, 0, rotateAngle);
+        //velocityDeg = Mathf.MoveTowards(velocityDeg, playerData.rotMaxVelocityDeg, playerData.rotAccleDeg * Time.deltaTime * -playerData.inputHandler.GetInputX());
 
 
-//        float smoothFactor = rotAccleTime * Time.deltaTime;
-  //      tr.rotation = Quaternion.Lerp(currentRotation, targetRotation, smoothFactor);
+        //velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -playerData.inputHandler.GetInputX();
 
+        if (Mathf.Abs(playerData.inputHandler.GetInputX()) > 0f)
+            velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -playerData.inputHandler.GetInputX();
+        else
+            velocityDeg = Mathf.MoveTowards(velocityDeg, 0, playerData.rotAccleDeg * Time.deltaTime);
 
+        velocityDeg = Mathf.Clamp(velocityDeg, -playerData.rotMaxVelocityDeg, playerData.rotMaxVelocityDeg);
 
+        destAngleDeg += velocityDeg * Time.deltaTime;
+        destAngleDeg = Mathf.Clamp(destAngleDeg, -maxAngle, maxAngle);
 
+        tr.rotation = Quaternion.Euler(Vector3.forward * destAngleDeg);
 
-
-
-
+        //tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.Euler(Vector3.forward * angulerVelocityDeg), 0.5f);
+        // a를 누르면 -playerData.inputHandler.GetInputX() * maxAngle(90)이 목적지다.
+        // 그러면 현재 위치와 목적지간의 거리ㅏ 나온다.diffAngle
+        // 그 때 최대 거리 180을 1로 가정할 때
+        // 목적지간의 거리를 180으로 나누면 비율이 나오고
+        // 그 시간이 현재 목적지에서 최종 목적지까지 걸리는 시간 ttlTime이며
+        // 그 시간동안 가야하는 거리가 diffAngle이므로
+        // 각속도를 구하면 diffAngle / ttlTime이다.
+        // 이 때 각 가속도를 구해보면
+        // 각 가속도는 동일하지.
 
     }
 
@@ -84,19 +83,15 @@ public class PlayerMoveState : PlayerState
     private Vector3 accleVelocity;
     private Rigidbody rb;
     private Transform tr;
-
-    private Quaternion currentRotation;
-    private float angleVelocity;
-    float currentAngle;
-
     private float accleTime;
 
-    private float rotateAngle;
-    private float rotAccleTime;
+    private float angulerVelocity;
+    private float destAngleDeg;
+    private float targetAngle;
     private float maxAngle;
+    private float diffAngle;
+    private float velocityDeg;
+    private float maxVelocityDeg;
 
-    private float horizontal;
-    private float vertical;
-
-
+    private int tempFactor = 1;
 }

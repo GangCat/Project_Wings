@@ -21,5 +21,7 @@ MonoBehaviour:
   accle: 10
   isDash: 1
   isDodge: 0
-  maxRotSpeed: 60
-  rotAccle: 0.1
+  maxRotSpeed: 3
+  rotAccle: 20
+  rotMaxVelocityDeg: 80
+  rotAccleDeg: 100

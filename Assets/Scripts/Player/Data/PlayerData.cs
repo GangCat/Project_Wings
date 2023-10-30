@@ -22,4 +22,7 @@ public class PlayerData : ScriptableObject
     public float maxRotSpeed = 10;
     public float rotAccle = 10;
 
+    public float rotMaxVelocityDeg = 10f;
+    public float rotAccleDeg = 0.1f;
+
 }
