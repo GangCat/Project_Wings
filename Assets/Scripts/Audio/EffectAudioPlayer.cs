@@ -46,13 +46,29 @@ public class EffectAudioPlayer : AudioPlayer
             arrAudioSources[i].volume = _volume;
     }
 
+    public override void StopAudio()
+    {
+        for (int i = 0; i < audioCount; ++i)
+            arrAudioSources[i].Stop();
+    }
+
     /// <summary>
     /// 실행된 순서가 가장 처음인 오디오 소스의 인덱스를 찾는 함수
     /// </summary>
     private void GetFirstStartedAudioSourceIdx()
     {
         curAudioSourceIdx = 0;
-        for(int i = 0;i < audioCount - 1; ++i)
+
+        for (int i = 0; i < audioCount; ++i)
+        {
+            if (!arrAudioSources[i].isPlaying)
+            {
+                curAudioSourceIdx = i;
+                return;
+            }
+        }
+
+        for (int i = 0; i < audioCount - 1; ++i)
         {
             if (arrAudioStartTime[i] > arrAudioStartTime[i + 1])
                 curAudioSourceIdx = i + 1;

@@ -32,6 +32,11 @@ public class AudioPlayer : MonoBehaviour
         audioSource.volume = _volume;
     }
 
+    public virtual void StopAudio()
+    {
+        audioSource.Stop();
+    }
+
 
     // EPlayerAudio Enum에 대응하는 오디오 클립을 저장할 배열
     [SerializeField]

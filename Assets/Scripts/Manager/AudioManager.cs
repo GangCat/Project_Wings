@@ -121,15 +121,15 @@ public class AudioManager : MonoBehaviour
         ApplyBGMVolume();
     }
 
-    private void ApplyBGMVolume()
-    {
-        arrAudioPlayer[(int)EAudioPlayer.BACKGROUND_AUDIO].SetVolume(bgmVolume);
-    }
-
     public void SetEffectVolume(float _effectVolume)
     {
         effectVolume = _effectVolume;
         ApplyEffectVolume();
+    }
+
+    private void ApplyBGMVolume()
+    {
+        arrAudioPlayer[(int)EAudioPlayer.BACKGROUND_AUDIO].SetVolume(bgmVolume);
     }
 
     private void ApplyEffectVolume()
@@ -140,6 +140,12 @@ public class AudioManager : MonoBehaviour
 
             arrAudioPlayer[i].SetVolume(effectVolume);
         }
+    }
+
+    public void StopAllAudio()
+    {
+        for (int i = 0; i < arrAudioPlayer.Length; ++i)
+            arrAudioPlayer[i].StopAudio();
     }
 
     [SerializeField]
