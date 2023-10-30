@@ -8,7 +8,8 @@ public enum EAudioPlayer
     NONE = -1,
     PLAYER_AUDIO,
     BACKGROUND_AUDIO,
-    EFFECT_AUDIO
+    EFFECT_AUDIO,
+    LENGTH
 }
 
 public enum EPlayerAudio
@@ -40,7 +41,7 @@ public class AudioManager : MonoBehaviour
     public void Init()
     {
         DontDestroyOnLoad(this);
-
+        #region TestAudioManager
         buttons[0].onClick.AddListener(
             () =>
             {
@@ -59,6 +60,30 @@ public class AudioManager : MonoBehaviour
                 PlayEffectAudio(EEffectAudio.EFFECT_THIRD);
             });
 
+        buttons[3].onClick.AddListener(
+            () =>
+            {
+                SetBGMVolume(0.8f);
+            });
+
+        buttons[4].onClick.AddListener(
+            () =>
+            {
+                SetBGMVolume(0.2f);
+            });
+
+        buttons[5].onClick.AddListener(
+            () =>
+            {
+                SetEffectVolume(0.8f);
+            });
+
+        buttons[6].onClick.AddListener(
+            () =>
+            {
+                SetEffectVolume(0.2f);
+            });
+        #endregion
         foreach (AudioPlayer AP in arrAudioPlayer)
             AP.Init();
     }
@@ -78,9 +103,38 @@ public class AudioManager : MonoBehaviour
         arrAudioPlayer[(int)EAudioPlayer.EFFECT_AUDIO].PlayAudio(_effectAudio);
     }
 
-    [SerializeField]
-    private AudioPlayer[] arrAudioPlayer = null;
+    public void SetBGMVolume(float _bgmVolume)
+    {
+        bgmVolume = _bgmVolume;
+        ApplyBGMVolume();
+    }
+
+    private void ApplyBGMVolume()
+    {
+        arrAudioPlayer[(int)EAudioPlayer.BACKGROUND_AUDIO].SetVolume(bgmVolume);
+    }
+
+    public void SetEffectVolume(float _effectVolume)
+    {
+        effectVolume = _effectVolume;
+        ApplyEffectVolume();
+    }
+
+    private void ApplyEffectVolume()
+    {
+        for(int i = 0; i < (int)EAudioPlayer.LENGTH; ++i)
+        {
+            if (i.Equals((int)EAudioPlayer.BACKGROUND_AUDIO)) continue;
+
+            arrAudioPlayer[i].SetVolume(effectVolume);
+        }
+    }
 
     [SerializeField]
+    private AudioPlayer[] arrAudioPlayer = null;
+    [SerializeField]
     private Button[] buttons = null;
+
+    private float bgmVolume = 1f;
+    private float effectVolume = 1f;
 }

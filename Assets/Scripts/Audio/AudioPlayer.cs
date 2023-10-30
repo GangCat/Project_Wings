@@ -27,11 +27,17 @@ public class AudioPlayer : MonoBehaviour
         }
     }
 
+    public virtual void SetVolume(float _volume)
+    {
+        audioSource.volume = _volume;
+    }
+
 
     // EPlayerAudio Enum에 대응하는 오디오 클립을 저장할 배열
     [SerializeField]
     protected AudioClip[] myAudioClips;
-
+    // 오디오를 재생할 오디오소스
     protected AudioSource audioSource;
+    // 재생할 오디오 클립의 인덱스
     protected int audioIdx = 0;
 }
