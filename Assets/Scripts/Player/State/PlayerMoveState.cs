@@ -13,14 +13,12 @@ public class PlayerMoveState : PlayerState
 
     public override void Enter()
     {
+        playerData.isMove = true;
+
         angulerVelocity = 0f;
         maxAngle = 45;
         diffAngle = 0f;
         maxVelocityDeg = 10f;
-    }
-
-    public override void Exit()
-    {
     }
 
     public override void LogicUpdate()
@@ -29,22 +27,18 @@ public class PlayerMoveState : PlayerState
         //accleTime = playerData.accle * Time.deltaTime;
         //rb.velocity = Vector3.MoveTowards(rb.velocity, accleVelocity, accleTime);
 
+        inputX = playerData.inputHandler.GetInputX();
+        inputZ = playerData.inputHandler.GetInputZ();
 
-
-
-        if (Mathf.Abs(playerData.inputHandler.GetInputZ()) > 0f)
-            moveVelocityM += playerData.accle * Time.deltaTime * playerData.inputHandler.GetInputZ();
+        if (Mathf.Abs(inputZ) > 0f)
+            moveVelocityM += playerData.accle * Time.deltaTime * inputZ;
         else
             moveVelocityM = Mathf.MoveTowards(moveVelocityM, 0, playerData.accle * Time.deltaTime);
 
-        moveVelocityM = Mathf.Clamp(moveVelocityM, -playerData.maxSpeed, playerData.maxSpeed);
+        moveVelocityM = Mathf.Clamp(moveVelocityM, playerData.minSpeed, playerData.maxSpeed);
 
         destMovePos += moveVelocityM * Time.deltaTime;
         tr.position = tr.forward * destMovePos;
-
-
-
-
 
         //angulerVelocity += playerData.rotAccle * -playerData.inputHandler.GetInputX() * Time.deltaTime;
         //angulerVelocity = Mathf.Clamp(angulerVelocity, -playerData.maxRotSpeed, playerData.maxRotSpeed);
@@ -72,11 +66,8 @@ public class PlayerMoveState : PlayerState
 
 
 
-
-
-
-        if (Mathf.Abs(playerData.inputHandler.GetInputX()) > 0f)
-            velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -playerData.inputHandler.GetInputX();
+        if (Mathf.Abs(inputX) > 0f)
+            velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -inputX;
         else
             velocityDeg = Mathf.MoveTowards(velocityDeg, 0, playerData.rotAccleDeg * Time.deltaTime);
 
@@ -90,11 +81,6 @@ public class PlayerMoveState : PlayerState
             velocityDeg = 0f;
 
 
-
-
-
-
-
         //tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.Euler(Vector3.forward * angulerVelocityDeg), 0.5f);
         // a를 누르면 -playerData.inputHandler.GetInputX() * maxAngle(90)이 목적지다.
         // 그러면 현재 위치와 목적지간의 거리ㅏ 나온다.diffAngle
@@ -105,16 +91,16 @@ public class PlayerMoveState : PlayerState
         // 각속도를 구하면 diffAngle / ttlTime이다.
         // 이 때 각 가속도를 구해보면
         // 각 가속도는 동일하지.
-
-    }
-
-    public override void PhysicsUpdate()
-    {
+        if(Mathf.Abs(inputX + inputZ + velocityDeg + moveVelocityM) == 0)
+            playerData.isMove = false;
     }
 
     private Vector3 accleVelocity;
     private Rigidbody rb;
     private Transform tr;
+    private float inputX;
+    private float inputZ;
+
     private float accleTime;
 
     private float angulerVelocity;
@@ -124,7 +110,6 @@ public class PlayerMoveState : PlayerState
     private float diffAngle;
     private float velocityDeg;
     private float maxVelocityDeg;
-
 
 
     private float moveVelocityM;

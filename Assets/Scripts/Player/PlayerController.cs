@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(IdleState());
+        ChangeCoroutine(IdleState());
     }
 
     private void DataInit()
@@ -31,6 +31,13 @@ public class PlayerController : MonoBehaviour
         stateMachine.FixedUpdate();
     }
 
+
+    private void ChangeCoroutine(IEnumerator _Coroutine)
+    {
+        StopAllCoroutines();
+        StartCoroutine(_Coroutine);
+    }
+
     private IEnumerator IdleState()
     {
         while (true)
@@ -38,6 +45,7 @@ public class PlayerController : MonoBehaviour
             if (playerData.inputHandler.GetInputZ() != 0)
             {
                 stateMachine.ChangeState(E_State.MOVE);
+                ChangeCoroutine(MoveState());
                 yield break;
             }
             yield return null;
@@ -46,12 +54,17 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator MoveState()
     {
-        if(playerData.rb.velocity.z == 0)
+        while (true)
         {
-            stateMachine.ChangeState(E_State.IDLE);
-            yield break;
+            if (playerData.isMove == false && playerData.inputHandler.GetInputZ() == 0)
+            {
+                stateMachine.ChangeState(E_State.IDLE);
+                ChangeCoroutine(IdleState());
+                Debug.Log("IDLE");
+                yield break;
+            }
+            yield return null;
         }
-        yield return null;
     }
 
 
