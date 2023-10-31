@@ -58,10 +58,10 @@ public class GameManager : MonoBehaviour, IPublisher
 
     private void InitManagers()
     {
-        audioMng.Init();
-        bossMng.Init();
-        uiMng.Init();
-        camMng.Init();
+        //audioMng.Init();
+        //bossMng.Init();
+        //uiMng.Init();
+        camMng.Init(playerTr);
     }
 
     public void RegisterBroker()
@@ -74,8 +74,13 @@ public class GameManager : MonoBehaviour, IPublisher
         Broker.AlertMessageToSub(_message, EPublisherType.GAME_MANAGER);
     }
 
+    [SerializeField]
+    private Transform playerTr = null;
+
+
     private AudioManager audioMng = null;
     private BossManager bossMng = null;
     private UIManager uiMng = null;
     private CameraManager camMng = null;
+
 }

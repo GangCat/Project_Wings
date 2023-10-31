@@ -13,9 +13,7 @@ public class PlayerRotateController : MonoBehaviour
         minAngleX = playerData.minAngleX;
         maxAngleX = playerData.maxAngleX;
         playerTr = playerData.tr;
-        rollAccel = playerData.rollAccel;
-        rollMaxVelocity = playerData.rollMaxVelocity;
-        rollMaxAngle = playerData.rollMaxAngle;
+
     }
 
     public void PlayerRotate()
@@ -44,6 +42,9 @@ public class PlayerRotateController : MonoBehaviour
 
     private void RotateToKeyboard(ref float _eulerAngleZ)
     {
+        rollAccel = playerData.rollAccel;
+        rollMaxVelocity = playerData.rollMaxVelocity;
+        rollMaxAngle = playerData.rollMaxAngle;
 
         if (Mathf.Abs(playerData.input.InputX) > 0f)
             rollVelocity += rollAccel * Time.deltaTime * -playerData.input.InputX;

@@ -16,13 +16,13 @@ MonoBehaviour:
   input: {fileID: 0}
   maxHealth: 100
   stamina: 100
-  moveBackVelocityLimit: -10
-  moveForwardVelocityLimit: 30
-  moveAccel: 100
+  moveBackVelocityLimit: -20
+  moveForwardVelocityLimit: 60
+  moveAccel: 200
   rotCamXAxisSpeed: 2
   rotCamYAxisSpeed: 1.5
   minAngleX: -80
   maxAngleX: 80
-  rollAccel: 100
-  rollMaxVelocity: 1000
-  rollMaxAngle: 45
+  rollAccel: 1000
+  rollMaxVelocity: 200
+  rollMaxAngle: 80
