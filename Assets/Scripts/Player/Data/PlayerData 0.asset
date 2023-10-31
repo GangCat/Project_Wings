@@ -17,7 +17,7 @@ MonoBehaviour:
   inputHandler: {fileID: 0}
   maxHealth: 100
   stamina: 100
-  maxSpeed: 50
+  maxSpeed: 10
   accle: 20
   isDash: 1
   isDodge: 0

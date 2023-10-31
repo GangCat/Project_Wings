@@ -25,14 +25,36 @@ public class PlayerMoveState : PlayerState
 
     public override void LogicUpdate()
     {
-        accleVelocity = tr.forward * playerData.inputHandler.GetInputZ() * playerData.maxSpeed;
-        accleTime = playerData.accle * Time.deltaTime;
-        rb.velocity = Vector3.MoveTowards(rb.velocity, accleVelocity, accleTime);
+        //accleVelocity = tr.forward * playerData.inputHandler.GetInputZ() * playerData.maxSpeed;
+        //accleTime = playerData.accle * Time.deltaTime;
+        //rb.velocity = Vector3.MoveTowards(rb.velocity, accleVelocity, accleTime);
+
+
+
+
+        if (Mathf.Abs(playerData.inputHandler.GetInputZ()) > 0f)
+            moveVelocityM += playerData.accle * Time.deltaTime * playerData.inputHandler.GetInputZ();
+        else
+            moveVelocityM = Mathf.MoveTowards(moveVelocityM, 0, playerData.accle * Time.deltaTime);
+
+        moveVelocityM = Mathf.Clamp(moveVelocityM, -playerData.maxSpeed, playerData.maxSpeed);
+
+        destMovePos += moveVelocityM * Time.deltaTime;
+        tr.position = tr.forward * destMovePos;
+
+
+
+
 
         //angulerVelocity += playerData.rotAccle * -playerData.inputHandler.GetInputX() * Time.deltaTime;
-        ////angulerVelocity = Mathf.Clamp(angulerVelocity, -playerData.maxRotSpeed, playerData.maxRotSpeed);
+        //angulerVelocity = Mathf.Clamp(angulerVelocity, -playerData.maxRotSpeed, playerData.maxRotSpeed);
         //angulerVelocity = Mathf.Clamp(angulerVelocity, -maxAngle, maxAngle);
-        ////rb.angularVelocity = Vector3.forward * angulerVelocity;
+        //angulerVelocity = playerData.maxRotSpeed * -playerData.inputHandler.GetInputX();
+        //rb.angularVelocity = Vector3.MoveTowards(rb.angularVelocity, Vector3.forward * angulerVelocity, playerData.rotAccle * Time.deltaTime);
+
+
+        //Debug.Log(rb.angularVelocity);
+        //Debug.Log(-playerData.inputHandler.GetInputX());
 
         //// playerData.rotAccle * -playerData.inputHandler.GetInputX() * Time.deltaTime; 각 가속도
 
@@ -44,12 +66,14 @@ public class PlayerMoveState : PlayerState
         // 그러면 최대, 최소 디그리가 필요함.
         // 그리고 디그리 기반 각속도, 각가속도가 필요함.
 
-
-
         //velocityDeg = Mathf.MoveTowards(velocityDeg, playerData.rotMaxVelocityDeg, playerData.rotAccleDeg * Time.deltaTime * -playerData.inputHandler.GetInputX());
 
-
         //velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -playerData.inputHandler.GetInputX();
+
+
+
+
+
 
         if (Mathf.Abs(playerData.inputHandler.GetInputX()) > 0f)
             velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -playerData.inputHandler.GetInputX();
@@ -59,12 +83,17 @@ public class PlayerMoveState : PlayerState
         velocityDeg = Mathf.Clamp(velocityDeg, -playerData.rotMaxVelocityDeg, playerData.rotMaxVelocityDeg);
 
         destAngleDeg += velocityDeg * Time.deltaTime;
+        tr.rotation = Quaternion.Euler(Vector3.forward * destAngleDeg);
         destAngleDeg = Mathf.Clamp(destAngleDeg, -maxAngle, maxAngle);
 
         if (Mathf.Abs(destAngleDeg).Equals(maxAngle))
             velocityDeg = 0f;
 
-        tr.rotation = Quaternion.Euler(Vector3.forward * destAngleDeg);
+
+
+
+
+
 
         //tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.Euler(Vector3.forward * angulerVelocityDeg), 0.5f);
         // a를 누르면 -playerData.inputHandler.GetInputX() * maxAngle(90)이 목적지다.
@@ -95,6 +124,12 @@ public class PlayerMoveState : PlayerState
     private float diffAngle;
     private float velocityDeg;
     private float maxVelocityDeg;
+
+
+
+    private float moveVelocityM;
+    private float moveAccleM;
+    private float destMovePos;
 
     private int tempFactor = 1;
 }
