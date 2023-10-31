@@ -671,6 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0348cd2c86d42740a7f61c37fcc07fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTr: {fileID: 0}
 --- !u!4 &805142072
 Transform:
   m_ObjectHideFlags: 0
@@ -1599,6 +1600,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1192877005350730379, guid: f65b02f50e331cb4e922f6adfdf7d72c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -731125323762298577, guid: f65b02f50e331cb4e922f6adfdf7d72c,
         type: 3}
       propertyPath: m_IsActive
       value: 1
