@@ -1,24 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerMoveState : PlayerState
 {
     public PlayerMoveState(PlayerData playerData) : base(playerData)
     {
-        rb = playerData.rb;
         tr = playerData.tr;
     }
 
     public override void Enter()
     {
-        playerData.isMove = true;
 
         angulerVelocity = 0f;
         maxAngle = 45;
         diffAngle = 0f;
         maxVelocityDeg = 10f;
+
+        eulerAngleX = tr.rotation.x;
+        eulerAngleY = tr.rotation.y;
     }
 
     public override void LogicUpdate()
@@ -27,18 +29,7 @@ public class PlayerMoveState : PlayerState
         //accleTime = playerData.accle * Time.deltaTime;
         //rb.velocity = Vector3.MoveTowards(rb.velocity, accleVelocity, accleTime);
 
-        inputX = playerData.inputHandler.GetInputX();
-        inputZ = playerData.inputHandler.GetInputZ();
 
-        if (Mathf.Abs(inputZ) > 0f)
-            moveVelocityM += playerData.accle * Time.deltaTime * inputZ;
-        else
-            moveVelocityM = Mathf.MoveTowards(moveVelocityM, 0, playerData.accle * Time.deltaTime);
-
-        moveVelocityM = Mathf.Clamp(moveVelocityM, playerData.minSpeed, playerData.maxSpeed);
-
-        destMovePos += moveVelocityM * Time.deltaTime;
-        tr.position = tr.forward * destMovePos;
 
         //angulerVelocity += playerData.rotAccle * -playerData.inputHandler.GetInputX() * Time.deltaTime;
         //angulerVelocity = Mathf.Clamp(angulerVelocity, -playerData.maxRotSpeed, playerData.maxRotSpeed);
@@ -66,20 +57,37 @@ public class PlayerMoveState : PlayerState
 
 
 
-        if (Mathf.Abs(inputX) > 0f)
-            velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -inputX;
-        else
-            velocityDeg = Mathf.MoveTowards(velocityDeg, 0, playerData.rotAccleDeg * Time.deltaTime);
+        //if (Mathf.Abs(inputX) > 0f)
+        //    velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -inputX;
+        //else
+        //    velocityDeg = Mathf.MoveTowards(velocityDeg, 0, playerData.rotAccleDeg * Time.deltaTime);
 
-        velocityDeg = Mathf.Clamp(velocityDeg, -playerData.rotMaxVelocityDeg, playerData.rotMaxVelocityDeg);
+        //velocityDeg = Mathf.Clamp(velocityDeg, -playerData.rotMaxVelocityDeg, playerData.rotMaxVelocityDeg);
 
-        destAngleDeg += velocityDeg * Time.deltaTime;
-        tr.rotation = Quaternion.Euler(Vector3.forward * destAngleDeg);
-        destAngleDeg = Mathf.Clamp(destAngleDeg, -maxAngle, maxAngle);
+        //destAngleDeg += velocityDeg * Time.deltaTime;
+        ////tr.rotation = Quaternion.Euler(Vector3.forward * destAngleDeg);
+        //destAngleDeg = Mathf.Clamp(destAngleDeg, -maxAngle, maxAngle);
 
-        if (Mathf.Abs(destAngleDeg).Equals(maxAngle))
-            velocityDeg = 0f;
+        //if (Mathf.Abs(destAngleDeg).Equals(maxAngle))
+        //    velocityDeg = 0f;
 
+
+
+
+
+
+
+
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
+
+        Debug.Log("MoveX: " + mouseX);
+        Debug.Log("MoveY: " + mouseY);
+
+        UpdateRotate(mouseX, mouseY, destAngleDeg);
+
+        Debug.Log("Move: " + eulerAngleX);
+        Debug.Log("Move: " + eulerAngleY);
 
         //tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.Euler(Vector3.forward * angulerVelocityDeg), 0.5f);
         // a를 누르면 -playerData.inputHandler.GetInputX() * maxAngle(90)이 목적지다.
@@ -91,9 +99,11 @@ public class PlayerMoveState : PlayerState
         // 각속도를 구하면 diffAngle / ttlTime이다.
         // 이 때 각 가속도를 구해보면
         // 각 가속도는 동일하지.
-        if(Mathf.Abs(inputX + inputZ + velocityDeg + moveVelocityM) == 0)
-            playerData.isMove = false;
+
     }
+
+
+
 
     private Vector3 accleVelocity;
     private Rigidbody rb;
@@ -115,6 +125,7 @@ public class PlayerMoveState : PlayerState
     private float moveVelocityM;
     private float moveAccleM;
     private float destMovePos;
+
 
     private int tempFactor = 1;
 }

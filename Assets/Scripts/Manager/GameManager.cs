@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour, IPublisher
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        
 
         Screen.SetResolution(1920, 1080, true);
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
