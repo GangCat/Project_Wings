@@ -8,28 +8,30 @@ public class PlayerRotateController : MonoBehaviour
     public void Init(PlayerData _playerData)
     {
         playerData = _playerData;
-        rotCamXAxisSpeed = playerData.rotCamXAxisSpeed;
-        rotCamYAxisSpeed = playerData.rotCamYAxisSpeed;
+        rotCamSpeed = playerData.rotCamSpeed;
+        rotCamXAxisSensitive = playerData.rotCamXAxisSensitive;
+        rotCamYAxisSensitive = playerData.rotCamYAxisSensitive;
         minAngleX = playerData.minAngleX;
         maxAngleX = playerData.maxAngleX;
         playerTr = playerData.tr;
 
     }
 
-    public void PlayerRotate()
+    public void PlayerRotate() // Update 돌리는거
     {
         RotateToMouse(ref rotVec.x, ref rotVec.y);
         RotateToKeyboard(ref rotVec.z);
         playerTr.rotation = Quaternion.Euler(rotVec);
-
-        //playerTr.localRotation *= Quaternion.Euler(Vector3.up);
     }
 
     private void RotateToMouse(ref float _eulerAngleX, ref float _eulerAngleY)
     {
-        _eulerAngleY += playerData.input.InputMouseX * rotCamYAxisSpeed;
-        _eulerAngleX -= playerData.input.InputMouseY * rotCamXAxisSpeed;
+        mousePos = playerData.mousePos;
+
+        _eulerAngleY += rotCamSpeed * rotCamYAxisSensitive * Time.deltaTime * (mousePos.x / 100);
+        _eulerAngleX -= rotCamSpeed * rotCamXAxisSensitive * Time.deltaTime * (mousePos.y / 100);
         _eulerAngleX = ClampAngle(_eulerAngleX, minAngleX, maxAngleX);
+        Debug.Log(_eulerAngleY);
     }
 
     private float ClampAngle(float _angle, float _min, float _max)
@@ -60,52 +62,43 @@ public class PlayerRotateController : MonoBehaviour
             rollVelocity = 0f;
     }
 
-    ///ad회전
-    //if (Mathf.Abs(inputX) > 0f)
-    //    velocityDeg += playerData.rotAccleDeg * Time.deltaTime * -inputX;
-    //else
-    //    velocityDeg = Mathf.MoveTowards(velocityDeg, 0, playerData.rotAccleDeg * Time.deltaTime);
 
-    //velocityDeg = Mathf.Clamp(velocityDeg, -playerData.rotMaxVelocityDeg, playerData.rotMaxVelocityDeg);
+    /// <summary>
+    /// 
+    /// </summary>
+        //inputMouseX = Input.GetAxis("Mouse X");
+        //inputMouseY = Input.GetAxis("Mouse Y");
+        //Mathf.Clamp(inputMouseX, -3, 3);
+        //Mathf.Clamp(inputMouseY, -3, 3);
 
-    //destAngleDeg += velocityDeg * Time.deltaTime;
-    ////tr.rotation = Quaternion.Euler(Vector3.forward * destAngleDeg);
-    //destAngleDeg = Mathf.Clamp(destAngleDeg, -maxAngle, maxAngle);
-
-    //if (Mathf.Abs(destAngleDeg).Equals(maxAngle))
-    //    velocityDeg = 0f;
+        //inputPosX += inputMouseX * sensitive;
+        //inputPosY += inputMouseY * sensitive;
 
 
+        //float radius = 100f;
 
+        //float distanceFromOrigin = Mathf.Sqrt(inputPosX * inputPosX + inputPosY * inputPosY);
 
-    ///마우스 회전
-    //mouseX = Input.GetAxis("Mouse X");
-    //    mouseY = Input.GetAxis("Mouse Y");
+        //if (distanceFromOrigin > radius)
+        //{
+        //    float angle = Mathf.Atan2(inputPosY, inputPosX);
+        //    inputPosX = radius * Mathf.Cos(angle);
+        //    inputPosY = radius * Mathf.Sin(angle);
+        //}
 
-    //    Debug.Log("IdleX: " + mouseX);
-    //    Debug.Log("IdleY: " + mouseY);
+        //Vector2 inputPos = new Vector2(inputPosX, inputPosY);
 
-    //    UpdateRotate(mouseX, mouseY);
-    //protected void UpdateRotate(float _mouseX, float _mouseY, float _angleZ = 0f)
-    //{
-    //    eulerAngleY += _mouseX * rotCamYAxisSpeed;
-    //    eulerAngleX -= _mouseY * rotCamXAxisSpeed;
-    //    eulerAngleX = ClampAngle(eulerAngleX, MinAngleX, MaxAngleX);
-    //    //playerData.tr.rotation = Quaternion.Lerp(playerData.tr.rotation, Quaternion.Euler(eulerAngleX, eulerAngleY, 0), playerData.rotAccle * Time.deltaTime);
+        //float maxRadius = 90f;
 
-    //    playerData.tr.rotation = Quaternion.Euler(eulerAngleX, eulerAngleY, 0f);
+        //if (inputPos.magnitude < maxRadius)
+        //{
+        //    inputPosX = Mathf.MoveTowards(inputPosX, 0, decreaseSpeed * Time.deltaTime);
+        //    inputPosY = Mathf.MoveTowards(inputPosY, 0, decreaseSpeed * Time.deltaTime);
+        //}
 
-    //    Debug.Log(eulerAngleX);
-    //    Debug.Log(eulerAngleY);
-    //}
+        //virtualCursor.transform.position = new Vector3(centerPosition.x + inputPosX, centerPosition.y + inputPosY);
 
-    //protected float ClampAngle(float _angle, float _min, float _max)
-    //{
-    //    if (_angle < -360) _angle += 360; // angle이 -360보다 작으면 360을 더해줌. 결과적으로 -380이 -20과 같게 계산됨
-    //    if (_angle > 360) _angle -= 360;
-
-    //    return Mathf.Clamp(_angle, _min, _max); // 대소를 비교하여 범위 안의 값일 경우 _angle을 반환, _min 이하일경우 _min을 반환, _max이상일 경우 _max를 반환함.
-    //}
+        //Debug.Log("input X: " + inputPosX + ", input Y: " + inputPosY);
 
 
 
@@ -114,14 +107,25 @@ public class PlayerRotateController : MonoBehaviour
     private float rollMaxVelocity = 0f;
     private float rollMaxAngle = 0f;
 
-    private float eulerAngleX = 0f;
-    private float eulerAngleY = 0f;
-    private float rotCamXAxisSpeed = 0f;
-    private float rotCamYAxisSpeed = 0f;
+    private float eulerAngleX = 0f; // 사용안하는듯?
+    private float eulerAngleY = 0f; // 이것도
+
+    private float rotCamSpeed = 0f;
+    private float rotCamXAxisSensitive = 0f;
+    private float rotCamYAxisSensitive = 0f;
     private float minAngleX = 0f;
     private float maxAngleX = 0f;
     private Transform playerTr = null;
 
     private Vector3 rotVec = Vector3.zero;
     private PlayerData playerData = null;
+
+    private Vector2 mousePos;
+
+
+    //테스트용
+    [SerializeField]
+    private MouseChecker mouse = null;
+
+
 }

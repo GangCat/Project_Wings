@@ -11,11 +11,14 @@ public class PlayerManager : MonoBehaviour
         // public void Init();
         input = GetComponent<PlayerInputHandler>();
         playerCtrl = GetComponentInChildren<PlayerController>();
+        virtualMouse = GetComponentInChildren<VirtualMouse>();  // 플레이어의 조준점
 
         playerData.input = input;
 
         playerCtrl.Init(playerData);
+        virtualMouse.Init(playerData);
     }
+
 
 
     [SerializeField]
@@ -23,4 +26,6 @@ public class PlayerManager : MonoBehaviour
 
     private PlayerController playerCtrl = null;
     private PlayerInputHandler input = null;
+
+    private VirtualMouse virtualMouse;
 }

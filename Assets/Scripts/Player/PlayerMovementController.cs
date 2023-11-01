@@ -25,7 +25,6 @@ public class PlayerMovementController : MonoBehaviour
         moveVelocity = Mathf.Clamp(moveVelocity, moveBackVelocityLimit, moveForwardVelocityLimit);
         playerTr.Translate(playerTr.forward * moveVelocity * Time.deltaTime, Space.World);
 
-        Debug.Log(playerTr.forward);
         //destMoveZPos += moveVelocity * Time.deltaTime;
         //playerTr.position = playerTr.forward * destMoveZPos;
     }

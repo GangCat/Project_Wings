@@ -18,10 +18,21 @@ public class PlayerData : ScriptableObject
     public float moveAccel = 0f;
 
     [Header("Cam Data")]
-    public float rotCamXAxisSpeed = 0f;
-    public float rotCamYAxisSpeed = 0f;
+    public float rotCamSpeed = 100f;
+    public float rotCamXAxisSensitive = 2f;
+    public float rotCamYAxisSensitive = 1.5f;
     public float minAngleX = 0f;
     public float maxAngleX = 0f;
+
+
+    [Header("Virtual Mouse")]
+    public float returnMouseSpeed = 100f;
+    public float mouseSensitive = 3f;
+    public float maxMouseSpeed = 3f;
+    public float maxMouseRadius = 100f;
+    public float returnMouseRadius = 90f;
+    public Vector2 mousePos = Vector2.zero;
+
 
     [Header("Roll Data")]
     public float rollAccel = 0f;
