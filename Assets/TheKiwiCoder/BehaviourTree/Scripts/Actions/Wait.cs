@@ -15,9 +15,9 @@ namespace TheKiwiCoder {
         }
 
         protected override State OnUpdate() {
-            if (Time.time - startTime > duration) {
+            if (Time.time - startTime > duration)
                 return State.Success;
-            }
+
             return State.Running;
         }
     }

@@ -8,7 +8,7 @@ public class BossManager : MonoBehaviour
     public void Init(Transform _PlayerTr)
     {
         bossCtrl = GetComponentInChildren<BossController>();
-        bossCtrl.Init(tree, _PlayerTr);
+        //bossCtrl.Init(tree, _PlayerTr);
     }
 
 
