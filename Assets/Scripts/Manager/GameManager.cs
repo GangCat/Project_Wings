@@ -12,11 +12,14 @@ public class GameManager : MonoBehaviour, IPublisher
             Destroy(gameObject);
         else
             DontDestroyOnLoad(gameObject);
+
+
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
 
         Screen.SetResolution(1920, 1080, true);
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
@@ -57,10 +60,10 @@ public class GameManager : MonoBehaviour, IPublisher
 
     private void InitManagers()
     {
-        audioMng.Init();
-        bossMng.Init();
-        uiMng.Init();
-        camMng.Init();
+        //audioMng.Init();
+        bossMng.Init(playerTr);
+        //uiMng.Init();
+        camMng.Init(playerTr);
     }
 
     public void RegisterBroker()
@@ -73,8 +76,14 @@ public class GameManager : MonoBehaviour, IPublisher
         Broker.AlertMessageToSub(_message, EPublisherType.GAME_MANAGER);
     }
 
+    [SerializeField]
+    private Transform playerTr = null;
+
+
     private AudioManager audioMng = null;
     private BossManager bossMng = null;
     private UIManager uiMng = null;
     private CameraManager camMng = null;
+
+
 }

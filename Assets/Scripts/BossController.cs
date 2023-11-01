@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    public void Init(BehaviourTree _tree)
+    public void Init(BehaviourTree _tree, Transform _playerTr)
     {
-        myRunner = new MyBehaviourTreeRunner(gameObject, _tree);
+        myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr);
         StartCoroutine("UpdateCoroutine");
     }
 

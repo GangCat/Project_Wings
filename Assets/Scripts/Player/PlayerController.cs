@@ -4,60 +4,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private void Awake()
+    public void Init(PlayerData _playerData)
     {
-        stateMachine = new PlayerStateMachine(playerData);
-        DataInit();
-    }
+        playerData = _playerData;
+        moveCtrl = GetComponentInChildren<PlayerMovementController>();
+        rotCtrl = GetComponentInChildren<PlayerRotateController>();
+        animCtrl = GetComponentInChildren<PlayerAnimationController>();
+        colCtrl = GetComponentInChildren<PlayerCollisionController>();
 
-    private void Start()
-    {
-        StartCoroutine(IdleState());
-    }
-
-    private void DataInit()
-    {
-        playerData.rb = GetComponent<Rigidbody>();
         playerData.tr = transform;
-        playerData.inputHandler = GetComponent<PlayerInputHandler>();
+
+        moveCtrl.Init(playerData);
+        rotCtrl.Init(playerData);
+        animCtrl.Init();
+        colCtrl.Init();
     }
 
     private void Update()
     {
-        stateMachine.Update();
-    }
-    private void FixedUpdate()
-    {
-        stateMachine.FixedUpdate();
+        moveCtrl.PlayerMove(playerData.input.InputZ,playerData.input.InputShift);
+        moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
+        rotCtrl.PlayerRotate();
     }
 
-    private IEnumerator IdleState()
-    {
-        while (true)
-        {
-            if (playerData.inputHandler.GetInputZ() != 0)
-            {
-                stateMachine.ChangeState(E_State.MOVE);
-                yield break;
-            }
-            yield return null;
-        }
-    }
+    private PlayerMovementController moveCtrl = null;
+    private PlayerRotateController rotCtrl = null;
+    private PlayerAnimationController animCtrl = null;
+    private PlayerCollisionController colCtrl = null;
 
-    private IEnumerator MoveState()
-    {
-        if(playerData.rb.velocity.z == 0)
-        {
-            stateMachine.ChangeState(E_State.IDLE);
-            yield break;
-        }
-        yield return null;
-    }
-
-
-    private PlayerStateMachine stateMachine;
-
-    [SerializeField]
-    private PlayerData playerData;
-
+    private PlayerData playerData = null;
 }

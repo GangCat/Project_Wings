@@ -8,10 +8,10 @@ namespace TheKiwiCoder
     public class MyBehaviourTreeRunner
     {
         // Start is called before the first frame update
-        public MyBehaviourTreeRunner(GameObject _go, BehaviourTree _tree)
+        public MyBehaviourTreeRunner(GameObject _go, BehaviourTree _tree, Transform _playerTr)
         {
             tree = _tree;
-            context = CreateBehaviourTreeContext(_go);
+            context = CreateBehaviourTreeContext(_go, _playerTr);
             tree = tree.Clone();
             tree.Bind(context);
         }
@@ -23,9 +23,9 @@ namespace TheKiwiCoder
                 tree.Update();
         }
 
-        Context CreateBehaviourTreeContext(GameObject _go)
+        Context CreateBehaviourTreeContext(GameObject _go, Transform _playerTr)
         {
-            return Context.CreateFromGameObject(_go);
+            return Context.CreateFromGameObject(_go, _playerTr);
         }
 
         private void OnDrawGizmosSelected()
