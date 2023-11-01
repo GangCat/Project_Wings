@@ -19,10 +19,12 @@ MonoBehaviour:
   moveBackVelocityLimit: -20
   moveForwardVelocityLimit: 60
   moveAccel: 200
-  rotCamXAxisSpeed: 2
-  rotCamYAxisSpeed: 1.5
+  rotCamSpeed: 80
+  rotCamXAxisSensitive: 2
+  rotCamYAxisSensitive: 1.5
   minAngleX: -80
   maxAngleX: 80
+  mousePos: {x: 0, y: 0}
   rollAccel: 1000
   rollMaxVelocity: 200
   rollMaxAngle: 80
