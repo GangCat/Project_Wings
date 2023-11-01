@@ -30,7 +30,7 @@ public class VirtualMouse : MonoBehaviour
 
         LockVirtualMousePos();
         MouseMove(mousePos);
-        playerData.mousePos = mousePos;
+        playerData.currentMousePos = mousePos;
     }
 
 

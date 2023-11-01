@@ -39,12 +39,15 @@ public class PlayerData : ScriptableObject
     public float maxMouseSpeed = 3f;
     public float maxMouseRadius = 100f;
     public float returnMouseRadius = 90f;
-    public Vector2 mousePos = Vector2.zero;
+    public Vector2 currentMousePos = Vector2.zero;
 
 
     [Header("Roll Data")]
     public float rollAccel = 0f;
     public float rollMaxVelocity = 0f;
     public float rollMaxAngle = 0f;
+
+
+    public float currentRotZ = 0f;
 
 }

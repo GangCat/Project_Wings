@@ -28,18 +28,18 @@ public class PlayerMovementController : MonoBehaviour
 
             if(moveVelocity > 20f)
             {
-                if(playerTr.forward.y >= 0.5f)
+                if(playerTr.forward.y >= 0.3f)
                 {
-                    gravityAccel = -playerData.gravityAccel;
-                    gravitySpeed = -playerData.gravitySpeed;
+                    //gravityAccel = -playerData.gravityAccel;
+                    //gravitySpeed = -playerData.gravitySpeed;
                 }
-                else if(playerTr.forward.y <= -0.5f)
+                else if(playerTr.forward.y <= -0.2f)
                 {
-                    gravityAccel = playerData.gravityAccel;
+                    //gravityAccel = playerData.gravityAccel;
                     gravitySpeed = playerData.gravitySpeed;
                 }
                 else {
-                    gravityAccel = 0;
+                    //gravityAccel = 0;
                     gravitySpeed = 0;
                 }
             }

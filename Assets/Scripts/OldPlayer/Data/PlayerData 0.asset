@@ -19,11 +19,11 @@ MonoBehaviour:
   moveBackVelocityLimit: -20
   moveForwardVelocityLimit: 60
   moveAccel: 100
-  moveDashSpeed: 40
+  moveDashSpeed: 30
   moveDashAccel: 50
   moveStopAccel: 40
-  gravityAccel: 20
-  gravitySpeed: 15
+  gravityAccel: 0
+  gravitySpeed: 30
   isDash: 0
   rotCamSpeed: 75
   rotCamXAxisSensitive: 2
@@ -35,7 +35,8 @@ MonoBehaviour:
   maxMouseSpeed: 5
   maxMouseRadius: 100
   returnMouseRadius: 90
-  mousePos: {x: 0, y: 0}
+  currentMousePos: {x: 0, y: 0}
   rollAccel: 1000
   rollMaxVelocity: 200
   rollMaxAngle: 80
+  currentRotZ: 43.737198

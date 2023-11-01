@@ -22,11 +22,12 @@ public class PlayerRotateController : MonoBehaviour
         RotateToMouse(ref rotVec.x, ref rotVec.y);
         RotateToKeyboard(ref rotVec.z);
         playerTr.rotation = Quaternion.Euler(rotVec);
+        playerData.currentRotZ = rotVec.z;
     }
 
     private void RotateToMouse(ref float _eulerAngleX, ref float _eulerAngleY)
     {
-        mousePos = playerData.mousePos;
+        mousePos = playerData.currentMousePos;
 
         _eulerAngleY += rotCamSpeed * rotCamYAxisSensitive * Time.deltaTime * (mousePos.x / 100);
         _eulerAngleX -= rotCamSpeed * rotCamXAxisSensitive * Time.deltaTime * (mousePos.y / 100);
