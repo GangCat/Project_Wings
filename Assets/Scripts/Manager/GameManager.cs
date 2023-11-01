@@ -12,12 +12,14 @@ public class GameManager : MonoBehaviour, IPublisher
             Destroy(gameObject);
         else
             DontDestroyOnLoad(gameObject);
+
+
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
-        
+        Cursor.visible = false;
 
         Screen.SetResolution(1920, 1080, true);
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
