@@ -31,7 +31,7 @@ public class PlayerRotateController : MonoBehaviour
         _eulerAngleY += rotCamSpeed * rotCamYAxisSensitive * Time.deltaTime * (mousePos.x / 100);
         _eulerAngleX -= rotCamSpeed * rotCamXAxisSensitive * Time.deltaTime * (mousePos.y / 100);
         _eulerAngleX = ClampAngle(_eulerAngleX, minAngleX, maxAngleX);
-        Debug.Log(_eulerAngleY);
+        //Debug.Log(_eulerAngleY);
     }
 
     private float ClampAngle(float _angle, float _min, float _max)

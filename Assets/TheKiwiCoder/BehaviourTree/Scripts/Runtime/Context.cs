@@ -12,6 +12,7 @@ namespace TheKiwiCoder {
     public class Context {
         public GameObject gameObject;
         public Transform transform;
+        public Transform playerTr;
         public Animator animator;
         public Rigidbody physics;
         public NavMeshAgent agent;
@@ -21,7 +22,7 @@ namespace TheKiwiCoder {
         public CharacterController characterController;
         // Add other game specific systems here
 
-        public static Context CreateFromGameObject(GameObject gameObject) {
+        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null) {
             // Fetch all commonly used components
             Context context = new Context();
             context.gameObject = gameObject;
@@ -33,7 +34,7 @@ namespace TheKiwiCoder {
             context.boxCollider = gameObject.GetComponent<BoxCollider>();
             context.capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
             context.characterController = gameObject.GetComponent<CharacterController>();
-            
+            context.playerTr = _playerTr;
             // Add whatever else you need here...
 
             return context;

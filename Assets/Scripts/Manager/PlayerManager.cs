@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
         playerData.input = input;
 
         playerCtrl.Init(playerData);
-        virtualMouse.Init(playerData);
+        //virtualMouse.Init(playerData);
     }
 
 

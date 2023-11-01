@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour, IPublisher
     private void InitManagers()
     {
         //audioMng.Init();
-        //bossMng.Init();
+        bossMng.Init(playerTr);
         //uiMng.Init();
         camMng.Init(playerTr);
     }
@@ -84,5 +84,6 @@ public class GameManager : MonoBehaviour, IPublisher
     private BossManager bossMng = null;
     private UIManager uiMng = null;
     private CameraManager camMng = null;
+
 
 }
