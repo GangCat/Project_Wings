@@ -4379,12 +4379,12 @@ PrefabInstance:
     - target: {fileID: 1062659306485585797, guid: 3a63ca57dcde961499a26a760d1f520d,
         type: 3}
       propertyPath: sensitive
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1062659306485585797, guid: 3a63ca57dcde961499a26a760d1f520d,
         type: 3}
       propertyPath: maxMouseSpeed
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2021520304031107983, guid: 3a63ca57dcde961499a26a760d1f520d,
         type: 3}
@@ -4677,7 +4677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa267f139bfa38f4eb774ba7af4bed1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouse: {fileID: 0}
 --- !u!114 &798473341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8979,7 +8978,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

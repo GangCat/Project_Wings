@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
         // public void Init();
         input = GetComponent<PlayerInputHandler>();
         playerCtrl = GetComponentInChildren<PlayerController>();
-        virtualMouse = GetComponentInChildren<VirtualMouse>();  // 플레이어의 조준점
+        virtualMouse = GetComponentInChildren<VirtualMouse>();  // 플레이어의 회전을 결정하는 조준점
 
         playerData.input = input;
 

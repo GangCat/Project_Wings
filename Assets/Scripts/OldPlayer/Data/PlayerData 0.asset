@@ -18,12 +18,23 @@ MonoBehaviour:
   stamina: 100
   moveBackVelocityLimit: -20
   moveForwardVelocityLimit: 60
-  moveAccel: 200
-  rotCamSpeed: 80
+  moveAccel: 100
+  moveDashSpeed: 40
+  moveDashAccel: 50
+  moveStopAccel: 40
+  gravityAccel: 20
+  gravitySpeed: 15
+  isDash: 0
+  rotCamSpeed: 75
   rotCamXAxisSensitive: 2
   rotCamYAxisSensitive: 1.5
   minAngleX: -80
   maxAngleX: 80
+  returnMouseSpeed: 100
+  mouseSensitive: 4
+  maxMouseSpeed: 5
+  maxMouseRadius: 100
+  returnMouseRadius: 90
   mousePos: {x: 0, y: 0}
   rollAccel: 1000
   rollMaxVelocity: 200

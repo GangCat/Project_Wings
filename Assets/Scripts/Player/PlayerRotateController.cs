@@ -31,7 +31,6 @@ public class PlayerRotateController : MonoBehaviour
         _eulerAngleY += rotCamSpeed * rotCamYAxisSensitive * Time.deltaTime * (mousePos.x / 100);
         _eulerAngleX -= rotCamSpeed * rotCamXAxisSensitive * Time.deltaTime * (mousePos.y / 100);
         _eulerAngleX = ClampAngle(_eulerAngleX, minAngleX, maxAngleX);
-        Debug.Log(_eulerAngleY);
     }
 
     private float ClampAngle(float _angle, float _min, float _max)
@@ -63,45 +62,6 @@ public class PlayerRotateController : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// 
-    /// </summary>
-        //inputMouseX = Input.GetAxis("Mouse X");
-        //inputMouseY = Input.GetAxis("Mouse Y");
-        //Mathf.Clamp(inputMouseX, -3, 3);
-        //Mathf.Clamp(inputMouseY, -3, 3);
-
-        //inputPosX += inputMouseX * sensitive;
-        //inputPosY += inputMouseY * sensitive;
-
-
-        //float radius = 100f;
-
-        //float distanceFromOrigin = Mathf.Sqrt(inputPosX * inputPosX + inputPosY * inputPosY);
-
-        //if (distanceFromOrigin > radius)
-        //{
-        //    float angle = Mathf.Atan2(inputPosY, inputPosX);
-        //    inputPosX = radius * Mathf.Cos(angle);
-        //    inputPosY = radius * Mathf.Sin(angle);
-        //}
-
-        //Vector2 inputPos = new Vector2(inputPosX, inputPosY);
-
-        //float maxRadius = 90f;
-
-        //if (inputPos.magnitude < maxRadius)
-        //{
-        //    inputPosX = Mathf.MoveTowards(inputPosX, 0, decreaseSpeed * Time.deltaTime);
-        //    inputPosY = Mathf.MoveTowards(inputPosY, 0, decreaseSpeed * Time.deltaTime);
-        //}
-
-        //virtualCursor.transform.position = new Vector3(centerPosition.x + inputPosX, centerPosition.y + inputPosY);
-
-        //Debug.Log("input X: " + inputPosX + ", input Y: " + inputPosY);
-
-
-
     private float rollVelocity = 0f;
     private float rollAccel = 0f;
     private float rollMaxVelocity = 0f;
@@ -122,10 +82,6 @@ public class PlayerRotateController : MonoBehaviour
 
     private Vector2 mousePos;
 
-
-    //테스트용
-    [SerializeField]
-    private MouseChecker mouse = null;
 
 
 }

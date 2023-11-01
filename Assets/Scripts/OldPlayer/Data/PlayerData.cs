@@ -16,6 +16,14 @@ public class PlayerData : ScriptableObject
     public float moveBackVelocityLimit = 0f;
     public float moveForwardVelocityLimit = 0f;
     public float moveAccel = 0f;
+    public float moveDashSpeed = 0f;
+    public float moveDashAccel = 0f;
+    public float moveStopAccel = 50f;
+    public float gravityAccel = 50f;
+    public float gravitySpeed = 100f;
+
+    public bool isDash = false;
+
 
     [Header("Cam Data")]
     public float rotCamSpeed = 100f;
