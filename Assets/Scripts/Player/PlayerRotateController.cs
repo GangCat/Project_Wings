@@ -41,6 +41,33 @@ public class PlayerRotateController : MonoBehaviour
         return Mathf.Clamp(_angle, _min, _max); // 대소를 비교하여 범위 안의 값일 경우 _angle을 반환, _min 이하일경우 _min을 반환, _max이상일 경우 _max를 반환함.
     }
 
+    /// 마우스로 z축 회전
+    /// 500  100  40
+    //private void RotateToKeyboard(ref float _eulerAngleZ)
+    //{
+    //    rollAccel = playerData.rollAccel;
+    //    rollMaxVelocity = playerData.rollMaxVelocity;
+    //    rollMaxAngle = playerData.rollMaxAngle;
+
+    //    mousePos = playerData.mousePos;
+
+    //    if (Mathf.Abs(mousePos.x) > 0f)
+    //        rollVelocity += rollAccel * Time.deltaTime * -mousePos.x / 100;
+    //    else
+    //        rollVelocity = Mathf.MoveTowards(rollVelocity, 0, rollAccel * Time.deltaTime);
+
+    //    rollVelocity = Mathf.Clamp(rollVelocity, -rollMaxVelocity, rollMaxVelocity);
+
+    //    _eulerAngleZ += rollVelocity * Time.deltaTime;
+    //    _eulerAngleZ = Mathf.Clamp(_eulerAngleZ, -rollMaxAngle, rollMaxAngle);
+
+    //    if (Mathf.Abs(_eulerAngleZ).Equals(rollMaxAngle))
+    //        rollVelocity = 0f;
+    //}
+
+    /// <summary>
+    /// 원본
+    /// </summary>
     private void RotateToKeyboard(ref float _eulerAngleZ)
     {
         rollAccel = playerData.rollAccel;

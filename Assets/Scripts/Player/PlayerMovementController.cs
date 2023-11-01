@@ -13,8 +13,6 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerMove(float _inputZ, bool _inputShift)
     {
-        Debug.Log(playerTr.forward);
-
         moveBackVelocityLimit = playerData.moveBackVelocityLimit;
         moveForwardVelocityLimit = playerData.moveForwardVelocityLimit;
         moveAccel = playerData.moveAccel;
@@ -76,14 +74,14 @@ public class PlayerMovementController : MonoBehaviour
         if(_inputQ == true && isDodge == false)
         {
             Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
-            StartCoroutine(MoveToDir2(60, 0.3f, forwardLeft));
+            StartCoroutine(MoveToDir(60, 0.3f, forwardLeft));
             isDodge = true;
         }
 
         if (_inputE == true && isDodge == false)
         {
             Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
-            StartCoroutine(MoveToDir2(60, 0.3f, forwardRight));
+            StartCoroutine(MoveToDir(60, 0.3f, forwardRight));
             isDodge = true;
         }
 

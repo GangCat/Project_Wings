@@ -16,7 +16,9 @@ public class PlayerManager : MonoBehaviour
         playerData.input = input;
 
         playerCtrl.Init(playerData);
-        //virtualMouse.Init(playerData);
+        virtualMouse.Init(playerData);
+
+        pmc.Init(playerData);
     }
 
 
@@ -28,4 +30,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerInputHandler input = null;
 
     private VirtualMouse virtualMouse;
+
+    [SerializeField]
+    private PlayerModelRotateController pmc = null;
 }
