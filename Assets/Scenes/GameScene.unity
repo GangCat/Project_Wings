@@ -4476,6 +4476,7 @@ GameObject:
   - component: {fileID: 798473341}
   - component: {fileID: 798473340}
   - component: {fileID: 798473339}
+  - component: {fileID: 798473342}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -4492,7 +4493,7 @@ Transform:
   m_GameObject: {fileID: 798473337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -281}
+  m_LocalPosition: {x: 0, y: 3.8, z: -281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4512,6 +4513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f72fddceeaaf09489aa55462d52aa3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 798473342}
 --- !u!114 &798473340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4536,6 +4538,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113261a1ac020da43a89db4b0e6edd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &798473342
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798473337}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &800081644
 GameObject:
   m_ObjectHideFlags: 0
@@ -13388,7 +13417,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2060224916}
   - component: {fileID: 2060224919}
-  - component: {fileID: 2060224918}
   - component: {fileID: 2060224917}
   m_Layer: 0
   m_Name: PlayerCollider
@@ -13424,33 +13452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a75ef941d7a7a94f868411717bbd48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &2060224918
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060224915}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!136 &2060224919
 CapsuleCollider:
   m_ObjectHideFlags: 0

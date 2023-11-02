@@ -22,10 +22,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        moveCtrl.PlayerMove(playerData.input.InputZ,playerData.input.InputShift);
         moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
         rotCtrl.PlayerRotate();
     }
+
+    private void FixedUpdate()
+    {
+        moveCtrl.PlayerMove(playerData.input.InputZ,playerData.input.InputShift);
+    }
+
+
 
     private PlayerMovementController moveCtrl = null;
     private PlayerRotateController rotCtrl = null;

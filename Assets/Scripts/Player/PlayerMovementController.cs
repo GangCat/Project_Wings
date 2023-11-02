@@ -58,7 +58,10 @@ public class PlayerMovementController : MonoBehaviour
 
         ResultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
         moveVelocity = Mathf.Clamp(moveVelocity, moveBackVelocityLimit, ResultForwardVelocityLimit);
-        playerTr.Translate(playerTr.forward * moveVelocity * Time.deltaTime, Space.World);
+        rb.velocity = moveVelocity * playerTr.forward;
+        //Debug.Log(rb.velocity.magnitude);
+        //rb.MovePosition(playerTr.forward * moveVelocity * Time.deltaTime);
+        //playerTr.Translate(playerTr.forward * moveVelocity * Time.deltaTime, Space.World);
 
     }
 
@@ -159,7 +162,8 @@ public class PlayerMovementController : MonoBehaviour
     private bool isDodge = false;
 
 
-
+    [SerializeField]
+    private Rigidbody rb = null;
 
 
 }
