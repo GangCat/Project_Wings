@@ -8,9 +8,9 @@ public class BossController : MonoBehaviour
 {
     public void Init(BehaviourTree _tree, Transform _playerTr)
     {
+        curPhaseNum = 1;
         myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr);
         curWeakPoint = new List<GameObject>();
-        curPhaseNum = 1;
         InitNewWeakPoint();
         StartCoroutine("UpdateCoroutine");
     }

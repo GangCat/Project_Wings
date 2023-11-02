@@ -21,6 +21,7 @@ namespace TheKiwiCoder
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
+            tree.blackboard.curPhaseNum = 1;
         }
 
         public void FinishCurrentPhase()
@@ -38,7 +39,7 @@ namespace TheKiwiCoder
         public void Update()
         {
             tree.Update();
-            Debug.Log(tree.blackboard.isPhaseEnd);
+            Debug.Log(tree.blackboard.isPhaseEnd + " " + tree.blackboard.curPhaseNum);
         }
 
         Context CreateBehaviourTreeContext(GameObject _go, Transform _playerTr)
