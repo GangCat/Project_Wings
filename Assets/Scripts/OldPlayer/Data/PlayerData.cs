@@ -46,8 +46,9 @@ public class PlayerData : ScriptableObject
     public float rollAccel = 0f;
     public float rollMaxVelocity = 0f;
     public float rollMaxAngle = 0f;
+    public float rollReturnAccel = 0f;
 
 
     public float currentRotZ = 0f;
-
+    public float currentMoveVelocity = 0f;
 }

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
         rotCtrl = GetComponentInChildren<PlayerRotateController>();
         animCtrl = GetComponentInChildren<PlayerAnimationController>();
         colCtrl = GetComponentInChildren<PlayerCollisionController>();
+        virtualMouse = GetComponentInChildren<VirtualMouse>();
 
         playerData.tr = transform;
 
@@ -18,25 +19,27 @@ public class PlayerController : MonoBehaviour
         rotCtrl.Init(playerData);
         animCtrl.Init();
         colCtrl.Init();
+        virtualMouse.Init(playerData);
+
     }
 
     private void Update()
     {
+
+        virtualMouse.UpdateMouseInput();
         moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
+        moveCtrl.PlayerMove(playerData.input.InputZ, playerData.input.InputShift);
         rotCtrl.PlayerRotate();
-    }
 
-    private void FixedUpdate()
-    {
-        moveCtrl.PlayerMove(playerData.input.InputZ,playerData.input.InputShift);
     }
-
 
 
     private PlayerMovementController moveCtrl = null;
     private PlayerRotateController rotCtrl = null;
     private PlayerAnimationController animCtrl = null;
     private PlayerCollisionController colCtrl = null;
+
+    private VirtualMouse virtualMouse = null;
 
     private PlayerData playerData = null;
 }

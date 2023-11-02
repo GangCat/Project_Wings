@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -57,12 +58,20 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         ResultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
-        moveVelocity = Mathf.Clamp(moveVelocity, moveBackVelocityLimit, ResultForwardVelocityLimit);
+        currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, ResultForwardVelocityLimit, 0.7f * Time.deltaTime);
+
+        moveVelocity = Mathf.Clamp(moveVelocity, moveBackVelocityLimit, currentForwardVelocityLimit);
+
+
+
         rb.velocity = moveVelocity * playerTr.forward;
+
+
+        playerData.currentMoveVelocity = moveVelocity; // 현재 속도 공유
+
         //Debug.Log(rb.velocity.magnitude);
         //rb.MovePosition(playerTr.forward * moveVelocity * Time.deltaTime);
         //playerTr.Translate(playerTr.forward * moveVelocity * Time.deltaTime, Space.World);
-
     }
 
         // 이동 백업용
@@ -88,15 +97,8 @@ public class PlayerMovementController : MonoBehaviour
             isDodge = true;
         }
 
-        if (isDodge == true){
-            dodgeSpeedRatio = 0.5f;
-        }
-        else
-        {
-            dodgeSpeedRatio = 1f;
-        }
-        
     }
+
     IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
         Vector3 direction = _dir; 
@@ -108,30 +110,10 @@ public class PlayerMovementController : MonoBehaviour
             float step = speed * Time.deltaTime; 
             playerTr.Translate(direction * step, Space.World); 
             movedDistance += step;
-            yield return null; 
-        }
-        isDodge = false;
-    }
-
-    IEnumerator MoveToDir2(float speed, float duration, Vector3 targetDirection)
-    {
-        float startTime = Time.time;
-        Vector3 startPosition = playerTr.position;
-        float distance = speed * duration;
-
-        while (Time.time - startTime < duration)
-        {
-            float t = (Time.time - startTime) / duration;
-            float step = speed * Time.deltaTime;
-            Vector3 newPosition = Vector3.Lerp(startPosition, startPosition + targetDirection * distance, t);
-            playerTr.Translate(newPosition - playerTr.position, Space.World);
             yield return null;
         }
-
-        //playerTr.Translate(targetDirection * distance, Space.World);
         isDodge = false;
     }
-
 
 
 
@@ -157,6 +139,8 @@ public class PlayerMovementController : MonoBehaviour
     private float gravityAccel = 0f;
     private float gravitySpeed = 0f;
     private float dodgeSpeedRatio = 1f;
+    private float currentForwardVelocityLimit = 0f;
+
 
     private bool isDash = false;
     private bool isDodge = false;

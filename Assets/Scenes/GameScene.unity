@@ -4499,6 +4499,7 @@ Transform:
   m_Children:
   - {fileID: 2060224916}
   - {fileID: 1671145723}
+  - {fileID: 1288603235}
   m_Father: {fileID: 1094644691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &798473339
@@ -4564,7 +4565,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &800081644
 GameObject:
   m_ObjectHideFlags: 0
@@ -6917,7 +6918,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 798473338}
-  - {fileID: 1288603235}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1118937861
@@ -8166,7 +8166,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1094644691}
+    m_TransformParent: {fileID: 798473338}
     m_Modifications:
     - target: {fileID: 557588694851054275, guid: 3a63ca57dcde961499a26a760d1f520d,
         type: 3}
@@ -9080,6 +9080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 10
+  smoothSpeed: 0.125
 --- !u!1 &1408180274
 GameObject:
   m_ObjectHideFlags: 0

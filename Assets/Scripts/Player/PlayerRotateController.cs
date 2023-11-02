@@ -14,15 +14,22 @@ public class PlayerRotateController : MonoBehaviour
         minAngleX = playerData.minAngleX;
         maxAngleX = playerData.maxAngleX;
         playerTr = playerData.tr;
-
+        rollReturnAccel = playerData.rollReturnAccel;
     }
 
     public void PlayerRotate() // Update 돌리는거
     {
         RotateToMouse(ref rotVec.x, ref rotVec.y);
-        RotateToKeyboard(ref rotVec.z);
-        playerTr.rotation = Quaternion.Euler(rotVec);
+        if (playerData.currentMoveVelocity < 5 || playerData.input.InputZ <= 0)
+        {
+            rotVec.z = Mathf.MoveTowards(rotVec.z, 0, rollReturnAccel * Time.deltaTime);
+        }
+        else
+        {
+            RotateToKeyboard(ref rotVec.z);
+        }
         playerData.currentRotZ = rotVec.z;
+        playerTr.rotation = Quaternion.Euler(rotVec);
     }
 
     private void RotateToMouse(ref float _eulerAngleX, ref float _eulerAngleY)
@@ -31,6 +38,11 @@ public class PlayerRotateController : MonoBehaviour
 
         _eulerAngleY += rotCamSpeed * rotCamYAxisSensitive * Time.deltaTime * (mousePos.x / 100);
         _eulerAngleX -= rotCamSpeed * rotCamXAxisSensitive * Time.deltaTime * (mousePos.y / 100);
+
+
+        //_eulerAngleY += rotCamSpeed * rotCamYAxisSensitive * Time.deltaTime * Input.GetAxis("Mouse X");
+        //_eulerAngleX -= rotCamSpeed * rotCamXAxisSensitive * Time.deltaTime * Input.GetAxis("Mouse Y");
+
         _eulerAngleX = ClampAngle(_eulerAngleX, minAngleX, maxAngleX);
     }
 
@@ -94,6 +106,8 @@ public class PlayerRotateController : MonoBehaviour
     private float rollAccel = 0f;
     private float rollMaxVelocity = 0f;
     private float rollMaxAngle = 0f;
+    private float rollReturnAccel = 0f;
+
 
     private float eulerAngleX = 0f; // 사용안하는듯?
     private float eulerAngleY = 0f; // 이것도

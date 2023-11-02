@@ -39,4 +39,6 @@ MonoBehaviour:
   rollAccel: 1000
   rollMaxVelocity: 200
   rollMaxAngle: 80
-  currentRotZ: 43.737198
+  rollReturnAccel: 100
+  currentRotZ: 0
+  currentMoveVelocity: 0
