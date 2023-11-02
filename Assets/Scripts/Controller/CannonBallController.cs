@@ -9,20 +9,20 @@ using UnityEngine;
 /// </summary>
 public class CannonBallController : MonoBehaviour
 {
-    Rigidbody rb = null;
-    public float speed =-150f;
-    private void Awake()
+    private float speed;
+    public void Init(float _speed)
     {
-        rb = GetComponent<Rigidbody>();
-        
-    }
-    private void Start()
-    {
-        rb.velocity = new Vector3(0f,speed,0f);
+        speed = _speed;
+        StartCoroutine(UpdateCoroutine());
     }
 
-    private void Update()
+    private IEnumerator UpdateCoroutine()
     {
-    }
+        while (true)
+        {
+            transform.position += Vector3.down * speed * Time.deltaTime;
 
+            yield return null;
+        }
+    }
 }

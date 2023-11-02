@@ -13,8 +13,8 @@ using UnityEngine;
 /// </summary>
 public class GatlingGunController : MonoBehaviour
 {
-    public Transform player; // 플레이어 위치를 저장하는 Transform
-    public Transform gunMuzzle; // 총구 위치
+    public Transform playerTr; // 플레이어 위치를 저장하는 Transform
+    public Transform gunMuzzleTr; // 총구 위치
     public GameObject bulletPrefab; // 총알 프리팹
 
     public float rotationSpeed = 5.0f; // 터렛 회전 속도
@@ -23,6 +23,7 @@ public class GatlingGunController : MonoBehaviour
 
     private int currentBulletCount; // 현재 총알 발사 갯수
     private float lastFireTime; // 마지막 총알 발사 시간
+    private float randomRange = 5f;
 
 
     private void Start()
@@ -43,16 +44,13 @@ public class GatlingGunController : MonoBehaviour
 
     private void RotateTurretToPlayer()
     {
-        if (player != null)
+        if (playerTr != null)
         {
-            Vector3 playerDirection = player.position - transform.position;
+            Vector3 playerDirection = new Vector3(playerTr.position.x-transform.position.x,0f,playerTr.position.z-transform.position.z);
             Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
 
             // 부드럽게 회전하기 위해 Lerp 사용
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-            // 총구의 각도 설정
-            gunMuzzle.LookAt(player);
         }
     }
 
@@ -66,6 +64,16 @@ public class GatlingGunController : MonoBehaviour
         lastFireTime = Time.time;
         currentBulletCount--;
 
-        GameObject bullet = Instantiate(bulletPrefab, gunMuzzle.position, gunMuzzle.rotation);
+        Vector3 tmp = gunMuzzleTr.up;
+
+        //float angle = Random.Range(0, 360);
+        //float radians = angle * Mathf.Deg2Rad;
+        //Vector3 spawnPosition = playerTr.position + new Vector3(Mathf.Cos(radians), Mathf.Sin(radians)) * randomRange;
+
+        Quaternion rot = Quaternion.AngleAxis(Random.Range(0, 360), gunMuzzleTr.forward);
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(Vector3.zero, rot, Vector3.one);
+        Vector3 targetPos = rotationMatrix.MultiplyPoint3x4(tmp) + playerTr.position;
+
+        GameObject bullet = Instantiate(bulletPrefab, gunMuzzleTr.position, gunMuzzleTr.rotation);
     }
 }

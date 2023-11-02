@@ -178,6 +178,37 @@ MonoBehaviour:
     failure"
   drawGizmos: 0
   message: 
+--- !u!114 &-6594593975732872345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cf64563ffbc2e4ea543f8b184dbed2, type: 3}
+  m_Name: CannonActionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f7b104335ea13b34ca2de8c1c71d5e6b
+  position: {x: 0.4000244, y: 1007.2001}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  radious: 50
+  duration: 9.1
+  attackMinHeight: 400
+  attackMaxHeight: 1000
+  term: 3
+  cannonBallCnt: 100
+  cannonBallPrefab: {fileID: 8582983355367289449, guid: d818c161b23da574691dde04d782eb3f,
+    type: 3}
+  cannonBallSpeed: 250
+  attackAreaPrefab: {fileID: 9014645002717474501, guid: 3cf30d7655db4ab43bcf7a03c2be25b0,
+    type: 3}
 --- !u!114 &-5902096515197029103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,27 +320,6 @@ MonoBehaviour:
   description: "\uB69C\uAED1 \uB9DE\uC744\uB9CC\uD07C \uB9DE\uC558\uB294\uC9C0 \uD655\uC778"
   drawGizmos: 0
   message: 
---- !u!114 &-5065014562895176953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
-  m_Name: Log
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: f85bee883a36b0a48a0beee69e47b3c9
-  position: {x: 0, y: 1007}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-  description: "\uD3EC\uD0C4"
-  drawGizmos: 0
-  message: 
 --- !u!114 &-4334613405619574757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +364,27 @@ MonoBehaviour:
   description: "\uAC8C\uD2C0\uB9C1"
   drawGizmos: 0
   message: 
+--- !u!114 &-4246718077681743868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46401fc1cab67cc40bf38909555ca0d1, type: 3}
+  m_Name: CheckPhaseOneRange
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 675612846e4a1f743883e1acb725db3d
+  position: {x: -173.79999, y: 741.80005}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  range: 20000
 --- !u!114 &-4245919616516344443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,7 +427,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -3405059047542913675}
+  - {fileID: -4246718077681743868}
   - {fileID: -3792443222281468896}
   - {fileID: -2573973288612435104}
 --- !u!114 &-3792443222281468896
@@ -419,7 +450,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: "\uD328\uD134 \uB300\uAE30"
   drawGizmos: 0
-  duration: 1
+  duration: 5
 --- !u!114 &-3444351115358161925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,28 +475,6 @@ MonoBehaviour:
   - {fileID: -8573908050514645513}
   - {fileID: -4293055054648535295}
   - {fileID: 408190545563616093}
---- !u!114 &-3405059047542913675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
-  m_Name: Log
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 7b85ac6a98ac5ca4986a441ae267fb98
-  position: {x: -150, y: 744}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-  description: "\uC0AC\uC815\uAC70\uB9AC \uAC80\uC0AC \uC0AC\uC815\uAC70\uB9AC \uB0B4\uC5D0
-    \uC788\uC744 \uACBD\uC6B0 Success\uBC18\uD658"
-  drawGizmos: 0
-  message: 
 --- !u!114 &-3195508858895560894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,8 +566,8 @@ MonoBehaviour:
     \uCF54\uB4DC \uC791\uC131"
   drawGizmos: 0
   children:
-  - {fileID: -5065014562895176953}
-  - {fileID: 4484509439327501554}
+  - {fileID: -6594593975732872345}
+  - {fileID: 2243901728854521414}
 --- !u!114 &-2515486109351832190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,11 +701,8 @@ MonoBehaviour:
   - {fileID: -5500064975205427604}
   - {fileID: -5798148060626802332}
   - {fileID: -4051431916213275055}
-  - {fileID: -3405059047542913675}
   - {fileID: -3792443222281468896}
   - {fileID: -2573973288612435104}
-  - {fileID: -5065014562895176953}
-  - {fileID: 4484509439327501554}
   - {fileID: 6329747371367835315}
   - {fileID: 6998864280886637206}
   - {fileID: -3444351115358161925}
@@ -740,6 +746,9 @@ MonoBehaviour:
   - {fileID: -7299125895060674073}
   - {fileID: 754157363295865812}
   - {fileID: -2714581357895113944}
+  - {fileID: -4246718077681743868}
+  - {fileID: -6594593975732872345}
+  - {fileID: 2243901728854521414}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &395309884230210798
@@ -829,7 +838,6 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -2714581357895113944}
-  - {fileID: -3028556854871727208}
   - {fileID: 3769163746440810690}
 --- !u!114 &870909347235803316
 MonoBehaviour:
@@ -926,6 +934,31 @@ MonoBehaviour:
   - {fileID: 8447766402949043736}
   - {fileID: -8697288628566554202}
   - {fileID: 754157363295865812}
+--- !u!114 &2243901728854521414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92573731de47a4449f1c4eb9210c101, type: 3}
+  m_Name: GatilingActionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ea9829ef9305ea04bb2556f4c4af2047
+  position: {x: 206.80006, y: 1014.2001}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  bulletPrefab: {fileID: 6519272339437649605, guid: cd6c9962db9d58b42b351e01d640131f,
+    type: 3}
+  maxBulletCnt: 500
+  rotationSpeed: 0.5
+  fireRate: 10
 --- !u!114 &2454858616945427538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1104,27 +1137,6 @@ MonoBehaviour:
   description: "\uBC1C\uC0AC"
   drawGizmos: 0
   message: 
---- !u!114 &4484509439327501554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
-  m_Name: Log
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 49cf94af83265c242ad2e280b9d289f8
-  position: {x: 150, y: 1007}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-  description: "\uAC8C\uD2C0\uB9C1"
-  drawGizmos: 0
-  message: 
 --- !u!114 &4598753320229339781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,7 +1208,7 @@ MonoBehaviour:
     \uC885\uB8CC\uB418\uBA74 \uAC8C\uC784 \uC885\uB8CC\uC640 \uAC19\uB2E4\uACE0 \uC0DD\uAC01\uD558\uBA74
     \uB420\uB4EF"
   drawGizmos: 0
-  message: 
+  message: 1
 --- !u!114 &6329747371367835315
 MonoBehaviour:
   m_ObjectHideFlags: 0

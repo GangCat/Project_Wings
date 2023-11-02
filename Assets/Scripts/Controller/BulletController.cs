@@ -16,6 +16,6 @@ public class BulletController : MonoBehaviour
     }
     private void Start()
     {
-        rb.velocity = transform.forward;
+        rb.velocity = transform.forward*speed;
     }
 }
