@@ -1,3 +1,10 @@
+using UnityEngine;
+
+public delegate void VoidVoidDelegate();
+public delegate void VoidFloatDelegate();
+public delegate void VoidIntDelegate();
+public delegate void VoidGameObjectDelegate(GameObject _go);
+
 public enum EPublisherType 
 { 
     NONE = -1, 
