@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -41,9 +39,11 @@ public class CannonManager : MonoBehaviour
                 float angle = Random.Range(0, 360);
                 float radians = angle * Mathf.Deg2Rad;
                 Vector3 spawnPosition = attackPosition + new Vector3(Mathf.Cos(radians), Mathf.Sin(radians)) * randomRange;
+                /////Vector3 spawnPosition = attackPosition + new Vector3(Mathf.Cos(radians), 0f, Mathf.Sin(radians)) * randomRange;
 
                 // 포탄 생성 (높이 추가)
                 Vector3 spawnPositionWithHeight = new Vector3(spawnPosition.x, attackHeight, spawnPosition.z + spawnPosition.y);
+                /////Vector3 spawnPositionWithHeight = new Vector3(spawnPosition.x, attackHeight, spawnPosition.z);
                 GameObject bullet = Instantiate(bulletPrefab, spawnPositionWithHeight, Quaternion.identity);
 
                 // 원하는 추가 설정을 수행
