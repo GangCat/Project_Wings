@@ -15,7 +15,6 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Ãæµ¹");
         collisionCallback?.Invoke(collision, true);
     }
 

@@ -32,7 +32,6 @@ public class PlayerRotateController : MonoBehaviour
         //playerTr.rotation = Quaternion.Euler(rotVec);
 
         Quaternion rotation = Quaternion.Euler(rotVec);
-        Debug.Log(rotation);
         rb.MoveRotation(rotation);
     }
 

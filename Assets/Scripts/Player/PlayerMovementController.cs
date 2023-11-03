@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.Windows;
 
 public class PlayerMovementController : MonoBehaviour
@@ -73,8 +74,17 @@ public class PlayerMovementController : MonoBehaviour
 
         moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, currentForwardVelocityLimit);
         playerVelocity = moveSpeed * playerTr.forward;
+
         if (isCollision)
         {
+            float angle = Vector3.Angle(playerVelocity, coli.contacts[0].normal);
+                Debug.Log(angle);
+            if (angle >= 120 && !isLessSpeed)
+            {
+                moveSpeed *= 1 - (angle / 200);
+                isLessSpeed = true;
+            }
+
             if (CheckisSliding())
             {
                 Vector3 normal = coli.contacts[0].normal;
@@ -82,9 +92,8 @@ public class PlayerMovementController : MonoBehaviour
             }
             else
                 isCollision = false;
+                isLessSpeed = false;
         }
-        
-        pushSpeed = Mathf.MoveTowards(pushSpeed, 0, moveStopAccel * Time.deltaTime);
 
     }
 
@@ -167,7 +176,7 @@ public class PlayerMovementController : MonoBehaviour
 
     Vector3 pushDirection;
     Vector3 playerVelocity = Vector3.zero;
-    float pushSpeed = 0f;
+
 
 
     private Vector3 velocitySmoothDamp = Vector3.zero;
@@ -201,6 +210,7 @@ public class PlayerMovementController : MonoBehaviour
     private bool isDash = false;
     private bool isDodge = false;
     private bool isCollision = false;
+    private bool isLessSpeed = false;
 
 
     private Collision coli = null;
