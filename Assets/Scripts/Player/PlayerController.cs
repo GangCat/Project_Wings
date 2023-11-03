@@ -28,9 +28,13 @@ public class PlayerController : MonoBehaviour
 
         virtualMouse.UpdateMouseInput();
         moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
-        moveCtrl.PlayerMove(playerData.input.InputZ, playerData.input.InputShift);
         rotCtrl.PlayerRotate();
+        
+    }
 
+    private void FixedUpdate()
+    {
+moveCtrl.PlayerMove(playerData.input.InputZ, playerData.input.InputShift);
     }
 
 

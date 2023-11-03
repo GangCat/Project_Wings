@@ -14,18 +14,45 @@ public class CameraMovement : MonoBehaviour
 
 
 
+
     }
+
 
     private void LateUpdate()
     {
 
 
-        desiredRotation = Quaternion.LookRotation(playerTr.forward);
-        quaternion = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
-        Pos = playerTr.position + -playerTr.forward * offset + transform.up * 3f;
+        float smoothedPosX = Mathf.Lerp(transform.position.x, Pos.x, posSmoothingX * Time.deltaTime);
+        float smoothedPosY = Mathf.Lerp(transform.position.y, Pos.y, posSmoothingY * Time.deltaTime);
+        float smoothedPosZ = Mathf.Lerp(transform.position.z, Pos.z, posSmoothingZ * Time.deltaTime);
+        transform.position = new Vector3(smoothedPosX, smoothedPosY, smoothedPosZ);
+        Vector3 currentRotation = transform.rotation.eulerAngles;
+        Vector3 desiredRotation = Quaternion.LookRotation(playerTr.forward).eulerAngles;
+
+        float xRot = Mathf.SmoothDampAngle(currentRotation.x, desiredRotation.x, ref rotVectorVelocity.x, smoothSpeed * Time.deltaTime);
+        float yRot = Mathf.SmoothDampAngle(currentRotation.y, desiredRotation.y, ref rotVectorVelocity.y, smoothSpeed* Time.deltaTime);
+        float zRot = Mathf.SmoothDampAngle(currentRotation.z, desiredRotation.z, ref rotVectorVelocity.z, smoothSpeed* Time.deltaTime);
+
+        quaternion = Quaternion.Euler(new Vector3(xRot, yRot, zRot));
+
+        Pos = playerTr.position - playerTr.forward * offset + transform.up * 3f;
+
+        // 부드러운 위치 보간
+        Vector3 smoothPos = Vector3.SmoothDamp(transform.position, Pos, ref posVelocity, smoothSpeed);
+
         transform.rotation = quaternion;
-        transform.position = Pos;
+        //transform.position = Pos;
+
+
+        //desiredRotation = Quaternion.LookRotation(playerTr.forward);
+        //quaternion = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
+        //Pos = playerTr.position + -playerTr.forward * offset + transform.up * 3f;
+        //transform.rotation = quaternion;
+        //transform.position = Pos;
     }
+    public float posSmoothingX = 0.3f;
+    public float posSmoothingY = 0.3f;
+    public float posSmoothingZ = 0.3f;
 
     [SerializeField]
     private float offset = 0f;
@@ -38,4 +65,8 @@ public class CameraMovement : MonoBehaviour
     private Vector3 rotAimPos = Vector3.zero;
 
     private Vector3 Pos = Vector3.zero;
+
+    private Vector3 rotVectorVelocity;
+
+    private Vector3 posVelocity;
 }

@@ -63,10 +63,9 @@ public class PlayerMovementController : MonoBehaviour
         moveVelocity = Mathf.Clamp(moveVelocity, moveBackVelocityLimit, currentForwardVelocityLimit);
 
 
-
-        rb.velocity = moveVelocity * playerTr.forward;
-
-
+        //rb.velocity = moveVelocity * playerTr.forward;
+        Vector3 targetVelocity = moveVelocity * playerTr.forward;
+        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocitySmoothDamp, 0.1f);
         playerData.currentMoveVelocity = moveVelocity; // 현재 속도 공유
 
         //Debug.Log(rb.velocity.magnitude);
@@ -116,6 +115,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
 
+    private Vector3 velocitySmoothDamp = Vector3.zero;
 
 
     private float moveVelocity = 0f;

@@ -32,6 +32,32 @@ public class PlayerRotateController : MonoBehaviour
         playerTr.rotation = Quaternion.Euler(rotVec);
     }
 
+    public void PlayerRotate2() // Update 돌리는거
+    {
+        RotateToMouse(ref rotVec.x, ref rotVec.y);
+        if (playerData.currentMoveVelocity < 5 || playerData.input.InputZ <= 0)
+        {
+            rotVec.z = Mathf.MoveTowards(rotVec.z, 0, rollReturnAccel * Time.deltaTime);
+        }
+        else
+        {
+            RotateToKeyboard(ref rotVec.z);
+        }
+
+        float targetAngleX = rotVec.x;
+        float targetAngleY = rotVec.y;
+        float targetAngleZ = rotVec.z;
+
+        currentAngleX = Mathf.SmoothDampAngle(currentAngleX, targetAngleX, ref velocityX, smoothTime);
+        currentAngleY = Mathf.SmoothDampAngle(currentAngleY, targetAngleY, ref velocityY, smoothTime);
+        currentAngleZ = Mathf.SmoothDampAngle(currentAngleZ, targetAngleZ, ref velocityZ, smoothTime);
+
+        playerData.currentRotZ = currentAngleZ;
+        playerTr.rotation = Quaternion.Euler(currentAngleX, currentAngleY, currentAngleZ);
+    }
+
+
+
     private void RotateToMouse(ref float _eulerAngleX, ref float _eulerAngleY)
     {
         mousePos = playerData.currentMousePos;
@@ -102,12 +128,23 @@ public class PlayerRotateController : MonoBehaviour
     }
 
 
+    [SerializeField]
+    private float smoothTime = 0.5f;
+    float currentAngleX, currentAngleY, currentAngleZ;
+    float velocityX = 0f, velocityY = 0f, velocityZ = 0f;
+
+
+
+
+
+
+
+
     private float rollVelocity = 0f;
     private float rollAccel = 0f;
     private float rollMaxVelocity = 0f;
     private float rollMaxAngle = 0f;
     private float rollReturnAccel = 0f;
-
 
     private float eulerAngleX = 0f; // 사용안하는듯?
     private float eulerAngleY = 0f; // 이것도
