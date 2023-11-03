@@ -4,39 +4,25 @@ using UnityEngine;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    public void Init()
-    {
+    public delegate void ChangeCollisionConditionDelegate(Collision _coli, bool _bool);
+    private ChangeCollisionConditionDelegate collisionCallback = null;
 
+    public void Init(ChangeCollisionConditionDelegate _Callback)
+    {
+        collisionCallback = _Callback;
     }
 
 
-    //bool CheckHitWall(Vector3 movement)
-    //{
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Ãæµ¹");
+        collisionCallback?.Invoke(collision, true);
+    }
 
-    //    movement = transform.TransformDirection(movement);
-
-    //    float scope = 1f;
-
-    //    List<Vector3> rayPositions = new List<Vector3>();
-    //    rayPositions.Add(transform.position + Vector3.up * 0.1f);
-    //    rayPositions.Add(transform.position + Vector3.up * boxCollider.size.y * 0.5f);
-    //    rayPositions.Add(transform.position + Vector3.up * boxCollider.size.y);
-
-
-    //    foreach (Vector3 pos in rayPositions)
-    //    {
-    //        Debug.DrawRay(pos, movement * scope, Color.red);
-    //    }
+    private void OnCollisionExit(Collision collision)
+    {
+        collisionCallback?.Invoke(collision,false);
+    }
 
 
-    //    foreach (Vector3 pos in rayPositions)
-    //    {
-    //        if (Physics.Raycast(pos, movement, out RaycastHit hit, scope))
-    //        {
-    //            if (hit.collider.CompareTag("Wall"))
-    //                return true;
-    //        }
-    //    }
-    //    return false;
-    //}
 }

@@ -20,7 +20,7 @@ public class PlayerRotateController : MonoBehaviour
     public void PlayerRotate() // Update 돌리는거
     {
         RotateToMouse(ref rotVec.x, ref rotVec.y);
-        if (playerData.currentMoveVelocity < 5 || playerData.input.InputZ <= 0)
+        if (playerData.currentMoveSpeed < 5 || playerData.input.InputZ <= 0)
         {
             rotVec.z = Mathf.MoveTowards(rotVec.z, 0, rollReturnAccel * Time.deltaTime);
         }
@@ -35,7 +35,7 @@ public class PlayerRotateController : MonoBehaviour
     public void PlayerRotate2() // Update 돌리는거
     {
         RotateToMouse(ref rotVec.x, ref rotVec.y);
-        if (playerData.currentMoveVelocity < 5 || playerData.input.InputZ <= 0)
+        if (playerData.currentMoveSpeed < 5 || playerData.input.InputZ <= 0)
         {
             rotVec.z = Mathf.MoveTowards(rotVec.z, 0, rollReturnAccel * Time.deltaTime);
         }

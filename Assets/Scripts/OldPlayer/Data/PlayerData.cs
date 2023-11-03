@@ -50,5 +50,5 @@ public class PlayerData : ScriptableObject
 
 
     public float currentRotZ = 0f;
-    public float currentMoveVelocity = 0f;
+    public float currentMoveSpeed = 0f;
 }

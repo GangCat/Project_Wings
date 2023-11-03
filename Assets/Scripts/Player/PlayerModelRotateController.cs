@@ -17,7 +17,7 @@ public class PlayerModelRotateController : MonoBehaviour
     {
         while (true)
         {
-            currentMoveVelocityRatio = data.currentMoveVelocity/data.moveForwardVelocityLimit;
+            currentMoveVelocityRatio = data.currentMoveSpeed/data.moveForwardVelocityLimit;
             InputZRot = 45 * currentMoveVelocityRatio;
             if (Mathf.Abs(data.currentRotZ) <= 30)
             {

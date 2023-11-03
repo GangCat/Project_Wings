@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,19 +14,35 @@ public class PlayerController : MonoBehaviour
         colCtrl = GetComponentInChildren<PlayerCollisionController>();
         virtualMouse = GetComponentInChildren<VirtualMouse>();
 
+        playerMesh = GetComponentInChildren<MeshRenderer>();
+
         playerData.tr = transform;
 
         moveCtrl.Init(playerData);
         rotCtrl.Init(playerData);
         animCtrl.Init();
-        colCtrl.Init();
+        colCtrl.Init(ChangeCollisionCondition);
         virtualMouse.Init(playerData);
 
+    }
+
+    private void ChangeCollisionCondition(Collision _Coli ,bool _bool)
+    {
+        moveCtrl.ChangeCollisionCondition(_Coli, _bool);
     }
 
     private void Update()
     {
 
+        moveCtrl.CalcPlayerMove(playerData.input.InputZ, playerData.input.InputShift);
+        if (playerData.isDash == true)
+        {
+            playerMesh.material.SetColor("_BaseColor", Color.blue);
+        }
+        else
+        {
+            playerMesh.material.SetColor("_BaseColor", Color.white);
+        }
 
         
     }
@@ -33,10 +50,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {        
         virtualMouse.UpdateMouseInput();
-        moveCtrl.PlayerMove(playerData.input.InputZ, playerData.input.InputShift);
-
-        moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
         rotCtrl.PlayerRotate();
+        moveCtrl.PlayerMove();
+        moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
+        
     }
 
 
@@ -44,6 +61,8 @@ public class PlayerController : MonoBehaviour
     private PlayerRotateController rotCtrl = null;
     private PlayerAnimationController animCtrl = null;
     private PlayerCollisionController colCtrl = null;
+
+    private MeshRenderer playerMesh = null;
 
     private VirtualMouse virtualMouse = null;
 
