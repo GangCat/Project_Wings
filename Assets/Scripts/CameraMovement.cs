@@ -19,24 +19,21 @@ public class CameraMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-          float smoothedPosX = Mathf.Lerp(transform.position.x, Pos.x, posSmoothingX * Time.deltaTime);
-        float smoothedPosY = Mathf.Lerp(transform.position.y, Pos.y, posSmoothingY * Time.deltaTime);
-        float smoothedPosZ = Mathf.Lerp(transform.position.z, Pos.z, posSmoothingZ * Time.deltaTime);
+        float smoothedPosX = Mathf.Lerp(transform.position.x, Pos.x, posSmoothX * Time.deltaTime);
+        float smoothedPosY = Mathf.Lerp(transform.position.y, Pos.y, posSmoothY * Time.deltaTime);
+        float smoothedPosZ = Mathf.Lerp(transform.position.z, Pos.z, posSmoothZ * Time.deltaTime);
         transform.position = new Vector3(smoothedPosX, smoothedPosY, smoothedPosZ);
-        Vector3 currentRotation = transform.rotation.eulerAngles;
-        Vector3 desiredRotation = Quaternion.LookRotation(playerTr.forward).eulerAngles;
 
-        float xRot = Mathf.SmoothDampAngle(currentRotation.x, desiredRotation.x, ref rotVectorVelocity.x, smoothSpeed * Time.deltaTime);
-        float yRot = Mathf.SmoothDampAngle(currentRotation.y, desiredRotation.y, ref rotVectorVelocity.y, smoothSpeed* Time.deltaTime);
-        float zRot = Mathf.SmoothDampAngle(currentRotation.z, desiredRotation.z, ref rotVectorVelocity.z, smoothSpeed* Time.deltaTime);
+        currentRotation = transform.rotation.eulerAngles;
+        desiredRotation = Quaternion.LookRotation(playerTr.forward).eulerAngles;
+
+        float xRot = Mathf.SmoothDampAngle(currentRotation.x, desiredRotation.x, ref rotVectorVelocity.x, rotSmoothX * Time.deltaTime);
+        float yRot = Mathf.SmoothDampAngle(currentRotation.y, desiredRotation.y, ref rotVectorVelocity.y, rotSmoothY * Time.deltaTime);
+        float zRot = Mathf.SmoothDampAngle(currentRotation.z, desiredRotation.z, ref rotVectorVelocity.z, rotSmoothZ * Time.deltaTime);
 
         quaternion = Quaternion.Euler(new Vector3(xRot, yRot, zRot));
 
         Pos = playerTr.position - playerTr.forward * offset + transform.up * 3f;
-
-        // 부드러운 위치 보간
-        Vector3 smoothPos = Vector3.SmoothDamp(transform.position, Pos, ref posVelocity, smoothSpeed);
-
         transform.rotation = quaternion;
     }
 
@@ -54,16 +51,22 @@ public class CameraMovement : MonoBehaviour
         //transform.rotation = quaternion;
         //transform.position = Pos;
     }
-    public float posSmoothingX = 0.3f;
-    public float posSmoothingY = 0.3f;
-    public float posSmoothingZ = 0.3f;
+
+    public float posSmoothX = 10f;
+    public float posSmoothY = 10f;
+    public float posSmoothZ = 10f;
+
+    public float rotSmoothX = 0.1f;
+    public float rotSmoothY = 0.05f;
+    public float rotSmoothZ = 0.1f;
+
+
 
     [SerializeField]
     private float offset = 0f;
 
-    public float smoothSpeed = 0.125f;
-
-    Quaternion desiredRotation = Quaternion.identity;
+    Vector3 currentRotation = Vector3.zero;
+    Vector3 desiredRotation = Vector3.zero;
     Quaternion quaternion = Quaternion.identity;
     private Transform playerTr = null;
     private Vector3 rotAimPos = Vector3.zero;
@@ -71,6 +74,5 @@ public class CameraMovement : MonoBehaviour
     private Vector3 Pos = Vector3.zero;
 
     private Vector3 rotVectorVelocity;
-
     private Vector3 posVelocity;
 }

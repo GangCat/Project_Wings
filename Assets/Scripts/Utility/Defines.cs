@@ -1,3 +1,6 @@
+public delegate void VoidBoolDelegate(bool _value);
+
+
 public enum EPublisherType 
 { 
     NONE = -1, 
