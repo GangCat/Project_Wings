@@ -29,7 +29,11 @@ public class PlayerRotateController : MonoBehaviour
             RotateToKeyboard(ref rotVec.z);
         }
         playerData.currentRotZ = rotVec.z;
-        playerTr.rotation = Quaternion.Euler(rotVec);
+        //playerTr.rotation = Quaternion.Euler(rotVec);
+
+        Quaternion rotation = Quaternion.Euler(rotVec);
+        Debug.Log(rotation);
+        rb.MoveRotation(rotation);
     }
 
     public void PlayerRotate2() // Update 돌리는거
@@ -54,6 +58,7 @@ public class PlayerRotateController : MonoBehaviour
 
         playerData.currentRotZ = currentAngleZ;
         playerTr.rotation = Quaternion.Euler(currentAngleX, currentAngleY, currentAngleZ);
+
     }
 
 
@@ -161,6 +166,8 @@ public class PlayerRotateController : MonoBehaviour
 
     private Vector2 mousePos;
 
+    [SerializeField]
+    private Rigidbody rb;
 
 
 }
