@@ -11,12 +11,12 @@ public class PlayerManager : MonoBehaviour
         // public void Init();
         input = GetComponent<PlayerInputHandler>();
         playerCtrl = GetComponentInChildren<PlayerController>();
-        virtualMouse = GetComponentInChildren<VirtualMouse>();  // 플레이어의 회전을 결정하는 조준점
+
 
         playerData.input = input;
 
         playerCtrl.Init(playerData);
-        virtualMouse.Init(playerData);
+
 
         pmc.Init(playerData);
     }
@@ -29,7 +29,6 @@ public class PlayerManager : MonoBehaviour
     private PlayerController playerCtrl = null;
     private PlayerInputHandler input = null;
 
-    private VirtualMouse virtualMouse;
 
     [SerializeField]
     private PlayerModelRotateController pmc = null;

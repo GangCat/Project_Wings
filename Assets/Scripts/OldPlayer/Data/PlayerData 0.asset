@@ -31,12 +31,14 @@ MonoBehaviour:
   minAngleX: -80
   maxAngleX: 80
   returnMouseSpeed: 100
-  mouseSensitive: 4
-  maxMouseSpeed: 5
+  mouseSensitive: 5
+  maxMouseSpeed: 50
   maxMouseRadius: 100
   returnMouseRadius: 90
-  currentMousePos: {x: 0, y: 0}
+  currentMousePos: {x: 18.842545, y: -1.9523034}
   rollAccel: 1000
   rollMaxVelocity: 200
   rollMaxAngle: 80
-  currentRotZ: 43.737198
+  rollReturnAccel: 100
+  currentRotZ: 0
+  currentMoveVelocity: 40.80209
