@@ -10,6 +10,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         playerData = _playerData;
         playerTr = playerData.tr;
+        waitFixedUpdate = new WaitForFixedUpdate();
     }
 
     public void PlayerMove(float _inputZ, bool _inputShift)
@@ -109,7 +110,7 @@ public class PlayerMovementController : MonoBehaviour
             float step = speed * Time.deltaTime; 
             playerTr.Translate(direction * step, Space.World); 
             movedDistance += step;
-            yield return null;
+            yield return waitFixedUpdate;
         }
         isDodge = false;
     }
@@ -117,6 +118,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector3 velocitySmoothDamp = Vector3.zero;
 
+
+    private WaitForFixedUpdate waitFixedUpdate = null;
 
     private float moveVelocity = 0f;
     private float moveAccel = 0f;

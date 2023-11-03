@@ -17,12 +17,9 @@ public class CameraMovement : MonoBehaviour
 
     }
 
-
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-
-
-        float smoothedPosX = Mathf.Lerp(transform.position.x, Pos.x, posSmoothingX * Time.deltaTime);
+          float smoothedPosX = Mathf.Lerp(transform.position.x, Pos.x, posSmoothingX * Time.deltaTime);
         float smoothedPosY = Mathf.Lerp(transform.position.y, Pos.y, posSmoothingY * Time.deltaTime);
         float smoothedPosZ = Mathf.Lerp(transform.position.z, Pos.z, posSmoothingZ * Time.deltaTime);
         transform.position = new Vector3(smoothedPosX, smoothedPosY, smoothedPosZ);
@@ -41,6 +38,13 @@ public class CameraMovement : MonoBehaviour
         Vector3 smoothPos = Vector3.SmoothDamp(transform.position, Pos, ref posVelocity, smoothSpeed);
 
         transform.rotation = quaternion;
+    }
+
+    private void LateUpdate()
+    {
+
+
+      
         //transform.position = Pos;
 
 
