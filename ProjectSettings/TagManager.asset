@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - Boss
+  - ShakeBodyCollider
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - BossWeakPoint
   - MuseTextureLayer
   - BossProjectile
-  - 
+  - PlayerInvincible
   - 
   - 
   - 

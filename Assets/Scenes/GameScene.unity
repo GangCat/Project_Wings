@@ -5045,8 +5045,8 @@ GameObject:
   - component: {fileID: 798473341}
   - component: {fileID: 798473340}
   - component: {fileID: 798473339}
-  - component: {fileID: 798473342}
   - component: {fileID: 798473344}
+  - component: {fileID: 798473342}
   - component: {fileID: 798473345}
   m_Layer: 6
   m_Name: PlayerController
@@ -5149,6 +5149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a75ef941d7a7a94f868411717bbd48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInvincibleLayer: PlayerInvincible
+  invincibleTime: 3
 --- !u!135 &798473345
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7210,6 +7212,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015858614}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1027773053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1027773054}
+  - component: {fileID: 1027773056}
+  - component: {fileID: 1027773055}
+  m_Layer: 0
+  m_Name: BossCollisionController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1027773054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027773053}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1295538132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1027773055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027773053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9895af92a51884841b84ef70abc5696a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1027773056
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027773053}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1034166955
 GameObject:
   m_ObjectHideFlags: 0
@@ -9158,7 +9226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1295538132}
   - component: {fileID: 1295538134}
-  - component: {fileID: 1295538135}
+  - component: {fileID: 1295538136}
   m_Layer: 0
   m_Name: BossController
   m_TagString: Boss
@@ -9180,6 +9248,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 382603820}
+  - {fileID: 1027773054}
   m_Father: {fileID: 1724471569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1295538134
@@ -9204,27 +9273,19 @@ MonoBehaviour:
   thirdPhaseWeakPointTr: {fileID: 1049147660}
   bossWeakPointPrefab: {fileID: 670741263585795909, guid: b682bc85d723e2947a7f127a70c1acda,
     type: 3}
---- !u!65 &1295538135
-BoxCollider:
+--- !u!114 &1295538136
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295538131}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 11400000, guid: c0ae93a3656eabd45a59d79a585daadd, type: 2}
 --- !u!1 &1323158802
 GameObject:
   m_ObjectHideFlags: 0
@@ -12955,7 +13016,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b007a93acfcec944d81d23baf869d0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: c0ae93a3656eabd45a59d79a585daadd, type: 2}
   gatlingHolderGo: {fileID: 385111010}
   gatlingHeadGo: {fileID: 1638970904}
   gunMuzzleTr: {fileID: 1638970905}

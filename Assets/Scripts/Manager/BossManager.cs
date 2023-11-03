@@ -8,12 +8,10 @@ public class BossManager : MonoBehaviour
     public void Init(Transform _PlayerTr)
     {
         bossCtrl = GetComponentInChildren<BossController>();
-        bossCtrl.Init(tree, _PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr);
+        bossCtrl.Init(_PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr);
     }
 
 
-    [SerializeField]
-    private BehaviourTree tree = null;
     [SerializeField]
     private GameObject gatlingHolderGo = null;
     [SerializeField]

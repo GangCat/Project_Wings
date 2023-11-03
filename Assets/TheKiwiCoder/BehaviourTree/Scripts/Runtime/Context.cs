@@ -16,29 +16,19 @@ namespace TheKiwiCoder {
         public Transform transform;
         public Transform playerTr;
         public Transform gunMuzzleTr;
-        public Animator animator;
         public Rigidbody physics;
-        public NavMeshAgent agent;
-        public SphereCollider sphereCollider;
-        public BoxCollider boxCollider;
-        public CapsuleCollider capsuleCollider;
-        public CharacterController characterController;
+        public BossCollider bossCollider;
         public bool isPhaseEnd;
         public AnimationControllerBase anim;
         // Add other game specific systems here
 
-        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null, GameObject _gatlingHolder = null, GameObject _gatlingHead = null,Transform _gunMuzzleTr = null, AnimationControllerBase _anim = null) {
+        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr, GameObject _gatlingHolder, GameObject _gatlingHead,Transform _gunMuzzleTr, AnimationControllerBase _anim, BossCollider _bossCollider) {
             // Fetch all commonly used components
             Context context = new Context();
             context.gameObject = gameObject;
             context.transform = gameObject.transform;
-            context.animator = gameObject.GetComponent<Animator>();
             context.physics = gameObject.GetComponent<Rigidbody>();
-            context.agent = gameObject.GetComponent<NavMeshAgent>();
-            context.sphereCollider = gameObject.GetComponent<SphereCollider>();
-            context.boxCollider = gameObject.GetComponent<BoxCollider>();
-            context.capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
-            context.characterController = gameObject.GetComponent<CharacterController>();
+            context.bossCollider = _bossCollider;
             context.playerTr = _playerTr;
             context.isPhaseEnd = false;
             context.gatlingHolderGo = _gatlingHolder;

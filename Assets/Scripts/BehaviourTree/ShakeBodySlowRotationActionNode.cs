@@ -6,29 +6,42 @@ using TheKiwiCoder;
 public class ShakeBodySlowRotationActionNode : ActionNode
 {
     [SerializeField]
-    private float rotationSpeed = 0f;
+    private float maxRotSpeed = 20f;
     [SerializeField]
-    private float rotationLimitAngle = 0f;
+    private float rotationLimitAngle = 30f;
     [SerializeField]
-    private float rotationAccel = 0f;
+    private float rotationAccel = 20f;
 
+    private float curRotation = 0f;
     private float curRotationSpeed = 0f;
+    private float curRotationAngle = 0f;
     private Transform bossTr = null;
 
     protected override void OnStart() {
         bossTr = context.transform;
+        curRotationAngle = bossTr.rotation.eulerAngles.y;
     }
 
     protected override void OnStop() {
     }
 
     protected override State OnUpdate() {
-        curRotationSpeed = Mathf.MoveTowards(curRotationSpeed, rotationSpeed, rotationAccel * Time.deltaTime);
-        bossTr.rotation = Quaternion.Euler(Vector3.up * rotationSpeed * Time.deltaTime);
+        curRotationSpeed += curRotationSpeed < maxRotSpeed ? rotationAccel * Time.deltaTime : 0;
+        curRotationAngle += curRotationSpeed * Time.deltaTime;
+        bossTr.rotation = Quaternion.Euler(Vector3.up * curRotationAngle);
 
-        if (bossTr.rotation.y < rotationLimitAngle)
+        curRotation = bossTr.rotation.eulerAngles.y;
+        if (curRotation > 180)
+            curRotation -= 360;
+        if (curRotation < rotationLimitAngle)
+        {
+            //Debug.Log("Running, bossY: " + bossTr.rotation.eulerAngles.y + "\nLimitAngle: " + rotationLimitAngle);
             return State.Running;
+        }
         else
+        {
+            //Debug.Log("Success, bossY: " + bossTr.rotation.eulerAngles.y + "\nLimitAngle: " + rotationLimitAngle);
             return State.Success;
+        }
     }
 }

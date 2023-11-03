@@ -6,17 +6,19 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    public void Init(BehaviourTree _tree, Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo,Transform _gunMuzzleTr)
+    public void Init(Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo,Transform _gunMuzzleTr)
     {
         curPhaseNum = 1;
         animCtrl = GetComponentInChildren<BossAnimationController>();
+        bossCollider = GetComponentInChildren<BossCollider>();
         animCtrl.Init();
+        bossCollider.Init();
 
-        myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl);
+        myRunner = GetComponent<BehaviourTreeRunner>();
+        myRunner.Init(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl, bossCollider);
+
         curWeakPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
-
-        GetComponent<BoxCollider>().enabled = false;
 
         InitNewWeakPoint();
 
@@ -29,7 +31,7 @@ public class BossController : MonoBehaviour
     {
         while (true)
         {
-            myRunner.Update();
+            myRunner.RunnerUpdate();
             if (!IsWeakPointRemain() && !isChangingPhase)
             {
                 myRunner.FinishCurrentPhase();
@@ -106,8 +108,9 @@ public class BossController : MonoBehaviour
     [SerializeField]
     private GameObject bossWeakPointPrefab = null;
 
+    private BossCollider bossCollider = null;
     private List<GameObject> curWeakPoint = null;
-    private MyBehaviourTreeRunner myRunner = null;
+    private BehaviourTreeRunner myRunner = null;
     private int curPhaseNum = 0;
     private bool isChangingPhase = false;
 

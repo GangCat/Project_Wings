@@ -167,16 +167,16 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5615cef58512e1c4ea59d37e78122220
-  position: {x: 925, y: 1600}
+  position: {x: 813.99994, y: 1600}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
   description: 
   drawGizmos: 0
-  rotationSpeed: 5
-  rotationLimitAngle: 5
-  rotationAccel: 5
+  maxRotSpeed: 5
+  rotationLimitAngle: 0
+  rotationAccel: 2
 --- !u!114 &-6606512983389126247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +300,6 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: 2055624564037474365}
-  - {fileID: -3913004547531772430}
 --- !u!114 &-4054882901305631100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +362,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0fd47796994add249990606cd68d3883
-  position: {x: 915, y: 1470}
+  position: {x: 1036, y: 1486.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -845,16 +844,16 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e335242dde037ad4cb014930726676de
-  position: {x: 484, y: 1600}
+  position: {x: 372.99994, y: 1600}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
   description: 
   drawGizmos: 0
-  rotationSpeed: 5
-  rotationLimitAngle: 5
-  rotationAccel: 5
+  maxRotSpeed: 5
+  rotationLimitAngle: 20
+  rotationAccel: 2
 --- !u!114 &4401169818537761934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,20 +1045,18 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 589a5d3feddbe9146bcd95a9734120d9
-  position: {x: 706, y: 1600}
+  position: {x: 594.99994, y: 1600}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
   description: 
   drawGizmos: 0
-  rotationSpeed: 10
-  rotationLimitAngle: 10
-  rotationAccel: 10
-  attackRange: 700
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  maxRotSpeed: 15
+  rotationLimitAngle: -20
+  rotationAccel: 5
+  attackRange: 400
+  shakeBodyTag: ShakeBodyCollider
 --- !u!114 &8756652752874628124
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class PlayerCollisionController : MonoBehaviour
     public void Init(ChangeCollisionConditionDelegate _Callback)
     {
         collisionCallback = _Callback;
+        oriLayer = gameObject.layer;
     }
 
 
@@ -24,5 +25,25 @@ public class PlayerCollisionController : MonoBehaviour
         collisionCallback?.Invoke(collision,false);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ShakeBodyCollider"))
+        {
+            Debug.Log("¸ö Èçµé±â¿¡ ÇÇ°Ý´çÇÔ.");
+            gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
+            Invoke("FinishInvincible", invincibleTime);
+        }
+    }
 
+    private void FinishInvincible()
+    {
+        gameObject.layer = oriLayer;
+    }
+
+    [SerializeField]
+    private string playerInvincibleLayer;
+    [SerializeField]
+    private float invincibleTime = 0f;
+
+    private LayerMask oriLayer;
 }
