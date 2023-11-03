@@ -6,7 +6,7 @@ public class BossWeakPoint : MonoBehaviour
 {
     public void Init(VoidGameObjectDelegate _destroyCallback)
     {
-        gameObject.layer = weakPointLayer;
+        gameObject.layer = LayerMask.NameToLayer("BossWeakPoint");
         destroyCallback = _destroyCallback;
     }
 
@@ -15,9 +15,6 @@ public class BossWeakPoint : MonoBehaviour
         destroyCallback?.Invoke(gameObject);
         Destroy(gameObject);
     }
-
-    [SerializeField]
-    private LayerMask weakPointLayer;
 
     private VoidGameObjectDelegate destroyCallback = null;
 }

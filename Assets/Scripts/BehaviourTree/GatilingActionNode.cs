@@ -25,6 +25,8 @@ public class GatilingActionNode : ActionNode
     protected override void OnStart() {
         curBulletCnt = maxBulletCnt;
         playerTr = context.playerTr;
+        gunMuzzleTr = context.gunMuzzleTr;
+        gatlingHolder = context.gatlingHolderGo;
     }
 
     protected override void OnStop() {
@@ -59,7 +61,8 @@ public class GatilingActionNode : ActionNode
     private void FireBullet()
     {
         lastFireTime = Time.time;
-        curBulletCnt--;
+        //curBulletCnt--;
+        --curBulletCnt;
 
         Vector3 tmp = gunMuzzleTr.up;
 

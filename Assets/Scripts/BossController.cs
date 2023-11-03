@@ -6,12 +6,13 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    public void Init(BehaviourTree _tree, Transform _playerTr)
+    public void Init(BehaviourTree _tree, Transform _playerTr, GameObject _gatlingHolderGo, Transform _gunMuzzleTr)
     {
         curPhaseNum = 1;
-        myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr);
+        myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr, _gatlingHolderGo, _gunMuzzleTr);
         curWeakPoint = new List<GameObject>();
         InitNewWeakPoint();
+        waitFixedUpdate = new WaitForFixedUpdate();
         StartCoroutine("UpdateCoroutine");
     }
 
@@ -25,7 +26,7 @@ public class BossController : MonoBehaviour
                 myRunner.FinishCurrentPhase();
                 StartPhaseChange();
             }
-            yield return null;
+            yield return waitFixedUpdate;
         }
     }
 
@@ -101,4 +102,5 @@ public class BossController : MonoBehaviour
     private int curPhaseNum = 0;
     private bool isChangingPhase = false;
 
+    private WaitForFixedUpdate waitFixedUpdate = null;
 }

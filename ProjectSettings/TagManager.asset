@@ -16,6 +16,7 @@ TagManager:
   - Player
   - BossWeakPoint
   - MuseTextureLayer
+  - BossProjectile
   - 
   - 
   - 
@@ -37,8 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - InformationLayer
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -11,10 +11,10 @@ namespace TheKiwiCoder {
     // Feel free to extend this class 
     public class Context {
         public GameObject gameObject;
-        private GameObject gatlingHolder;
+        public GameObject gatlingHolderGo;
         public Transform transform;
         public Transform playerTr;
-        private Transform gunMuzzleTr;
+        public Transform gunMuzzleTr;
         public Animator animator;
         public Rigidbody physics;
         public NavMeshAgent agent;
@@ -25,7 +25,7 @@ namespace TheKiwiCoder {
         public bool isPhaseEnd;
         // Add other game specific systems here
 
-        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null) {
+        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null, GameObject _gatlingHolder = null, Transform _gunMuzzleTr = null) {
             // Fetch all commonly used components
             Context context = new Context();
             context.gameObject = gameObject;
@@ -39,6 +39,8 @@ namespace TheKiwiCoder {
             context.characterController = gameObject.GetComponent<CharacterController>();
             context.playerTr = _playerTr;
             context.isPhaseEnd = false;
+            context.gatlingHolderGo = _gatlingHolder;
+            context.gunMuzzleTr = _gunMuzzleTr;
             // Add whatever else you need here...
 
             return context;

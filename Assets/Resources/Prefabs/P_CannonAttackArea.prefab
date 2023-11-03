@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4744748536244229189}
   - component: {fileID: 5752811971050828382}
   - component: {fileID: 2920358303201232347}
-  - component: {fileID: 1772260458673878158}
-  m_Layer: 0
+  - component: {fileID: 4446718995711296131}
+  m_Layer: 31
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: f2589ef96e7bc4a44b77893497eaf4dd, type: 2}
---- !u!136 &1772260458673878158
+--- !u!136 &4446718995711296131
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,8 +134,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3649051765647669059}
-  m_Layer: 0
-  m_Name: CannonAttackArea
+  m_Layer: 31
+  m_Name: P_CannonAttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,6 +17,7 @@ public class CannonManager : MonoBehaviour
     public float attackHeight = 2.0f; // Æ÷ÅºÀÇ ³ôÀÌ
     public GameObject bulletPrefab; // Æ÷Åº ÇÁ¸®ÆÕ
     private float randomRange;
+
     private void Start()
     {
         StartCoroutine(coolDownCoroutine());
