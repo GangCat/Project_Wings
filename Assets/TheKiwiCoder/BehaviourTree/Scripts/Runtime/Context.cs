@@ -12,6 +12,7 @@ namespace TheKiwiCoder {
     public class Context {
         public GameObject gameObject;
         public GameObject gatlingHolderGo;
+        public GameObject gatlingHeadGo;
         public Transform transform;
         public Transform playerTr;
         public Transform gunMuzzleTr;
@@ -25,7 +26,7 @@ namespace TheKiwiCoder {
         public bool isPhaseEnd;
         // Add other game specific systems here
 
-        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null, GameObject _gatlingHolder = null, Transform _gunMuzzleTr = null) {
+        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null, GameObject _gatlingHolder = null, GameObject _gatlingHead = null,Transform _gunMuzzleTr = null) {
             // Fetch all commonly used components
             Context context = new Context();
             context.gameObject = gameObject;
@@ -40,6 +41,7 @@ namespace TheKiwiCoder {
             context.playerTr = _playerTr;
             context.isPhaseEnd = false;
             context.gatlingHolderGo = _gatlingHolder;
+            context.gatlingHeadGo = _gatlingHead;
             context.gunMuzzleTr = _gunMuzzleTr;
             // Add whatever else you need here...
 

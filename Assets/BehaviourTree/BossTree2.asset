@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 06806b420df51f844a9f5c276ebac150
-  position: {x: -206, y: 1175}
+  position: {x: -207.12085, y: 1174.4}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6945edf657819334081c6dbd61101e00
-  position: {x: 196, y: 585}
+  position: {x: 209.32614, y: 559.051}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f002f3b4c3f9c1e4d8cabe34c88cecb0
-  position: {x: -356, y: 988}
+  position: {x: -318.99112, y: 994.9393}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b5522bdef2beba74788c37e1eb5c7c69
-  position: {x: 1018.00006, y: 1189.004}
+  position: {x: 1020.149, y: 1187.051}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -601,7 +601,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3285cfb801bf2014782934d81ad52588
-  position: {x: 224, y: 444}
+  position: {x: 237.32614, y: 418.25098}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -758,4 +758,5 @@ MonoBehaviour:
     type: 3}
   maxBulletCnt: 80
   rotationSpeed: 60
-  fireRate: 1
+  fireRate: 0.5
+  headRotationSpeed: 20

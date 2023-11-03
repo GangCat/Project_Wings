@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class GatilingActionNode : ActionNode
 {
@@ -13,14 +14,18 @@ public class GatilingActionNode : ActionNode
     private float rotationSpeed;
     [SerializeField]
     private float fireRate;
+    [SerializeField]
+    private float headRotationSpeed;
 
 
     private Transform playerTr;
     private Transform gunMuzzleTr;
     private GameObject gatlingHolder;
+
     private float curBulletCnt;
     private float lastFireTime;
-
+    private float diffY;
+    private float cetha;
 
     protected override void OnStart() {
         curBulletCnt = maxBulletCnt;
@@ -34,11 +39,16 @@ public class GatilingActionNode : ActionNode
 
     protected override State OnUpdate() {
         RotateTurretToPlayer();
+        RotateTurretHeadToPlayer();
 
         if (CanFire())
         {
             FireBullet();
         }
+        
+        if (curBulletCnt > 0)
+            return State.Running;
+
         return State.Success;
     }
     private void RotateTurretToPlayer()
@@ -50,6 +60,19 @@ public class GatilingActionNode : ActionNode
 
             // 부드럽게 회전하기 위해 Lerp 사용
             gatlingHolder.transform.rotation = Quaternion.Slerp(gatlingHolder.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+    }
+    private void RotateTurretHeadToPlayer()
+    {
+        if (context.playerTr != null)
+        {
+            diffY = playerTr.position.y - context.gatlingHeadGo.transform.position.y;
+            cetha = Mathf.Asin(diffY / Vector3.Distance(playerTr.position, context.gatlingHeadGo.transform.position)) * Mathf.Rad2Deg;
+            context.gatlingHeadGo.transform.localRotation = Quaternion.Euler(Vector3.left * cetha);
+
+            //Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
+            // 부드럽게 회전하기 위해 Lerp 사용
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 

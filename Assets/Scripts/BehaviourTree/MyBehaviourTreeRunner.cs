@@ -14,10 +14,10 @@ namespace TheKiwiCoder
         private Context context;
 
         // Start is called before the first frame update
-        public MyBehaviourTreeRunner(GameObject _go, BehaviourTree _tree, Transform _playerTr, GameObject _gatlingHolderGo, Transform _gunMuzzleTr)
+        public MyBehaviourTreeRunner(GameObject _go, BehaviourTree _tree, Transform _playerTr, GameObject _gatlingHolderGo ,GameObject _gatlingHeadGo, Transform _gunMuzzleTr)
         {
             tree = _tree;
-            context = CreateBehaviourTreeContext(_go, _playerTr, _gatlingHolderGo, _gunMuzzleTr);
+            context = CreateBehaviourTreeContext(_go, _playerTr, _gatlingHolderGo, _gatlingHeadGo,_gunMuzzleTr);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -42,9 +42,9 @@ namespace TheKiwiCoder
             //Debug.Log(tree.blackboard.isPhaseEnd + " " + tree.blackboard.curPhaseNum);
         }
 
-        Context CreateBehaviourTreeContext(GameObject _go, Transform _playerTr, GameObject _gatlingHolderGo, Transform _gunMuzzleTr)
+        Context CreateBehaviourTreeContext(GameObject _go, Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo,Transform _gunMuzzleTr)
         {
-            return Context.CreateFromGameObject(_go, _playerTr, _gatlingHolderGo, _gunMuzzleTr);
+            return Context.CreateFromGameObject(_go, _playerTr, _gatlingHolderGo, _gatlingHeadGo ,_gunMuzzleTr);
         }
 
         private void OnDrawGizmosSelected()
