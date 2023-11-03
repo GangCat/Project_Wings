@@ -9,10 +9,19 @@ public class BossController : MonoBehaviour
     public void Init(BehaviourTree _tree, Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo,Transform _gunMuzzleTr)
     {
         curPhaseNum = 1;
-        myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr);
+        animCtrl = GetComponentInChildren<BossAnimationController>();
+        animCtrl.Init();
+
+        myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl);
         curWeakPoint = new List<GameObject>();
-        InitNewWeakPoint();
         waitFixedUpdate = new WaitForFixedUpdate();
+
+        GetComponent<BoxCollider>().enabled = false;
+
+        InitNewWeakPoint();
+
+
+
         StartCoroutine("UpdateCoroutine");
     }
 
@@ -103,4 +112,5 @@ public class BossController : MonoBehaviour
     private bool isChangingPhase = false;
 
     private WaitForFixedUpdate waitFixedUpdate = null;
+    private BossAnimationController animCtrl = null;
 }

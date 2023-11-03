@@ -2467,7 +2467,6 @@ Transform:
   m_Children:
   - {fileID: 1708395324}
   - {fileID: 1034166956}
-  - {fileID: 1648178046}
   m_Father: {fileID: 1724471569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &382603819
@@ -2479,6 +2478,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 382603820}
+  - component: {fileID: 382603821}
+  - component: {fileID: 382603822}
   m_Layer: 0
   m_Name: BossModel
   m_TagString: Untagged
@@ -2504,6 +2505,39 @@ Transform:
   - {fileID: 547165617}
   m_Father: {fileID: 1295538132}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!95 &382603821
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382603819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &382603822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382603819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44bf52cbe38cce44296ecaa5aa30eb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &382974169
 GameObject:
   m_ObjectHideFlags: 0
@@ -5012,9 +5046,9 @@ GameObject:
   - component: {fileID: 798473340}
   - component: {fileID: 798473339}
   - component: {fileID: 798473342}
+  - component: {fileID: 798473344}
+  - component: {fileID: 798473345}
   m_Layer: 6
-  - component: {fileID: 798473343}
-  m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5102,30 +5136,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
---- !u!136 &798473343
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798473337}
-  m_Material: {fileID: 13400000, guid: f274b7b0f1d47d141b398416a2f95b19, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.87
-  m_Height: 2.86
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 0}
+  m_CollisionDetection: 3
 --- !u!114 &798473344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5138,6 +5149,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a75ef941d7a7a94f868411717bbd48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &798473345
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798473337}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.42, z: 0}
 --- !u!1 &800081644
 GameObject:
   m_ObjectHideFlags: 0
@@ -7239,7 +7271,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1648178046}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1088253524
 GameObject:
@@ -9126,6 +9158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1295538132}
   - component: {fileID: 1295538134}
+  - component: {fileID: 1295538135}
   m_Layer: 0
   m_Name: BossController
   m_TagString: Boss
@@ -9171,6 +9204,27 @@ MonoBehaviour:
   thirdPhaseWeakPointTr: {fileID: 1049147660}
   bossWeakPointPrefab: {fileID: 670741263585795909, guid: b682bc85d723e2947a7f127a70c1acda,
     type: 3}
+--- !u!65 &1295538135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295538131}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1323158802
 GameObject:
   m_ObjectHideFlags: 0
@@ -12326,7 +12380,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643645969}
-  m_Material: {fileID: 13400000, guid: f274b7b0f1d47d141b398416a2f95b19, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12342,15 +12396,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1049147660}
-  m_Father: {fileID: 355600274}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658310395
 GameObject:
   m_ObjectHideFlags: 0
@@ -12910,7 +12955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b007a93acfcec944d81d23baf869d0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 05955f3520c14fb4fa505773c44f312f, type: 2}
+  tree: {fileID: 11400000, guid: c0ae93a3656eabd45a59d79a585daadd, type: 2}
   gatlingHolderGo: {fileID: 385111010}
   gatlingHeadGo: {fileID: 1638970904}
   gunMuzzleTr: {fileID: 1638970905}
@@ -14876,7 +14921,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061804399}
-  m_Material: {fileID: 13400000, guid: f274b7b0f1d47d141b398416a2f95b19, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -15296,3 +15341,4 @@ SceneRoots:
   - {fileID: 1088253525}
   - {fileID: 636496146}
   - {fileID: 1935238294}
+  - {fileID: 1049147660}

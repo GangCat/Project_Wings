@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46401fc1cab67cc40bf38909555ca0d1, type: 3}
-  m_Name: CheckPhaseOneRange
+  m_Name: CheckPatternRange
   m_EditorClassIdentifier: 
   state: 0
   started: 0
@@ -1134,6 +1134,7 @@ MonoBehaviour:
   maxBulletCnt: 500
   rotationSpeed: 0.5
   fireRate: 10
+  headRotationSpeed: 0
 --- !u!114 &2454858616945427538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1386,6 +1387,7 @@ MonoBehaviour:
   maxBulletCnt: 0
   rotationSpeed: 0
   fireRate: 0
+  headRotationSpeed: 0
 --- !u!114 &4411011695780444250
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,23 +6,23 @@ using TheKiwiCoder;
 public class CannonActionNode : ActionNode
 {
     [SerializeField]
-    private float radious;
+    private float radious = 10;
     [SerializeField]
-    private float duration;
+    private float duration = 6;
     [SerializeField]
-    private float attackMinHeight;
+    private float attackMinHeight = 500;
     [SerializeField]
-    private float attackMaxHeight;
+    private float attackMaxHeight = 1000;
     [SerializeField]
-    private float term;
+    private float term = 2;
     [SerializeField]
-    private int cannonBallCnt;
+    private int cannonBallCnt = 80;
     [SerializeField]
-    private GameObject cannonBallPrefab;
+    private GameObject cannonBallPrefab = null;
     [SerializeField]
-    private float cannonBallSpeed;
+    private float cannonBallSpeed = 200;
     [SerializeField]
-    private GameObject attackAreaPrefab;
+    private GameObject attackAreaPrefab = null;
 
     private float startTime;
     private float lastAttackTime;

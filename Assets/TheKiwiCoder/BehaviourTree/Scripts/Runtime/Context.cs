@@ -24,9 +24,10 @@ namespace TheKiwiCoder {
         public CapsuleCollider capsuleCollider;
         public CharacterController characterController;
         public bool isPhaseEnd;
+        public AnimationControllerBase anim;
         // Add other game specific systems here
 
-        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null, GameObject _gatlingHolder = null, GameObject _gatlingHead = null,Transform _gunMuzzleTr = null) {
+        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null, GameObject _gatlingHolder = null, GameObject _gatlingHead = null,Transform _gunMuzzleTr = null, AnimationControllerBase _anim = null) {
             // Fetch all commonly used components
             Context context = new Context();
             context.gameObject = gameObject;
@@ -43,6 +44,7 @@ namespace TheKiwiCoder {
             context.gatlingHolderGo = _gatlingHolder;
             context.gatlingHeadGo = _gatlingHead;
             context.gunMuzzleTr = _gunMuzzleTr;
+            context.anim = _anim;
             // Add whatever else you need here...
 
             return context;

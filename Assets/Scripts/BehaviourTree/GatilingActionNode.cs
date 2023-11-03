@@ -9,13 +9,13 @@ public class GatilingActionNode : ActionNode
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
-    private float maxBulletCnt;
+    private float maxBulletCnt = 80;
     [SerializeField]
-    private float rotationSpeed;
+    private float rotationSpeed = 30;
     [SerializeField]
-    private float fireRate;
+    private float fireRate = 10;
     [SerializeField]
-    private float headRotationSpeed;
+    private float headRotationSpeed = 20;
 
 
     private Transform playerTr;

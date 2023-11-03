@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
 
-public class CheckPhaseOneRange : ActionNode
+public class CheckPatternRange : ActionNode
 {
     [SerializeField]
     private float range = 0f;
@@ -15,7 +15,7 @@ public class CheckPhaseOneRange : ActionNode
     }
 
     protected override State OnUpdate() {
-        if (Vector3.SqrMagnitude(context.transform.position - context.playerTr.position) < Mathf.Pow(range, 2f))
+        if(Physics.OverlapBox(context.transform.position, Vector3.one * range, context.transform.rotation, 1<<LayerMask.NameToLayer("Player")).Length > 0)
             return State.Success;
         else
             return State.Failure;
