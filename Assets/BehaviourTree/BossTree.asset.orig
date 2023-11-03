@@ -368,8 +368,32 @@ MonoBehaviour:
   description: "\uB69C\uAED1 \uB9DE\uC744\uB9CC\uD07C \uB9DE\uC558\uB294\uC9C0 \uD655\uC778"
   drawGizmos: 0
   message: 
+<<<<<<< HEAD
+--- !u!114 &-5065014562895176953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
+  m_Name: Log
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f85bee883a36b0a48a0beee69e47b3c9
+  position: {x: 0, y: 1007}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+  description: "\uD3EC\uD0C4"
+  drawGizmos: 0
+  message: 
+=======
+>>>>>>> origin/geohyung1
 --- !u!114 &-4334613405619574757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,8 +561,33 @@ MonoBehaviour:
   - {fileID: -8573908050514645513}
   - {fileID: -4293055054648535295}
   - {fileID: 408190545563616093}
+<<<<<<< HEAD
+--- !u!114 &-3405059047542913675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
+  m_Name: Log
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 7b85ac6a98ac5ca4986a441ae267fb98
+  position: {x: -150, y: 744}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+  description: "\uC0AC\uC815\uAC70\uB9AC \uAC80\uC0AC \uC0AC\uC815\uAC70\uB9AC \uB0B4\uC5D0
+    \uC788\uC744 \uACBD\uC6B0 Success\uBC18\uD658"
+  drawGizmos: 0
+  message: 
+=======
+>>>>>>> origin/geohyung1
 --- !u!114 &-3195508858895560894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,11 +877,17 @@ MonoBehaviour:
   - {fileID: -7299125895060674073}
   - {fileID: 754157363295865812}
   - {fileID: -2714581357895113944}
+<<<<<<< HEAD
   - {fileID: 2622589218896928074}
   - {fileID: 6211360912658953263}
   - {fileID: 3938288666805280958}
   - {fileID: 4967379424008827541}
   - {fileID: -8350100237168023505}
+=======
+  - {fileID: -4246718077681743868}
+  - {fileID: -6594593975732872345}
+  - {fileID: 2243901728854521414}
+>>>>>>> origin/geohyung1
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1306,8 +1361,32 @@ MonoBehaviour:
   description: "\uBC1C\uC0AC"
   drawGizmos: 0
   message: 
+<<<<<<< HEAD
+--- !u!114 &4484509439327501554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
+  m_Name: Log
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 49cf94af83265c242ad2e280b9d289f8
+  position: {x: 150, y: 1007}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+  description: "\uAC8C\uD2C0\uB9C1"
+  drawGizmos: 0
+  message: 
+=======
+>>>>>>> origin/geohyung1
 --- !u!114 &4598753320229339781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1383,6 +1462,7 @@ MonoBehaviour:
     curPhaseNum: 0
   description: "isPhaseEnd\uAC00 true\uBA74 Failure"
   drawGizmos: 0
+<<<<<<< HEAD
 --- !u!114 &6211360912658953263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,6 +1488,9 @@ MonoBehaviour:
   child: {fileID: 2622589218896928074}
   restartOnSuccess: 1
   restartOnFailure: 0
+=======
+  message: 1
+>>>>>>> origin/geohyung1
 --- !u!114 &6329747371367835315
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,8 +11,10 @@ namespace TheKiwiCoder {
     // Feel free to extend this class 
     public class Context {
         public GameObject gameObject;
+        private GameObject gatlingHolder;
         public Transform transform;
         public Transform playerTr;
+        private Transform gunMuzzleTr;
         public Animator animator;
         public Rigidbody physics;
         public NavMeshAgent agent;
