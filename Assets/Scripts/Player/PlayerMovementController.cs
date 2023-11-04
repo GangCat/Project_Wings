@@ -31,8 +31,9 @@ public class PlayerMovementController : MonoBehaviour
 
         public void CalcPlayerMove(float _inputZ, bool _inputShift)
     {
-        if (Mathf.Abs(_inputZ) > 0f)
-        {
+       // if (Mathf.Abs(_inputZ) > 0f)
+        if (_inputZ != 0f)
+            {
             isDash = _inputShift;
             playerData.isDash = isDash;
             moveAccelResult = isDash ? moveAccel + moveDashAccel : moveAccel;
@@ -40,19 +41,17 @@ public class PlayerMovementController : MonoBehaviour
 
             if (moveSpeed > 20f)
             {
-                if (playerTr.forward.y >= 0.3f)
+                float forwardY = playerTr.forward.y;
+                if (forwardY >= 0.3f)
                 {
-                    //gravityAccel = -playerData.gravityAccel;
-                    //gravitySpeed = -playerData.gravitySpeed;
+
                 }
-                else if (playerTr.forward.y <= -0.2f)
+                else if (forwardY <= -0.2f)
                 {
-                    //gravityAccel = playerData.gravityAccel;
                     gravitySpeed = playerData.gravitySpeed;
                 }
                 else
                 {
-                    //gravityAccel = 0;
                     gravitySpeed = 0;
                 }
             }
@@ -78,11 +77,14 @@ public class PlayerMovementController : MonoBehaviour
         if (isCollision)
         {
             float angle = Vector3.Angle(playerVelocity, coli.contacts[0].normal);
-                Debug.Log(angle);
-            if (angle >= 120 && !isLessSpeed)
+
+            calcMoveSpeed = currentForwardVelocityLimit * Mathf.Clamp01((1 - angle / 170));
+            moveSpeed = Mathf.Lerp(moveSpeed, calcMoveSpeed, moveAccel * Time.deltaTime);
+            //Debug.Log(moveSpeed);
+            playerVelocity = moveSpeed * playerTr.forward;
+            if (angle >= 120)
             {
-                moveSpeed *= 1 - (angle / 200);
-                isLessSpeed = true;
+                CollisionCrash();
             }
 
             if (CheckisSliding())
@@ -92,10 +94,21 @@ public class PlayerMovementController : MonoBehaviour
             }
             else
                 isCollision = false;
-                isLessSpeed = false;
         }
 
     }
+
+
+    private void CollisionCrash()
+    {
+        if (moveSpeed >= 50)
+        {
+            StartCoroutine(PlayerCrash());
+            Debug.Log("강한 충돌");
+        }
+    }
+
+
 
     private bool CheckisSliding()
     {
@@ -109,7 +122,7 @@ public class PlayerMovementController : MonoBehaviour
         float cosAngle = dotProduct / (magnitude1 * magnitude2);
         float angle = Mathf.Acos(cosAngle) * Mathf.Rad2Deg;
 
-        return angle >= 90;
+        return angle >= 100;
     }
 
 
@@ -119,21 +132,7 @@ public class PlayerMovementController : MonoBehaviour
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
 
-
-
-        //Vector3 targetVelocity = moveVelocity * playerTr.forward;
-        //rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocitySmoothDamp, 0.1f);
-
-        //Debug.Log(rb.velocity.magnitude);
-        //rb.MovePosition(playerTr.forward * moveVelocity * Time.deltaTime);
-        //playerTr.Translate(playerTr.forward * moveVelocity * Time.deltaTime, Space.World);
     }
-
-        // 이동 백업용
-        //if (Mathf.Abs(_inputZ) > 0f)
-        //    moveVelocity += moveAccel * Time.deltaTime * _inputZ;
-        //else
-        //    moveVelocity = Mathf.MoveTowards(moveVelocity, 0, moveAccel * Time.deltaTime);
 
 
     public void PlayerDodge(bool _inputQ, bool _inputE)
@@ -141,14 +140,14 @@ public class PlayerMovementController : MonoBehaviour
         if(_inputQ == true && isDodge == false)
         {
             Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
-            StartCoroutine(MoveToDir(60, 0.3f, forwardLeft));
+            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
             isDodge = true;
         }
 
         if (_inputE == true && isDodge == false)
         {
             Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
-            StartCoroutine(MoveToDir(60, 0.3f, forwardRight));
+            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
             isDodge = true;
         }
 
@@ -156,8 +155,7 @@ public class PlayerMovementController : MonoBehaviour
 
 
 
-
-    IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
+    private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
         Vector3 direction = _dir; 
         float distance = speed * duration; 
@@ -174,6 +172,14 @@ public class PlayerMovementController : MonoBehaviour
     }
 
 
+    private IEnumerator PlayerCrash()
+    {
+        playerData.isCrash = true;
+        moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
+        yield return new WaitForSeconds(0.5f);
+        playerData.isCrash = false;
+    }
+
     Vector3 pushDirection;
     Vector3 playerVelocity = Vector3.zero;
 
@@ -184,6 +190,7 @@ public class PlayerMovementController : MonoBehaviour
     private WaitForFixedUpdate waitFixedUpdate = null;
 
     private float moveSpeed = 0f;
+    private float calcMoveSpeed = 0f;
     private float moveAccel = 0f;
     private float moveBackVelocityLimit = 0f;
     private float moveForwardVelocityLimit = 0f;
@@ -210,7 +217,6 @@ public class PlayerMovementController : MonoBehaviour
     private bool isDash = false;
     private bool isDodge = false;
     private bool isCollision = false;
-    private bool isLessSpeed = false;
 
 
     private Collision coli = null;

@@ -35,7 +35,12 @@ public class PlayerController : MonoBehaviour
     {
 
         moveCtrl.CalcPlayerMove(playerData.input.InputZ, playerData.input.InputShift);
-        if (playerData.isDash == true)
+
+        if (playerData.isCrash == true)
+        {
+            playerMesh.material.SetColor("_BaseColor", Color.red);
+        }
+        else if (playerData.isDash == true)
         {
             playerMesh.material.SetColor("_BaseColor", Color.blue);
         }
@@ -44,16 +49,16 @@ public class PlayerController : MonoBehaviour
             playerMesh.material.SetColor("_BaseColor", Color.white);
         }
 
-        
+
+        virtualMouse.UpdateMouseInput();
     }
 
     private void FixedUpdate()
-    {        
-        virtualMouse.UpdateMouseInput();
+    {
+        virtualMouse.FixedUpdateMouseInput();
         rotCtrl.PlayerRotate();
         moveCtrl.PlayerMove();
         moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
-        
     }
 
 
