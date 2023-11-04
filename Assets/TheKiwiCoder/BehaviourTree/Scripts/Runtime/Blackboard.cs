@@ -12,5 +12,6 @@ namespace TheKiwiCoder {
         public Vector3 moveToPosition;
         public bool isPhaseEnd;
         public int curPhaseNum;
+        public int curClosedWeakPoint;
     }
 }

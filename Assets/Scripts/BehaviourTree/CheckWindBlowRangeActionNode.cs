@@ -17,10 +17,13 @@ public class CheckWindBlowRangeActionNode : ActionNode
     }
 
     protected override State OnUpdate() {
-        foreach(WeakPoint wp in weakPoints)
+        for(int i = 0; i < weakPoints.Length; ++i)
         {
-            if (Physics.OverlapSphere(wp.GetPos(), range, 1 << LayerMask.NameToLayer("Player")).Length > 0)
+            if (Physics.OverlapSphere(weakPoints[i].GetPos(), range, 1 << LayerMask.NameToLayer("Player")).Length > 0)
+            {
+                blackboard.curClosedWeakPoint = i;
                 return State.Success;
+            }
         }
 
         return State.Failure;

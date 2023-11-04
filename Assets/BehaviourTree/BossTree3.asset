@@ -20,6 +20,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   child: {fileID: 2016969803888250028}
@@ -45,6 +46,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -71,6 +73,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -97,6 +100,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   bulletPrefab: {fileID: 6519272339437649605, guid: cd6c9962db9d58b42b351e01d640131f,
@@ -125,6 +129,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   child: {fileID: 1210790204114747789}
@@ -150,6 +155,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   message: 
@@ -173,6 +179,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   child: {fileID: -5663312727242357505}
@@ -198,6 +205,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   maxRotSpeed: 5
@@ -223,6 +231,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -249,6 +258,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
 --- !u!114 &-5494756302704093715
@@ -271,6 +281,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -297,6 +308,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -323,6 +335,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
 --- !u!114 &-4026051781191520773
@@ -345,6 +358,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   child: {fileID: -5494756302704093715}
@@ -370,6 +384,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   animTime: 3
@@ -394,6 +409,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -415,13 +431,22 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0fd47796994add249990606cd68d3883
-  position: {x: 903.50006, y: 1624}
+  position: {x: 903.99994, y: 1623.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
+  smallRadius: 5
+  largeRadius: 30
+  totalDuration: 5
+  colliderInterval: 0.2
+  cylinderLengthPerSecond: 50
+  numVertices: 20
+  windCylinderPrefab: {fileID: 363644970690299257, guid: ff5b99d5aca53684b8a3ed2b790c8ecc,
+    type: 3}
 --- !u!114 &-3764200336901690060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,11 +462,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 41e424d5a24eac54b93aaaeda8989dc1
-  position: {x: 1053.5001, y: 1624}
+  position: {x: 1054, y: 1624}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   animTime: 3
@@ -466,6 +492,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -491,6 +518,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   child: {fileID: -6606512983389126247}
@@ -516,6 +544,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
 --- !u!114 &-1367835594263395380
@@ -538,6 +567,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   duration: 5
@@ -561,6 +591,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   child: {fileID: 4456204010451904621}
@@ -584,6 +615,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -654,6 +686,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
 --- !u!114 &749988045687392448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,6 +707,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   range: 50
@@ -697,6 +731,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -723,6 +758,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   child: {fileID: -6807460380424380840}
@@ -748,6 +784,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
 --- !u!114 &2055624564037474365
@@ -770,6 +807,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -796,9 +834,10 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
-  drawGizmos: 0
-  range: 1000
+  drawGizmos: 1
+  range: 400
 --- !u!114 &2663481157983243140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +858,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   duration: 4
@@ -842,6 +882,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   duration: 10
@@ -865,6 +906,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   radious: 10
@@ -898,6 +940,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   radious: 10
@@ -931,9 +974,10 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
-  drawGizmos: 0
-  range: 500
+  drawGizmos: 1
+  range: 200
 --- !u!114 &4365113027542136525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +998,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   maxRotSpeed: 5
@@ -979,6 +1024,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   range: 3000
@@ -1002,6 +1048,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: "\uADFC\uAC70\uB9AC"
   drawGizmos: 0
   children:
@@ -1028,6 +1075,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   child: {fileID: -185823795940874659}
@@ -1053,6 +1101,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
 --- !u!114 &6915879143102228442
@@ -1075,6 +1124,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   bulletPrefab: {fileID: 6519272339437649605, guid: cd6c9962db9d58b42b351e01d640131f,
@@ -1103,6 +1153,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   children:
@@ -1129,6 +1180,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: "\uC6D0\uAC70\uB9AC"
   drawGizmos: 0
   children:
@@ -1155,6 +1207,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   maxRotSpeed: 15
@@ -1182,6 +1235,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   duration: 4
@@ -1205,6 +1259,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
+    curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
   duration: 4

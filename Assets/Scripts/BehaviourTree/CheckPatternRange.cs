@@ -20,4 +20,10 @@ public class CheckPatternRange : ActionNode
         else
             return State.Failure;
     }
+
+    public override void OnDrawGizmos() 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(context.transform.position, Vector3.one * range * 2); // 검출 영역 기즈모 그리기
+    }
 }

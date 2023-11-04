@@ -27,9 +27,18 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (gameObject.layer.Equals(LayerMask.NameToLayer(playerInvincibleLayer)))
+            return;
+
         if (other.CompareTag("ShakeBodyCollider"))
         {
             Debug.Log("몸 흔들기에 피격당함.");
+            gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
+            Invoke("FinishInvincible", invincibleTime);
+        }
+        else if(other.CompareTag("WindBlow"))
+        {
+            Debug.Log("3방향 바람에 피격당함.");
             gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
             Invoke("FinishInvincible", invincibleTime);
         }

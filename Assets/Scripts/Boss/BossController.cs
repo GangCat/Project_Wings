@@ -82,6 +82,7 @@ public class BossController : MonoBehaviour
                 secondWeakPointHolder.Init();
                 foreach (WeakPoint wp in secondWeakPointHolder.WeakPoints)
                 {
+                    wp.Init();
                     curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
                 }
                 break;

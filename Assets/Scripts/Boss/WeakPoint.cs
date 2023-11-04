@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class WeakPoint : MonoBehaviour
 {
+    public void Init()
+    {
+        windBlowHolder = GetComponentInChildren<WindBlowHolder>();
+        windBlowHolder.Init();
+    }
+
     public Vector3 GetPos()
     {
         return transform.position;
     }
+
+    public WindBlowHolder GetWindBlowHolder()
+    {
+        return windBlowHolder;
+    }
+
+    private WindBlowHolder windBlowHolder = null;
 }
