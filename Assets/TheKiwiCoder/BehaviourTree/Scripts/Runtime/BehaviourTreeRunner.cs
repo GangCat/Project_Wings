@@ -7,9 +7,9 @@ namespace TheKiwiCoder
     public class BehaviourTreeRunner : MonoBehaviour
     {
         // Start is called before the first frame update
-        public void Init(Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo, Transform _gunMuzzleTr, BossAnimationController _anim, BossCollider _bossCollider)
+        public void Init(Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo, Transform _gunMuzzleTr, BossAnimationController _anim, BossCollider _bossCollider, WeakPointHolder _secondWeakPointHolder)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider);
+            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -34,9 +34,9 @@ namespace TheKiwiCoder
                 tree.Update();
         }
 
-        Context CreateBehaviourTreeContext(Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo, Transform _gunMuzzleTr, BossAnimationController _anim, BossCollider _bossCollider)
+        Context CreateBehaviourTreeContext(Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo, Transform _gunMuzzleTr, BossAnimationController _anim, BossCollider _bossCollider, WeakPointHolder _secondWeakPointHolder)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider);
+            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder);
         }
 
         private void OnDrawGizmosSelected()

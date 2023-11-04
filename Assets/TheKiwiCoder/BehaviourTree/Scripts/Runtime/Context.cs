@@ -18,11 +18,12 @@ namespace TheKiwiCoder {
         public Transform gunMuzzleTr;
         public Rigidbody physics;
         public BossCollider bossCollider;
-        public bool isPhaseEnd;
         public AnimationControllerBase anim;
+        public WeakPointHolder secondWeakPointHolder;
+        public bool isPhaseEnd;
         // Add other game specific systems here
 
-        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr, GameObject _gatlingHolder, GameObject _gatlingHead,Transform _gunMuzzleTr, AnimationControllerBase _anim, BossCollider _bossCollider) {
+        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr, GameObject _gatlingHolder, GameObject _gatlingHead,Transform _gunMuzzleTr, AnimationControllerBase _anim, BossCollider _bossCollider, WeakPointHolder _secondWeakPointHolder) {
             // Fetch all commonly used components
             Context context = new Context();
             context.gameObject = gameObject;
@@ -30,11 +31,12 @@ namespace TheKiwiCoder {
             context.physics = gameObject.GetComponent<Rigidbody>();
             context.bossCollider = _bossCollider;
             context.playerTr = _playerTr;
-            context.isPhaseEnd = false;
             context.gatlingHolderGo = _gatlingHolder;
             context.gatlingHeadGo = _gatlingHead;
             context.gunMuzzleTr = _gunMuzzleTr;
             context.anim = _anim;
+            context.isPhaseEnd = false;
+            context.secondWeakPointHolder = _secondWeakPointHolder;
             // Add whatever else you need here...
 
             return context;

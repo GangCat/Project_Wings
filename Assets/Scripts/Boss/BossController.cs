@@ -15,7 +15,7 @@ public class BossController : MonoBehaviour
         bossCollider.Init();
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl, bossCollider);
+        myRunner.Init(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl, bossCollider, secondWeakPointHolder);
 
         curWeakPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
@@ -72,19 +72,21 @@ public class BossController : MonoBehaviour
         switch (curPhaseNum)
         {
             case 1:
-                foreach (Transform tr in arrFirstPhaseWeakPointTr)
+                firstWeakPointHolder.Init();
+                foreach (WeakPoint wp in firstWeakPointHolder.WeakPoints)
                 {
-                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, tr.position, Quaternion.identity));
+                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
                 }
                 break;
             case 2:
-                foreach (Transform tr in arrSecondPhaseWeakPointTr)
+                secondWeakPointHolder.Init();
+                foreach (WeakPoint wp in secondWeakPointHolder.WeakPoints)
                 {
-                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, tr.position, Quaternion.identity));
+                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
                 }
                 break;
             case 3:
-                curWeakPoint.Add(Instantiate(bossWeakPointPrefab, thirdPhaseWeakPointTr.position, Quaternion.identity));
+                curWeakPoint.Add(Instantiate(bossWeakPointPrefab, thirdPhaseWeakPoint.GetPos(), Quaternion.identity));
                 break;
             default:
                 break;
@@ -100,11 +102,11 @@ public class BossController : MonoBehaviour
     }
 
     [SerializeField]
-    private Transform[] arrFirstPhaseWeakPointTr = null;
+    private WeakPointHolder firstWeakPointHolder = null;
     [SerializeField]
-    private Transform[] arrSecondPhaseWeakPointTr = null;
+    private WeakPointHolder secondWeakPointHolder = null;
     [SerializeField]
-    private Transform thirdPhaseWeakPointTr = null;
+    private WeakPoint thirdPhaseWeakPoint = null;
     [SerializeField]
     private GameObject bossWeakPointPrefab = null;
 
