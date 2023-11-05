@@ -9,7 +9,11 @@ public class BossManager : MonoBehaviour
     public void Init(Transform _PlayerTr)
     {
         bossCtrl = GetComponentInChildren<BossController>();
+<<<<<<< HEAD
         bossCtrl.Init(_PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr);
+=======
+        bossCtrl.Init(tree, _PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr, giantHomingMissileGo, giantHomingMissileSpawnTr);
+>>>>>>> origin/geohyung1
     }
 
 

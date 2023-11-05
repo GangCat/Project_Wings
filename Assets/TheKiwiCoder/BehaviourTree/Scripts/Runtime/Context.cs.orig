@@ -17,7 +17,11 @@ namespace TheKiwiCoder {
         public Transform transform;
         public Transform playerTr;
         public Transform gunMuzzleTr;
+<<<<<<< HEAD
+=======
         public Transform giantHomingMissileSpawnTr;
+        public Animator animator;
+>>>>>>> origin/geohyung1
         public Rigidbody physics;
         public BossCollider bossCollider;
         public AnimationControllerBase anim;
@@ -25,7 +29,11 @@ namespace TheKiwiCoder {
         public bool isPhaseEnd;
         // Add other game specific systems here
 
+<<<<<<< HEAD
         public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr, GameObject _gatlingHolder, GameObject _gatlingHead,Transform _gunMuzzleTr, AnimationControllerBase _anim, BossCollider _bossCollider, WeakPointHolder _secondWeakPointHolder) {
+=======
+        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr = null, GameObject _gatlingHolder = null, GameObject _gatlingHead = null,Transform _gunMuzzleTr = null,GameObject _giantHomingMissileGo = null, Transform giantHomingMissileSpawnTr=null ) {
+>>>>>>> origin/geohyung1
             // Fetch all commonly used components
             Context context = new Context();
             context.gameObject = gameObject;
@@ -36,11 +44,14 @@ namespace TheKiwiCoder {
             context.gatlingHolderGo = _gatlingHolder;
             context.gatlingHeadGo = _gatlingHead;
             context.gunMuzzleTr = _gunMuzzleTr;
+<<<<<<< HEAD
             context.anim = _anim;
             context.isPhaseEnd = false;
+            context.secondWeakPointHolder = _secondWeakPointHolder;
+=======
             context.giantHomingMissileGo = _giantHomingMissileGo;
             context.giantHomingMissileSpawnTr = giantHomingMissileSpawnTr;
-            context.secondWeakPointHolder = _secondWeakPointHolder;
+>>>>>>> origin/geohyung1
             // Add whatever else you need here...
 
             return context;
