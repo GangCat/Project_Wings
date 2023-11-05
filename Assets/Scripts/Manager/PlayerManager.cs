@@ -17,7 +17,6 @@ public class PlayerManager : MonoBehaviour
 
         playerCtrl.Init(playerData);
 
-
         pmc.Init(playerData);
     }
 
@@ -29,7 +28,9 @@ public class PlayerManager : MonoBehaviour
     private PlayerController playerCtrl = null;
     private PlayerInputHandler input = null;
 
-
     [SerializeField]
     private PlayerModelRotateController pmc = null;
+
+    public PlayerData PData => playerData;
+
 }

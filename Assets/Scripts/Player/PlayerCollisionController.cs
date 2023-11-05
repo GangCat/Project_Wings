@@ -21,7 +21,7 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        collisionCallback?.Invoke(collision,false);
+        collisionCallback?.Invoke(collision, false);
     }
 
     private void OnTriggerEnter(Collider other)

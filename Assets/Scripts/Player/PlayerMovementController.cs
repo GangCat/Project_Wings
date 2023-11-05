@@ -70,9 +70,9 @@ public class PlayerMovementController : MonoBehaviour
 
         resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
         currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.7f * Time.deltaTime);
-
         moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, currentForwardVelocityLimit);
         playerVelocity = moveSpeed * playerTr.forward;
+
 
         if (isCollision)
         {
@@ -102,8 +102,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void CollisionCrash()
     {
-        Debug.Log(moveSpeed);
-
         if (moveSpeed >= 50)
         {
             StartCoroutine(PlayerCrash());
@@ -131,7 +129,6 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerMove()
     {
-
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
     }
@@ -142,15 +139,15 @@ public class PlayerMovementController : MonoBehaviour
         if (_inputQ == true && isDodge == false)
         {
             Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
             isDodge = true;
+            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
         }
 
         if (_inputE == true && isDodge == false)
         {
             Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
             isDodge = true;
+            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
         }
 
     }
@@ -166,7 +163,14 @@ public class PlayerMovementController : MonoBehaviour
         while (movedDistance < distance)
         {
             float step = speed * Time.deltaTime;
-            playerTr.Translate(direction * step, Space.World);
+            RaycastHit hit;
+            if (rb.SweepTest(direction, out hit, step))
+            {
+                isDodge = false;
+                break;
+            }
+            Vector3 new_pos = rb.position + direction * step;
+            rb.MovePosition(new_pos);
             movedDistance += step;
             yield return waitFixedUpdate;
         }

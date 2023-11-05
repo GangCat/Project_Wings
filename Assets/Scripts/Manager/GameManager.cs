@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour, IPublisher
         bossMng = FindFirstObjectByType<BossManager>();
         uiMng = FindFirstObjectByType<UIManager>();
         camMng = FindFirstObjectByType<CameraManager>();
+        playerMng = FindFirstObjectByType<PlayerManager>();
     }
 
     private void InitManagers()
@@ -63,7 +64,8 @@ public class GameManager : MonoBehaviour, IPublisher
         //audioMng.Init();
         bossMng.Init(playerTr);
         //uiMng.Init();
-        camMng.Init(playerTr);
+        camMng.Init(playerTr, playerMng.PData);
+        //playerMng.Init();
     }
 
     public void RegisterBroker()
@@ -90,6 +92,7 @@ public class GameManager : MonoBehaviour, IPublisher
     private BossManager bossMng = null;
     private UIManager uiMng = null;
     private CameraManager camMng = null;
+    private PlayerManager playerMng = null;
 
 
 }

@@ -36,7 +36,7 @@ public class PlayerData : ScriptableObject
     public float rotCamYAxisSensitive = 1.5f;
     public float minAngleX = 0f;
     public float maxAngleX = 0f;
-
+    public bool isFreeLock = false;
 
     [Header("Virtual Mouse")]
     public float returnMouseSpeed = 100f;
