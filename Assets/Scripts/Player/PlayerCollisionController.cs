@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerCollisionController : MonoBehaviour
 {
     public delegate void ChangeCollisionConditionDelegate(Collision _coli, bool _bool);
-    private ChangeCollisionConditionDelegate collisionCallback = null;
+    public delegate void KnockBackDelegate(Collider _collider, bool _bool);
 
-    public void Init(ChangeCollisionConditionDelegate _Callback)
+    private ChangeCollisionConditionDelegate collisionCallback = null;
+    private KnockBackDelegate knockBackCallback = null;
+
+    public void Init(ChangeCollisionConditionDelegate _Callback, KnockBackDelegate _knockBackCallback)
     {
         collisionCallback = _Callback;
+        knockBackCallback = _knockBackCallback;
         oriLayer = gameObject.layer;
     }
 
@@ -17,6 +21,7 @@ public class PlayerCollisionController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         collisionCallback?.Invoke(collision, true);
+        Invincible();
     }
 
     private void OnCollisionExit(Collision collision)
@@ -29,24 +34,22 @@ public class PlayerCollisionController : MonoBehaviour
         if (gameObject.layer.Equals(LayerMask.NameToLayer(playerInvincibleLayer)))
             return;
 
-        if (other.CompareTag("ShakeBodyCollider"))
-        {
-            Debug.Log("몸 흔들기에 피격당함.");
-            gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
-            Invoke("FinishInvincible", invincibleTime);
-        }
-        else if(other.CompareTag("WindBlow"))
-        {
-            Debug.Log("3방향 바람에 피격당함.");
-            gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
-            Invoke("FinishInvincible", invincibleTime);
-        }
-        else if (other.CompareTag("CrossLaser"))
-        {
-            Debug.Log("격자 레이저에 피격당함.");
-            gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
-            Invoke("FinishInvincible", invincibleTime);
-        }
+        knockBackCallback?.Invoke(other, true);
+
+        //if (other.CompareTag("ShakeBodyCollider"))
+        //    Debug.Log("몸 흔들기에 피격당함.");
+        //else if(other.CompareTag("WindBlow"))
+        //    Debug.Log("3방향 바람에 피격당함.");
+        //else if (other.CompareTag("CrossLaser"))
+        //    Debug.Log("격자 레이저에 피격당함.");
+
+        Invincible();
+    }
+
+    private void Invincible()
+    {
+        gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
+        Invoke("FinishInvincible", invincibleTime);
     }
 
     private void FinishInvincible()

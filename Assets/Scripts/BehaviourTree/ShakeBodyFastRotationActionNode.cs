@@ -25,7 +25,7 @@ public class ShakeBodyFastRotationActionNode : ActionNode
     protected override void OnStart() {
         bossTr = context.transform;
         curRotationAngle = bossTr.rotation.eulerAngles.y;
-        windAttack();
+        windAttackInit();
     }
 
     protected override void OnStop() {
@@ -52,7 +52,7 @@ public class ShakeBodyFastRotationActionNode : ActionNode
             return State.Success;
     }
 
-    private void windAttack()
+    private void windAttackInit()
     {
         bossCollider = context.bossCollider;
         bossCollider.SetEnableCollider();

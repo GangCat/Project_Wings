@@ -20,14 +20,34 @@ public class PlayerController : MonoBehaviour
         moveCtrl.Init(playerData);
         rotCtrl.Init(playerData);
         animCtrl.Init();
-        colCtrl.Init(ChangeCollisionCondition);
+        colCtrl.Init(ChangeCollisionCondition, KnockBack);
         virtualMouse.Init(playerData);
 
     }
 
-    private void ChangeCollisionCondition(Collision _Coli ,bool _bool)
+    private void ChangeCollisionCondition(Collision _coli ,bool _bool)
     {
-        moveCtrl.ChangeCollisionCondition(_Coli, _bool);
+        moveCtrl.ChangeCollisionCondition(_coli, _bool);
+    }
+
+    private void KnockBack(Collider _collider, bool _bool)
+    {
+        float knockBackAmount = 0f;
+
+        if (_collider.CompareTag("CannonBall"))
+            knockBackAmount = 15f;
+        else if (_collider.CompareTag("GatlingGunBullet"))
+            knockBackAmount = 15f;
+        else if (_collider.CompareTag("ShakeBodyCollider"))
+            knockBackAmount = 50f;
+        else if (_collider.CompareTag("WindBlow"))
+            knockBackAmount = 100f;
+        else if (_collider.CompareTag("CrossLaser"))
+            knockBackAmount = 30f;
+
+        Vector3 knockBackDir = _collider.transform.forward;
+
+        moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount);
     }
 
     private void Update()
@@ -38,6 +58,10 @@ public class PlayerController : MonoBehaviour
         if (playerData.isCrash == true)
         {
             playerMesh.material.SetColor("_BaseColor", Color.red);
+        }
+        else if(gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            playerMesh.material.SetColor("_BaseColor", Color.yellow);
         }
         else if (playerData.isDash == true)
         {

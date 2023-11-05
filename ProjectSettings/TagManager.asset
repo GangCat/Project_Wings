@@ -9,6 +9,8 @@ TagManager:
   - ShakeBodyCollider
   - WindBlow
   - CrossLaser
+  - CannonBall
+  - GatlingGunBullet
   layers:
   - Default
   - TransparentFX

@@ -5744,7 +5744,7 @@ Transform:
   m_GameObject: {fileID: 798473337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.8, z: -281}
+  m_LocalPosition: {x: -2.2, y: 3.8, z: -566.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5766,6 +5766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 798473342}
   dodgeDuration: 1
+  knockBackDelay: 2
 --- !u!114 &798473340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7190,7 +7191,6 @@ GameObject:
   - component: {fileID: 903972200}
   - component: {fileID: 903972203}
   - component: {fileID: 903972202}
-  - component: {fileID: 903972201}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -7213,27 +7213,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2057217789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &903972201
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903972199}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &903972202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9577,8 +9556,8 @@ Transform:
   m_GameObject: {fileID: 1194020061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
-  m_LocalScale: {x: 1500, y: 1, z: 1500}
+  m_LocalPosition: {x: 0, y: -51, z: 0}
+  m_LocalScale: {x: 1500, y: 100, z: 1500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

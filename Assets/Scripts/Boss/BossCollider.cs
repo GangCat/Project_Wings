@@ -19,9 +19,9 @@ public class BossCollider : MonoBehaviour
     public void ResetAll()
     {
         gameObject.tag = "Untagged";
-        bossBoxCollider.enabled = false;
         transform.position = Vector3.zero;
         transform.localScale = Vector3.one;
+        bossBoxCollider.enabled = false;
     }
 
     public void SetPos(Vector3 _pos)

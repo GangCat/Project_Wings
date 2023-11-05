@@ -72,7 +72,9 @@ public class PlayerMovementController : MonoBehaviour
         currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, ResultForwardVelocityLimit, 0.7f * Time.deltaTime);
 
         moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, currentForwardVelocityLimit);
-        playerVelocity = moveSpeed * playerTr.forward;
+
+        if (!isKnockBack)
+            playerVelocity = moveSpeed * playerTr.forward;
 
         if (isCollision)
         {
@@ -86,6 +88,7 @@ public class PlayerMovementController : MonoBehaviour
             calcMoveSpeed = currentForwardVelocityLimit * Mathf.Clamp01((1 - angle / 170));
             moveSpeed = Mathf.Lerp(moveSpeed, calcMoveSpeed, moveAccel * Time.deltaTime);
             //Debug.Log(moveSpeed);
+
             playerVelocity = moveSpeed * playerTr.forward;
 
             if (CheckisSliding())
@@ -97,6 +100,26 @@ public class PlayerMovementController : MonoBehaviour
                 isCollision = false;
         }
 
+    }
+
+    public void KnockBack(Vector3 _knockBackAmount)
+    {
+        StartCoroutine(KnockBackCoroutine(_knockBackAmount));
+    }
+
+    private IEnumerator KnockBackCoroutine(Vector3 _knockBackAmount)
+    {
+        isKnockBack = true;
+        float elapsedTime = 0f;
+        while (elapsedTime < knockBackDelay)
+        {
+            playerVelocity = Vector3.Slerp(_knockBackAmount, Vector3.zero, elapsedTime / knockBackDelay);
+            elapsedTime += Time.deltaTime;
+
+            yield return waitFixedUpdate;
+        }
+        playerVelocity = Vector3.zero;
+        isKnockBack = false;
     }
 
 
@@ -128,11 +151,10 @@ public class PlayerMovementController : MonoBehaviour
         return angle >= 100;
     }
 
-
     public void PlayerMove()
     {
-
         rb.velocity = playerVelocity;
+        Debug.Log(isCollision);
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
     }
 
@@ -155,8 +177,6 @@ public class PlayerMovementController : MonoBehaviour
 
     }
 
-
-
     private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
         Vector3 direction = _dir;
@@ -172,7 +192,6 @@ public class PlayerMovementController : MonoBehaviour
         }
         isDodge = false;
     }
-
 
     private IEnumerator PlayerCrash()
     {
@@ -219,6 +238,7 @@ public class PlayerMovementController : MonoBehaviour
     private bool isDash = false;
     private bool isDodge = false;
     private bool isCollision = false;
+    private bool isKnockBack = false;
 
 
     private Collision coli = null;
@@ -227,5 +247,7 @@ public class PlayerMovementController : MonoBehaviour
     private Rigidbody rb = null;
     [SerializeField]
     private float dodgeDuration = 1f;
+    [SerializeField]
+    private float knockBackDelay = 5f;
 
 }

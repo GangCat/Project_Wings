@@ -311,6 +311,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
+  - {fileID: 3843690250053409745}
+  - {fileID: 6915879143102228442}
   - {fileID: -4054882901305631100}
 --- !u!114 &-4054882901305631100
 MonoBehaviour:
@@ -449,7 +451,7 @@ MonoBehaviour:
   largeRadius: 30
   totalDuration: 5
   colliderInterval: 0.2
-  cylinderLengthPerSecond: 50
+  cylinderLengthPerSecond: 200
   numVertices: 20
   windCylinderPrefab: {fileID: 363644970690299257, guid: ff5b99d5aca53684b8a3ed2b790c8ecc,
     type: 3}
@@ -503,7 +505,6 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -8305457244676183389}
-  - {fileID: 3119450158616902581}
 --- !u!114 &-3387968954581324278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,9 +1113,9 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  minSpeed: 40
-  maxSpeed: 100
-  acceleration: 100
+  minSpeed: 50
+  maxSpeed: 150
+  acceleration: 200
   autoDestroyTime: 20
 --- !u!114 &6915879143102228442
 MonoBehaviour:
