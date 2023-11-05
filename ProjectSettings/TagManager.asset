@@ -21,8 +21,9 @@ TagManager:
   - MuseTextureLayer
   - BossProjectile
   - PlayerInvincible
-  - 
+  - floor
   - BossHomingMIssile
+  - Boss
   - 
   - 
   - 
@@ -39,8 +40,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - tempObstacle
   - InformationLayer
   m_SortingLayers:
   - name: Default

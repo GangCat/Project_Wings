@@ -35,13 +35,23 @@ public class CrossLaserController : MonoBehaviour
                 StartCoroutine(ChangeFormCoroutine());
             }
 
-            if(!isFormChange)
-                RotateCrossLaser(moveDistance.normalized);
-
             MoveCrossLaser();
+
+            if (isFormChange || isPathBlock())
+            {
+                yield return waitFixed;
+                continue;
+            }
+
+            RotateCrossLaser(moveDistance.normalized);
 
             yield return waitFixed;
         }
+    }
+
+    private bool isPathBlock()
+    {
+        return Physics.BoxCast(transform.position, Vector3.one * 30f, transform.forward, transform.rotation, 2000f, hitLayers);
     }
 
     private void MoveCrossLaser()
@@ -95,4 +105,6 @@ public class CrossLaserController : MonoBehaviour
     private GameObject laserObject = null;
     [SerializeField]
     private GameObject sphereObject = null;
+    [SerializeField]
+    private LayerMask hitLayers;
 }
