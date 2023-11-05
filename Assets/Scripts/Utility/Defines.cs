@@ -4,6 +4,7 @@ public delegate void VoidVoidDelegate();
 public delegate void VoidFloatDelegate();
 public delegate void VoidIntDelegate();
 public delegate void VoidGameObjectDelegate(GameObject _go);
+public delegate void VoidBoolDelegate(bool _value);
 
 public enum EPublisherType 
 { 

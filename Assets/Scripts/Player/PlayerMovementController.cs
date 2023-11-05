@@ -185,6 +185,7 @@ public class PlayerMovementController : MonoBehaviour
 
         while (movedDistance < distance)
         {
+            // 이걸 playervelocity에 좌, 혹은 우 방향으로 곱해주면 될듯? 더해주면 될려나
             float step = speed * Time.deltaTime;
             playerTr.Translate(direction * step, Space.World);
             movedDistance += step;

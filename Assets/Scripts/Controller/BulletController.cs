@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
     public void Init(Quaternion _transform)
     {
@@ -17,6 +18,12 @@ public class BulletController : MonoBehaviour
     private void Start()
     {
         rb.velocity = transform.forward*speed;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(!other.gameObject.CompareTag("GatlingGunMuzzle"))
+            Destroy(gameObject);
     }
 
 }

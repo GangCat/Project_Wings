@@ -11,6 +11,8 @@ TagManager:
   - CrossLaser
   - CannonBall
   - GatlingGunBullet
+  - GatlingGunMuzzle
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -26,6 +28,7 @@ TagManager:
   - floor
   - BossHomingMIssile
   - Boss
+  - Obstacle
   - 
   - 
   - 
@@ -42,7 +45,6 @@ TagManager:
   - 
   - 
   - 
-  - tempObstacle
   - InformationLayer
   m_SortingLayers:
   - name: Default

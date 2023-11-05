@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    public delegate void ChangeCollisionConditionDelegate(Collision _coli, bool _bool);
+    public delegate void ChangeCollisionConditionDelegate(Collision _coli);
     public delegate void KnockBackDelegate(Collider _collider, bool _bool);
 
-    private ChangeCollisionConditionDelegate collisionCallback = null;
+    private ChangeCollisionConditionDelegate collisionEnterCallback = null;
+    private VoidVoidDelegate collisionExitCallback = null;
     private KnockBackDelegate knockBackCallback = null;
 
-    public void Init(ChangeCollisionConditionDelegate _Callback, KnockBackDelegate _knockBackCallback)
+
+    public void Init(ChangeCollisionConditionDelegate _collisionEnterCallback, VoidVoidDelegate _collisionExitCallback, KnockBackDelegate _knockBackCallback)
     {
-        collisionCallback = _Callback;
+        collisionEnterCallback = _collisionEnterCallback;
+        collisionExitCallback = _collisionExitCallback;
         knockBackCallback = _knockBackCallback;
         oriLayer = gameObject.layer;
     }
@@ -20,13 +23,16 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        collisionCallback?.Invoke(collision, true);
+        if (gameObject.layer.Equals(LayerMask.NameToLayer(playerInvincibleLayer)))
+            return;
+
+        collisionEnterCallback?.Invoke(collision);
         Invincible();
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        collisionCallback?.Invoke(collision,false);
+        collisionExitCallback?.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,16 +40,9 @@ public class PlayerCollisionController : MonoBehaviour
         if (gameObject.layer.Equals(LayerMask.NameToLayer(playerInvincibleLayer)))
             return;
 
-        knockBackCallback?.Invoke(other, true);
+        //knockBackCallback?.Invoke(other, true);
 
-        //if (other.CompareTag("ShakeBodyCollider"))
-        //    Debug.Log("몸 흔들기에 피격당함.");
-        //else if(other.CompareTag("WindBlow"))
-        //    Debug.Log("3방향 바람에 피격당함.");
-        //else if (other.CompareTag("CrossLaser"))
-        //    Debug.Log("격자 레이저에 피격당함.");
-
-        Invincible();
+        //Invincible();
     }
 
     private void Invincible()
