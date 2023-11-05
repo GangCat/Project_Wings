@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+
 /// <summary> 
 /// 호출 될 때마다 미사일 생성 
 /// 미사일 프리팹, 플레이어 위치, 생성 위치등을 전달 받아야 함 
@@ -35,6 +34,7 @@ public class LaunchMissileActionNode : ActionNode
     protected override void OnStart()
     {
         missile = Instantiate(context.giantHomingMissileGo, context.giantHomingMissileSpawnTr.position, Quaternion.identity);
+        Destroy(missile, autoDestroyTime);
     }
 
     protected override void OnStop()
@@ -45,7 +45,7 @@ public class LaunchMissileActionNode : ActionNode
     {
         if (missile)
         {
-            AutoDestroy();
+            //////AutoDestroy();
             // Rotate towards the player
             Vector3 direction = context.playerTr.position - missile.transform.position;
             missile.transform.rotation = Quaternion.Slerp(missile.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10f);

@@ -25,7 +25,17 @@ namespace TheKiwiCoder {
         public bool isPhaseEnd;
         // Add other game specific systems here
 
-        public static Context CreateFromGameObject(GameObject gameObject, Transform _playerTr, GameObject _gatlingHolder, GameObject _gatlingHead,Transform _gunMuzzleTr, AnimationControllerBase _anim, BossCollider _bossCollider, WeakPointHolder _secondWeakPointHolder) {
+        public static Context CreateFromGameObject(
+            GameObject gameObject, 
+            Transform _playerTr, 
+            GameObject _gatlingHolder, 
+            GameObject _gatlingHead,
+            Transform _gunMuzzleTr, 
+            AnimationControllerBase _anim, 
+            BossCollider _bossCollider, 
+            WeakPointHolder _secondWeakPointHolder,
+            GameObject _giantHomingMissileGo,
+            Transform _giantHomingMissileSpawnTr) {
             // Fetch all commonly used components
             Context context = new Context();
             context.gameObject = gameObject;
@@ -39,7 +49,7 @@ namespace TheKiwiCoder {
             context.anim = _anim;
             context.isPhaseEnd = false;
             context.giantHomingMissileGo = _giantHomingMissileGo;
-            context.giantHomingMissileSpawnTr = giantHomingMissileSpawnTr;
+            context.giantHomingMissileSpawnTr = _giantHomingMissileSpawnTr;
             context.secondWeakPointHolder = _secondWeakPointHolder;
             // Add whatever else you need here...
 

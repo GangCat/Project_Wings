@@ -9,7 +9,7 @@ public class BossManager : MonoBehaviour
     public void Init(Transform _PlayerTr)
     {
         bossCtrl = GetComponentInChildren<BossController>();
-        bossCtrl.Init(_PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr);
+        bossCtrl.Init(_PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr, giantHomingMissilePrefab, giantHomingMissileSpawnTr);
     }
 
 
@@ -22,7 +22,7 @@ public class BossManager : MonoBehaviour
     [SerializeField]
     private Transform giantHomingMissileSpawnTr = null;
     [SerializeField]
-    private GameObject giantHomingMissileGo = null;
+    private GameObject giantHomingMissilePrefab = null;
 
     private BossController bossCtrl = null;
 }

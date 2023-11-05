@@ -7,9 +7,18 @@ namespace TheKiwiCoder
     public class BehaviourTreeRunner : MonoBehaviour
     {
         // Start is called before the first frame update
-        public void Init(Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo, Transform _gunMuzzleTr, BossAnimationController _anim, BossCollider _bossCollider, WeakPointHolder _secondWeakPointHolder)
+        public void Init(
+            Transform _playerTr, 
+            GameObject _gatlingHolderGo, 
+            GameObject _gatlingHeadGo, 
+            Transform _gunMuzzleTr, 
+            BossAnimationController _anim, 
+            BossCollider _bossCollider, 
+            WeakPointHolder _secondWeakPointHolder,
+            GameObject _giantHomingMissileGo,
+            Transform _giantHomingMissileSpawnTr)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder);
+            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -34,9 +43,18 @@ namespace TheKiwiCoder
                 tree.Update();
         }
 
-        Context CreateBehaviourTreeContext(Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo, Transform _gunMuzzleTr, BossAnimationController _anim, BossCollider _bossCollider, WeakPointHolder _secondWeakPointHolder)
+        Context CreateBehaviourTreeContext(
+            Transform _playerTr, 
+            GameObject _gatlingHolderGo, 
+            GameObject _gatlingHeadGo, 
+            Transform _gunMuzzleTr, 
+            BossAnimationController _anim, 
+            BossCollider _bossCollider, 
+            WeakPointHolder _secondWeakPointHolder,
+            GameObject _giantHomingMissileGo,
+            Transform _giantHomingMissileSpawnTr)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder);
+            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr);
         }
 
         private void OnDrawGizmosSelected()

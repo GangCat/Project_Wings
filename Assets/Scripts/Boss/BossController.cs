@@ -6,7 +6,13 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    public void Init(Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo,Transform _gunMuzzleTr)
+    public void Init(
+        Transform _playerTr, 
+        GameObject _gatlingHolderGo, 
+        GameObject _gatlingHeadGo,
+        Transform _gunMuzzleTr,
+        GameObject giantHomingMissileGo,
+        Transform _giantHomingMissileSpawnTr)
     {
         curPhaseNum = 1;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -15,7 +21,7 @@ public class BossController : MonoBehaviour
         bossCollider.Init();
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl, bossCollider, secondWeakPointHolder);
+        myRunner.Init(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl, bossCollider, secondWeakPointHolder, giantHomingMissileGo, _giantHomingMissileSpawnTr);
 
         curWeakPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();

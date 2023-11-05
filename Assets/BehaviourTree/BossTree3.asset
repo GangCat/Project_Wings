@@ -524,29 +524,6 @@ MonoBehaviour:
   child: {fileID: -6606512983389126247}
   restartOnSuccess: 1
   restartOnFailure: 1
---- !u!114 &-3017453558945037859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1b700199becfa44f93cb4934134e1b9, type: 3}
-  m_Name: CheckMissileConditionActionNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 31855676db17d6b4297dac09c4e07be4
-  position: {x: 43, y: 1019}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
 --- !u!114 &-1367835594263395380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,7 +625,6 @@ MonoBehaviour:
   - {fileID: 1210790204114747789}
   - {fileID: 4985606961724106939}
   - {fileID: 2738026427128793326}
-  - {fileID: -3017453558945037859}
   - {fileID: 7237907964407477179}
   - {fileID: -4026051781191520773}
   - {fileID: -3385513496737040516}
@@ -737,7 +713,6 @@ MonoBehaviour:
   children:
   - {fileID: 2738026427128793326}
   - {fileID: 4985606961724106939}
-  - {fileID: -3017453558945037859}
 --- !u!114 &1561259895918018650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,7 +852,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 977840c85b1671e4fae8560c66a1f535
-  position: {x: -260, y: 1019}
+  position: {x: -120.5, y: 1018}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -885,7 +860,7 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  duration: 10
+  duration: 5
 --- !u!114 &3119450158616902581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,7 +1071,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4c762c712924e7e4f9fdbc4b5a311755
-  position: {x: -110, y: 1019}
+  position: {x: 29.5, y: 1018}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1104,6 +1079,10 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
+  minSpeed: 15
+  maxSpeed: 500
+  acceleration: 10
+  autoDestroyTime: 20
 --- !u!114 &6915879143102228442
 MonoBehaviour:
   m_ObjectHideFlags: 0
