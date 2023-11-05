@@ -2841,8 +2841,12 @@ Transform:
   m_Children:
   - {fileID: 1708395324}
   - {fileID: 1034166956}
+<<<<<<< HEAD
   - {fileID: 1937750199}
   m_Father: {fileID: 1295538132}
+=======
+  m_Father: {fileID: 1724471569}
+>>>>>>> origin/PB
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &382603819
 GameObject:
@@ -5727,9 +5731,12 @@ GameObject:
   - component: {fileID: 798473339}
   - component: {fileID: 798473344}
   - component: {fileID: 798473342}
+<<<<<<< HEAD
   - component: {fileID: 798473345}
+=======
   - component: {fileID: 798473343}
   - component: {fileID: 798473344}
+>>>>>>> origin/PB
   m_Layer: 6
   m_Name: PlayerController
   m_TagString: Untagged
@@ -5820,6 +5827,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 3
+<<<<<<< HEAD
+=======
+--- !u!136 &798473343
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798473337}
+  m_Material: {fileID: 13400000, guid: f274b7b0f1d47d141b398416a2f95b19, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.49
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.12, z: 0}
+>>>>>>> origin/PB
 --- !u!114 &798473344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8426,6 +8459,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075905316
 GameObject:
@@ -8460,6 +8494,8 @@ Transform:
   - {fileID: 814764863}
   - {fileID: 500917085}
   m_Father: {fileID: 230576122}
+=======
+>>>>>>> origin/PB
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1088253524
 GameObject:
