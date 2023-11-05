@@ -7,8 +7,8 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     public void Init(
-        Transform _playerTr, 
-        GameObject _gatlingHolderGo, 
+        Transform _playerTr,
+        GameObject _gatlingHolderGo,
         GameObject _gatlingHeadGo,
         Transform _gunMuzzleTr,
         GameObject giantHomingMissileGo,
@@ -31,6 +31,14 @@ public class BossController : MonoBehaviour
 
 
         StartCoroutine("UpdateCoroutine");
+    }
+
+    public void ClearCurPhase()
+    {
+        foreach (GameObject bwpGo in curWeakPoint)
+            Destroy(bwpGo);
+
+        curWeakPoint.Clear();
     }
 
     private IEnumerator UpdateCoroutine()
@@ -100,7 +108,10 @@ public class BossController : MonoBehaviour
         }
 
         foreach (GameObject go in curWeakPoint)
+        {
+            go.transform.parent = transform;
             go.GetComponent<BossWeakPoint>().Init(RemoveWeakPointFromList);
+        }
     }
 
     private void RemoveWeakPointFromList(GameObject _go)

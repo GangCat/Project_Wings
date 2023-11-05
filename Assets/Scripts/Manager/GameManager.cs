@@ -76,6 +76,12 @@ public class GameManager : MonoBehaviour, IPublisher
         Broker.AlertMessageToSub(_message, EPublisherType.GAME_MANAGER);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.PageUp))
+            bossMng.ClearCurPhase();
+    }
+
     [SerializeField]
     private Transform playerTr = null;
 

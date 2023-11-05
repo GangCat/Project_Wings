@@ -41,7 +41,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 432c800be9f6f104b9c2e642fdf9de3a
-  position: {x: 905, y: 1435}
+  position: {x: 720.0346, y: 1569.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5615cef58512e1c4ea59d37e78122220
-  position: {x: 1690.6125, y: 1624}
+  position: {x: 1506.0345, y: 1758.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -235,8 +235,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -3920158228874092110}
-  - {fileID: 4411008589422368910}
+  - {fileID: -3387968954581324278}
   - {fileID: 7618470226603610064}
 --- !u!114 &-5663312727242357505
 MonoBehaviour:
@@ -303,7 +302,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: eb6caf9c04c64b54489f7942cabc6832
-  position: {x: 2032, y: 1381}
+  position: {x: 1829.9998, y: 1380.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -312,8 +311,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: 3843690250053409745}
-  - {fileID: 6915879143102228442}
   - {fileID: -4054882901305631100}
 --- !u!114 &-4054882901305631100
 MonoBehaviour:
@@ -330,7 +327,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4b3e099d66c31b44cab967b9f880630c
-  position: {x: 2226, y: 1523}
+  position: {x: 1980, y: 1516}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -338,6 +335,15 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
+  crossLaserPrefab: {fileID: 3966714899875067037, guid: b82f45a60c292f64bbe87fa9bc387d33,
+    type: 3}
+  moveAccel: 30
+  maxMoveSpeed: 100
+  rotateAccel: 0.5
+  maxRotateAccel: 4
+  autoDestroyTime: 20
+  changeFormDistnacec: 60
+  patternFinishTime: 10
 --- !u!114 &-4026051781191520773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +385,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 484b985cd8bb3ac4e907781fa776e27e
-  position: {x: 745.5001, y: 1624}
+  position: {x: 561.0346, y: 1758.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -404,7 +410,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c93426dfd7354f647be0f003a736e075
-  position: {x: 904.0001, y: 1244}
+  position: {x: 719.03467, y: 1378.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -431,7 +437,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0fd47796994add249990606cd68d3883
-  position: {x: 903.99994, y: 1623.9999}
+  position: {x: 719.03467, y: 1758.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -462,7 +468,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 41e424d5a24eac54b93aaaeda8989dc1
-  position: {x: 1054, y: 1624}
+  position: {x: 869.03467, y: 1758.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -498,6 +504,32 @@ MonoBehaviour:
   children:
   - {fileID: -8305457244676183389}
   - {fileID: 3119450158616902581}
+--- !u!114 &-3387968954581324278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee64948bda9e2fe4fb5ad88265395141, type: 3}
+  m_Name: RandomSelector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 2acd9e82240a0a6449e2d3c86099872f
+  position: {x: 989.9998, y: 1236}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -3920158228874092110}
+  - {fileID: 4411008589422368910}
 --- !u!114 &-3385513496737040516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,6 +690,7 @@ MonoBehaviour:
   - {fileID: 749988045687392448}
   - {fileID: -9063385047689049670}
   - {fileID: 8618335190615036909}
+  - {fileID: -3387968954581324278}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -678,7 +711,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 50c38d1a65ba1134382ec9e6d1dd144e
-  position: {x: 662.0301, y: 1435}
+  position: {x: 477.03467, y: 1569.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -777,7 +810,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 33ac117dc82b85143b837fd8dcbf1b63
-  position: {x: 1506.9996, y: 1499}
+  position: {x: 1322.0347, y: 1633.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -804,7 +837,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a7e2614481e3b7147b04f0c108a28e26
-  position: {x: 1882, y: 1381}
+  position: {x: 1680, y: 1381}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -812,7 +845,7 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 1
-  range: 400
+  range: 600
 --- !u!114 &2663481157983243140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +861,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 82743604a5eb9e246b12a9409a71f167
-  position: {x: 1657.0001, y: 1381}
+  position: {x: 1472.0345, y: 1515.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -860,7 +893,7 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  duration: 5
+  duration: 10
 --- !u!114 &3119450158616902581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +909,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 212c879956fad4f418b301220c7f2d29
-  position: {x: 387.00003, y: 1366.9998}
+  position: {x: 387, y: 1367}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -910,7 +943,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6c1f494de66f6504c945205e4f7b4d63
-  position: {x: 1926, y: 1523}
+  position: {x: 1679.9998, y: 1515.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -944,7 +977,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 19dd5a3c094e56d49840556e44e64c38
-  position: {x: 1357.0001, y: 1381}
+  position: {x: 1172.0344, y: 1515.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -968,7 +1001,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e335242dde037ad4cb014930726676de
-  position: {x: 1249.6125, y: 1624}
+  position: {x: 1065.0347, y: 1758.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1018,7 +1051,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 972c3b887bbd4cc47b0fe326de45671b
-  position: {x: 1507.0004, y: 1245.645}
+  position: {x: 1322.0347, y: 1380.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1079,9 +1112,9 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  minSpeed: 15
-  maxSpeed: 500
-  acceleration: 10
+  minSpeed: 40
+  maxSpeed: 100
+  acceleration: 100
   autoDestroyTime: 20
 --- !u!114 &6915879143102228442
 MonoBehaviour:
@@ -1098,7 +1131,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 84addfb7f5b157142bd01f6ba70b9c80
-  position: {x: 2076, y: 1523}
+  position: {x: 1829.9998, y: 1515.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1154,7 +1187,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: cc5ae9abc2b7f664987e3e2cfb47be60
-  position: {x: 2050, y: 1236}
+  position: {x: 1830.0002, y: 1236}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1181,7 +1214,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 589a5d3feddbe9146bcd95a9734120d9
-  position: {x: 1471.6125, y: 1624}
+  position: {x: 1287.0345, y: 1758.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1209,7 +1242,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 51a5755b15126724c8d377cd59ba51b3
-  position: {x: 1105, y: 1435.0001}
+  position: {x: 920.03455, y: 1569.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1233,7 +1266,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3af9c4a51ae432b4e9c7c4df56cfafa3
-  position: {x: 2182, y: 1381}
+  position: {x: 1979.9998, y: 1380.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0

@@ -41,6 +41,12 @@ public class PlayerCollisionController : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
             Invoke("FinishInvincible", invincibleTime);
         }
+        else if (other.CompareTag("CrossLaser"))
+        {
+            Debug.Log("격자 레이저에 피격당함.");
+            gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
+            Invoke("FinishInvincible", invincibleTime);
+        }
     }
 
     private void FinishInvincible()

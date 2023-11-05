@@ -68,8 +68,7 @@ public class LaunchMissileActionNode : ActionNode
             }
             // Move missile in the direction of rotation
             directionVector = missile.transform.forward;
-            Debug.Log("Homing Missile Current Speed:");
-            Debug.Log(currentSpeed);
+            Debug.Log("Homing Missile Current Speed: " + currentSpeed);
             missile.transform.position += directionVector * currentSpeed * Time.deltaTime;
             return State.Running;
         }

@@ -12,6 +12,11 @@ public class BossManager : MonoBehaviour
         bossCtrl.Init(_PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr, giantHomingMissilePrefab, giantHomingMissileSpawnTr);
     }
 
+    public void ClearCurPhase()
+    {
+        bossCtrl.ClearCurPhase();
+    }
+
 
     [SerializeField]
     private GameObject gatlingHolderGo = null;

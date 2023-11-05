@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2294510696366887271}
   - component: {fileID: 939064617215814351}
   - component: {fileID: 6941862291232642301}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: P_GiantHomingMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 8155922586333366446}
   - component: {fileID: 4088533601550691745}
   - component: {fileID: 57879347570876794}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
