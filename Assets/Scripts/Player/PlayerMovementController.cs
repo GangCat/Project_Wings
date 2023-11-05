@@ -109,11 +109,14 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator KnockBackCoroutine(Vector3 _knockBackAmount)
     {
+        moveSpeed = 0f;
         isKnockBack = true;
         float elapsedTime = 0f;
         while (elapsedTime < knockBackDelay)
         {
-            playerVelocity = Vector3.Slerp(_knockBackAmount, Vector3.zero, elapsedTime / knockBackDelay);
+            if(!isCollision)
+                playerVelocity = Vector3.Slerp(_knockBackAmount, Vector3.zero, elapsedTime / knockBackDelay);
+
             elapsedTime += Time.deltaTime;
 
             yield return waitFixedUpdate;

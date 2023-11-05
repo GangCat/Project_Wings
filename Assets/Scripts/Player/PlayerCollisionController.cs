@@ -27,7 +27,7 @@ public class PlayerCollisionController : MonoBehaviour
             return;
 
         collisionEnterCallback?.Invoke(collision);
-        Invincible();
+        //Invincible();
     }
 
     private void OnCollisionExit(Collision collision)
@@ -40,9 +40,9 @@ public class PlayerCollisionController : MonoBehaviour
         if (gameObject.layer.Equals(LayerMask.NameToLayer(playerInvincibleLayer)))
             return;
 
-        //knockBackCallback?.Invoke(other, true);
+        knockBackCallback?.Invoke(other, true);
 
-        //Invincible();
+        Invincible();
     }
 
     private void Invincible()

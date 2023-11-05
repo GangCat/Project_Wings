@@ -29,29 +29,29 @@ public class PlayerController : MonoBehaviour
     {
         moveCtrl.ChangeCollisionCondition(_coli, true);
 
-        float knockBackAmount = 0f;
+        //float knockBackAmount = 0f;
 
-        GameObject collisionGo = _coli.gameObject;
+        //GameObject collisionGo = _coli.gameObject;
 
-        if (collisionGo.CompareTag("Obstacle"))
-            knockBackAmount = 5f;
-        else if (collisionGo.CompareTag("CannonBall"))
-            knockBackAmount = 15f;
-        else if (collisionGo.CompareTag("GatlingGunBullet"))
-            knockBackAmount = 15f;
-        else if (collisionGo.CompareTag("ShakeBodyCollider"))
-            knockBackAmount = 50f;
-        else if (collisionGo.CompareTag("WindBlow"))
-            knockBackAmount = 100f;
-        else if (collisionGo.CompareTag("CrossLaser"))
-            knockBackAmount = 30f;
+        //if (collisionGo.CompareTag("Obstacle"))
+        //    knockBackAmount = 5f;
+        //else if (collisionGo.CompareTag("CannonBall"))
+        //    knockBackAmount = 15f;
+        //else if (collisionGo.CompareTag("GatlingGunBullet"))
+        //    knockBackAmount = 15f;
+        //else if (collisionGo.CompareTag("ShakeBodyCollider"))
+        //    knockBackAmount = 50f;
+        //else if (collisionGo.CompareTag("WindBlow"))
+        //    knockBackAmount = 100f;
+        //else if (collisionGo.CompareTag("CrossLaser"))
+        //    knockBackAmount = 30f;
 
-        Vector3 knockBackDir = _coli.contacts[0].normal;
+        //Vector3 knockBackDir = _coli.contacts[0].normal;
 
-        playerMesh.material.SetFloat("_isDamaged", 1);
+        //playerMesh.material.SetFloat("_isDamaged", 1);
 
-        moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount);
-        Invoke("ResetPlayerDamagedBollean", 2f);
+        //moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount);
+        //Invoke("ResetPlayerDamagedBollean", 2f);
     }
 
     private void ResetPlayerDamagedBollean()
@@ -66,22 +66,31 @@ public class PlayerController : MonoBehaviour
 
     private void KnockBack(Collider _collider, bool _bool)
     {
-        //float knockBackAmount = 0f;
+        float knockBackAmount = 0f;
+        Vector3 knockBackDir = (transform.position - _collider.transform.position).normalized;
 
-        //if (_collider.CompareTag("CannonBall"))
-        //    knockBackAmount = 15f;
-        //else if (_collider.CompareTag("GatlingGunBullet"))
-        //    knockBackAmount = 15f;
-        //else if (_collider.CompareTag("ShakeBodyCollider"))
-        //    knockBackAmount = 50f;
-        //else if (_collider.CompareTag("WindBlow"))
-        //    knockBackAmount = 100f;
-        //else if (_collider.CompareTag("CrossLaser"))
-        //    knockBackAmount = 30f;
+        if (_collider.CompareTag("CannonBall"))
+        {
+            knockBackAmount = 15f;
+            knockBackDir = Vector3.down;
+        }
+        else if (_collider.CompareTag("GatlingGunBullet"))
+        {
+            knockBackAmount = 15f;
+            knockBackDir = _collider.transform.forward;
+        }
+        else if (_collider.CompareTag("ShakeBodyCollider"))
+            knockBackAmount = 50f;
+        else if (_collider.CompareTag("WindBlow"))
+            knockBackAmount = 100f;
+        else if (_collider.CompareTag("CrossLaser"))
+        {
+            knockBackAmount = 30f;
+            knockBackDir = _collider.transform.forward;
+        }
 
-        //Vector3 knockBackDir = _collider.transform.forward;
 
-        //moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount);
+        moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount);
     }
 
     private void Update()
