@@ -20,9 +20,9 @@ public class BulletController : MonoBehaviour
         rb.velocity = transform.forward*speed;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(!other.gameObject.CompareTag("GatlingGunMuzzle"))
+        if(!other.CompareTag("GatlingGunMuzzle"))
             Destroy(gameObject);
     }
 

@@ -89,6 +89,8 @@ public class PlayerController : MonoBehaviour
             knockBackDir = _collider.transform.forward;
         }
 
+        playerMesh.material.SetFloat("_isDamaged", 1);
+        Invoke("ResetPlayerDamagedBollean", 2f);
 
         moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount);
     }
