@@ -19,7 +19,7 @@ public class PlayerMovementController : MonoBehaviour
 
         moveDashAccel = playerData.moveDashAccel;
         moveStopAccel = playerData.moveStopAccel;
-
+        StartCoroutine(ChangeFOV());
     }
 
     public void ChangeCollisionCondition(Collision collision, bool _bool)
@@ -68,8 +68,8 @@ public class PlayerMovementController : MonoBehaviour
             isDash = false;
         }
 
-        ResultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
-        currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, ResultForwardVelocityLimit, 0.7f * Time.deltaTime);
+        resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
+        currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.7f * Time.deltaTime);
 
         moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, currentForwardVelocityLimit);
         playerVelocity = moveSpeed * playerTr.forward;
@@ -182,38 +182,51 @@ public class PlayerMovementController : MonoBehaviour
         playerData.isCrash = false;
     }
 
-    Vector3 pushDirection;
-    Vector3 playerVelocity = Vector3.zero;
+    private IEnumerator ChangeFOV()
+    {
+        float fovLerpRate = 0.1f;
+        float targetFOV = Camera.main.fieldOfView;
 
+        while (true)
+        {
+            float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed); // 카메라의 속도의 비율에 따라 변경됨.
+            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
+            yield return null;
+        }
+    }
+
+
+
+
+    private Vector3 playerVelocity = Vector3.zero;
 
 
     private Vector3 velocitySmoothDamp = Vector3.zero;
 
     private WaitForFixedUpdate waitFixedUpdate = null;
 
-    private float moveSpeed = 0f;
     private float calcMoveSpeed = 0f;
-    private float moveAccel = 0f;
+
     private float moveBackVelocityLimit = 0f;
     private float moveForwardVelocityLimit = 0f;
-    private float ResultForwardVelocityLimit = 0f;
+    private float resultForwardVelocityLimit = 0f;
+    private float currentForwardVelocityLimit = 0f;
 
 
-    private Transform playerTr = null;
-    private PlayerData playerData = null;
-
-
-
-    /// 새로 추가된것
+    private float moveSpeed = 0f;
+    private float moveAccel = 0f;
 
     private float moveDashSpeed = 0f;
     private float moveDashAccel = 0f;
-    private float moveStopAccel = 0f;
-    private float moveAccelResult = 0f;
+
     private float gravityAccel = 0f;
     private float gravitySpeed = 0f;
+
+    private float moveStopAccel = 0f;
+    private float moveAccelResult = 0f;
+
     private float dodgeSpeedRatio = 1f;
-    private float currentForwardVelocityLimit = 0f;
 
 
     private bool isDash = false;
@@ -221,11 +234,23 @@ public class PlayerMovementController : MonoBehaviour
     private bool isCollision = false;
 
 
-    private Collision coli = null;
-
     [SerializeField]
     private Rigidbody rb = null;
     [SerializeField]
     private float dodgeDuration = 1f;
+
+    private Transform playerTr = null;
+    private PlayerData playerData = null;
+
+    private Collision coli = null;
+
+
+    public float cameraSpeed;
+    public float cameraMinSpeed = 60f;
+    public float cameraMaxSpeed = 90f;
+    public float cameraminFOV = 70f;
+    public float cameramaxFOV = 90f;
+
+
 
 }

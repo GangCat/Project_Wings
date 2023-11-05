@@ -65,14 +65,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField]
     private float offset = 0f;
 
-    Vector3 currentRotation = Vector3.zero;
-    Vector3 desiredRotation = Vector3.zero;
-    Quaternion quaternion = Quaternion.identity;
-    private Transform playerTr = null;
-    private Vector3 rotAimPos = Vector3.zero;
-
+    private Vector3 currentRotation = Vector3.zero;
+    private Vector3 desiredRotation = Vector3.zero;
     private Vector3 Pos = Vector3.zero;
-
     private Vector3 rotVectorVelocity;
-    private Vector3 posVelocity;
+    private Quaternion quaternion = Quaternion.identity;
+    private Transform playerTr = null;
 }
