@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    public void Init(BehaviourTree _tree, Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo,Transform _gunMuzzleTr)
+    public void Init(BehaviourTree _tree, Transform _playerTr, GameObject _gatlingHolderGo, GameObject _gatlingHeadGo,Transform _gunMuzzleTr, GameObject _giantHomingMissileGo, Transform _giantHomingMissileSpawnTr)
     {
         curPhaseNum = 1;
-        myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr);
+        myRunner = new MyBehaviourTreeRunner(gameObject, _tree, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _giantHomingMissileGo,_giantHomingMissileSpawnTr);
         curWeakPoint = new List<GameObject>();
         InitNewWeakPoint();
         waitFixedUpdate = new WaitForFixedUpdate();
