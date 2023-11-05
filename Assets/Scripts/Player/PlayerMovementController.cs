@@ -19,7 +19,7 @@ public class PlayerMovementController : MonoBehaviour
 
         moveDashAccel = playerData.moveDashAccel;
         moveStopAccel = playerData.moveStopAccel;
-        
+
     }
 
     public void ChangeCollisionCondition(Collision collision, bool _bool)
@@ -29,11 +29,11 @@ public class PlayerMovementController : MonoBehaviour
     }
 
 
-        public void CalcPlayerMove(float _inputZ, bool _inputShift)
+    public void CalcPlayerMove(float _inputZ, bool _inputShift)
     {
-       // if (Mathf.Abs(_inputZ) > 0f)
+        // if (Mathf.Abs(_inputZ) > 0f)
         if (_inputZ != 0f)
-            {
+        {
             isDash = _inputShift;
             playerData.isDash = isDash;
             moveAccelResult = isDash ? moveAccel + moveDashAccel : moveAccel;
@@ -77,15 +77,16 @@ public class PlayerMovementController : MonoBehaviour
         if (isCollision)
         {
             float angle = Vector3.Angle(playerVelocity, coli.contacts[0].normal);
+            
+            if (angle >= 120)
+            {
+                CollisionCrash();
+            }
 
             calcMoveSpeed = currentForwardVelocityLimit * Mathf.Clamp01((1 - angle / 170));
             moveSpeed = Mathf.Lerp(moveSpeed, calcMoveSpeed, moveAccel * Time.deltaTime);
             //Debug.Log(moveSpeed);
             playerVelocity = moveSpeed * playerTr.forward;
-            if (angle >= 120)
-            {
-                CollisionCrash();
-            }
 
             if (CheckisSliding())
             {
@@ -101,6 +102,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void CollisionCrash()
     {
+        Debug.Log(moveSpeed);
+
         if (moveSpeed >= 50)
         {
             StartCoroutine(PlayerCrash());
@@ -131,13 +134,12 @@ public class PlayerMovementController : MonoBehaviour
 
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
-
     }
 
 
     public void PlayerDodge(bool _inputQ, bool _inputE)
     {
-        if(_inputQ == true && isDodge == false)
+        if (_inputQ == true && isDodge == false)
         {
             Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
             StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
@@ -157,14 +159,14 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
-        Vector3 direction = _dir; 
-        float distance = speed * duration; 
-        float movedDistance = 0f; 
+        Vector3 direction = _dir;
+        float distance = speed * duration;
+        float movedDistance = 0f;
 
         while (movedDistance < distance)
         {
-            float step = speed * Time.deltaTime; 
-            playerTr.Translate(direction * step, Space.World); 
+            float step = speed * Time.deltaTime;
+            playerTr.Translate(direction * step, Space.World);
             movedDistance += step;
             yield return waitFixedUpdate;
         }
@@ -203,7 +205,7 @@ public class PlayerMovementController : MonoBehaviour
 
 
     /// 새로 추가된것
-   
+
     private float moveDashSpeed = 0f;
     private float moveDashAccel = 0f;
     private float moveStopAccel = 0f;
@@ -223,6 +225,7 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField]
     private Rigidbody rb = null;
-
+    [SerializeField]
+    private float dodgeDuration = 1f;
 
 }
