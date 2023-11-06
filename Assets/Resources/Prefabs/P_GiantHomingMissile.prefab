@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5147824405307316662}
   - component: {fileID: 2294510696366887271}
   - component: {fileID: 939064617215814351}
-  - component: {fileID: 6941862291232642301}
   m_Layer: 0
   m_Name: P_GiantHomingMissile
   m_TagString: Untagged
@@ -85,19 +84,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &6941862291232642301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6519272339437649605}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58dfb4e575308fa4b836f987f2bca1c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 400
 --- !u!1 &7620544338611520829
 GameObject:
   m_ObjectHideFlags: 0

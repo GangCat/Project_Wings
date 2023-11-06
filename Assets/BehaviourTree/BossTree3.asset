@@ -95,7 +95,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3f6429254ee0ab34bb16fa058efe5b00
-  position: {x: 226.7077, y: 1367.3309}
+  position: {x: 229.32253, y: 1375.1495}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -105,10 +105,11 @@ MonoBehaviour:
   drawGizmos: 0
   bulletPrefab: {fileID: 6519272339437649605, guid: cd6c9962db9d58b42b351e01d640131f,
     type: 3}
-  maxBulletCnt: 80
-  rotationSpeed: 30
-  fireRate: 10
-  headRotationSpeed: 20
+  maxBulletCnt: 600
+  rotationSpeed: 70
+  fireRate: 40
+  headRotationSpeed: 70
+  rebound: 4
 --- !u!114 &-8149892216632681123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +877,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 212c879956fad4f418b301220c7f2d29
-  position: {x: 387.00003, y: 1366.9998}
+  position: {x: 390.54886, y: 1370.4}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1079,10 +1080,10 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  minSpeed: 15
-  maxSpeed: 500
-  acceleration: 10
-  autoDestroyTime: 20
+  minSpeed: 50
+  maxSpeed: 200
+  acceleration: 80
+  autoDestroyTime: 100
 --- !u!114 &6915879143102228442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,6 +1113,7 @@ MonoBehaviour:
   rotationSpeed: 30
   fireRate: 10
   headRotationSpeed: 20
+  rebound: 3
 --- !u!114 &7237907964407477179
 MonoBehaviour:
   m_ObjectHideFlags: 0

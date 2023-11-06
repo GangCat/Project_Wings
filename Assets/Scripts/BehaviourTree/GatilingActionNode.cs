@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class GatilingActionNode : ActionNode
 {
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
-    private float maxBulletCnt = 80;
+    private int maxBulletCnt = 80;
     [SerializeField]
-    private float rotationSpeed = 30;
+    private float rotationSpeed = 30f;
     [SerializeField]
-    private float fireRate = 10;
+    private float fireRate = 10f;
     [SerializeField]
-    private float headRotationSpeed = 20;
+    private float headRotationSpeed = 20f;
+    [SerializeField]
+    private float rebound = 2f;
 
 
     private Transform playerTr;
@@ -26,6 +25,7 @@ public class GatilingActionNode : ActionNode
     private float lastFireTime;
     private float diffY;
     private float cetha;
+    private Vector3 rndRebound;
 
     protected override void OnStart() {
         curBulletCnt = maxBulletCnt;
@@ -38,6 +38,7 @@ public class GatilingActionNode : ActionNode
     }
 
     protected override State OnUpdate() {
+        rndRebound = new Vector3(Random.Range(-rebound, rebound), Random.Range(-rebound, rebound), Random.Range(-rebound, rebound));
         RotateTurretToPlayer();
         RotateTurretHeadToPlayer();
 
@@ -68,7 +69,7 @@ public class GatilingActionNode : ActionNode
         {
             diffY = playerTr.position.y - context.gatlingHeadGo.transform.position.y;
             cetha = Mathf.Asin(diffY / Vector3.Distance(playerTr.position, context.gatlingHeadGo.transform.position)) * Mathf.Rad2Deg;
-            context.gatlingHeadGo.transform.localRotation = Quaternion.Euler(Vector3.left * cetha);
+            context.gatlingHeadGo.transform.localRotation = Quaternion.Euler(Vector3.left * cetha ) * Quaternion.Euler(rndRebound);
 
             //Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
             // 부드럽게 회전하기 위해 Lerp 사용
