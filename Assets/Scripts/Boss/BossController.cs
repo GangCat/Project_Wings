@@ -12,9 +12,10 @@ public class BossController : MonoBehaviour
         GameObject _gatlingHeadGo,
         Transform _gunMuzzleTr,
         GameObject giantHomingMissileGo,
-        Transform _giantHomingMissileSpawnTr)
+        Transform _giantHomingMissileSpawnTr,
+        VoidIntDelegate _cameraActionCallback)
     {
-        curPhaseNum = 1;
+        curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
         bossCollider = GetComponentInChildren<BossCollider>();
         animCtrl.Init();
@@ -28,7 +29,9 @@ public class BossController : MonoBehaviour
 
         InitNewWeakPoint();
 
-
+        cameraActionCallback = _cameraActionCallback;
+        myRunner.FinishCurrentPhase();
+        StartPhaseChange();
 
         StartCoroutine("UpdateCoroutine");
     }
@@ -58,12 +61,13 @@ public class BossController : MonoBehaviour
     private void StartPhaseChange()
     {
         isChangingPhase = true;
+        cameraActionCallback?.Invoke(curPhaseNum);
         // 연출 시작
 
-        Invoke("FinishPhaseChange", 5f); // 테스트용
+        //Invoke("FinishPhaseChange", 5f); // 테스트용
     }
 
-    private void FinishPhaseChange()
+    public void FinishPhaseChange()
     {
         // 연출 종료시 호출
         if (curPhaseNum < 3)
@@ -136,4 +140,5 @@ public class BossController : MonoBehaviour
 
     private WaitForFixedUpdate waitFixedUpdate = null;
     private BossAnimationController animCtrl = null;
+    private VoidIntDelegate cameraActionCallback = null;
 }

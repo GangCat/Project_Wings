@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class BossManager : MonoBehaviour
 {
-    public void Init(Transform _PlayerTr)
+    public void Init(Transform _PlayerTr, VoidIntDelegate _cameraActionCallback)
     {
         bossCtrl = GetComponentInChildren<BossController>();
-        bossCtrl.Init(_PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr, giantHomingMissilePrefab, giantHomingMissileSpawnTr);
+        bossCtrl.Init(_PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr, giantHomingMissilePrefab, giantHomingMissileSpawnTr, _cameraActionCallback);
     }
 
     public void ClearCurPhase()
     {
         bossCtrl.ClearCurPhase();
+    }
+
+    public void ActionFinish()
+    {
+        bossCtrl.FinishPhaseChange();
     }
 
 

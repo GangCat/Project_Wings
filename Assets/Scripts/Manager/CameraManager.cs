@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AppUI.UI;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public void Init(Transform _playerTr,PlayerData _playerData)
+    public void Init(Transform _playerTr,PlayerData _playerData, VoidVoidDelegate _actionFinishCallback)
     {
         cam = GetComponent<Camera>();
         mainCam = GetComponentInChildren<CameraMovement>();
+        actionCam = GetComponentInChildren<ActionCamera>();
+
         mainCam.Init(_playerTr, _playerData);
+        actionCam.Init(_actionFinishCallback);
     }
 
-    private CameraMovement mainCam = null;
-    private Camera cam = null;
-
+    public void CameraAction(int _curPhaseNum)
+    {
+        actionCam.StartAction(_curPhaseNum);
+    }
 
     private IEnumerator ChangeFOV(Camera camera, float targetFOV, float duration)
     {
@@ -30,4 +35,7 @@ public class CameraManager : MonoBehaviour
         camera.fieldOfView = targetFOV;
     }
 
+    private CameraMovement mainCam = null;
+    private Camera cam = null;
+    private ActionCamera actionCam = null;
 }

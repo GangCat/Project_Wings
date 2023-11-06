@@ -62,10 +62,20 @@ public class GameManager : MonoBehaviour, IPublisher
     private void InitManagers()
     {
         //audioMng.Init();
-        bossMng.Init(playerTr);
+        camMng.Init(playerTr, playerMng.PData, ActionFinish);
+        bossMng.Init(playerTr, CameraAction);
         //uiMng.Init();
-        camMng.Init(playerTr, playerMng.PData);
         //playerMng.Init();
+    }
+
+    public void CameraAction(int _curPhaseNum)
+    {
+        camMng.CameraAction(_curPhaseNum);
+    }
+
+    public void ActionFinish()
+    {
+        bossMng.ActionFinish();
     }
 
     public void RegisterBroker()

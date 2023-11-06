@@ -105,7 +105,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
         DebugColorChange();
 
         moveCtrl.CalcPlayerMove(playerData.input.InputZ, playerData.input.InputShift);
