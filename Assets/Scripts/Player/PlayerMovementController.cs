@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
-using UnityEngine.Windows;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -33,7 +32,11 @@ public class PlayerMovementController : MonoBehaviour
 
     public void CalcPlayerMove(float _inputZ, bool _inputShift)
     {
-        // if (Mathf.Abs(_inputZ) > 0f)
+        if (playerData.isAction == true || isDodge == true)
+        {
+            playerVelocity = moveSpeed * playerTr.forward;
+            return;
+        }
         if (_inputZ != 0f)
         {
             isDash = _inputShift;
@@ -46,7 +49,7 @@ public class PlayerMovementController : MonoBehaviour
                 float forwardY = playerTr.forward.y;
                 if (forwardY >= 0.3f)
                 {
-
+                    gravitySpeed = -playerData.gravitySpeed;
                 }
                 else if (forwardY <= -0.2f)
                 {
@@ -169,6 +172,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
             isDodge = true;
+            StartCoroutine(DecreaseSpeed(stopMoveTime));
             StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
         }
 
@@ -176,30 +180,78 @@ public class PlayerMovementController : MonoBehaviour
         {
             Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
             isDodge = true;
+            StartCoroutine(DecreaseSpeed(stopMoveTime));
             StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
         }
 
-    }
+        if (Input.GetKeyDown(KeyCode.Space) && isDodge == false)
+        {
+            Vector3 forwardUp = Vector3.up;
+            isDodge = true;
+            StartCoroutine(DecreaseSpeed(stopMoveTime));
+            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardUp));
+        }
 
+    }
     private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
-        Vector3 direction = _dir;
+        Vector3 direction = _dir.normalized; // 방향 벡터 정규화
         float distance = speed * duration;
-        float movedDistance = 0f;
+        float elapsedTime = 0f;
+        Vector3 initialPosition = rb.position;
+        Vector3 targetPosition = initialPosition + direction * distance;
 
-        while (movedDistance < distance)
+        yield return new WaitForSeconds(stopMoveTime);
+
+        while (elapsedTime < duration)
         {
-            // 이걸 playervelocity에 좌, 혹은 우 방향으로 곱해주면 될듯? 더해주면 될려나
-            float step = speed * Time.deltaTime;
+            // 이동 속도를 조절하는 보간 값 계산
+            float t = Mathf.SmoothStep(0f, 1f, elapsedTime / duration);
+
+            // 현재 위치와 목표 위치 사이를 보간
+            Vector3 new_pos = Vector3.Lerp(initialPosition, targetPosition, t);
+
             RaycastHit hit;
-            if (rb.SweepTest(direction, out hit, step))
+            if (rb.SweepTest(direction, out hit, (new_pos - rb.position).magnitude))
             {
                 isDodge = false;
                 break;
             }
-            Vector3 new_pos = rb.position + direction * step;
+
             rb.MovePosition(new_pos);
-            movedDistance += step;
+
+            elapsedTime += Time.fixedDeltaTime;
+
+            yield return waitFixedUpdate; // 다음 FixedUpdate까지 대기
+        }
+
+        isDodge = false;
+    }
+    private IEnumerator MoveToDir2(float speed, float duration, Vector3 _dir)
+    {
+        Vector3 direction = _dir.normalized;
+        float distance = speed * duration;
+        float elapsedTime = 0f;
+        Vector3 start_pos = rb.position;
+        Vector3 end_pos = rb.position + direction * distance;
+        yield return new WaitForSeconds(stopMoveTime);
+
+        while (elapsedTime < duration)
+        {
+            // 이걸 playervelocity에 좌, 혹은 우 방향으로 곱해주면 될듯? 더해주면 될려나
+            float t = Mathf.SmoothStep(0f, 1f, elapsedTime / duration);
+            Vector3 new_pos = Vector3.Lerp(start_pos, end_pos, t);
+
+            RaycastHit hit;
+            if (rb.SweepTest(direction, out hit, (new_pos - rb.position).magnitude))
+            {
+                isDodge = false;
+                break;
+            }
+            //Vector3 new_pos = rb.position + direction * step;
+            
+            rb.MovePosition(new_pos);
+            elapsedTime += Time.fixedDeltaTime;
             yield return waitFixedUpdate;
         }
         isDodge = false;
@@ -219,12 +271,13 @@ public class PlayerMovementController : MonoBehaviour
         float targetFOV = Camera.main.fieldOfView;
         CameraMovement cam = Camera.main.GetComponent<CameraMovement>();
         float offset = cam.offset;
+        cameraMinSpeed = playerData.moveForwardVelocityLimit;
+        cameraMaxSpeed = playerData.moveForwardVelocityLimit + playerData.moveDashSpeed;
         while (true)
         {
-            float speedRatio = Mathf.InverseLerp(100, 110, moveSpeed);
-            //float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed); // 카메라의 속도의 비율에 따라 변경됨.
+            float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed);
             Debug.Log(speedRatio);
-            targetFOV = Mathf.Lerp(70, 100, speedRatio);
+            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
             float targetOffset = Mathf.Lerp(10, 6, speedRatio);
             cam.offset = Mathf.Lerp(cam.offset, targetOffset, fovLerpRate);
@@ -232,12 +285,26 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    private IEnumerator DecreaseSpeed(float duration)
+    {
+        float startSpeed = moveSpeed;
+        float elapsed = 0;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            moveSpeed = Mathf.Lerp(startSpeed, 0, elapsed / duration);
+            yield return null;
+        }
+
+        moveSpeed = 0;
+    }
+
 
 
 
     private Vector3 playerVelocity = Vector3.zero;
 
-    private Vector3 velocitySmoothDamp = Vector3.zero;
 
     private WaitForFixedUpdate waitFixedUpdate = null;
 
@@ -247,7 +314,6 @@ public class PlayerMovementController : MonoBehaviour
     private float moveForwardVelocityLimit = 0f;
     private float resultForwardVelocityLimit = 0f;
     private float currentForwardVelocityLimit = 0f;
-
 
     private float moveSpeed = 0f;
     private float moveAccel = 0f;
@@ -262,7 +328,7 @@ public class PlayerMovementController : MonoBehaviour
     private float moveAccelResult = 0f;
 
     private float dodgeSpeedRatio = 1f;
-
+    private float stopMoveTime = 0.2f;
 
     private bool isDash = false;
     private bool isDodge = false;
@@ -283,10 +349,10 @@ public class PlayerMovementController : MonoBehaviour
     private Collision coli = null;
 
 
-    public float cameraSpeed;
-    public float cameraMinSpeed = 80f;
-    public float cameraMaxSpeed = 120f;
-    public float cameraminFOV = 70f;
-    public float cameramaxFOV = 120f;
+    private float cameraSpeed;
+    private float cameraMinSpeed = 80f;
+    private float cameraMaxSpeed = 120f;
+    private float cameraminFOV = 70f;
+    private float cameramaxFOV = 120f;
 
 }
