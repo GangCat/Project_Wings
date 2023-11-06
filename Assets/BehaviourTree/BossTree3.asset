@@ -236,7 +236,6 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3387968954581324278}
-  - {fileID: 7618470226603610064}
 --- !u!114 &-5663312727242357505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +306,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: 4401169818537761934}
   - {fileID: -3666812728917473473}
   - {fileID: -1367835594263395380}
 --- !u!114 &-4676318912752695626
@@ -712,7 +710,6 @@ MonoBehaviour:
   - {fileID: -3385513496737040516}
   - {fileID: 1561259895918018650}
   - {fileID: -5494756302704093715}
-  - {fileID: 4401169818537761934}
   - {fileID: -3666812728917473473}
   - {fileID: -8305457244676183389}
   - {fileID: 3119450158616902581}
@@ -770,7 +767,7 @@ MonoBehaviour:
     curPhaseNum: 0
     curClosedWeakPoint: 0
   description: 
-  drawGizmos: 0
+  drawGizmos: 1
   range: 50
 --- !u!114 &1210790204114747789
 MonoBehaviour:
@@ -970,10 +967,10 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   radious: 100
-  duration: 6
-  attackMinHeight: 500
-  attackMaxHeight: 1000
-  term: 2
+  duration: 9
+  attackMinHeight: 1000
+  attackMaxHeight: 1500
+  term: 3
   cannonBallCnt: 80
   cannonBallPrefab: {fileID: 8582983355367289449, guid: d818c161b23da574691dde04d782eb3f,
     type: 3}
@@ -1064,30 +1061,6 @@ MonoBehaviour:
   maxRotSpeed: 5
   rotationLimitDegree: 30
   rotationAccel: 2
---- !u!114 &4401169818537761934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46401fc1cab67cc40bf38909555ca0d1, type: 3}
-  m_Name: CheckPatternRange
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: acd0cd59f045e53449873762c4fde9ab
-  position: {x: 216.15, y: 1148}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 1
-  range: 30000
 --- !u!114 &4411008589422368910
 MonoBehaviour:
   m_ObjectHideFlags: 0

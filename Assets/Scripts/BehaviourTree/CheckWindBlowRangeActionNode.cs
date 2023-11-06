@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
+using UnityEditor;
 
 public class CheckWindBlowRangeActionNode : ActionNode
 {
@@ -27,5 +28,14 @@ public class CheckWindBlowRangeActionNode : ActionNode
         }
 
         return State.Failure;
+    }
+
+    public override void OnDrawGizmos()
+    {
+        for(int i = 0; i < weakPoints.Length; ++i)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(weakPoints[i].GetPos(), range);
+        }
     }
 }
