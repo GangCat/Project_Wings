@@ -6,10 +6,12 @@ public class UIManager : MonoBehaviour
 {
     public void Init()
     {
+        canvasBoss = GetComponentInChildren<CanvasBoss>();
+        canvasPlayer = GetComponentInChildren<CanvasPlayer>();
         canvasBoss.Init();
+        canvasPlayer.Init();
     }
 
-
-    [SerializeField]
     private CanvasBoss canvasBoss = null;
+    private CanvasPlayer canvasPlayer = null;
 }

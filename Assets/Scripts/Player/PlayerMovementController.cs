@@ -22,6 +22,8 @@ public class PlayerMovementController : MonoBehaviour
         StartCoroutine(ChangeFOV());
     }
 
+    public bool IsDash => isDash;
+
     public void ChangeCollisionCondition(Collision collision, bool _bool)
     {
         isCollision = _bool;
@@ -282,7 +284,5 @@ public class PlayerMovementController : MonoBehaviour
     public float cameraMaxSpeed = 90f;
     public float cameraminFOV = 70f;
     public float cameramaxFOV = 90f;
-
-
 
 }

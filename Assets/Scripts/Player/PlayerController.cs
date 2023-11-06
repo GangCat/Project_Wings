@@ -119,7 +119,11 @@ public class PlayerController : MonoBehaviour
         rotCtrl.PlayerRotate();
         rotCtrl.PlayerFixedRotate();
         moveCtrl.PlayerMove();
-        
+
+        if (moveCtrl.IsDash)
+            screenMat.SetFloat("_isDash", 1);
+        else
+            screenMat.SetFloat("_isDash", 0);
     }
 
 
@@ -153,4 +157,7 @@ public class PlayerController : MonoBehaviour
     private VirtualMouse virtualMouse = null;
 
     private PlayerData playerData = null;
+
+    [SerializeField]
+    private Material screenMat = null;
 }
