@@ -209,7 +209,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   maxRotSpeed: 5
-  rotationLimitDegree: 30
+  rotationLimitDegree: 0
   rotationAccel: 2
 --- !u!114 &-6606512983389126247
 MonoBehaviour:

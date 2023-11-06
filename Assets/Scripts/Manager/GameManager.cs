@@ -92,6 +92,8 @@ public class GameManager : MonoBehaviour, IPublisher
     {
         if (Input.GetKeyDown(KeyCode.PageUp))
             bossMng.ClearCurPhase();
+        else if (Input.GetKeyDown(KeyCode.Home))
+            bossMng.GameStart();
     }
 
     [SerializeField]

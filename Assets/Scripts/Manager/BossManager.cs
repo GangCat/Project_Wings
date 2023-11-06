@@ -20,6 +20,11 @@ public class BossManager : MonoBehaviour
         bossCtrl.FinishPhaseChange();
     }
 
+    public void GameStart()
+    {
+        bossCtrl.GameStart();
+    }
+
 
     [SerializeField]
     private GameObject gatlingHolderGo = null;

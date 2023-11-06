@@ -30,6 +30,14 @@ public class BossController : MonoBehaviour
         InitNewWeakPoint();
 
         cameraActionCallback = _cameraActionCallback;
+        //myRunner.FinishCurrentPhase();
+        //StartPhaseChange();
+
+        //StartCoroutine("UpdateCoroutine");
+    }
+
+    public void GameStart()
+    {
         myRunner.FinishCurrentPhase();
         StartPhaseChange();
 
