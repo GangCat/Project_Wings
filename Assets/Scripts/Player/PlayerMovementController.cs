@@ -18,8 +18,11 @@ public class PlayerMovementController : MonoBehaviour
 
         moveDashAccel = playerData.moveDashAccel;
         moveStopAccel = playerData.moveStopAccel;
+
+
         StartCoroutine(ChangeFOV());
         StartCoroutine(FrontMoveCheker());
+        StartCoroutine(DashCheker());
     }
 
     public bool IsDash => isDash;
@@ -41,7 +44,6 @@ public class PlayerMovementController : MonoBehaviour
         
         if (_inputZ != 0f)
         {
-            isDash = _inputShift;
             playerData.isDash = isDash;
             moveAccelResult = isDash ? moveAccel + moveDashAccel : moveAccel;
             moveDashSpeed = isDash ? playerData.moveDashSpeed : 0f;
@@ -76,7 +78,20 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
-        currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.7f * Time.deltaTime);
+        
+        if (_inputZ > 0f)
+        {
+            if(resultForwardVelocityLimit > currentForwardVelocityLimit)
+            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f* moveAccelResult * Time.deltaTime);
+            else
+            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.1f * Time.deltaTime);
+        }
+        else
+        {
+            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f * moveAccelResult * Time.deltaTime);
+        }
+        
+
         moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, currentForwardVelocityLimit);
 
         if (!isKnockBack)
@@ -162,7 +177,6 @@ public class PlayerMovementController : MonoBehaviour
     public void PlayerMove()
     {
         rb.velocity = playerVelocity;
-        //Debug.Log(isCollision);
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
     }
 
@@ -289,7 +303,21 @@ public class PlayerMovementController : MonoBehaviour
             }
             yield return null;
         }
+    }
+    private IEnumerator DashCheker()
+    {
+        while (true)
+        {
 
+            if (playerData.input.InputShift && isFrontMove)
+            {
+                isDash = true;
+                yield return new WaitForSeconds(3f);
+                isDash = false;
+            }
+
+            yield return null;
+        }
     }
 
 
@@ -317,7 +345,7 @@ public class PlayerMovementController : MonoBehaviour
     private float moveAccelResult = 0f;
 
     private float dodgeSpeedRatio = 1f;
-    private float SkyAclTime = 0.2f;
+    private float SkyAclTime = 0.3f;
 
 
     private bool isDash = false;
@@ -339,8 +367,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private Collision coli = null;
 
-
-    private float cameraSpeed;
     private float cameraMinSpeed = 80f;
     private float cameraMaxSpeed = 120f;
     private float cameraminFOV = 70f;
