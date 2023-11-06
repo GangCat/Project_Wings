@@ -108,16 +108,18 @@ public class PlayerController : MonoBehaviour
         DebugColorChange();
 
         moveCtrl.CalcPlayerMove(playerData.input.InputZ, playerData.input.InputShift);
+        moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
         virtualMouse.UpdateMouseInput();
-        rotCtrl.PlayerRotate();
+        
     }
 
     private void FixedUpdate()
     {
         virtualMouse.FixedUpdateMouseInput();
+        rotCtrl.PlayerRotate();
         rotCtrl.PlayerFixedRotate();
         moveCtrl.PlayerMove();
-        moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
+        
     }
 
 

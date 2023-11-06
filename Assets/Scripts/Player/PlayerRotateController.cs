@@ -40,7 +40,7 @@ public class PlayerRotateController : MonoBehaviour
         rb.MoveRotation(rotation);
     }
 
-    public void PlayerRotate2() // Update 돌리는거
+    public void PlayerRotate2() 
     {
         RotateToMouse(ref rotVec.x, ref rotVec.y);
         if (playerData.currentMoveSpeed < 5 || playerData.input.InputZ <= 0)

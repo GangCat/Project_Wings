@@ -26,10 +26,7 @@ public class CameraMovement : MonoBehaviour
 
 
         }
-        if (playerData.isFreeLock)
-        {
-
-        }
+        
     }
 
     private void FixedUpdate()
@@ -117,7 +114,7 @@ public class CameraMovement : MonoBehaviour
 
         // 카메라의 회전을 적용
         quaternion = Quaternion.Euler(cameraPitch, cameraYaw, 0);
-        Vector3 CalcPlayerPos = playerTr.position - (quaternion * Vector3.forward) * offset + transform.up * 3f;
+        Vector3 CalcPlayerPos = playerTr.position - (quaternion * Vector3.forward) * (offset+1f) + transform.up * 3f;
         cameraPos = CalcPlayerPos;
         //FollowPlayerPos(CalcPlayerPos);
 
