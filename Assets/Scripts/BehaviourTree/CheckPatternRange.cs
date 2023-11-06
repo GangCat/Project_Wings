@@ -15,7 +15,8 @@ public class CheckPatternRange : ActionNode
     }
 
     protected override State OnUpdate() {
-        if(Physics.OverlapBox(context.transform.position, Vector3.one * range, context.transform.rotation, 1<<LayerMask.NameToLayer("Player")).Length > 0)
+        //if(Physics.OverlapBox(context.transform.position, Vector3.one * range, context.transform.rotation, 1<<LayerMask.NameToLayer("Player")).Length > 0)
+        if(Physics.OverlapSphere(context.transform.position, range, 1<<LayerMask.NameToLayer("Player")).Length > 0)
             return State.Success;
         else
             return State.Failure;
@@ -24,6 +25,6 @@ public class CheckPatternRange : ActionNode
     public override void OnDrawGizmos() 
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(context.transform.position, Vector3.one * range * 2); // 검출 영역 기즈모 그리기
+        Gizmos.DrawWireSphere(context.transform.position, range); // 검출 영역 기즈모 그리기
     }
 }

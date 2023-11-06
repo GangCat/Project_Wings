@@ -26,10 +26,12 @@ public class CrossLaserController : MonoBehaviour
 
     private IEnumerator MoveUpdateCoroutine()
     {
+        Vector3 targetDistance = Vector3.zero;
+
         while (true)
         {
-            moveDistance = targetTr.position - transform.position;
-            if (!isTargetInRange && Vector3.SqrMagnitude(moveDistance) < Mathf.Pow(changeFormDistance, 2f))
+            targetDistance = targetTr.position - transform.position;
+            if (!isTargetInRange && Vector3.SqrMagnitude(targetDistance) < Mathf.Pow(changeFormDistance, 2f))
             {
                 isTargetInRange = true;
                 StartCoroutine(ChangeFormCoroutine());
@@ -43,7 +45,7 @@ public class CrossLaserController : MonoBehaviour
                 continue;
             }
 
-            RotateCrossLaser(moveDistance.normalized);
+            RotateCrossLaser(targetDistance.normalized);
 
             yield return waitFixed;
         }
@@ -51,7 +53,7 @@ public class CrossLaserController : MonoBehaviour
 
     private bool isPathBlock()
     {
-        return Physics.Linecast(transform.position, targetTr.position, hitLayers);
+        return Physics.Linecast(transform.position, transform.forward * 50f, hitLayers);
     }
 
     private void MoveCrossLaser()
@@ -60,7 +62,7 @@ public class CrossLaserController : MonoBehaviour
         moveSpeed = Mathf.Min(moveSpeed, maxMoveSpeed);
 
         transform.position += transform.forward * moveSpeed * Time.deltaTime;
-        Debug.DrawRay(transform.position, transform.forward * 3f, Color.red);
+        Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
     }
 
     private void RotateCrossLaser(Vector3 _moveDir)
@@ -98,7 +100,7 @@ public class CrossLaserController : MonoBehaviour
     private Transform targetTr = null;
     private bool isTargetInRange = false;
     private bool isFormChange = false;
-    private Vector3 moveDistance = Vector3.zero;
+    private Vector3 moveDir = Vector3.zero;
 
 
     [SerializeField]

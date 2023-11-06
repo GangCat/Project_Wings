@@ -235,7 +235,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -3387968954581324278}
+  - {fileID: 7618470226603610064}
 --- !u!114 &-5663312727242357505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,8 +358,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: 3843690250053409745}
-  - {fileID: 6915879143102228442}
   - {fileID: -4054882901305631100}
 --- !u!114 &-4054882901305631100
 MonoBehaviour:
@@ -386,12 +384,12 @@ MonoBehaviour:
   drawGizmos: 0
   crossLaserPrefab: {fileID: 3966714899875067037, guid: b82f45a60c292f64bbe87fa9bc387d33,
     type: 3}
-  moveAccel: 30
-  maxMoveSpeed: 100
-  rotateAccel: 0.5
-  maxRotateAccel: 4
+  moveAccel: 300
+  maxMoveSpeed: 500
+  rotateAccel: 10
+  maxRotateAccel: 5
   autoDestroyTime: 20
-  changeFormDistnacec: 60
+  changeFormDistnacec: 300
   patternFinishTime: 10
 --- !u!114 &-4026051781191520773
 MonoBehaviour:
@@ -578,6 +576,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3920158228874092110}
+  - {fileID: 4411008589422368910}
 --- !u!114 &-3385513496737040516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,7 +744,6 @@ MonoBehaviour:
   - {fileID: 7618470226603610064}
   - {fileID: 3897127474239721301}
   - {fileID: 2663481157983243140}
-  - {fileID: 2356949529370050794}
   - {fileID: -4531776300853278649}
   - {fileID: 8756652752874628124}
   - {fileID: 2055624564037474365}
@@ -898,30 +896,6 @@ MonoBehaviour:
   - {fileID: 4365113027542136525}
   - {fileID: 8266297438010400843}
   - {fileID: -6627441640048975056}
---- !u!114 &2356949529370050794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46401fc1cab67cc40bf38909555ca0d1, type: 3}
-  m_Name: CheckPatternRange
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: a7e2614481e3b7147b04f0c108a28e26
-  position: {x: 1680, y: 1381}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 1
-  range: 600
 --- !u!114 &2663481157983243140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,7 +1222,6 @@ MonoBehaviour:
   description: "\uC6D0\uAC70\uB9AC"
   drawGizmos: 0
   children:
-  - {fileID: 2356949529370050794}
   - {fileID: -4531776300853278649}
   - {fileID: 8756652752874628124}
 --- !u!114 &8266297438010400843
