@@ -64,10 +64,11 @@ public class PlayerController : MonoBehaviour
         moveCtrl.ChangeCollisionCondition(null, false);
     }
 
-    private void KnockBack(Collider _collider, bool _bool)
+    private void KnockBack(Collider _collider)
     {
         float knockBackAmount = 0f;
         Vector3 knockBackDir = (transform.position - _collider.transform.position).normalized;
+        float knockBackDelay = 0f;
 
         if (_collider.CompareTag("CannonBall"))
         {
@@ -80,9 +81,16 @@ public class PlayerController : MonoBehaviour
             knockBackDir = _collider.transform.forward;
         }
         else if (_collider.CompareTag("ShakeBodyCollider"))
-            knockBackAmount = 50f;
+        {
+            knockBackAmount = 200f;
+            knockBackDir = Vector3.up;
+            knockBackDelay = 4f;
+        }
         else if (_collider.CompareTag("WindBlow"))
+        {
             knockBackAmount = 100f;
+            knockBackDelay = 4f;
+        }
         else if (_collider.CompareTag("CrossLaser"))
         {
             knockBackAmount = 30f;
@@ -92,15 +100,13 @@ public class PlayerController : MonoBehaviour
         playerMesh.material.SetFloat("_isDamaged", 1);
         Invoke("ResetPlayerDamagedBollean", 2f);
 
-        moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount);
+        moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount, knockBackDelay);
     }
 
     private void Update()
     {
 
         DebugColorChange();
-
-
 
         moveCtrl.CalcPlayerMove(playerData.input.InputZ, playerData.input.InputShift);
         virtualMouse.UpdateMouseInput();

@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TheKiwiCoder;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class BossManager : MonoBehaviour

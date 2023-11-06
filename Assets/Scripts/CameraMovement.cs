@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using static UnityEngine.GraphicsBuffer;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -32,16 +30,11 @@ public class CameraMovement : MonoBehaviour
         {
 
         }
-
-
     }
 
     private void FixedUpdate()
     {
-        
-
-        
-        if(!playerData.isFreeLock)
+        if (!playerData.isFreeLock)
         {
             FollowPlayerRot();
             FollowPlayerPos();
@@ -98,6 +91,7 @@ public class CameraMovement : MonoBehaviour
 
         quaternion = Quaternion.Euler(new Vector3(xRot, yRot, zRot));
     }
+
     private bool CameraRay() // 장애물 카메라에 걸리면 당겨지게 하는건데 레이어 설정이 안되있어서 이상함 추후 수정.
     {
         RaycastHit hit;

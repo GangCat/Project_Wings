@@ -713,7 +713,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 50c38d1a65ba1134382ec9e6d1dd144e
-  position: {x: 477.03467, y: 1569.9998}
+  position: {x: 509.9999, y: 1570.0001}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 33ac117dc82b85143b837fd8dcbf1b63
-  position: {x: 1322.0347, y: 1633.9999}
+  position: {x: 1322, y: 1580}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -863,7 +863,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 82743604a5eb9e246b12a9409a71f167
-  position: {x: 1472.0345, y: 1515.9999}
+  position: {x: 1472, y: 1580}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -979,7 +979,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 19dd5a3c094e56d49840556e44e64c38
-  position: {x: 1172.0344, y: 1515.9999}
+  position: {x: 1172, y: 1580}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1229,6 +1229,8 @@ MonoBehaviour:
   rotationAccel: 5
   attackRange: 400
   shakeBodyTag: ShakeBodyCollider
+  effectTornado: {fileID: 6185979661563687016, guid: 74b7b164fd9c7a64c900280d76948ba0,
+    type: 3}
 --- !u!114 &8618335190615036909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,7 +1246,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 51a5755b15126724c8d377cd59ba51b3
-  position: {x: 920.03455, y: 1569.9998}
+  position: {x: 870.0001, y: 1570.0001}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0

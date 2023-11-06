@@ -14,13 +14,16 @@ public class ShakeBodyFastRotationActionNode : ActionNode
     [SerializeField]
     private float attackRange = 0f;
     [SerializeField]
-    private string shakeBodyTag;
+    private string shakeBodyTag = "";
+    [SerializeField]
+    private GameObject effectTornado = null;
 
     private float curRotation = 0f;
     private float curRotationAngle = 0f;
     private float curRotationSpeed = 0f;
     private Transform bossTr = null;
     private BossCollider bossCollider = null;
+    private GameObject tornadoGo = null;
 
     protected override void OnStart() {
         bossTr = context.transform;
@@ -30,7 +33,10 @@ public class ShakeBodyFastRotationActionNode : ActionNode
 
     protected override void OnStop() {
         if (bossCollider)
+        {
             bossCollider.ResetAll();
+            Destroy(tornadoGo);
+        }
     }
 
     protected override State OnUpdate() {
@@ -59,5 +65,8 @@ public class ShakeBodyFastRotationActionNode : ActionNode
         bossCollider.SetPos(bossTr.position);
         bossCollider.SetSize(Vector3.one * attackRange);
         bossCollider.SetTag(shakeBodyTag);
+
+        tornadoGo = Instantiate(effectTornado, bossTr.position, Quaternion.identity);
+
     }
 }

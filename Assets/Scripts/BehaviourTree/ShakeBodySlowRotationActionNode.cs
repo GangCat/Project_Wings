@@ -33,14 +33,13 @@ public class ShakeBodySlowRotationActionNode : ActionNode
         curRotation = bossTr.rotation.eulerAngles.y;
         if (curRotation > 180)
             curRotation -= 360;
+
         if (curRotation < rotationLimitAngle)
         {
-            //Debug.Log("Running, bossY: " + bossTr.rotation.eulerAngles.y + "\nLimitAngle: " + rotationLimitAngle);
             return State.Running;
         }
         else
         {
-            //Debug.Log("Success, bossY: " + bossTr.rotation.eulerAngles.y + "\nLimitAngle: " + rotationLimitAngle);
             return State.Success;
         }
     }

@@ -102,20 +102,21 @@ public class PlayerMovementController : MonoBehaviour
 
     }
 
-    public void KnockBack(Vector3 _knockBackAmount)
+    public void KnockBack(Vector3 _knockBackAmount, float _knockBackDelay)
     {
-        StartCoroutine(KnockBackCoroutine(_knockBackAmount));
+        StartCoroutine(KnockBackCoroutine(_knockBackAmount, _knockBackDelay));
     }
 
-    private IEnumerator KnockBackCoroutine(Vector3 _knockBackAmount)
+    private IEnumerator KnockBackCoroutine(Vector3 _knockBackAmount, float _knockBackDelay)
     {
         moveSpeed = 0f;
         isKnockBack = true;
         float elapsedTime = 0f;
-        while (elapsedTime < knockBackDelay)
+        float curKnockBackDelay = _knockBackDelay > 0 ? _knockBackDelay : knockBackDelay;
+        while (elapsedTime < curKnockBackDelay)
         {
-            if(!isCollision)
-                playerVelocity = Vector3.Slerp(_knockBackAmount, Vector3.zero, elapsedTime / knockBackDelay);
+            if (!isCollision)
+                playerVelocity = Vector3.Lerp(_knockBackAmount, Vector3.zero, elapsedTime / curKnockBackDelay);
 
             elapsedTime += Time.deltaTime;
 
@@ -155,7 +156,7 @@ public class PlayerMovementController : MonoBehaviour
     public void PlayerMove()
     {
         rb.velocity = playerVelocity;
-        Debug.Log(isCollision);
+        //Debug.Log(isCollision);
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
     }
 

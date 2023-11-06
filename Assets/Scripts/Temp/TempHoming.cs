@@ -11,7 +11,7 @@ public class TempHoming : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Time.time - spawnTime < 3)
+        if (Time.time - spawnTime < 1)
             return;
         Destroy(gameObject);
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCollisionController : MonoBehaviour
 {
     public delegate void ChangeCollisionConditionDelegate(Collision _coli);
-    public delegate void KnockBackDelegate(Collider _collider, bool _bool);
+    public delegate void KnockBackDelegate(Collider _collider);
 
     private ChangeCollisionConditionDelegate collisionEnterCallback = null;
     private VoidVoidDelegate collisionExitCallback = null;
@@ -40,7 +40,7 @@ public class PlayerCollisionController : MonoBehaviour
         if (gameObject.layer.Equals(LayerMask.NameToLayer(playerInvincibleLayer)))
             return;
 
-        knockBackCallback?.Invoke(other, true);
+        knockBackCallback?.Invoke(other);
 
         Invincible();
     }
