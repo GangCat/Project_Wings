@@ -17,13 +17,13 @@ MonoBehaviour:
   maxHealth: 100
   stamina: 100
   moveBackVelocityLimit: -20
-  moveForwardVelocityLimit: 80
-  moveAccel: 100
-  moveDashSpeed: 30
-  moveDashAccel: 50
+  moveForwardVelocityLimit: 160
+  moveAccel: 400
+  moveDashSpeed: 60
+  moveDashAccel: 200
   moveStopAccel: 40
   gravityAccel: 0
-  gravitySpeed: 30
+  gravitySpeed: 100
   isDash: 0
   isCrash: 0
   dodgeSpeed: 60
@@ -33,15 +33,16 @@ MonoBehaviour:
   rotCamYAxisSensitive: 1.5
   minAngleX: -80
   maxAngleX: 80
+  isFreeLock: 0
   returnMouseSpeed: 100
   mouseSensitive: 4
   maxMouseSpeed: 6
   maxMouseRadius: 100
   returnMouseRadius: 90
-  currentMousePos: {x: 0, y: 0}
+  currentMousePos: {x: 10.090299, y: 99.489624}
   rollAccel: 1000
   rollMaxVelocity: 200
   rollMaxAngle: 80
   rollReturnAccel: 100
   currentRotZ: 0
-  currentMoveSpeed: 64.67909
+  currentMoveSpeed: 36.483982
