@@ -12,7 +12,7 @@ public class ResetBossRotationActionNode : ActionNode
     }
 
     protected override State OnUpdate() {
-        context.transform.rotation = Quaternion.identity;
+        context.physics.rotation = Quaternion.identity;
         return State.Success;
     }
 }

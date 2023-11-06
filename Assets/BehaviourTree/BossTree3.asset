@@ -226,7 +226,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1de11659f2ab5204e821e1497e94437c
-  position: {x: 990, y: 997}
+  position: {x: 990.0001, y: 994}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: 7618470226603610064}
+  - {fileID: -3387968954581324278}
 --- !u!114 &-5663312727242357505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a756eb74085a413489a79b2ea635c858
-  position: {x: 414.99994, y: 1019}
+  position: {x: 226.00003, y: 1017.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -358,6 +358,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
+  - {fileID: 3843690250053409745}
+  - {fileID: 6915879143102228442}
   - {fileID: -4054882901305631100}
 --- !u!114 &-4054882901305631100
 MonoBehaviour:
@@ -406,7 +408,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4a6684bf5643c6f4083567f6c0d0a71e
-  position: {x: 404.32748, y: 853}
+  position: {x: 226, y: 872.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -540,7 +542,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 25c648d249bc6904e8fcb442a4f5d919
-  position: {x: 387.00003, y: 1148}
+  position: {x: 226.00003, y: 1146.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -575,7 +577,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -3920158228874092110}
   - {fileID: 4411008589422368910}
 --- !u!114 &-3385513496737040516
 MonoBehaviour:
@@ -592,7 +593,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c5e047faa5ebd2d4db53482a7bcae293
-  position: {x: 961.02, y: 829}
+  position: {x: 989.99994, y: 829.00006}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -644,7 +645,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 291726a124614a146bdb5181b305aa6d
-  position: {x: 553.9999, y: 1148}
+  position: {x: 392.99994, y: 1146.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -785,7 +786,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 50c38d1a65ba1134382ec9e6d1dd144e
-  position: {x: 509.9999, y: 1570.0001}
+  position: {x: 509.9999, y: 1570}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1035,7 +1036,7 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 1
-  range: 200
+  range: 3000
 --- !u!114 &4365113027542136525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,7 +1052,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e335242dde037ad4cb014930726676de
-  position: {x: 1065.0347, y: 1758.9998}
+  position: {x: 1065, y: 1759}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1060,7 +1061,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   maxRotSpeed: 5
-  rotationLimitDegree: 30
+  rotationLimitDegree: 15
   rotationAccel: 2
 --- !u!114 &4411008589422368910
 MonoBehaviour:
@@ -1250,7 +1251,7 @@ MonoBehaviour:
   maxRotSpeed: 15
   rotationLimitAngle: -20
   rotationAccel: 5
-  attackRange: 400
+  attackRange: 2500
   shakeBodyTag: ShakeBodyCollider
   effectTornado: {fileID: 6185979661563687016, guid: 74b7b164fd9c7a64c900280d76948ba0,
     type: 3}

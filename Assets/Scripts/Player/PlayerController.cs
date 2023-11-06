@@ -72,28 +72,28 @@ public class PlayerController : MonoBehaviour
 
         if (_collider.CompareTag("CannonBall"))
         {
-            knockBackAmount = 15f;
+            knockBackAmount = 50f;
             knockBackDir = Vector3.down;
         }
         else if (_collider.CompareTag("GatlingGunBullet"))
         {
-            knockBackAmount = 15f;
+            knockBackAmount = 50f;
             knockBackDir = _collider.transform.forward;
         }
         else if (_collider.CompareTag("ShakeBodyCollider"))
         {
-            knockBackAmount = 200f;
+            knockBackAmount = 500f;
             knockBackDir = Vector3.up;
             knockBackDelay = 4f;
         }
         else if (_collider.CompareTag("WindBlow"))
         {
-            knockBackAmount = 100f;
+            knockBackAmount = 250f;
             knockBackDelay = 4f;
         }
         else if (_collider.CompareTag("CrossLaser"))
         {
-            knockBackAmount = 30f;
+            knockBackAmount = 100f;
             knockBackDir = _collider.transform.forward;
         }
 

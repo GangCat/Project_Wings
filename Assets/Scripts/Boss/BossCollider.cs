@@ -6,10 +6,10 @@ public class BossCollider : MonoBehaviour
 {
     public void Init()
     {
-        bossBoxCollider = GetComponent<BoxCollider>();
+        bossSphereCollider = GetComponent<SphereCollider>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    public BoxCollider BossBoxCol => bossBoxCollider;
 
     public void SetTag(string _tagName)
     {
@@ -19,25 +19,26 @@ public class BossCollider : MonoBehaviour
     public void ResetAll()
     {
         gameObject.tag = "Untagged";
-        bossBoxCollider.center = Vector3.zero;
-        bossBoxCollider.size = Vector3.one;
-        bossBoxCollider.enabled = false;
+        bossSphereCollider.center = Vector3.zero;
+        bossSphereCollider.radius = 1f;
+        bossSphereCollider.enabled = false;
     }
 
     public void SetPos(Vector3 _pos)
     {
-        bossBoxCollider.center = _pos;
+        bossSphereCollider.center = _pos;
     }
 
-    public void SetSize(Vector3 _size)
+    public void SetSize(float _radius)
     {
-        bossBoxCollider.size = _size;
+        bossSphereCollider.radius = _radius;
     }
 
     public void SetEnableCollider()
     {
-        bossBoxCollider.enabled = true;
+        bossSphereCollider.enabled = true;
     }
 
-    private BoxCollider bossBoxCollider = null;
+    private SphereCollider bossSphereCollider = null;
+    private Rigidbody rb = null;
 }

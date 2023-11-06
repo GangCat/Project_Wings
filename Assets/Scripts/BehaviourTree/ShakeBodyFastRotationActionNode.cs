@@ -24,10 +24,12 @@ public class ShakeBodyFastRotationActionNode : ActionNode
     private Transform bossTr = null;
     private BossCollider bossCollider = null;
     private GameObject tornadoGo = null;
+    private Rigidbody bossRb = null;
 
     protected override void OnStart() {
         bossTr = context.transform;
         curRotationAngle = bossTr.rotation.eulerAngles.y;
+        bossRb = context.physics;
         windAttackInit();
     }
 
@@ -41,21 +43,24 @@ public class ShakeBodyFastRotationActionNode : ActionNode
 
     protected override State OnUpdate() {
         curRotationSpeed += curRotationSpeed < maxRotSpeed ? rotationAccel * Time.deltaTime : 0;
+        bossRb.MoveRotation(bossRb.rotation * Quaternion.Euler(Vector3.down * curRotationSpeed * Mathf.Deg2Rad));
         //curRotationSpeed += rotationAccel * Time.deltaTime;
         //curRotationSpeed = Mathf.Min(curRotationSpeed, maxRotSpeed);
-        curRotationAngle -= curRotationSpeed * Time.deltaTime;
-        bossTr.rotation = Quaternion.Euler(Vector3.up * curRotationAngle);
+        //curRotationAngle -= curRotationSpeed * Time.deltaTime;
+        //bossTr.rotation = Quaternion.Euler(Vector3.up * curRotationAngle);
 
         curRotation = bossTr.rotation.eulerAngles.y;
         if (curRotation > 180)
             curRotation -= 360;
-        if (curRotation > rotationLimitAngle)
-        {
-            //Debug.Log(bossTr.rotation.eulerAngles.y);
-            return State.Running;
-        }
-        else
-            return State.Success;
+
+        return curRotation > rotationLimitAngle ? State.Running : State.Success;
+        //if (curRotation > rotationLimitAngle)
+        //{
+        //    //Debug.Log(bossTr.rotation.eulerAngles.y);
+        //    return State.Running;
+        //}
+        //else
+        //    return State.Success;
     }
 
     private void windAttackInit()
@@ -63,7 +68,7 @@ public class ShakeBodyFastRotationActionNode : ActionNode
         bossCollider = context.bossCollider;
         bossCollider.SetEnableCollider();
         bossCollider.SetPos(bossTr.position);
-        bossCollider.SetSize(Vector3.one * attackRange);
+        bossCollider.SetSize(attackRange);
         bossCollider.SetTag(shakeBodyTag);
 
         tornadoGo = Instantiate(effectTornado, bossTr.position, Quaternion.identity);

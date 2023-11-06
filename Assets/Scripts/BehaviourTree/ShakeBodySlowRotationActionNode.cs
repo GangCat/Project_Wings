@@ -30,10 +30,12 @@ public class ShakeBodySlowRotationActionNode : ActionNode
 
     protected override State OnUpdate() {
         curRotationSpeed += curRotationSpeed < maxRotSpeed ? rotationAccel * Time.deltaTime : 0;
-        //bossRb.angularVelocity += Vector3.up * (curRotationSpeed * Mathf.Deg2Rad);
+        bossRb.MoveRotation(bossRb.rotation * Quaternion.Euler(Vector3.up * curRotationSpeed * Mathf.Deg2Rad));
+        //bossRb.angularVelocity = Vector3.up * (curRotationSpeed * Mathf.Deg2Rad);
+        //Debug.Log(curRotationSpeed);
         
-        curRotationDegree += curRotationSpeed * Time.deltaTime;
-        bossTr.rotation = Quaternion.Euler(Vector3.up * curRotationDegree);
+        //curRotationDegree += curRotationSpeed * Time.deltaTime;
+        //bossTr.rotation = Quaternion.Euler(Vector3.up * curRotationDegree);
 
         curRotation = bossTr.rotation.eulerAngles.y;
         if (curRotation > 180)
@@ -41,13 +43,5 @@ public class ShakeBodySlowRotationActionNode : ActionNode
 
 
         return curRotation < rotationLimitDegree ? State.Running : State.Success;
-        //if (curRotation < rotationLimitDegree)
-        //{
-        //    return State.Running;
-        //}
-        //else
-        //{
-        //    return State.Success;
-        //}
     }
 }
