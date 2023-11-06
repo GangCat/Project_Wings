@@ -209,7 +209,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   maxRotSpeed: 5
-  rotationLimitAngle: 0
+  rotationLimitDegree: 30
   rotationAccel: 2
 --- !u!114 &-6606512983389126247
 MonoBehaviour:
@@ -579,7 +579,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -3920158228874092110}
   - {fileID: 4411008589422368910}
 --- !u!114 &-3385513496737040516
 MonoBehaviour:
@@ -1063,7 +1062,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   maxRotSpeed: 5
-  rotationLimitAngle: 20
+  rotationLimitDegree: 30
   rotationAccel: 2
 --- !u!114 &4401169818537761934
 MonoBehaviour:

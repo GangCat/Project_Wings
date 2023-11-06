@@ -14,8 +14,14 @@ public class ActionCamera : MonoBehaviour
 
     public void StartAction(int _curPhaseNum)
     {
-        cam.enabled = true;
-        anim.SetTrigger($"Phase{_curPhaseNum}");
+        // Å×½ºÆ®
+        if (_curPhaseNum < 1)
+        {
+            cam.enabled = true;
+            anim.SetTrigger($"Phase{_curPhaseNum}");
+        }
+        else
+            Invoke("FinishAction",1f);
     }
 
     private void FinishAction()

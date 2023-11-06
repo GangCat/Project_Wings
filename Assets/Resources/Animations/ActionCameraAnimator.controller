@@ -31,13 +31,25 @@ AnimatorController:
   m_Name: ActionCameraAnimator
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: curPhaseNum
-    m_Type: 3
+  - m_Name: Phase0
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Phase0
+  - m_Name: Phase1
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Phase2
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Phase3
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0

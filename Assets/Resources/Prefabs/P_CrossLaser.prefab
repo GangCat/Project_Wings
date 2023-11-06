@@ -944,7 +944,7 @@ MonoBehaviour:
   sphereObject: {fileID: 8588150621997716353}
   hitLayers:
     serializedVersion: 2
-    m_Bits: 8833
+    m_Bits: 25217
 --- !u!1 &3978995368771066324
 GameObject:
   m_ObjectHideFlags: 0

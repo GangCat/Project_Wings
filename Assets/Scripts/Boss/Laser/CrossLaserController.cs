@@ -51,7 +51,7 @@ public class CrossLaserController : MonoBehaviour
 
     private bool isPathBlock()
     {
-        return Physics.BoxCast(transform.position, Vector3.one * 30f, transform.forward, transform.rotation, 2000f, hitLayers);
+        return Physics.Linecast(transform.position, targetTr.position, hitLayers);
     }
 
     private void MoveCrossLaser()
