@@ -137,8 +137,7 @@ public class CameraMovement : MonoBehaviour
 
 
 
-    [SerializeField]
-    private float offset = 0f;
+    public float offset = 0f;
 
     private Vector3 currentRotation = Vector3.zero;
     private Vector3 desiredRotation = Vector3.zero;

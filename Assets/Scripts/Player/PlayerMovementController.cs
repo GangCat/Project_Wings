@@ -215,15 +215,20 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator ChangeFOV()
     {
-        float fovLerpRate = 0.1f;
+        float fovLerpRate = 0.5f;
         float targetFOV = Camera.main.fieldOfView;
-
+        CameraMovement cam = Camera.main.GetComponent<CameraMovement>();
+        float offset = cam.offset;
         while (true)
         {
-            float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed); // 카메라의 속도의 비율에 따라 변경됨.
-            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
+            float speedRatio = Mathf.InverseLerp(100, 110, moveSpeed);
+            //float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed); // 카메라의 속도의 비율에 따라 변경됨.
+            Debug.Log(speedRatio);
+            targetFOV = Mathf.Lerp(70, 100, speedRatio);
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
-            yield return null;
+            float targetOffset = Mathf.Lerp(10, 6, speedRatio);
+            cam.offset = Mathf.Lerp(cam.offset, targetOffset, fovLerpRate);
+            yield return waitFixedUpdate;
         }
     }
 
@@ -231,7 +236,6 @@ public class PlayerMovementController : MonoBehaviour
 
 
     private Vector3 playerVelocity = Vector3.zero;
-
 
     private Vector3 velocitySmoothDamp = Vector3.zero;
 
@@ -280,9 +284,9 @@ public class PlayerMovementController : MonoBehaviour
 
 
     public float cameraSpeed;
-    public float cameraMinSpeed = 60f;
-    public float cameraMaxSpeed = 90f;
+    public float cameraMinSpeed = 80f;
+    public float cameraMaxSpeed = 120f;
     public float cameraminFOV = 70f;
-    public float cameramaxFOV = 90f;
+    public float cameramaxFOV = 120f;
 
 }
