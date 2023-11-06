@@ -46,8 +46,8 @@ public class WindBlowActionNode : ActionNode
         if(Time.time >= finishTime)
             return State.Success;
 
-        for (int i = 0; i < windBlowPoints.Length; ++i)
-            windBlowPoints[i].updateWindBlow();
+        //for (int i = 0; i < windBlowPoints.Length; ++i)
+        //    windBlowPoints[i].updateWindBlow();
 
         return State.Running;
     }

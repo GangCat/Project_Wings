@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class WindBlowGenerator : MonoBehaviour
@@ -15,6 +16,11 @@ public class WindBlowGenerator : MonoBehaviour
     private float currentHeight = 0f;
     private float elapsedTime = 0f;
     private float lastColliderSpawnTime = 0f;
+    
+    public void InitSecond(GameObject _windCylinderPrefab)
+    {
+        windCylinder = Instantiate(_windCylinderPrefab, transform.position, transform.rotation);
+    }
 
     public void Init(float _smallRadius, float _largeRadius, float _totalDuration, float _colliderInterval, float _cylinderLengthPerSecond, int _numVertices, GameObject _windCylinderPrefab)
     {
@@ -28,33 +34,66 @@ public class WindBlowGenerator : MonoBehaviour
 
         windCylinder = Instantiate(windCylinderPrefab, transform.position, transform.rotation);
         windCylinder.tag = "WindBlow";
+        windCylinder.layer = LayerMask.NameToLayer("BossProjectile");
 
         meshFilter = windCylinder.GetComponent<MeshFilter>();
         Mesh mesh = new Mesh();
         meshFilter.mesh = mesh;
 
+
+        //MeshCollider mc = windCylinder.AddComponent<MeshCollider>();
+        //mc.convex = true;
+
+        //mc.isTrigger = true;
+
         // 초기 메쉬 생성
         UpdateWindCylinder(smallRadius, currentHeight);
+
+        StartCoroutine(UpdateWindBlowCoroutine());
+    }
+
+    private IEnumerator UpdateWindBlowCoroutine()
+    {
+        //yield return null;
+
+        //MeshCollider mc = windCylinder.AddComponent<MeshCollider>();
+        //mc.convex = true;
+
+        while (true)
+        {
+            float radiusLarge = Mathf.Lerp(smallRadius, largeRadius, Mathf.Clamp01(elapsedTime / totalDuration));
+
+            if (currentHeight < totalDuration * cylinderLengthPerSecond)
+            {
+                currentHeight += Time.deltaTime * cylinderLengthPerSecond;
+                elapsedTime += Time.deltaTime;
+            }
+
+            // 메쉬 업데이트
+            UpdateWindCylinder(radiusLarge, currentHeight);
+
+            yield return null;
+        }
     }
 
     public void UpdateWindBlow()
     {
-        float radiusLarge = Mathf.Lerp(smallRadius, largeRadius, Mathf.Clamp01(elapsedTime / totalDuration));
+        //float radiusLarge = Mathf.Lerp(smallRadius, largeRadius, Mathf.Clamp01(elapsedTime / totalDuration));
 
-        if (currentHeight < totalDuration * cylinderLengthPerSecond)
-        {
-            currentHeight += Time.deltaTime * cylinderLengthPerSecond;
-            elapsedTime += Time.deltaTime;
+        //if (currentHeight < totalDuration * cylinderLengthPerSecond)
+        //{
+        //    currentHeight += Time.deltaTime * cylinderLengthPerSecond;
+        //    elapsedTime += Time.deltaTime;
 
-            // 콜라이더 생성 인터벌 체크
-            if(Time.time - lastColliderSpawnTime >= colliderInterval)
-            {
-                CreateCollider(currentHeight, radiusLarge);
-            }
-        }
+        //    // 콜라이더 생성 인터벌 체크
+        //    //if(Time.time - lastColliderSpawnTime >= colliderInterval)
+        //    //{
+        //    //    CreateCollider(currentHeight, radiusLarge);
+        //    //}
+        //}
 
-        // 메쉬 업데이트
-        UpdateWindCylinder(radiusLarge, currentHeight);
+        //// 메쉬 업데이트
+        //UpdateWindCylinder(radiusLarge, currentHeight);
     }
 
     public void FinishGenerate()
@@ -110,6 +149,7 @@ public class WindBlowGenerator : MonoBehaviour
         meshFilter.mesh.Clear();
         meshFilter.mesh.vertices = vertices;
         meshFilter.mesh.triangles = triangles;
+
     }
 
 }

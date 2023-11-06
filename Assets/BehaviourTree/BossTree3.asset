@@ -51,7 +51,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3961328576919720251}
-  - {fileID: -3913004547531772430}
+  - {fileID: -1653398103952708185}
   - {fileID: -3764200336901690060}
 --- !u!114 &-8784311841378576911
 MonoBehaviour:
@@ -434,7 +434,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 484b985cd8bb3ac4e907781fa776e27e
-  position: {x: 561.0346, y: 1758.9998}
+  position: {x: 536, y: 1759}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -486,7 +486,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0fd47796994add249990606cd68d3883
-  position: {x: 719.03467, y: 1758.9998}
+  position: {x: 710, y: 1911}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -495,12 +495,12 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   smallRadius: 5
-  largeRadius: 30
+  largeRadius: 70
   totalDuration: 5
   colliderInterval: 0.2
   cylinderLengthPerSecond: 200
   numVertices: 20
-  windCylinderPrefab: {fileID: 363644970690299257, guid: ff5b99d5aca53684b8a3ed2b790c8ecc,
+  windCylinderPrefab: {fileID: 1588479054048128854, guid: abf35202cf216d541a24cdafbc612265,
     type: 3}
 --- !u!114 &-3764200336901690060
 MonoBehaviour:
@@ -604,6 +604,32 @@ MonoBehaviour:
   child: {fileID: -6606512983389126247}
   restartOnSuccess: 1
   restartOnFailure: 1
+--- !u!114 &-1653398103952708185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6fe7332ddf08aa4d92ac58651a2c2ff, type: 3}
+  m_Name: WindBlowActionSecondNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 67e12d99acb41a744b261a2cd66c9e33
+  position: {x: 695, y: 1759}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  totalDuration: 5
+  windCylinderPrefab: {fileID: 1588479054048128854, guid: abf35202cf216d541a24cdafbc612265,
+    type: 3}
 --- !u!114 &-1367835594263395380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,6 +766,7 @@ MonoBehaviour:
   - {fileID: -3387968954581324278}
   - {fileID: -4676318912752695626}
   - {fileID: -5577211489743933035}
+  - {fileID: -1653398103952708185}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -768,7 +795,7 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 1
-  range: 50
+  range: 300
 --- !u!114 &1210790204114747789
 MonoBehaviour:
   m_ObjectHideFlags: 0

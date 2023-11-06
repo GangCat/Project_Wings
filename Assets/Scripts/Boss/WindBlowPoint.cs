@@ -12,6 +12,11 @@ public class WindBlowPoint : MonoBehaviour
         windGenerator = GetComponent<WindBlowGenerator>();
     }
 
+    public void StartGenerateSecond(GameObject _windCylinderPrefab)
+    {
+        windGenerator.InitSecond(_windCylinderPrefab);
+    }
+
     public void StartGenerate(float _smallRadius, float _largeRadius, float _totalDuration, float _colliderInterval, float _cylinderLengthPerSecond, int _numVertices, GameObject _windCylinderPrefab)
     {
         windGenerator.Init(_smallRadius, _largeRadius, _totalDuration, _colliderInterval, _cylinderLengthPerSecond, _numVertices, _windCylinderPrefab);
