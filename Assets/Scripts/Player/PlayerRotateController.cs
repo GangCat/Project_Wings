@@ -31,6 +31,11 @@ public class PlayerRotateController : MonoBehaviour
         playerData.currentRotZ = rotVec.z;
         //playerTr.rotation = Quaternion.Euler(rotVec);
 
+
+    }
+
+    public void PlayerFixedRotate()
+    {
         Quaternion rotation = Quaternion.Euler(rotVec);
         rb.MoveRotation(rotation);
     }

@@ -19,7 +19,7 @@ public class PlayerMovementController : MonoBehaviour
 
         moveDashAccel = playerData.moveDashAccel;
         moveStopAccel = playerData.moveStopAccel;
-
+        StartCoroutine(ChangeFOV());
     }
 
     public void ChangeCollisionCondition(Collision collision, bool _bool)
@@ -68,13 +68,13 @@ public class PlayerMovementController : MonoBehaviour
             isDash = false;
         }
 
-        ResultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
-        currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, ResultForwardVelocityLimit, 0.7f * Time.deltaTime);
-
+        resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
+        currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.7f * Time.deltaTime);
         moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, currentForwardVelocityLimit);
 
         if (!isKnockBack)
             playerVelocity = moveSpeed * playerTr.forward;
+
 
         if (isCollision)
         {
@@ -128,8 +128,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void CollisionCrash()
     {
-        Debug.Log(moveSpeed);
-
         if (moveSpeed >= 50)
         {
             StartCoroutine(PlayerCrash());
@@ -167,15 +165,15 @@ public class PlayerMovementController : MonoBehaviour
         if (_inputQ == true && isDodge == false)
         {
             Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
             isDodge = true;
+            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
         }
 
         if (_inputE == true && isDodge == false)
         {
             Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
             isDodge = true;
+            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
         }
 
     }
@@ -190,7 +188,14 @@ public class PlayerMovementController : MonoBehaviour
         {
             // 이걸 playervelocity에 좌, 혹은 우 방향으로 곱해주면 될듯? 더해주면 될려나
             float step = speed * Time.deltaTime;
-            playerTr.Translate(direction * step, Space.World);
+            RaycastHit hit;
+            if (rb.SweepTest(direction, out hit, step))
+            {
+                isDodge = false;
+                break;
+            }
+            Vector3 new_pos = rb.position + direction * step;
+            rb.MovePosition(new_pos);
             movedDistance += step;
             yield return waitFixedUpdate;
         }
@@ -205,38 +210,51 @@ public class PlayerMovementController : MonoBehaviour
         playerData.isCrash = false;
     }
 
-    Vector3 pushDirection;
-    Vector3 playerVelocity = Vector3.zero;
+    private IEnumerator ChangeFOV()
+    {
+        float fovLerpRate = 0.1f;
+        float targetFOV = Camera.main.fieldOfView;
 
+        while (true)
+        {
+            float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed); // 카메라의 속도의 비율에 따라 변경됨.
+            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
+            yield return null;
+        }
+    }
+
+
+
+
+    private Vector3 playerVelocity = Vector3.zero;
 
 
     private Vector3 velocitySmoothDamp = Vector3.zero;
 
     private WaitForFixedUpdate waitFixedUpdate = null;
 
-    private float moveSpeed = 0f;
     private float calcMoveSpeed = 0f;
-    private float moveAccel = 0f;
+
     private float moveBackVelocityLimit = 0f;
     private float moveForwardVelocityLimit = 0f;
-    private float ResultForwardVelocityLimit = 0f;
+    private float resultForwardVelocityLimit = 0f;
+    private float currentForwardVelocityLimit = 0f;
 
 
-    private Transform playerTr = null;
-    private PlayerData playerData = null;
-
-
-
-    /// 새로 추가된것
+    private float moveSpeed = 0f;
+    private float moveAccel = 0f;
 
     private float moveDashSpeed = 0f;
     private float moveDashAccel = 0f;
-    private float moveStopAccel = 0f;
-    private float moveAccelResult = 0f;
+
     private float gravityAccel = 0f;
     private float gravitySpeed = 0f;
+
+    private float moveStopAccel = 0f;
+    private float moveAccelResult = 0f;
+
     private float dodgeSpeedRatio = 1f;
-    private float currentForwardVelocityLimit = 0f;
 
 
     private bool isDash = false;
@@ -245,13 +263,25 @@ public class PlayerMovementController : MonoBehaviour
     private bool isKnockBack = false;
 
 
-    private Collision coli = null;
-
     [SerializeField]
     private Rigidbody rb = null;
     [SerializeField]
     private float dodgeDuration = 1f;
     [SerializeField]
     private float knockBackDelay = 5f;
+
+    private Transform playerTr = null;
+    private PlayerData playerData = null;
+
+    private Collision coli = null;
+
+
+    public float cameraSpeed;
+    public float cameraMinSpeed = 60f;
+    public float cameraMaxSpeed = 90f;
+    public float cameraminFOV = 70f;
+    public float cameramaxFOV = 90f;
+
+
 
 }

@@ -23,15 +23,18 @@ public class VirtualMouse : MonoBehaviour
     }
 
     public void FixedUpdateMouseInput()
-    {         MouseMove(mousePos);
-
+    {
+        MouseMove(mousePos);
     }
 
     public void UpdateMouseInput()
     {
-        newInput.x = Mathf.Clamp(Input.GetAxis("Mouse X") * sensitive, -maxMouseSpeed, maxMouseSpeed);
-        newInput.y = Mathf.Clamp(Input.GetAxis("Mouse Y") * sensitive, -maxMouseSpeed, maxMouseSpeed);
-        mousePos += newInput;
+        if (!playerData.isFreeLock)
+        {
+            newInput.x = Mathf.Clamp(Input.GetAxis("Mouse X") * sensitive, -maxMouseSpeed, maxMouseSpeed);
+            newInput.y = Mathf.Clamp(Input.GetAxis("Mouse Y") * sensitive, -maxMouseSpeed, maxMouseSpeed);
+            mousePos += newInput;
+        }
         LockVirtualMousePos();
         playerData.currentMousePos = mousePos;
     }

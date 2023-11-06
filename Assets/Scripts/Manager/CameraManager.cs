@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public void Init(Transform _playerTr)
+    public void Init(Transform _playerTr,PlayerData _playerData)
     {
         cam = GetComponent<Camera>();
         mainCam = GetComponentInChildren<CameraMovement>();
-        mainCam.Init(_playerTr);
+        mainCam.Init(_playerTr, _playerData);
     }
 
     private CameraMovement mainCam = null;
