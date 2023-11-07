@@ -135,6 +135,8 @@ public class PlayerController : MonoBehaviour
         rotCtrl.PlayerFixedRotate();
         moveCtrl.PlayerMove();
 
+        Debug.Log($"Player Speed: {moveCtrl.MoveSpeed}");
+
         if (moveCtrl.IsDash)
             screenMat.SetFloat("_isDash", 1);
         else

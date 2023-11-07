@@ -15,6 +15,7 @@ TagManager:
   - Obstacle
   - gatlingGunMuzzle
   - BossShield
+  - GiantHomingMissile
   layers:
   - Default
   - TransparentFX

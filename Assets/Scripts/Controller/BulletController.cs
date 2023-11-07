@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class BulletController : AttackableObject
 {
+    [SerializeField]
+    private float speed = 200f;
+
     Rigidbody rb = null;
-    public float speed = 200f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
     }
-    public void Init(Quaternion _rotation)
+    public void Init(float _destroyTime)
     {
-        transform.rotation = _rotation;
+        Destroy(gameObject, _destroyTime);
     }
     //private void Start()
     //{

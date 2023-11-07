@@ -95,7 +95,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3f6429254ee0ab34bb16fa058efe5b00
-  position: {x: 226.7077, y: 1367.3309}
+  position: {x: 285.32935, y: 1366.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   fireRate: 30
   headRotationSpeed: 20
   rebound: 5
+  autoDestroyTime: 20
 --- !u!114 &-8149892216632681123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +300,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a756eb74085a413489a79b2ea635c858
-  position: {x: 226.00003, y: 1017.9999}
+  position: {x: 284.3293, y: 1017.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -410,7 +411,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4a6684bf5643c6f4083567f6c0d0a71e
-  position: {x: 226, y: 872.9999}
+  position: {x: 284.3293, y: 872.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -473,37 +474,6 @@ MonoBehaviour:
   - {fileID: 749988045687392448}
   - {fileID: -9063385047689049670}
   - {fileID: 8618335190615036909}
---- !u!114 &-3913004547531772430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b15905e71b8f343948a70516f05617, type: 3}
-  m_Name: WindBlowActionNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 0fd47796994add249990606cd68d3883
-  position: {x: 710, y: 1911}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  smallRadius: 5
-  largeRadius: 70
-  totalDuration: 5
-  colliderInterval: 0.2
-  cylinderLengthPerSecond: 200
-  numVertices: 20
-  windCylinderPrefab: {fileID: 1588479054048128854, guid: abf35202cf216d541a24cdafbc612265,
-    type: 3}
 --- !u!114 &-3764200336901690060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,7 +514,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 25c648d249bc6904e8fcb442a4f5d919
-  position: {x: 226.00003, y: 1146.9998}
+  position: {x: 284.3293, y: 1146.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -553,6 +523,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
+  - {fileID: -8305457244676183389}
   - {fileID: 3119450158616902581}
 --- !u!114 &-3387968954581324278
 MonoBehaviour:
@@ -647,7 +618,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 291726a124614a146bdb5181b305aa6d
-  position: {x: 392.99994, y: 1146.9998}
+  position: {x: 451.32928, y: 1146.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -750,7 +721,6 @@ MonoBehaviour:
   - {fileID: -4531776300853278649}
   - {fileID: 8756652752874628124}
   - {fileID: 2055624564037474365}
-  - {fileID: -3913004547531772430}
   - {fileID: 4365113027542136525}
   - {fileID: 8266297438010400843}
   - {fileID: -6627441640048975056}
@@ -768,6 +738,7 @@ MonoBehaviour:
   - {fileID: -4676318912752695626}
   - {fileID: -5577211489743933035}
   - {fileID: -1653398103952708185}
+  - {fileID: 6670595513324080788}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -822,7 +793,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: 2738026427128793326}
-  - {fileID: 4985606961724106939}
+  - {fileID: 6670595513324080788}
 --- !u!114 &1561259895918018650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +917,7 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  duration: 10
+  duration: 2
 --- !u!114 &3119450158616902581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,7 +933,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 212c879956fad4f418b301220c7f2d29
-  position: {x: 387, y: 1367}
+  position: {x: 445.32935, y: 1366.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1133,7 +1104,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4c762c712924e7e4f9fdbc4b5a311755
-  position: {x: 29.5, y: 1018}
+  position: {x: 30, y: 1115}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1145,6 +1116,36 @@ MonoBehaviour:
   maxSpeed: 150
   acceleration: 200
   autoDestroyTime: 20
+--- !u!114 &6670595513324080788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5474b84443faaca4aba449936e7d37dd, type: 3}
+  m_Name: NewLaunchMissileActionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: af63c3e958be1014799d56d076546007
+  position: {x: 30, y: 1018}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
+    type: 3}
+  moveAccel: 400
+  maxMoveSpeed: 300
+  rotateAccel: 0.2
+  maxRotateAccel: 1
+  autoDestroyTime: 2000
 --- !u!114 &6915879143102228442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,6 +1176,7 @@ MonoBehaviour:
   fireRate: 10
   headRotationSpeed: 20
   rebound: 2
+  autoDestroyTime: 20
 --- !u!114 &7237907964407477179
 MonoBehaviour:
   m_ObjectHideFlags: 0

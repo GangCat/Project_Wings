@@ -25,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
         StartCoroutine(DashCheker());
     }
 
+    public float MoveSpeed => moveSpeed;
     public bool IsDash => isDash;
 
     public void ChangeCollisionCondition(Collision collision, bool _bool)

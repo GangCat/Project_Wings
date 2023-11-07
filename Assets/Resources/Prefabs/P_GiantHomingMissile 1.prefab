@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5147824405307316662}
   - component: {fileID: 2294510696366887271}
   - component: {fileID: 939064617215814351}
-  - component: {fileID: -6195783275947323698}
+  - component: {fileID: 869001172978370025}
   m_Layer: 12
-  m_Name: P_GiantHomingMissile
+  m_Name: P_GiantHomingMissile 1
   m_TagString: GiantHomingMissile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 3.24
   m_Height: 30
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -15.02}
@@ -86,7 +86,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &-6195783275947323698
+--- !u!114 &869001172978370025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,13 +95,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6519272339437649605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3142876194eb0e47b06c9a75e442620, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d9bd6692f0dc284daba77ab0a0f2872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 50
-  hitLayers:
-    serializedVersion: 2
-    m_Bits: 16384
+  _rb: {fileID: 939064617215814351}
+  _target: {fileID: 0}
+  _explosionPrefab: {fileID: 0}
+  _speed: 15
+  _rotateSpeed: 95
+  _maxDistancePredict: 100
+  _minDistancePredict: 5
+  _maxTimePrediction: 5
+  _deviationAmount: 50
+  _deviationSpeed: 2
 --- !u!1 &7620544338611520829
 GameObject:
   m_ObjectHideFlags: 0

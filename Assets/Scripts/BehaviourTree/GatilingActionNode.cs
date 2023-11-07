@@ -15,6 +15,8 @@ public class GatilingActionNode : ActionNode
     private float headRotationSpeed = 20f;
     [SerializeField]
     private float rebound = 2f;
+    [SerializeField]
+    private float autoDestroyTime = 20f;
 
 
     private Transform playerTr;
@@ -101,5 +103,6 @@ public class GatilingActionNode : ActionNode
         Vector3 targetPos = rotationMatrix.MultiplyPoint3x4(tmp) + playerTr.position;
 
         GameObject bullet = Instantiate(bulletPrefab, gunMuzzleTr.position, gunMuzzleTr.rotation * Quaternion.Euler(rndRebound));
+        bullet.GetComponent<BulletController>().Init(autoDestroyTime);
     }
 }
