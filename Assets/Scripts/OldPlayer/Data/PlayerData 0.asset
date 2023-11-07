@@ -18,7 +18,7 @@ MonoBehaviour:
   stamina: 100
   moveBackVelocityLimit: -20
   moveForwardVelocityLimit: 300
-  moveAccel: 200
+  moveAccel: 1000
   moveDashSpeed: 60
   moveDashAccel: 100
   moveStopAccel: 40
@@ -46,4 +46,4 @@ MonoBehaviour:
   rollMaxAngle: 80
   rollReturnAccel: 100
   currentRotZ: 0
-  currentMoveSpeed: 51.01609
+  currentMoveSpeed: 0

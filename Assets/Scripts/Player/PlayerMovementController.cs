@@ -42,13 +42,14 @@ public class PlayerMovementController : MonoBehaviour
             return;
         } else if (isFrontMove == false)
         {
-            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveStopAccel * Time.deltaTime);
+            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
             playerVelocity = moveSpeed * playerTr.forward;
             return;
         }
         
         if (_inputZ != 0f)
         {
+
             playerData.isDash = isDash;
             moveAccelResult = isDash ? moveAccel + moveDashAccel : moveAccel;
             moveDashSpeed = isDash ? playerData.moveDashSpeed : 0f;
@@ -77,25 +78,25 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveStopAccel * Time.deltaTime);
+            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
         }
 
         resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
         
-        if (_inputZ > 0f)
-        {
-            if(resultForwardVelocityLimit > currentForwardVelocityLimit)
-            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f* moveAccelResult * Time.deltaTime);
-            else
-            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.1f * Time.deltaTime);
-        }
-        else
-        {
-            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f * moveAccelResult * Time.deltaTime);
-        }
+        //if (_inputZ > 0f)
+        //{
+        //    if(resultForwardVelocityLimit > currentForwardVelocityLimit)
+        //    currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f* moveAccelResult * Time.deltaTime);
+        //    else
+        //    currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.1f * Time.deltaTime);
+        //}
+        //else
+        //{
+        //    currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f * moveAccelResult * Time.deltaTime);
+        //}
         
 
-        moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, currentForwardVelocityLimit);
+        moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, resultForwardVelocityLimit);
 
         if (!isKnockBack)
             playerVelocity = moveSpeed * playerTr.forward;
@@ -110,7 +111,7 @@ public class PlayerMovementController : MonoBehaviour
                 CollisionCrash();
             }
 
-            calcMoveSpeed = currentForwardVelocityLimit * Mathf.Clamp01((1 - angle / 170));
+            calcMoveSpeed = resultForwardVelocityLimit * Mathf.Clamp01((1 - angle / 170));
             moveSpeed = Mathf.Lerp(moveSpeed, calcMoveSpeed, moveAccel * Time.deltaTime);
             //Debug.Log(moveSpeed);
 
@@ -286,13 +287,14 @@ public class PlayerMovementController : MonoBehaviour
         float offset = cam.offset;
         cameraMinSpeed = playerData.moveForwardVelocityLimit;
         cameraMaxSpeed = playerData.moveForwardVelocityLimit + playerData.moveDashSpeed;
+        float lerpSpeedRatio = 0f;
         while (true)
         {
             float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed);
-            Debug.Log(speedRatio);
-            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
+            lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, fovLerpRate);
+            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, lerpSpeedRatio);
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
-            float targetOffset = Mathf.Lerp(10, 6, speedRatio);
+            float targetOffset = Mathf.Lerp(10, 6, lerpSpeedRatio);
             cam.offset = Mathf.Lerp(cam.offset, targetOffset, fovLerpRate);
             yield return waitFixedUpdate;
         }
@@ -320,8 +322,7 @@ public class PlayerMovementController : MonoBehaviour
 
             if (playerData.input.InputZ != 0 && !isFrontMove)
             {
-                yield return new WaitForSeconds(0.1f);
-                moveSpeed = moveForwardVelocityLimit;
+                yield return null;
                 isFrontMove = true;
             }
 
@@ -399,6 +400,6 @@ public class PlayerMovementController : MonoBehaviour
     private float cameraMinSpeed = 80f;
     private float cameraMaxSpeed = 120f;
     private float cameraminFOV = 70f;
-    private float cameramaxFOV = 100f;
+    private float cameramaxFOV = 80f;
 
 }
