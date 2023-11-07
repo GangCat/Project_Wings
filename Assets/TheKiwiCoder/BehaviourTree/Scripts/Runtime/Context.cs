@@ -21,7 +21,7 @@ namespace TheKiwiCoder {
         public Rigidbody physics;
         public BossCollider bossCollider;
         public AnimationControllerBase anim;
-        public WeakPointHolder secondWeakPointHolder;
+        public BossShieldGeneratorSpawnPointHolder secondWeakPointHolder;
         public bool isPhaseEnd;
         // Add other game specific systems here
 
@@ -33,7 +33,7 @@ namespace TheKiwiCoder {
             Transform _gunMuzzleTr, 
             AnimationControllerBase _anim, 
             BossCollider _bossCollider, 
-            WeakPointHolder _secondWeakPointHolder,
+            BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr) {
             // Fetch all commonly used components

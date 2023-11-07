@@ -61,10 +61,7 @@ public class PlayerController : MonoBehaviour
         //Invoke("ResetPlayerDamagedBollean", 2f);
     }
 
-    private void ResetPlayerDamagedBollean()
-    {
-        playerMesh.material.SetFloat("_isDamaged", 0);
-    }
+
 
     private void ChangeCollisionCondition()
     {
@@ -75,7 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         float knockBackAmount = 0f;
         Vector3 knockBackDir = (transform.position - _collider.transform.position).normalized;
-        float knockBackDelay = 0f;
+        float knockBackDelay = 2f;
 
         if (_collider.CompareTag("CannonBall"))
         {
@@ -103,11 +100,23 @@ public class PlayerController : MonoBehaviour
             knockBackAmount = 100f;
             knockBackDir = _collider.transform.forward;
         }
+        else if (_collider.CompareTag("BossShield"))
+        {
+            knockBackAmount = 50f;
+        }
 
         playerMesh.material.SetFloat("_isDamaged", 1);
-        Invoke("ResetPlayerDamagedBollean", 2f);
+        StopCoroutine("ResetPlayerDamagedBollean");
+        StartCoroutine("ResetPlayerDamagedBollean");
+        //Invoke("ResetPlayerDamagedBollean", 2f);
 
         moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount, knockBackDelay);
+    }
+
+    private IEnumerator ResetPlayerDamagedBollean()
+    {
+        yield return new WaitForSeconds(2f);
+        playerMesh.material.SetFloat("_isDamaged", 0);
     }
 
     private void Update()

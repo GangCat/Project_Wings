@@ -262,7 +262,7 @@ public class PlayerMovementController : MonoBehaviour
         while (true)
         {
             float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed);
-            Debug.Log(speedRatio);
+            //Debug.Log(speedRatio);
             targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
             float targetOffset = Mathf.Lerp(10, 6, speedRatio);

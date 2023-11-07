@@ -9,22 +9,36 @@ public class BulletController : AttackableObject
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        
+
     }
-    public void Init(Quaternion _transform)
+    public void Init(Quaternion _rotation)
     {
-        transform.rotation = _transform;
+        transform.rotation = _rotation;
     }
-    private void Start()
+    //private void Start()
+    //{
+    //    rb.velocity = transform.forward * speed;
+    //}
+
+    private void FixedUpdate()
     {
-        rb.velocity = transform.forward*speed;
+        transform.position += transform.forward * speed * Time.fixedDeltaTime;
     }
 
     private void OnTriggerEnter(Collider _other)
     {
-        AttackDmg(_other);
-        if(!_other.CompareTag("GatlingGunMuzzle"))
+        if (_other.CompareTag("GatlingGunMuzzle"))
+            return;
+
+        if (AttackDmg(_other))
+        {
+            if (isFirstTrigger)
+            {
+                isFirstTrigger = false;
+                return;
+            }
             Destroy(gameObject);
+        }
     }
 
 }

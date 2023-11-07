@@ -13,6 +13,8 @@ TagManager:
   - GatlingGunBullet
   - GatlingGunMuzzle
   - Obstacle
+  - gatlingGunMuzzle
+  - BossShield
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - BossWeakPoint
+  - BossShieldGenerator
   - MuseTextureLayer
   - BossProjectile
   - PlayerInvincible

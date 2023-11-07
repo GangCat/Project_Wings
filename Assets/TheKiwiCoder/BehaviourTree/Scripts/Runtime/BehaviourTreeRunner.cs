@@ -14,7 +14,7 @@ namespace TheKiwiCoder
             Transform _gunMuzzleTr, 
             BossAnimationController _anim, 
             BossCollider _bossCollider, 
-            WeakPointHolder _secondWeakPointHolder,
+            BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr)
         {
@@ -50,7 +50,7 @@ namespace TheKiwiCoder
             Transform _gunMuzzleTr, 
             BossAnimationController _anim, 
             BossCollider _bossCollider, 
-            WeakPointHolder _secondWeakPointHolder,
+            BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr)
         {

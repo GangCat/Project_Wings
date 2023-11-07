@@ -98,25 +98,26 @@ public class BossController : MonoBehaviour
     private void InitNewWeakPoint()
     {
         curWeakPoint.Clear();
+
         switch (curPhaseNum)
         {
             case 1:
                 firstWeakPointHolder.Init();
-                foreach (WeakPoint wp in firstWeakPointHolder.WeakPoints)
+                foreach (BossShieldGeneratorSpawnPoint wp in firstWeakPointHolder.ShieldGeneratorSpawnPoints)
                 {
-                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
+                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity, wp.transform));
                 }
                 break;
             case 2:
                 secondWeakPointHolder.Init();
-                foreach (WeakPoint wp in secondWeakPointHolder.WeakPoints)
+                foreach (BossShieldGeneratorSpawnPoint wp in secondWeakPointHolder.ShieldGeneratorSpawnPoints)
                 {
                     wp.Init();
-                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
+                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity, wp.transform));
                 }
                 break;
             case 3:
-                curWeakPoint.Add(Instantiate(bossWeakPointPrefab, thirdPhaseWeakPoint.GetPos(), Quaternion.identity));
+                curWeakPoint.Add(Instantiate(bossWeakPointPrefab, thirdPhaseWeakPoint.GetPos(), Quaternion.identity, thirdPhaseWeakPoint.transform));
                 break;
             default:
                 break;
@@ -124,8 +125,7 @@ public class BossController : MonoBehaviour
 
         foreach (GameObject go in curWeakPoint)
         {
-            go.transform.parent = transform;
-            go.GetComponent<BossWeakPoint>().Init(RemoveWeakPointFromList);
+            go.GetComponent<BossShieldGenerator>().Init(RemoveWeakPointFromList);
         }
     }
 
@@ -135,11 +135,11 @@ public class BossController : MonoBehaviour
     }
 
     [SerializeField]
-    private WeakPointHolder firstWeakPointHolder = null;
+    private BossShieldGeneratorSpawnPointHolder firstWeakPointHolder = null;
     [SerializeField]
-    private WeakPointHolder secondWeakPointHolder = null;
+    private BossShieldGeneratorSpawnPointHolder secondWeakPointHolder = null;
     [SerializeField]
-    private WeakPoint thirdPhaseWeakPoint = null;
+    private BossShieldGeneratorSpawnPoint thirdPhaseWeakPoint = null;
     [SerializeField]
     private GameObject bossWeakPointPrefab = null;
 

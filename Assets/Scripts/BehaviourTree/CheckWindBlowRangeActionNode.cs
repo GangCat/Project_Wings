@@ -8,10 +8,10 @@ public class CheckWindBlowRangeActionNode : ActionNode
 {
     [SerializeField]
     private float range = 0f;
-    private WeakPoint[] weakPoints = null;
+    private BossShieldGeneratorSpawnPoint[] weakPoints = null;
 
     protected override void OnStart() {
-        weakPoints = context.secondWeakPointHolder.WeakPoints;
+        weakPoints = context.secondWeakPointHolder.ShieldGeneratorSpawnPoints;
     }
 
     protected override void OnStop() {

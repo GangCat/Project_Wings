@@ -18,14 +18,12 @@ public class PlayerCollisionController : MonoBehaviour
         collisionExitCallback = _collisionExitCallback;
         knockBackCallback = _knockBackCallback;
         oriLayer = gameObject.layer;
+        waitInvincibleTime = new WaitForSeconds(invincibleTime);
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameObject.layer.Equals(LayerMask.NameToLayer(playerInvincibleLayer)))
-            return;
-
         collisionEnterCallback?.Invoke(collision);
         //Invincible();
     }
@@ -37,9 +35,6 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.layer.Equals(LayerMask.NameToLayer(playerInvincibleLayer)))
-            return;
-
         knockBackCallback?.Invoke(other);
 
         Invincible();
@@ -48,11 +43,15 @@ public class PlayerCollisionController : MonoBehaviour
     private void Invincible()
     {
         gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
-        Invoke("FinishInvincible", invincibleTime);
+        StopCoroutine("FinishInvincible");
+        StartCoroutine("FinishInvincible");
+        //Invoke("FinishInvincible", invincibleTime);
     }
 
-    private void FinishInvincible()
+    private IEnumerator FinishInvincible()
     {
+        yield return waitInvincibleTime;
+
         gameObject.layer = oriLayer;
     }
 
@@ -62,4 +61,5 @@ public class PlayerCollisionController : MonoBehaviour
     private float invincibleTime = 0f;
 
     private LayerMask oriLayer;
+    private WaitForSeconds waitInvincibleTime = null;
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TempHoming : MonoBehaviour
+public class TempHoming : AttackableObject
 {
     private void Awake()
     {
@@ -11,9 +11,19 @@ public class TempHoming : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Time.time - spawnTime < 1)
+        if (other.CompareTag("Boss"))
             return;
-        Destroy(gameObject);
+
+        if (AttackDmg(other))
+        {
+            if (isFirstTrigger)
+            {
+                isFirstTrigger = false;
+                return;
+            }
+            else
+                Destroy(gameObject);
+        }
     }
 
     private float spawnTime = 0f;

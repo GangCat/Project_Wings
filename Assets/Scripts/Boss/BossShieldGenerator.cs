@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossWeakPoint : MonoBehaviour
+public class BossShieldGenerator : MonoBehaviour
 {
     public void Init(VoidGameObjectDelegate _destroyCallback)
     {
-        gameObject.layer = LayerMask.NameToLayer("BossWeakPoint");
         destroyCallback = _destroyCallback;
     }
 

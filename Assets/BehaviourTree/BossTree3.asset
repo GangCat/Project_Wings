@@ -596,7 +596,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c5e047faa5ebd2d4db53482a7bcae293
-  position: {x: 989.99994, y: 829.00006}
+  position: {x: 989.99994, y: 872.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0

@@ -36,11 +36,7 @@ public class CannonBallController : AttackableObject
 
     private void OnTriggerEnter(Collider _other)
     {
-        Debug.Log(_other.transform.name);
-        AttackDmg(_other);
-        Debug.Log("Attack!");
-        Destroy(gameObject);
+        if (AttackDmg(_other))
+            Destroy(gameObject);
     }
-
-
 }

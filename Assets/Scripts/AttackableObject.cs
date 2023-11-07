@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class AttackableObject : MonoBehaviour
 {
-    protected void AttackDmg(Collider _other)
+    protected bool AttackDmg(Collider _other)
     {
         IDamageable damagable = FindInterfaceInParents<IDamageable>(_other.transform);
         if (damagable != null)
+        {
             damagable.GetDamage(dmg);
+            return true;
+        }
+        return false;
     }
 
     T FindInterfaceInParents<T>(Transform currentTransform) where T : class
@@ -35,4 +39,6 @@ public class AttackableObject : MonoBehaviour
 
     [SerializeField]
     protected float dmg;
+
+    protected bool isFirstTrigger = true;
 }
