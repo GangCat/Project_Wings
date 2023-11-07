@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5147824405307316662}
   - component: {fileID: 2294510696366887271}
   - component: {fileID: 939064617215814351}
-  - component: {fileID: 2652745261447717754}
-  m_Layer: 12
-  m_Name: P_GiantHomingMissile
-  m_TagString: Untagged
+  - component: {fileID: 6941862291232642301}
+  m_Layer: 9
+  m_Name: P_GatlingGunBullet
+  m_TagString: GatlingGunBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,8 +28,12 @@ Transform:
   m_GameObject: {fileID: 6519272339437649605}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 457.27106, y: 605.9377, z: -441.998}
+<<<<<<< HEAD:Assets/Resources/Prefabs/P_GatlingGunBullet.prefab
+  m_LocalScale: {x: 80, y: 80, z: 80}
+=======
+  m_LocalScale: {x: 3, y: 3, z: 3}
+>>>>>>> origin/geohyung1:Assets/Resources/Prefabs/P_Bullet.prefab
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8155922586333366446}
@@ -54,8 +58,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7.5
-  m_Height: 30
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &939064617215814351
@@ -83,8 +87,25 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6941862291232642301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519272339437649605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dfb4e575308fa4b836f987f2bca1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Resources/Prefabs/P_GatlingGunBullet.prefab
+  speed: 3000
+=======
+  speed: 300
+>>>>>>> origin/geohyung1:Assets/Resources/Prefabs/P_Bullet.prefab
 --- !u!1 &7620544338611520829
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +117,7 @@ GameObject:
   - component: {fileID: 8155922586333366446}
   - component: {fileID: 4088533601550691745}
   - component: {fileID: 57879347570876794}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,10 +132,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7620544338611520829}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071071, y: -0, z: -0, w: 0.70710653}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5147824405307316662}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -146,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 66b69b28a4371aa4eb6fdf7b0a15e7ea, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

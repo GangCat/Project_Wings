@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 
 /// <summary> 
 /// 호출 될 때마다 미사일 생성 
@@ -27,14 +29,13 @@ public class LaunchMissileActionNode : ActionNode
     private float autoDestroyTime;
 
     private float currentSpeed;
-    private bool isRotating = false;
-    private Vector3 directionVector;
-    private Quaternion lastRotation;
+    private float rotateAngle = 0f;
     GameObject missile;
     protected override void OnStart()
     {
         missile = Instantiate(context.giantHomingMissileGo, context.giantHomingMissileSpawnTr.position, Quaternion.identity);
         Destroy(missile, autoDestroyTime);
+        currentSpeed = minSpeed;
     }
 
     protected override void OnStop()
@@ -43,58 +44,41 @@ public class LaunchMissileActionNode : ActionNode
 
     protected override State OnUpdate()
     {
+        Vector3 curDirVec = missile.transform.forward;
+        Vector3 direction = context.playerTr.position - missile.transform.position;
+        //rotateAngle = Vector3.Dot(curDirVec, Quaternion.LookRotation(direction).eulerAngles);
+        rotateAngle = Quaternion.Angle(Quaternion.LookRotation(curDirVec), Quaternion.LookRotation(direction));
+        Debug.Log(currentSpeed+"//"+ Mathf.Abs(rotateAngle));
         if (missile)
         {
-            //////AutoDestroy();
             // Rotate towards the player
-            Vector3 direction = context.playerTr.position - missile.transform.position;
-            missile.transform.rotation = Quaternion.Slerp(missile.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10f);
+            
+            
 
             // Increase acceleration and speed over time
-            currentSpeed = minSpeed;
-            if (!IsRotating())
+            if (Mathf.Abs(rotateAngle) <=20)
             {
+                missile.transform.rotation = Quaternion.Slerp(missile.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10);
                 if (currentSpeed < maxSpeed)
                 {
-                    currentSpeed += acceleration * Time.deltaTime;
+                    currentSpeed += acceleration *Time.deltaTime;
                 }
             }
             else
             {
+                missile.transform.rotation = Quaternion.Slerp(missile.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 2);
                 if (currentSpeed > minSpeed)
                 {
                     currentSpeed -= acceleration * Time.deltaTime;
                 }
             }
             // Move missile in the direction of rotation
-            directionVector = missile.transform.forward;
-            //Debug.Log("Homing Missile Current Speed: " + currentSpeed);
-            missile.transform.position += directionVector * currentSpeed * Time.deltaTime;
+            missile.transform.position += curDirVec * currentSpeed * Time.deltaTime;
             return State.Running;
         }
         else
         {
             return State.Success;
-        }
-        
-        
-        
-    }
-    private bool IsRotating()
-    {
-        if (lastRotation != missile.transform.rotation)
-        {
-            lastRotation = missile.transform.rotation;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    private void AutoDestroy()
-    {
-        autoDestroyTime -= Time.deltaTime;
-        if (autoDestroyTime <= 0f) Destroy(missile);
-    }
+        }        
+    }    
 }
