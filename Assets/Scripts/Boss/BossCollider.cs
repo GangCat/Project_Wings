@@ -22,6 +22,7 @@ public class BossCollider : MonoBehaviour
         bossSphereCollider.center = Vector3.zero;
         bossSphereCollider.radius = 1f;
         bossSphereCollider.enabled = false;
+        dmg = 0f;
     }
 
     public void SetPos(Vector3 _pos)
@@ -39,6 +40,19 @@ public class BossCollider : MonoBehaviour
         bossSphereCollider.enabled = true;
     }
 
+    public void SetDmg(float _dmg)
+    {
+        dmg = _dmg;
+    }
+
+    public void OnTriggerEnter(Collider _other)
+    {
+        IPlayerDamageable damageable = _other.GetComponent<IPlayerDamageable>();
+        if (damageable != null)
+            damageable.GetDamage(dmg);
+    }
+
     private SphereCollider bossSphereCollider = null;
     private Rigidbody rb = null;
+    private float dmg = 0f;
 }

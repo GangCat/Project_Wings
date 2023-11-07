@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -8,7 +7,7 @@ using UnityEngine;
 /// 플레이어와 부딪히면 폭발하고 데미지를 준다.
 /// 땅과 부딪히면 폭발한다.
 /// </summary>
-public class CannonBallController : MonoBehaviour
+public class CannonBallController : AttackableObject
 {
     private float speed;
     private WaitForFixedUpdate waitFixedUpdate = null;
@@ -37,7 +36,11 @@ public class CannonBallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider _other)
     {
+        Debug.Log(_other.transform.name);
+        AttackDmg(_other);
         Debug.Log("Attack!");
         Destroy(gameObject);
     }
+
+
 }

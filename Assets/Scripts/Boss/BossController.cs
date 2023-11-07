@@ -18,8 +18,11 @@ public class BossController : MonoBehaviour
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
         bossCollider = GetComponentInChildren<BossCollider>();
+        statHp = GetComponent<BossStatusHp>();
+
         animCtrl.Init();
         bossCollider.Init();
+        statHp.Init(StartPhaseChange);
 
         myRunner = GetComponent<BehaviourTreeRunner>();
         myRunner.Init(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl, bossCollider, secondWeakPointHolder, giantHomingMissileGo, _giantHomingMissileSpawnTr);
@@ -149,4 +152,5 @@ public class BossController : MonoBehaviour
     private WaitForFixedUpdate waitFixedUpdate = null;
     private BossAnimationController animCtrl = null;
     private VoidIntDelegate cameraActionCallback = null;
+    private BossStatusHp statHp = null;
 }

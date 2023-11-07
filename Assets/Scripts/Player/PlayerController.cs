@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
         rotCtrl = GetComponentInChildren<PlayerRotateController>();
         animCtrl = GetComponentInChildren<PlayerAnimationController>();
         colCtrl = GetComponentInChildren<PlayerCollisionController>();
+        statHp = GetComponentInChildren<PlayerStatusHp>();
         virtualMouse = GetComponentInChildren<VirtualMouse>();
 
         playerMesh = GetComponentInChildren<MeshRenderer>();
@@ -21,8 +22,14 @@ public class PlayerController : MonoBehaviour
         rotCtrl.Init(playerData);
         animCtrl.Init();
         colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack);
+        statHp.Init(IsDead);
         virtualMouse.Init(playerData);
 
+    }
+
+    private void IsDead()
+    {
+        Debug.Log("플레이어 사망");
     }
 
     private void ChangeCollisionCondition(Collision _coli)
@@ -150,6 +157,7 @@ public class PlayerController : MonoBehaviour
     private PlayerRotateController rotCtrl = null;
     private PlayerAnimationController animCtrl = null;
     private PlayerCollisionController colCtrl = null;
+    private PlayerStatusHp statHp = null;
 
     private MeshRenderer playerMesh = null;
 

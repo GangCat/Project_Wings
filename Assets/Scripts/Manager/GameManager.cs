@@ -90,9 +90,9 @@ public class GameManager : MonoBehaviour, IPublisher
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.PageUp))
+        if (Input.GetKeyDown(nextPhaseKeyCode))
             bossMng.ClearCurPhase();
-        else if (Input.GetKeyDown(KeyCode.Home))
+        else if (Input.GetKeyDown(startGameKeyCode))
             bossMng.GameStart();
     }
 
@@ -106,5 +106,10 @@ public class GameManager : MonoBehaviour, IPublisher
     private CameraManager camMng = null;
     private PlayerManager playerMng = null;
 
+
+    [SerializeField]
+    private KeyCode startGameKeyCode = KeyCode.Home;
+    [SerializeField]
+    private KeyCode nextPhaseKeyCode = KeyCode.PageUp;
 
 }

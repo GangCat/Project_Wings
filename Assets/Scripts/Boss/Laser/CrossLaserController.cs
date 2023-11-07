@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossLaserController : MonoBehaviour
+public class CrossLaserController : AttackableObject
 {
     public void Init(float _moveAccel, float _maxMoveSpeed, float _rotateAccel, float _maxRotateAccel, float _ChangeFormDistance, Transform _targetTr, float _autoDestroyTime)
     {
@@ -86,6 +86,11 @@ public class CrossLaserController : MonoBehaviour
             yield return waitFixed;
         }
         sphereObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider _other)
+    {
+        AttackDmg(_other);
     }
 
 

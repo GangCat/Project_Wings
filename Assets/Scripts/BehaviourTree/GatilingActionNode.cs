@@ -52,6 +52,7 @@ public class GatilingActionNode : ActionNode
 
         return State.Success;
     }
+
     private void RotateTurretToPlayer()
     {
         if (playerTr != null)
@@ -63,6 +64,7 @@ public class GatilingActionNode : ActionNode
             gatlingHolder.transform.rotation = Quaternion.Slerp(gatlingHolder.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
+
     private void RotateTurretHeadToPlayer()
     {
         if (context.playerTr != null)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletController : AttackableObject
 {
     Rigidbody rb = null;
     public float speed = 200f;
@@ -20,9 +20,10 @@ public class BulletController : MonoBehaviour
         rb.velocity = transform.forward*speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider _other)
     {
-        if(!other.CompareTag("GatlingGunMuzzle"))
+        AttackDmg(_other);
+        if(!_other.CompareTag("GatlingGunMuzzle"))
             Destroy(gameObject);
     }
 

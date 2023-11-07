@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26085456e692a8b49bcfb0722c64c85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 5
   laserObject: {fileID: 3196818231402108271}
   sphereObject: {fileID: 8588150621997716353}
   hitLayers:
