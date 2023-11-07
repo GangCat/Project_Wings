@@ -12,10 +12,12 @@ public class BossController : MonoBehaviour
         animCtrl = GetComponentInChildren<BossAnimationController>();
         bossCollider = GetComponentInChildren<BossCollider>();
         statHp = GetComponent<BossStatusHp>();
+        shield = GetComponent<BossShield>();
 
         animCtrl.Init();
         bossCollider.Init();
         statHp.Init(StartPhaseChange);
+        shield.Init();
 
         myRunner = GetComponent<BehaviourTreeRunner>();
         myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr);
@@ -157,4 +159,5 @@ public class BossController : MonoBehaviour
     private BossAnimationController animCtrl = null;
     private VoidIntDelegate cameraActionCallback = null;
     private BossStatusHp statHp = null;
+    private BossShield shield = null;
 }
