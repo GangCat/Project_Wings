@@ -36,8 +36,13 @@ public class PlayerMovementController : MonoBehaviour
 
     public void CalcPlayerMove(float _inputZ, bool _inputShift)
     {
-        if (playerData.isAction == true || isDodge == true || isFrontMove == false)
+        if (playerData.isAction == true || isDodge == true)
         {
+            playerVelocity = moveSpeed * playerTr.forward;
+            return;
+        } else if (isFrontMove == false)
+        {
+            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveStopAccel * Time.deltaTime);
             playerVelocity = moveSpeed * playerTr.forward;
             return;
         }
@@ -64,7 +69,6 @@ public class PlayerMovementController : MonoBehaviour
                     gravitySpeed = 0;
                 }
             }
-
             moveSpeed += (moveAccelResult + gravityAccel) * Time.deltaTime * _inputZ;
         }
         else if (moveSpeed > 0f && _inputZ < 0f)
@@ -74,7 +78,6 @@ public class PlayerMovementController : MonoBehaviour
         else
         {
             moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveStopAccel * Time.deltaTime);
-            isDash = false;
         }
 
         resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
@@ -183,34 +186,45 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerDodge(bool _inputQ, bool _inputE)
     {
-        if (_inputQ == true && isDodge == false)
+        if (isDodge == false)
         {
-            Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
-            isDodge = true;
-            StartCoroutine(DecreaseSpeed(SkyAclTime));
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
-        }
 
-        if (_inputE == true && isDodge == false)
-        {
-            Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
-            isDodge = true;
-            StartCoroutine(DecreaseSpeed(SkyAclTime));
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
-        }
+            if (_inputQ == true)
+            {
+                Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
+                isDodge = true;
+                playerData.isAction = true;
+                StartCoroutine(DecreaseSpeed(SkyAclTime));
+                StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isDodge == false)
-        {
-            Vector3 forwardUp = Vector3.up;
-            isDodge = true;
-            StartCoroutine(DecreaseSpeed(SkyAclTime));
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardUp));
+            if (_inputE == true)
+            {
+                Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
+                isDodge = true;
+                playerData.isAction = true;
+                StartCoroutine(DecreaseSpeed(SkyAclTime));
+                StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Vector3 forwardUp = Vector3.up;
+                isDodge = true;
+                playerData.isAction = true;
+                StartCoroutine(DecreaseSpeed(SkyAclTime));
+                //SetVelocityOverTime(playerData.dodgeSpeed, dodgeDuration, forwardUp);
+                StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardUp));
+            }
         }
+        else
+            playerData.isAction = false;
 
     }
+
     private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
-        Vector3 direction = _dir.normalized; // 방향 벡터 정규화
+        Vector3 direction = _dir.normalized;
         float distance = speed * duration;
         float elapsedTime = 0f;
 
@@ -221,10 +235,7 @@ public class PlayerMovementController : MonoBehaviour
         while (elapsedTime < duration)
         {
             
-            // 이동 속도를 조절하는 보간 값 계산
             float t = Mathf.SmoothStep(0f, 1f, elapsedTime / duration);
-
-            // 현재 위치와 목표 위치 사이를 보간
             Vector3 new_pos = Vector3.Lerp(initialPosition, targetPosition, t);
 
             RaycastHit hit;
@@ -237,9 +248,25 @@ public class PlayerMovementController : MonoBehaviour
             rb.MovePosition(new_pos);
 
             elapsedTime += Time.fixedDeltaTime;
-            yield return waitFixedUpdate; // 다음 FixedUpdate까지 대기
+            yield return waitFixedUpdate; 
         }
 
+        isDodge = false;
+    }
+
+    private IEnumerator SetVelocityOverTime(float speed, float duration, Vector3 _dir)
+    {
+        float initMoveSpeed = moveSpeed;
+        float timeElapsed = 0f;
+        yield return new WaitForSeconds(SkyAclTime);
+
+        while (timeElapsed < duration)
+        {
+            moveSpeed = Mathf.Lerp(initMoveSpeed, speed, timeElapsed/duration);
+            playerVelocity = _dir * moveSpeed;
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
         isDodge = false;
     }
 
@@ -293,7 +320,8 @@ public class PlayerMovementController : MonoBehaviour
 
             if (playerData.input.InputZ != 0 && !isFrontMove)
             {
-                yield return new WaitForSeconds(SkyAclTime);
+                yield return new WaitForSeconds(0.1f);
+                moveSpeed = moveForwardVelocityLimit;
                 isFrontMove = true;
             }
 
@@ -304,6 +332,7 @@ public class PlayerMovementController : MonoBehaviour
             yield return null;
         }
     }
+
     private IEnumerator DashCheker()
     {
         while (true)

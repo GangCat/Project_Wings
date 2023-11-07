@@ -60,11 +60,11 @@ public class PlayerRotateController : MonoBehaviour
         currentAngleY = Mathf.SmoothDampAngle(currentAngleY, targetAngleY, ref velocityY, smoothTime);
         currentAngleZ = Mathf.SmoothDampAngle(currentAngleZ, targetAngleZ, ref velocityZ, smoothTime);
 
-        playerData.currentRotZ = currentAngleZ;
-        playerTr.rotation = Quaternion.Euler(currentAngleX, currentAngleY, currentAngleZ);
+
+            playerData.currentRotZ = currentAngleZ;
+            playerTr.rotation = Quaternion.Euler(currentAngleX, currentAngleY, currentAngleZ);
 
     }
-
 
 
     private void RotateToMouse(ref float _eulerAngleX, ref float _eulerAngleY)

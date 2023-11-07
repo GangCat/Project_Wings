@@ -5200,11 +5200,6 @@ MonoBehaviour:
   rb: {fileID: 798473342}
   dodgeDuration: 1
   knockBackDelay: 2
-  cameraSpeed: 0
-  cameraMinSpeed: 60
-  cameraMaxSpeed: 90
-  cameraminFOV: 70
-  cameramaxFOV: 90
 --- !u!114 &798473340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10916,9 +10911,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pitchMinMax: {x: -40, y: 85}
-  posSmoothX: 20
+  posSmoothX: 100
   posSmoothY: 100
-  posSmoothZ: 20
+  posSmoothZ: 100
   rotSmoothX: 0.1
   rotSmoothY: 0.05
   rotSmoothZ: 0.1
