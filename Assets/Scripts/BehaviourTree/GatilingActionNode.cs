@@ -71,7 +71,7 @@ public class GatilingActionNode : ActionNode
         {
             diffY = playerTr.position.y - context.gatlingHeadGo.transform.position.y;
             cetha = Mathf.Asin(diffY / Vector3.Distance(playerTr.position, context.gatlingHeadGo.transform.position)) * Mathf.Rad2Deg;
-            context.gatlingHeadGo.transform.localRotation = Quaternion.Euler(Vector3.left * cetha ) * Quaternion.Euler(rndRebound);
+            context.gatlingHeadGo.transform.localRotation = Quaternion.Euler(Vector3.left * cetha);
 
             //Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
             // 부드럽게 회전하기 위해 Lerp 사용
@@ -100,6 +100,6 @@ public class GatilingActionNode : ActionNode
         Matrix4x4 rotationMatrix = Matrix4x4.TRS(Vector3.zero, rot, Vector3.one);
         Vector3 targetPos = rotationMatrix.MultiplyPoint3x4(tmp) + playerTr.position;
 
-        GameObject bullet = Instantiate(bulletPrefab, gunMuzzleTr.position, gunMuzzleTr.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, gunMuzzleTr.position, gunMuzzleTr.rotation * Quaternion.Euler(rndRebound));
     }
 }

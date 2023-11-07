@@ -7,7 +7,7 @@ public class BossManager : MonoBehaviour
     public void Init(Transform _PlayerTr, VoidIntDelegate _cameraActionCallback)
     {
         bossCtrl = GetComponentInChildren<BossController>();
-        bossCtrl.Init(_PlayerTr, gatlingHolderGo, gatlingHeadGo,gunMuzzleTr, giantHomingMissilePrefab, giantHomingMissileSpawnTr, _cameraActionCallback);
+        bossCtrl.Init(_PlayerTr, _cameraActionCallback);
     }
 
     public void ClearCurPhase()
@@ -24,18 +24,6 @@ public class BossManager : MonoBehaviour
     {
         bossCtrl.GameStart();
     }
-
-
-    [SerializeField]
-    private GameObject gatlingHolderGo = null;
-    [SerializeField]
-    private GameObject gatlingHeadGo = null;
-    [SerializeField]
-    private Transform gunMuzzleTr = null;
-    [SerializeField]
-    private Transform giantHomingMissileSpawnTr = null;
-    [SerializeField]
-    private GameObject giantHomingMissilePrefab = null;
 
     private BossController bossCtrl = null;
 }

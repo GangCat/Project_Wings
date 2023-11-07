@@ -29,14 +29,12 @@ public class BulletController : AttackableObject
     {
         if (_other.CompareTag("GatlingGunMuzzle"))
             return;
+        else if (_other.CompareTag("BossShield"))
+            return;
 
+        
         if (AttackDmg(_other))
         {
-            if (isFirstTrigger)
-            {
-                isFirstTrigger = false;
-                return;
-            }
             Destroy(gameObject);
         }
     }

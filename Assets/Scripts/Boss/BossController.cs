@@ -6,14 +6,7 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    public void Init(
-        Transform _playerTr,
-        GameObject _gatlingHolderGo,
-        GameObject _gatlingHeadGo,
-        Transform _gunMuzzleTr,
-        GameObject giantHomingMissileGo,
-        Transform _giantHomingMissileSpawnTr,
-        VoidIntDelegate _cameraActionCallback)
+    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -25,7 +18,7 @@ public class BossController : MonoBehaviour
         statHp.Init(StartPhaseChange);
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, animCtrl, bossCollider, secondWeakPointHolder, giantHomingMissileGo, _giantHomingMissileSpawnTr);
+        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr);
 
         curWeakPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
@@ -102,22 +95,22 @@ public class BossController : MonoBehaviour
         switch (curPhaseNum)
         {
             case 1:
-                firstWeakPointHolder.Init();
-                foreach (BossShieldGeneratorSpawnPoint wp in firstWeakPointHolder.ShieldGeneratorSpawnPoints)
+                firstShieldGeneratorSpawnPointHolder.Init();
+                foreach (BossShieldGeneratorSpawnPoint wp in firstShieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
                 {
                     curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity, wp.transform));
                 }
                 break;
             case 2:
-                secondWeakPointHolder.Init();
-                foreach (BossShieldGeneratorSpawnPoint wp in secondWeakPointHolder.ShieldGeneratorSpawnPoints)
+                secondShieldGeneratorSpawnPointHolder.Init();
+                foreach (BossShieldGeneratorSpawnPoint wp in secondShieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
                 {
                     wp.Init();
                     curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity, wp.transform));
                 }
                 break;
             case 3:
-                curWeakPoint.Add(Instantiate(bossWeakPointPrefab, thirdPhaseWeakPoint.GetPos(), Quaternion.identity, thirdPhaseWeakPoint.transform));
+                curWeakPoint.Add(Instantiate(bossWeakPointPrefab, thirdShieldGeneratorSpawnPoint.GetPos(), Quaternion.identity, thirdShieldGeneratorSpawnPoint.transform));
                 break;
             default:
                 break;
@@ -135,13 +128,24 @@ public class BossController : MonoBehaviour
     }
 
     [SerializeField]
-    private BossShieldGeneratorSpawnPointHolder firstWeakPointHolder = null;
+    private BossShieldGeneratorSpawnPointHolder firstShieldGeneratorSpawnPointHolder = null;
     [SerializeField]
-    private BossShieldGeneratorSpawnPointHolder secondWeakPointHolder = null;
+    private BossShieldGeneratorSpawnPointHolder secondShieldGeneratorSpawnPointHolder = null;
     [SerializeField]
-    private BossShieldGeneratorSpawnPoint thirdPhaseWeakPoint = null;
+    private BossShieldGeneratorSpawnPoint thirdShieldGeneratorSpawnPoint = null;
     [SerializeField]
     private GameObject bossWeakPointPrefab = null;
+    [SerializeField]
+    private GameObject gatlingHolderGo = null;
+    [SerializeField]
+    private GameObject gatlingHeadGo = null;
+    [SerializeField]
+    private Transform gunMuzzleTr = null;
+    [SerializeField]
+    private Transform giantHomingMissileSpawnTr = null;
+    [SerializeField]
+    private GameObject giantHomingMissilePrefab = null;
+
 
     private BossCollider bossCollider = null;
     private List<GameObject> curWeakPoint = null;

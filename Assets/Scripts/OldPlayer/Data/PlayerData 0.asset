@@ -17,8 +17,8 @@ MonoBehaviour:
   maxHealth: 100
   stamina: 100
   moveBackVelocityLimit: -20
-  moveForwardVelocityLimit: 160
-  moveAccel: 200
+  moveForwardVelocityLimit: 300
+  moveAccel: 400
   moveDashSpeed: 60
   moveDashAccel: 100
   moveStopAccel: 40
@@ -40,10 +40,10 @@ MonoBehaviour:
   maxMouseSpeed: 6
   maxMouseRadius: 100
   returnMouseRadius: 90
-  currentMousePos: {x: 8.035311, y: 7.8767986}
+  currentMousePos: {x: 0, y: 0}
   rollAccel: 1000
   rollMaxVelocity: 200
   rollMaxAngle: 80
   rollReturnAccel: 100
   currentRotZ: 0
-  currentMoveSpeed: 197.5025
+  currentMoveSpeed: 204.0337

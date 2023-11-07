@@ -44,16 +44,19 @@ public class LaunchMissileActionNode : ActionNode
 
     protected override State OnUpdate()
     {
-        Vector3 curDirVec = missile.transform.forward;
-        Vector3 direction = context.playerTr.position - missile.transform.position;
-        //rotateAngle = Vector3.Dot(curDirVec, Quaternion.LookRotation(direction).eulerAngles);
-        rotateAngle = Quaternion.Angle(Quaternion.LookRotation(curDirVec), Quaternion.LookRotation(direction));
-        Debug.Log(currentSpeed+"//"+ Mathf.Abs(rotateAngle));
+
         if (missile)
         {
+            Vector3 curDirVec = missile.transform.forward;
+            Vector3 direction = context.playerTr.position - missile.transform.position;
+            //rotateAngle = Vector3.Dot(curDirVec, Quaternion.LookRotation(direction).eulerAngles);
+            rotateAngle = Quaternion.Angle(Quaternion.LookRotation(curDirVec), Quaternion.LookRotation(direction));
+            Debug.Log(currentSpeed + "//" + Mathf.Abs(rotateAngle));
+
+
             // Rotate towards the player
-            
-            
+
+
 
             // Increase acceleration and speed over time
             if (Mathf.Abs(rotateAngle) <=20)

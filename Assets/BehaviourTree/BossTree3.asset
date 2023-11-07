@@ -105,11 +105,11 @@ MonoBehaviour:
   drawGizmos: 0
   bulletPrefab: {fileID: 6519272339437649605, guid: cd6c9962db9d58b42b351e01d640131f,
     type: 3}
-  maxBulletCnt: 80
+  maxBulletCnt: 300
   rotationSpeed: 30
-  fireRate: 10
+  fireRate: 30
   headRotationSpeed: 20
-  rebound: 2
+  rebound: 5
 --- !u!114 &-8149892216632681123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +554,6 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -8305457244676183389}
-  - {fileID: 3119450158616902581}
 --- !u!114 &-3387968954581324278
 MonoBehaviour:
   m_ObjectHideFlags: 0
