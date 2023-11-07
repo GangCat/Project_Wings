@@ -80,8 +80,9 @@ public class PlayerMovementController : MonoBehaviour
         {
             moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
         }
-
-        resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
+        
+        addVelocity = Mathf.Lerp(addVelocity, moveDashSpeed + gravitySpeed, Time.deltaTime);
+        resultForwardVelocityLimit = (moveForwardVelocityLimit + addVelocity);
         
         //if (_inputZ > 0f)
         //{
@@ -286,7 +287,7 @@ public class PlayerMovementController : MonoBehaviour
         CameraMovement cam = Camera.main.GetComponent<CameraMovement>();
         float offset = cam.offset;
         cameraMinSpeed = playerData.moveForwardVelocityLimit;
-        cameraMaxSpeed = playerData.moveForwardVelocityLimit + playerData.moveDashSpeed;
+        cameraMaxSpeed = playerData.moveForwardVelocityLimit + playerData.moveDashSpeed + playerData.gravitySpeed;
         float lerpSpeedRatio = 0f;
         while (true)
         {
@@ -294,7 +295,7 @@ public class PlayerMovementController : MonoBehaviour
             lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, fovLerpRate);
             targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, lerpSpeedRatio);
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
-            float targetOffset = Mathf.Lerp(10, 6, lerpSpeedRatio);
+            float targetOffset = Mathf.Lerp(10, 3, lerpSpeedRatio);
             cam.offset = Mathf.Lerp(cam.offset, targetOffset, fovLerpRate);
             yield return waitFixedUpdate;
         }
@@ -359,6 +360,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private float moveBackVelocityLimit = 0f;
     private float moveForwardVelocityLimit = 0f;
+    private float addVelocity = 0f;
     private float resultForwardVelocityLimit = 0f;
     private float currentForwardVelocityLimit = 0f;
 
@@ -374,7 +376,6 @@ public class PlayerMovementController : MonoBehaviour
     private float moveStopAccel = 0f;
     private float moveAccelResult = 0f;
 
-    private float dodgeSpeedRatio = 1f;
     private float SkyAclTime = 0.3f;
 
 
@@ -400,6 +401,6 @@ public class PlayerMovementController : MonoBehaviour
     private float cameraMinSpeed = 80f;
     private float cameraMaxSpeed = 120f;
     private float cameraminFOV = 70f;
-    private float cameramaxFOV = 80f;
+    private float cameramaxFOV = 90f;
 
 }
