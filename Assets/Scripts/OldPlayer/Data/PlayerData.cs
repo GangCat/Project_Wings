@@ -24,11 +24,12 @@ public class PlayerData : ScriptableObject
 
     public bool isDash = false;
     public bool isCrash = false;
+    public bool isAction = false;
+
 
     [Header("Dodge Data")]
     public float dodgeSpeed = 60f;
     public float dodgeDuration = 0.3f;
-
 
     [Header("Cam Data")]
     public float rotCamSpeed = 100f;
