@@ -13,11 +13,13 @@ public class BossController : MonoBehaviour
         bossCollider = GetComponentInChildren<BossCollider>();
         statHp = GetComponent<BossStatusHp>();
         shield = GetComponentInChildren<BossShield>();
+        timeBombPatternCtrl = GetComponentInChildren<TimeBombPatternController>();
 
         animCtrl.Init();
         bossCollider.Init();
         statHp.Init(StartPhaseChange);
         shield.Init();
+        timeBombPatternCtrl.Init(FinishPhaseChange);
 
         myRunner = GetComponent<BehaviourTreeRunner>();
         myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
@@ -68,6 +70,10 @@ public class BossController : MonoBehaviour
     {
         isChangingPhase = true;
         cameraActionCallback?.Invoke(curPhaseNum);
+
+        // 패턴 시작
+        timeBombPatternCtrl.StartPattern();
+
         // 연출 시작
 
         //Invoke("FinishPhaseChange", 5f); // 테스트용
@@ -78,9 +84,9 @@ public class BossController : MonoBehaviour
         // 연출 종료시 호출
         if (curPhaseNum < 3)
         {
-            isChangingPhase = false;
             ++curPhaseNum;
             InitNewWeakPoint();
+            isChangingPhase = false;
             myRunner.StartNextPhase(curPhaseNum);
         }
     }
@@ -164,4 +170,5 @@ public class BossController : MonoBehaviour
     private VoidIntDelegate cameraActionCallback = null;
     private BossStatusHp statHp = null;
     private BossShield shield = null;
+    private TimeBombPatternController timeBombPatternCtrl = null;
 }
