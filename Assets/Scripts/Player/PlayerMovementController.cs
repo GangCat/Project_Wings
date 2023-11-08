@@ -41,7 +41,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (playerData.isAction == true || isDodge == true)
         {
-            playerVelocity = moveSpeed * playerTr.forward;
             return;
         } else if (isFrontMove == false)
         {
@@ -218,7 +217,6 @@ public class PlayerMovementController : MonoBehaviour
                 isDodge = true;
                 playerData.isAction = true;
                 StartCoroutine(DecreaseSpeed(SkyAclTime));
-                //SetVelocityOverTime(playerData.dodgeSpeed, dodgeDuration, forwardUp);
                 StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardUp));
             }
         }
@@ -229,14 +227,14 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
-        cam.transform.parent = transform;
+        //cam.transform.parent = transform;
 
         Vector3 direction = _dir.normalized;
         float distance = speed * duration;
         float elapsedTime = 0f;
 
         yield return new WaitForSeconds(SkyAclTime);
-
+        
         Vector3 initialPosition = rb.position;
         Vector3 targetPosition = initialPosition + direction * distance;
         while (elapsedTime < duration)
@@ -257,23 +255,25 @@ public class PlayerMovementController : MonoBehaviour
             elapsedTime += Time.fixedDeltaTime;
             yield return waitFixedUpdate; 
         }
-        cam.transform.parent = oriCamParent;
+        //cam.transform.parent = oriCamParent;
         isDodge = false;
     }
 
     private IEnumerator SetVelocityOverTime(float speed, float duration, Vector3 _dir)
     {
+        cam.transform.parent = transform;
         float initMoveSpeed = moveSpeed;
         float timeElapsed = 0f;
         yield return new WaitForSeconds(SkyAclTime);
-
         while (timeElapsed < duration)
         {
             moveSpeed = Mathf.Lerp(initMoveSpeed, speed, timeElapsed/duration);
             playerVelocity = _dir * moveSpeed;
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.fixedDeltaTime;
             yield return null;
+            
         }
+        cam.transform.parent = oriCamParent;
         isDodge = false;
     }
 
@@ -287,7 +287,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator ChangeFOV()
     {
-        float fovLerpRate = 0.5f;
         float targetFOV = Camera.main.fieldOfView;
         CameraMovement cam = Camera.main.GetComponent<CameraMovement>();
         float offset = cam.offset;
@@ -297,11 +296,11 @@ public class PlayerMovementController : MonoBehaviour
         while (true)
         {
             float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed);
-            lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, fovLerpRate);
+            lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, Time.fixedDeltaTime);
             targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, lerpSpeedRatio);
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.fixedDeltaTime);
             float targetOffset = Mathf.Lerp(10, 3, lerpSpeedRatio);
-            cam.offset = Mathf.Lerp(cam.offset, targetOffset, fovLerpRate);
+            //cam.offset = Mathf.Lerp(cam.offset, targetOffset, Time.fixedDeltaTime);
             yield return waitFixedUpdate;
         }
     }
@@ -358,6 +357,7 @@ public class PlayerMovementController : MonoBehaviour
 
 
     private Vector3 playerVelocity = Vector3.zero;
+    private Vector3 PlayerDir = Vector3.zero;
 
     private WaitForFixedUpdate waitFixedUpdate = null;
 
@@ -365,6 +365,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private float moveBackVelocityLimit = 0f;
     private float moveForwardVelocityLimit = 0f;
+
     private float addVelocity = 0f;
     private float resultForwardVelocityLimit = 0f;
     private float currentForwardVelocityLimit = 0f;
@@ -381,7 +382,7 @@ public class PlayerMovementController : MonoBehaviour
     private float moveStopAccel = 0f;
     private float moveAccelResult = 0f;
 
-    private float SkyAclTime = 0.3f;
+    private float SkyAclTime = 0.1f;
 
 
     private bool isDash = false;

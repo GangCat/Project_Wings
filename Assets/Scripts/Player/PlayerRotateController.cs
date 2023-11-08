@@ -20,16 +20,8 @@ public class PlayerRotateController : MonoBehaviour
     public void PlayerRotate() // Update 돌리는거
     {
         RotateToMouse(ref rotVec.x, ref rotVec.y);
-        if (playerData.currentMoveSpeed < 5 || playerData.input.InputZ <= 0)
-        {
-            rotVec.z = Mathf.MoveTowards(rotVec.z, 0, rollReturnAccel * Time.deltaTime);
-        }
-        else
-        {
-            RotateToKeyboard(ref rotVec.z);
-        }
-        playerData.currentRotZ = rotVec.z;
-        //playerTr.rotation = Quaternion.Euler(rotVec);
+
+        playerTr.rotation = Quaternion.Euler(rotVec);
 
 
     }
@@ -45,11 +37,11 @@ public class PlayerRotateController : MonoBehaviour
         RotateToMouse(ref rotVec.x, ref rotVec.y);
         if (playerData.currentMoveSpeed < 5 || playerData.input.InputZ <= 0)
         {
-            rotVec.z = Mathf.MoveTowards(rotVec.z, 0, rollReturnAccel * Time.deltaTime);
+            rotVec.z = Mathf.MoveTowards(rotVec.z, 0, Time.deltaTime);
         }
         else
         {
-            RotateToKeyboard(ref rotVec.z);
+            //RotateToKeyboard(ref rotVec.z);
         }
 
         float targetAngleX = rotVec.x;
@@ -116,25 +108,7 @@ public class PlayerRotateController : MonoBehaviour
     /// <summary>
     /// 원본
     /// </summary>
-    private void RotateToKeyboard(ref float _eulerAngleZ)
-    {
-        rollAccel = playerData.rollAccel;
-        rollMaxVelocity = playerData.rollMaxVelocity;
-        rollMaxAngle = playerData.rollMaxAngle;
 
-        if (Mathf.Abs(playerData.input.InputX) > 0f)
-            rollVelocity += rollAccel * Time.deltaTime * -playerData.input.InputX;
-        else
-            rollVelocity = Mathf.MoveTowards(rollVelocity, 0, rollAccel * Time.deltaTime);
-
-        rollVelocity = Mathf.Clamp(rollVelocity, -rollMaxVelocity, rollMaxVelocity);
-
-        _eulerAngleZ += rollVelocity * Time.deltaTime;
-        _eulerAngleZ = Mathf.Clamp(_eulerAngleZ, -rollMaxAngle, rollMaxAngle);
-
-        if (Mathf.Abs(_eulerAngleZ).Equals(rollMaxAngle))
-            rollVelocity = 0f;
-    }
 
 
     [SerializeField]
@@ -142,12 +116,6 @@ public class PlayerRotateController : MonoBehaviour
     float currentAngleX, currentAngleY, currentAngleZ;
     float velocityX = 0f, velocityY = 0f, velocityZ = 0f;
 
-
-
-    private float rollVelocity = 0f;
-    private float rollAccel = 0f;
-    private float rollMaxVelocity = 0f;
-    private float rollMaxAngle = 0f;
     private float rollReturnAccel = 0f;
 
     private float eulerAngleX = 0f; // 사용안하는듯?
@@ -158,12 +126,14 @@ public class PlayerRotateController : MonoBehaviour
     private float rotCamYAxisSensitive = 0f;
     private float minAngleX = 0f;
     private float maxAngleX = 0f;
+
     private Transform playerTr = null;
 
     private Vector3 rotVec = Vector3.zero;
     private PlayerData playerData = null;
 
     private Vector2 mousePos;
+
 
     [SerializeField]
     private Rigidbody rb;

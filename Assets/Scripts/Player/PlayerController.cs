@@ -128,7 +128,6 @@ public class PlayerController : MonoBehaviour
     {
         DebugColorChange();
 
-        moveCtrl.CalcPlayerMove(playerData.input.InputZ, playerData.input.InputShift);
         moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
         virtualMouse.UpdateMouseInput();
     }
@@ -138,6 +137,7 @@ public class PlayerController : MonoBehaviour
         virtualMouse.FixedUpdateMouseInput();
         rotCtrl.PlayerRotate();
         rotCtrl.PlayerFixedRotate();
+        moveCtrl.CalcPlayerMove(playerData.input.InputZ, playerData.input.InputShift);
         moveCtrl.PlayerMove();
 
         //Debug.Log($"Player Speed: {moveCtrl.MoveSpeed}");
