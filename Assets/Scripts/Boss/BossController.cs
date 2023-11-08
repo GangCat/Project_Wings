@@ -12,7 +12,7 @@ public class BossController : MonoBehaviour
         animCtrl = GetComponentInChildren<BossAnimationController>();
         bossCollider = GetComponentInChildren<BossCollider>();
         statHp = GetComponent<BossStatusHp>();
-        shield = GetComponent<BossShield>();
+        shield = GetComponentInChildren<BossShield>();
 
         animCtrl.Init();
         bossCollider.Init();
@@ -20,7 +20,7 @@ public class BossController : MonoBehaviour
         shield.Init();
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr);
+        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
 
         curWeakPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
@@ -147,6 +147,8 @@ public class BossController : MonoBehaviour
     private Transform giantHomingMissileSpawnTr = null;
     [SerializeField]
     private GameObject giantHomingMissilePrefab = null;
+    [SerializeField]
+    private GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos = null;
 
 
     private BossCollider bossCollider = null;

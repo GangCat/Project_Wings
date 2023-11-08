@@ -17,6 +17,9 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
 
     public void GetDamage(float _dmg)
     {
+        if (gameObject.layer.Equals(LayerMask.NameToLayer("PlayerInvincible")))
+            return;
+
         curHp -= _dmg;
         if (curHp <= 0)
             deadCallback?.Invoke();

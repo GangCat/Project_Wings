@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackableObject : MonoBehaviour
 {
-    protected bool AttackDmg(Collider _other)
+    protected virtual bool AttackDmg(Collider _other)
     {
         IDamageable damagable = FindInterfaceInParents<IDamageable>(_other.transform);
         if (damagable != null)
@@ -15,7 +15,7 @@ public class AttackableObject : MonoBehaviour
         return false;
     }
 
-    T FindInterfaceInParents<T>(Transform currentTransform) where T : class
+    protected T FindInterfaceInParents<T>(Transform currentTransform) where T : class
     {
         // 현재 오브젝트에서 특정 인터페이스를 구현한 컴포넌트 찾기 시도
         T interfaceComponent = currentTransform.GetComponent(typeof(T)) as T;

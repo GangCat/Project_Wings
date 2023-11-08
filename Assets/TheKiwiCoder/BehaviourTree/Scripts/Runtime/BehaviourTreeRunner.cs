@@ -16,9 +16,10 @@ namespace TheKiwiCoder
             BossCollider _bossCollider, 
             BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
             GameObject _giantHomingMissileGo,
-            Transform _giantHomingMissileSpawnTr)
+            Transform _giantHomingMissileSpawnTr,
+            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr);
+            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -52,9 +53,10 @@ namespace TheKiwiCoder
             BossCollider _bossCollider, 
             BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
             GameObject _giantHomingMissileGo,
-            Transform _giantHomingMissileSpawnTr)
+            Transform _giantHomingMissileSpawnTr,
+            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr);
+            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
         }
 
         private void OnDrawGizmosSelected()

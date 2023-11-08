@@ -70,9 +70,14 @@ public class PlayerController : MonoBehaviour
 
     private void KnockBack(Collider _collider)
     {
+        if (gameObject.layer.Equals(LayerMask.NameToLayer("PlayerInvincible")))
+            if (_collider.GetComponent<AttackableObject>())
+                return;
+
         float knockBackAmount = 0f;
         Vector3 knockBackDir = (transform.position - _collider.transform.position).normalized;
         float knockBackDelay = 2f;
+
 
         if (_collider.CompareTag("CannonBall"))
         {
@@ -135,7 +140,7 @@ public class PlayerController : MonoBehaviour
         rotCtrl.PlayerFixedRotate();
         moveCtrl.PlayerMove();
 
-        Debug.Log($"Player Speed: {moveCtrl.MoveSpeed}");
+        //Debug.Log($"Player Speed: {moveCtrl.MoveSpeed}");
 
         if (moveCtrl.IsDash)
             screenMat.SetFloat("_isDash", 1);

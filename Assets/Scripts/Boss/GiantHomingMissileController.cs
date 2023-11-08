@@ -86,6 +86,9 @@ public class GiantHomingMissileController : AttackableObject
 
     private void OnTriggerEnter(Collider _other)
     {
+        if (isFirstTrigger && _other.CompareTag("Boss"))
+            return;
+
         if (_other.CompareTag("Obstacle"))
             Destroy(gameObject);
         else if (_other.CompareTag("Floor"))
@@ -101,6 +104,7 @@ public class GiantHomingMissileController : AttackableObject
             Destroy(gameObject);
         }
     }
+
 
     private WaitForFixedUpdate waitFixed = null;
 
