@@ -12,7 +12,7 @@ public class BossController : MonoBehaviour
         animCtrl = GetComponentInChildren<BossAnimationController>();
         bossCollider = GetComponentInChildren<BossCollider>();
         statHp = GetComponent<BossStatusHp>();
-        shield = GetComponent<BossShield>();
+        shield = GetComponentInChildren<BossShield>();
 
         animCtrl.Init();
         bossCollider.Init();

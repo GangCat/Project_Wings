@@ -577,6 +577,30 @@ MonoBehaviour:
   child: {fileID: -6606512983389126247}
   restartOnSuccess: 1
   restartOnFailure: 1
+--- !u!114 &-2960110222516945772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5134d9de14153468b48928d3e7359a, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: eb8c0b277d54b7646937fd1a16e932a4
+  position: {x: -167.46004, y: 1002.92255}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  duration: 15
 --- !u!114 &-1653398103952708185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,6 +701,39 @@ MonoBehaviour:
   children:
   - {fileID: -8784311841378576911}
   - {fileID: -6734967783781693836}
+--- !u!114 &-177025576078817775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a935efe2abc5bcc4192b5d8faf9a0a1a, type: 3}
+  m_Name: CannonRainActionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e058ee7a701487543bbba7f289e12f91
+  position: {x: 1.5825139, y: 1005.6626}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  bossOffSet: 120
+  mapRadious: {x: 2000, y: 2000}
+  attackMinHeight: 50000
+  attackMaxHeight: 150000
+  cannonBallCnt: 50
+  cannonBallPrefab: {fileID: 8582983355367289449, guid: 8fe2ba31306cd094b80f92e68b37bb36,
+    type: 3}
+  cannonBallSpeed: 5000
+  attackAreaPrefab: {fileID: 9014645002717474501, guid: 3aa6b741342f001459c4ff4187343e3d,
+    type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,6 +796,8 @@ MonoBehaviour:
   - {fileID: -5577211489743933035}
   - {fileID: -1653398103952708185}
   - {fileID: 6670595513324080788}
+  - {fileID: -2960110222516945772}
+  - {fileID: -177025576078817775}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -783,7 +842,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4de0973ae547a8c4a849641c3252a346
-  position: {x: -43.642517, y: 872.85}
+  position: {x: -52.745007, y: 857.05896}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -794,6 +853,8 @@ MonoBehaviour:
   children:
   - {fileID: 2738026427128793326}
   - {fileID: 6670595513324080788}
+  - {fileID: -2960110222516945772}
+  - {fileID: -177025576078817775}
 --- !u!114 &1561259895918018650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,7 +970,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 977840c85b1671e4fae8560c66a1f535
-  position: {x: -120.5, y: 1018}
+  position: {x: -535.2996, y: 1004.34247}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -942,6 +1003,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   radious: 100
+  bossOffSet: 120
+  mapRadious: {x: 2000, y: 2000}
   duration: 9
   attackMinHeight: 1000
   attackMaxHeight: 1500
@@ -976,6 +1039,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   radious: 10
+  bossOffSet: 20
+  mapRadious: {x: 5000, y: 5000}
   duration: 6
   attackMinHeight: 500
   attackMaxHeight: 1000
@@ -1104,7 +1169,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4c762c712924e7e4f9fdbc4b5a311755
-  position: {x: 30, y: 1115}
+  position: {x: -349.09503, y: 1095.18}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1131,7 +1196,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: af63c3e958be1014799d56d076546007
-  position: {x: 30, y: 1018}
+  position: {x: -384.0996, y: 1004.34247}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
