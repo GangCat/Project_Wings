@@ -1119,10 +1119,10 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveAccel: 800
-  maxMoveSpeed: 700
+  moveAccel: 60
+  maxMoveSpeed: 450
   rotateAccel: 0.2
-  maxRotateAccel: 1
+  maxRotateAccel: 3
   autoDestroyTime: 2000
 --- !u!114 &6915879143102228442
 MonoBehaviour:

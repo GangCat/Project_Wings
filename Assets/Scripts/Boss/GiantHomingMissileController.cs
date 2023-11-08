@@ -29,7 +29,7 @@ public class GiantHomingMissileController : AttackableObject
             MoveHomingMissile();
             Debug.Log($"MissileSpeed: {moveSpeed}");
 
-            if (isPathBlock())
+            if (IsPathBlock()/* || IsTargetNear()*/)
             {
                 yield return waitFixed;
                 continue;
@@ -41,9 +41,14 @@ public class GiantHomingMissileController : AttackableObject
         }
     }
 
-    private bool isPathBlock()
+    private bool IsPathBlock()
     {
         return Physics.Linecast(transform.position, transform.forward * 500f, hitLayers);
+    }
+
+    private bool IsTargetNear()
+    {
+        return Vector3.SqrMagnitude(transform.position - targetTr.position) < Mathf.Pow(500, 2f);
     }
 
     private void MoveHomingMissile()
@@ -71,15 +76,17 @@ public class GiantHomingMissileController : AttackableObject
 
     private void RotateHomingMissile(Vector3 _moveDir)
     {
-        //rotateSpeed += rotateAccel * Time.deltaTime;
-        //rotateSpeed = Mathf.Min(rotateSpeed, maxRotateSpeed);
-        rotateSpeed = maxRotateSpeed;
+        rotateSpeed += rotateAccel * Time.deltaTime;
+        rotateSpeed = Mathf.Min(rotateSpeed, maxRotateSpeed);
+        //rotateSpeed = maxRotateSpeed;
 
-        //float dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (targetTr.position - transform.position).normalized), -1f, 1f);
-        //float normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
-        //float mappedValue = 1f - normalizedAngle;
+        float dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (targetTr.position - transform.position).normalized), -1f, 1f);
+        float normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
+        float mappedValue = 1f - normalizedAngle;
 
-        //rotateSpeed *= mappedValue * 0.7f + 0.3f;
+        //if(normalizedAngle > 0.95f)
+
+        rotateSpeed *= mappedValue;
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_moveDir), rotateSpeed * Time.fixedDeltaTime);
     }
@@ -103,6 +110,12 @@ public class GiantHomingMissileController : AttackableObject
     {
         if (other.CompareTag("BossShield"))
             isFirstTrigger = false;
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 250f);
     }
 
 
