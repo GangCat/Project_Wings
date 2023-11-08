@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d668820401dbce64d90f6faad36f88e3
-  position: {x: -918.06384, y: 674}
+  position: {x: -547.1722, y: 723.03845}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 432c800be9f6f104b9c2e642fdf9de3a
-  position: {x: 720.0346, y: 1569.9998}
+  position: {x: 251, y: 1554}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0017d1c3ad1dfdc4c874ce79b6cb358e
-  position: {x: 34, y: 523}
+  position: {x: 33.99998, y: 503}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -78,38 +78,9 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -9121813816973104360}
+  - {fileID: -6789884967937151623}
   - {fileID: -8149892216632681123}
---- !u!114 &-8305457244676183389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f92573731de47a4449f1c4eb9210c101, type: 3}
-  m_Name: GatilingActionNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 3f6429254ee0ab34bb16fa058efe5b00
-  position: {x: 285.32935, y: 1366.9998}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  bulletPrefab: {fileID: 6519272339437649605, guid: cd6c9962db9d58b42b351e01d640131f,
-    type: 3}
-  maxBulletCnt: 300
-  rotationSpeed: 30
-  fireRate: 30
-  headRotationSpeed: 20
-  rebound: 5
-  autoDestroyTime: 20
+  - {fileID: 7237907964407477179}
 --- !u!114 &-8149892216632681123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +96,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0ad5dd1d47386674c817af05efa69579
-  position: {x: -502.06387, y: 687}
+<<<<<<< HEAD
+  position: {x: 33.999935, y: 687}
+=======
+  position: {x: -17.13699, y: 669.11395}
+>>>>>>> origin/geohyung02
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -136,6 +111,32 @@ MonoBehaviour:
   child: {fileID: 1210790204114747789}
   restartOnSuccess: 1
   restartOnFailure: 1
+--- !u!114 &-6789884967937151623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
+  m_Name: Repeat
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 45dc2d070a6c6e24085c7cb096217d22
+  position: {x: -228.38339, y: 692.6828}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  child: {fileID: 8001639174447310299}
+  restartOnSuccess: 1
+  restartOnFailure: 0
 --- !u!114 &-6734967783781693836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +178,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5615cef58512e1c4ea59d37e78122220
-  position: {x: 1506.0345, y: 1758.9998}
+  position: {x: 1000.9999, y: 1742.118}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -203,7 +204,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1de11659f2ab5204e821e1497e94437c
-  position: {x: 990.0001, y: 994}
+  position: {x: 521, y: 996}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -260,32 +261,6 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
---- !u!114 &-5494756302704093715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
-  m_Name: Sequencer
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: a756eb74085a413489a79b2ea635c858
-  position: {x: 284.3293, y: 1017.9999}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  children:
-  - {fileID: -3666812728917473473}
-  - {fileID: -1367835594263395380}
 --- !u!114 &-4676318912752695626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +302,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: eb6caf9c04c64b54489f7942cabc6832
-  position: {x: 1829.9998, y: 1380.9998}
+  position: {x: 1360.9999, y: 1366}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -354,7 +329,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4b3e099d66c31b44cab967b9f880630c
-  position: {x: 1980, y: 1516}
+  position: {x: 1510.9999, y: 1501}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -371,32 +346,6 @@ MonoBehaviour:
   autoDestroyTime: 20
   changeFormDistnacec: 300
   patternFinishTime: 10
---- !u!114 &-4026051781191520773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
-  m_Name: Repeat
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 4a6684bf5643c6f4083567f6c0d0a71e
-  position: {x: 284.3293, y: 872.9999}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  child: {fileID: -5494756302704093715}
-  restartOnSuccess: 1
-  restartOnFailure: 1
 --- !u!114 &-3961328576919720251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +361,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 484b985cd8bb3ac4e907781fa776e27e
-  position: {x: 536, y: 1759}
+  position: {x: 30.99997, y: 1742.118}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -437,7 +386,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c93426dfd7354f647be0f003a736e075
-  position: {x: 719.03467, y: 1378.9999}
+  position: {x: 250, y: 1363}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -449,6 +398,30 @@ MonoBehaviour:
   - {fileID: 749988045687392448}
   - {fileID: -9063385047689049670}
   - {fileID: 8618335190615036909}
+--- !u!114 &-3861827843738718091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5134d9de14153468b48928d3e7359a, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 223a536fbd9c3df49b5d6a9d94aa6d7e
+  position: {x: 1790.8253, y: 1026.9998}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  duration: 1
 --- !u!114 &-3764200336901690060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +437,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 41e424d5a24eac54b93aaaeda8989dc1
-  position: {x: 869.03467, y: 1758.9998}
+  position: {x: 364.00003, y: 1742.118}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -474,32 +447,6 @@ MonoBehaviour:
   drawGizmos: 0
   animTime: 3
   isWindBlow: 0
---- !u!114 &-3666812728917473473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee64948bda9e2fe4fb5ad88265395141, type: 3}
-  m_Name: RandomSelector
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 25c648d249bc6904e8fcb442a4f5d919
-  position: {x: 284.3293, y: 1146.9998}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  children:
-  - {fileID: -8305457244676183389}
-  - {fileID: 3119450158616902581}
 --- !u!114 &-3387968954581324278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +462,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2acd9e82240a0a6449e2d3c86099872f
-  position: {x: 989.9998, y: 1236}
+  position: {x: 521, y: 1220}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -541,7 +488,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c5e047faa5ebd2d4db53482a7bcae293
-  position: {x: 989.99994, y: 872.9999}
+  position: {x: 521, y: 857}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -567,7 +514,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: eb8c0b277d54b7646937fd1a16e932a4
-  position: {x: -167.46004, y: 1002.92255}
+<<<<<<< HEAD
+  position: {x: 33.999958, y: 995.9165}
+=======
+  position: {x: -481.9624, y: 1006.996}
+>>>>>>> origin/geohyung02
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -576,6 +527,37 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   duration: 15
+--- !u!114 &-2696702807830603075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7f74c4913265a45a4eb947fa142af0, type: 3}
+  m_Name: LaunchMissileSelectorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e526b4cc0e8575246bab0e11f1d80584
+<<<<<<< HEAD
+  position: {x: -131.00008, y: 995.9165}
+=======
+  position: {x: 38.837475, y: 1009.396}
+>>>>>>> origin/geohyung02
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 6670595513324080788}
+  groupMissileRatio: 0.7
+  curGroupMissileRatio: 0.7
 --- !u!114 &-1653398103952708185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,7 +573,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 67e12d99acb41a744b261a2cd66c9e33
-  position: {x: 695, y: 1759}
+  position: {x: 189.99998, y: 1742.118}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -602,30 +584,6 @@ MonoBehaviour:
   totalDuration: 5
   windCylinderPrefab: {fileID: 1588479054048128854, guid: abf35202cf216d541a24cdafbc612265,
     type: 3}
---- !u!114 &-1367835594263395380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a5134d9de14153468b48928d3e7359a, type: 3}
-  m_Name: Wait
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 291726a124614a146bdb5181b305aa6d
-  position: {x: 451.32928, y: 1146.9998}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  duration: 5
 --- !u!114 &-206360181406563844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,11 +634,7 @@ MonoBehaviour:
   children:
   - {fileID: -8784311841378576911}
   - {fileID: -6734967783781693836}
-<<<<<<< HEAD
---- !u!114 &-148561462514814858
-=======
 --- !u!114 &-177025576078817775
->>>>>>> origin/geohyung02
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -689,22 +643,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 4d7f74c4913265a45a4eb947fa142af0, type: 3}
-  m_Name: LaunchMissileSelectorNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 5b8e13fd6497f344ca33b18bf090827f
-  position: {x: -369, y: 1011}
-=======
   m_Script: {fileID: 11500000, guid: a935efe2abc5bcc4192b5d8faf9a0a1a, type: 3}
   m_Name: CannonRainActionNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
   guid: e058ee7a701487543bbba7f289e12f91
-  position: {x: 1.5825139, y: 1005.6626}
+<<<<<<< HEAD
+  position: {x: 183.99997, y: 995.9165}
+=======
+  position: {x: -314.12244, y: 1008.27747}
 >>>>>>> origin/geohyung02
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -713,22 +661,16 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-<<<<<<< HEAD
-  children: []
-  groupMissileRatio: 0.7
-  curGroupMissileRatio: 0.7
-=======
   bossOffSet: 120
   mapRadious: {x: 2000, y: 2000}
   attackMinHeight: 50000
   attackMaxHeight: 150000
-  cannonBallCnt: 50
+  cannonBallCnt: 25
   cannonBallPrefab: {fileID: 8582983355367289449, guid: 8fe2ba31306cd094b80f92e68b37bb36,
     type: 3}
   cannonBallSpeed: 5000
   attackAreaPrefab: {fileID: 9014645002717474501, guid: 3aa6b741342f001459c4ff4187343e3d,
     type: 3}
->>>>>>> origin/geohyung02
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,13 +698,7 @@ MonoBehaviour:
   - {fileID: 1210790204114747789}
   - {fileID: 2738026427128793326}
   - {fileID: 7237907964407477179}
-  - {fileID: -4026051781191520773}
   - {fileID: -3385513496737040516}
-  - {fileID: -5494756302704093715}
-  - {fileID: -3666812728917473473}
-  - {fileID: -8305457244676183389}
-  - {fileID: 3119450158616902581}
-  - {fileID: -1367835594263395380}
   - {fileID: -6606512983389126247}
   - {fileID: 4411008589422368910}
   - {fileID: 7618470226603610064}
@@ -788,13 +724,18 @@ MonoBehaviour:
   - {fileID: -5577211489743933035}
   - {fileID: -1653398103952708185}
   - {fileID: 6670595513324080788}
-<<<<<<< HEAD
-  - {fileID: -148561462514814858}
-  - {fileID: 1307758401035877982}
-  - {fileID: 8359478510653348154}
-=======
   - {fileID: -2960110222516945772}
   - {fileID: -177025576078817775}
+  - {fileID: -2696702807830603075}
+  - {fileID: 8083542919116634970}
+<<<<<<< HEAD
+  - {fileID: 5714530205458278243}
+  - {fileID: 3920779432654200892}
+  - {fileID: -3861827843738718091}
+  - {fileID: 2781073113009357991}
+=======
+  - {fileID: 8001639174447310299}
+  - {fileID: -6789884967937151623}
 >>>>>>> origin/geohyung02
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -816,14 +757,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 50c38d1a65ba1134382ec9e6d1dd144e
-  position: {x: 509.9999, y: 1570}
+  position: {x: 41, y: 1554}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
   description: 
-  drawGizmos: 1
+  drawGizmos: 0
   range: 300
 --- !u!114 &1210790204114747789
 MonoBehaviour:
@@ -840,11 +781,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4de0973ae547a8c4a849641c3252a346
-<<<<<<< HEAD
-  position: {x: -552.0638, y: 866.00006}
-=======
-  position: {x: -52.745007, y: 857.05896}
->>>>>>> origin/geohyung02
+  position: {x: 34.000023, y: 857}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -854,44 +791,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: 2738026427128793326}
-<<<<<<< HEAD
-  - {fileID: 8359478510653348154}
---- !u!114 &1307758401035877982
-=======
-  - {fileID: 6670595513324080788}
-  - {fileID: -2960110222516945772}
-  - {fileID: -177025576078817775}
---- !u!114 &1561259895918018650
->>>>>>> origin/geohyung02
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b286711adfd99ed4c835ce21194261d4, type: 3}
-  m_Name: LaunchMissileGroupActionNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: c523b4e7dd83be34ebde1595c0774ba7
-  position: {x: -747, y: 1169}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  missilePrefab: {fileID: 6519272339437649605, guid: e0286bdea80e5df419a142192f36ac21,
-    type: 3}
-  moveAccel: 700
-  maxMoveSpeed: 500
-  rotateAccel: 0.2
-  maxRotateAccel: 3
-  autoDestroyTime: 200
+  - {fileID: -2696702807830603075}
 --- !u!114 &2016969803888250028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,7 +807,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 54b7283d7e96e994e838736c47bcbebb
-  position: {x: -952.06384, y: 806}
+<<<<<<< HEAD
+  position: {x: -438.75302, y: 792.9999}
+=======
+  position: {x: -580.77216, y: 854.2384}
+>>>>>>> origin/geohyung02
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -930,7 +834,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 33ac117dc82b85143b837fd8dcbf1b63
-  position: {x: 1322, y: 1580}
+  position: {x: 853, y: 1564}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -957,7 +861,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 82743604a5eb9e246b12a9409a71f167
-  position: {x: 1472, y: 1580}
+  position: {x: 1003, y: 1564}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -982,9 +886,9 @@ MonoBehaviour:
   started: 0
   guid: 977840c85b1671e4fae8560c66a1f535
 <<<<<<< HEAD
-  position: {x: -799.60767, y: 1011.0002}
+  position: {x: -281.0001, y: 995.9165}
 =======
-  position: {x: -535.2996, y: 1004.34247}
+  position: {x: -143.5626, y: 1010.99603}
 >>>>>>> origin/geohyung02
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -994,7 +898,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   duration: 2
---- !u!114 &3119450158616902581
+--- !u!114 &2781073113009357991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1003,13 +907,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cf64563ffbc2e4ea543f8b184dbed2, type: 3}
-  m_Name: CannonActionNode
+  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
+  m_Name: Log
   m_EditorClassIdentifier: 
   state: 0
   started: 0
+<<<<<<< HEAD
+  guid: 56580d069f0af124e93068ff9b5f18af
+  position: {x: 1963.8253, y: 1026.9998}
+=======
   guid: 212c879956fad4f418b301220c7f2d29
-  position: {x: 445.32935, y: 1366.9998}
+  position: {x: 447.61127, y: 1364.3887}
+>>>>>>> origin/geohyung02
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1017,19 +926,23 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  radious: 100
+<<<<<<< HEAD
+  message: Phase2
+=======
+  radious: 800
   bossOffSet: 120
-  mapRadious: {x: 2000, y: 2000}
-  duration: 9
-  attackMinHeight: 1000
-  attackMaxHeight: 1500
-  term: 3
-  cannonBallCnt: 80
+  mapRadious: {x: 1500, y: 1500}
+  duration: 14
+  attackMinHeight: 8000
+  attackMaxHeight: 15000
+  term: 2
+  cannonBallCnt: 150
   cannonBallPrefab: {fileID: 8582983355367289449, guid: d818c161b23da574691dde04d782eb3f,
     type: 3}
-  cannonBallSpeed: 1000
+  cannonBallSpeed: 1500
   attackAreaPrefab: {fileID: 9014645002717474501, guid: 3cf30d7655db4ab43bcf7a03c2be25b0,
     type: 3}
+>>>>>>> origin/geohyung02
 --- !u!114 &3843690250053409745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,7 +958,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6c1f494de66f6504c945205e4f7b4d63
-  position: {x: 1679.9998, y: 1515.9998}
+  position: {x: 1210.9999, y: 1501}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1081,15 +994,41 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 19dd5a3c094e56d49840556e44e64c38
-  position: {x: 1172, y: 1580}
+  position: {x: 703, y: 1564}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
   description: 
-  drawGizmos: 1
-  range: 3000
+  drawGizmos: 0
+  range: 1200
+--- !u!114 &3920779432654200892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e5669a0f646f7a34fb61839d0c44bc8f
+  position: {x: 1865.8253, y: 900.9999}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -3861827843738718091}
+  - {fileID: 2781073113009357991}
 --- !u!114 &4365113027542136525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,7 +1044,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e335242dde037ad4cb014930726676de
-  position: {x: 1065, y: 1759}
+  position: {x: 560.00006, y: 1742.118}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1131,7 +1070,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 972c3b887bbd4cc47b0fe326de45671b
-  position: {x: 1322.0347, y: 1380.9998}
+  position: {x: 853, y: 1365}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1169,9 +1108,7 @@ MonoBehaviour:
   child: {fileID: -185823795940874659}
   restartOnSuccess: 1
   restartOnFailure: 1
-<<<<<<< HEAD
-=======
---- !u!114 &4985606961724106939
+--- !u!114 &5714530205458278243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1180,13 +1117,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 029742c58c2ceff4db9a96bd3021f0f5, type: 3}
-  m_Name: LaunchMissileActionNode
+  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
+  m_Name: Repeat
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 4c762c712924e7e4f9fdbc4b5a311755
-  position: {x: -349.09503, y: 1095.18}
+  guid: c7d564bf9ed15e049a5048b2dbc5c1bf
+  position: {x: 1888.8252, y: 775.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1194,11 +1131,9 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  minSpeed: 50
-  maxSpeed: 150
-  acceleration: 200
-  autoDestroyTime: 20
->>>>>>> origin/geohyung02
+  child: {fileID: 3920779432654200892}
+  restartOnSuccess: 1
+  restartOnFailure: 1
 --- !u!114 &6670595513324080788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,9 +1150,9 @@ MonoBehaviour:
   started: 0
   guid: af63c3e958be1014799d56d076546007
 <<<<<<< HEAD
-  position: {x: -552, y: 1169}
+  position: {x: -57.500107, y: 1176.2068}
 =======
-  position: {x: -384.0996, y: 1004.34247}
+  position: {x: 20.800016, y: 1249.2323}
 >>>>>>> origin/geohyung02
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
@@ -1228,11 +1163,11 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveAccel: 60
-  maxMoveSpeed: 450
+  moveAccel: 150
+  maxMoveSpeed: 200
   rotateAccel: 0.2
   maxRotateAccel: 3
-  autoDestroyTime: 2000
+  autoDestroyTime: 200
 --- !u!114 &6915879143102228442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,7 +1183,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 84addfb7f5b157142bd01f6ba70b9c80
-  position: {x: 1829.9998, y: 1515.9998}
+  position: {x: 1360.9999, y: 1501}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1279,7 +1214,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4df984e856f46af42851164995f9bad5
-  position: {x: 511.21753, y: 687.3875}
+  position: {x: 511.00003, y: 690.04175}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1288,8 +1223,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -4026051781191520773}
   - {fileID: -3385513496737040516}
+  - {fileID: 5714530205458278243}
 --- !u!114 &7618470226603610064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1305,7 +1240,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: cc5ae9abc2b7f664987e3e2cfb47be60
-  position: {x: 1830.0002, y: 1236}
+  position: {x: 1361, y: 1220}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1316,6 +1251,67 @@ MonoBehaviour:
   children:
   - {fileID: -4531776300853278649}
   - {fileID: 8756652752874628124}
+--- !u!114 &8001639174447310299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: db43a344593cb5f4991217841bb0267f
+  position: {x: -301.30185, y: 854.5491}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -2960110222516945772}
+  - {fileID: -177025576078817775}
+--- !u!114 &8083542919116634970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b286711adfd99ed4c835ce21194261d4, type: 3}
+  m_Name: LaunchMissileGroupActionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 99f2d88d4b702194c8809794671f48ba
+<<<<<<< HEAD
+  position: {x: -252, y: 1176}
+=======
+  position: {x: -175.61134, y: 1240.7998}
+>>>>>>> origin/geohyung02
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  missilePrefab: {fileID: 6519272339437649605, guid: e0286bdea80e5df419a142192f36ac21,
+    type: 3}
+  moveAccel: 150
+  maxMoveSpeed: 200
+  rotateAccel: 0.2
+  maxRotateAccel: 3
+  autoDestroyTime: 200
+  spawnRate: 0.5
 --- !u!114 &8266297438010400843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,7 +1327,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 589a5d3feddbe9146bcd95a9734120d9
-  position: {x: 1287.0345, y: 1758.9998}
+  position: {x: 781.9999, y: 1742.118}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1342,35 +1338,10 @@ MonoBehaviour:
   maxRotSpeed: 15
   rotationLimitAngle: -20
   rotationAccel: 5
-  attackRange: 2500
+  attackRange: 400
   shakeBodyTag: ShakeBodyCollider
   effectTornado: {fileID: 6185979661563687016, guid: 74b7b164fd9c7a64c900280d76948ba0,
     type: 3}
---- !u!114 &8359478510653348154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
-  m_Name: Selector
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: f89e67904478120439cae9865e457ad6
-  position: {x: -552, y: 1001}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  children:
-  - {fileID: 6670595513324080788}
 --- !u!114 &8618335190615036909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1386,7 +1357,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 51a5755b15126724c8d377cd59ba51b3
-  position: {x: 870.0001, y: 1570.0001}
+  position: {x: 401, y: 1554}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1410,7 +1381,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3af9c4a51ae432b4e9c7c4df56cfafa3
-  position: {x: 1979.9998, y: 1380.9998}
+  position: {x: 1511, y: 1365}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0

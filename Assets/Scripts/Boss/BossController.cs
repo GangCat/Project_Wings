@@ -14,12 +14,13 @@ public class BossController : MonoBehaviour
         statHp = GetComponent<BossStatusHp>();
         shield = GetComponentInChildren<BossShield>();
         timeBombPatternCtrl = GetComponentInChildren<TimeBombPatternController>();
+        bossRb = GetComponent<Rigidbody>();
 
         animCtrl.Init();
         bossCollider.Init();
         statHp.Init(StartPhaseChange);
         shield.Init();
-        timeBombPatternCtrl.Init(FinishPhaseChange);
+        timeBombPatternCtrl.Init(FinishPhaseChange, () => { isBossStartRotation = true; });
 
         myRunner = GetComponent<BehaviourTreeRunner>();
         myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
@@ -30,6 +31,7 @@ public class BossController : MonoBehaviour
         InitNewWeakPoint();
 
         cameraActionCallback = _cameraActionCallback;
+        playerTr = _playerTr;
         //myRunner.FinishCurrentPhase();
         //StartPhaseChange();
 
@@ -56,6 +58,9 @@ public class BossController : MonoBehaviour
     {
         while (true)
         {
+            if (isBossStartRotation)
+                RotateToTarget();
+
             myRunner.RunnerUpdate();
             if (!IsWeakPointRemain() && !isChangingPhase)
             {
@@ -66,6 +71,20 @@ public class BossController : MonoBehaviour
         }
     }
 
+    private void RotateToTarget()
+    {
+        //bossRb.MoveRotation(bossRb.rotation * Quaternion.Euler(Vector3.up * rotationSpeed * Mathf.Deg2Rad));
+        if (playerTr != null)
+        {
+            Vector3 playerDirection = new Vector3(playerTr.position.x - transform.position.x, transform.position.y, playerTr.position.z - transform.position.z);
+            Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
+            Debug.DrawRay(transform.position, playerDirection * 1000f, Color.red);
+
+            // 부드럽게 회전하기 위해 Lerp 사용
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+    }
+
     private void StartPhaseChange()
     {
         isChangingPhase = true;
@@ -73,7 +92,10 @@ public class BossController : MonoBehaviour
 
         // 패턴 시작
         if(curPhaseNum == 1)
+        {
+
             timeBombPatternCtrl.StartPattern();
+        }
 
         // 연출 시작
 
@@ -83,8 +105,9 @@ public class BossController : MonoBehaviour
     public void FinishPhaseChange()
     {
         // 연출 종료시 호출
-        if (curPhaseNum < 3)
+        if (curPhaseNum < 3 && isChangingPhase)
         {
+            isBossStartRotation = false;
             ++curPhaseNum;
             InitNewWeakPoint();
             myRunner.StartNextPhase(curPhaseNum);
@@ -107,7 +130,7 @@ public class BossController : MonoBehaviour
                 firstShieldGeneratorSpawnPointHolder.Init();
                 foreach (BossShieldGeneratorSpawnPoint wp in firstShieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
                 {
-                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
+                    curWeakPoint.Add(Instantiate(bossShieldGeneratorPrefab, wp.GetPos(), Quaternion.identity));
                 }
                 break;
             case 2:
@@ -115,11 +138,11 @@ public class BossController : MonoBehaviour
                 foreach (BossShieldGeneratorSpawnPoint wp in secondShieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
                 {
                     wp.Init();
-                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
+                    curWeakPoint.Add(Instantiate(bossShieldGeneratorPrefab, wp.GetPos(), Quaternion.identity));
                 }
                 break;
             case 3:
-                curWeakPoint.Add(Instantiate(bossWeakPointPrefab, thirdShieldGeneratorSpawnPoint.GetPos(), Quaternion.identity, thirdShieldGeneratorSpawnPoint.transform));
+                curWeakPoint.Add(Instantiate(bossShieldGeneratorPrefab, thirdShieldGeneratorSpawnPoint.GetPos(), Quaternion.identity, thirdShieldGeneratorSpawnPoint.transform));
                 break;
             default:
                 break;
@@ -138,14 +161,13 @@ public class BossController : MonoBehaviour
         curWeakPoint.Remove(_go);
     }
 
+    [Header("-InformationForContext")]
     [SerializeField]
     private BossShieldGeneratorSpawnPointHolder firstShieldGeneratorSpawnPointHolder = null;
     [SerializeField]
     private BossShieldGeneratorSpawnPointHolder secondShieldGeneratorSpawnPointHolder = null;
     [SerializeField]
     private BossShieldGeneratorSpawnPoint thirdShieldGeneratorSpawnPoint = null;
-    [SerializeField]
-    private GameObject bossWeakPointPrefab = null;
     [SerializeField]
     private GameObject gatlingHolderGo = null;
     [SerializeField]
@@ -159,12 +181,19 @@ public class BossController : MonoBehaviour
     [SerializeField]
     private GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos = null;
 
+    [Header("-InformationForBossController")]
+    [SerializeField]
+    private GameObject bossShieldGeneratorPrefab = null;
+    [SerializeField]
+    private float rotationSpeed = 20f;
 
+    private Transform playerTr = null;
     private BossCollider bossCollider = null;
     private List<GameObject> curWeakPoint = null;
     private BehaviourTreeRunner myRunner = null;
     private int curPhaseNum = 0;
     private bool isChangingPhase = false;
+    private Rigidbody bossRb = null;
 
     private WaitForFixedUpdate waitFixedUpdate = null;
     private BossAnimationController animCtrl = null;
@@ -172,4 +201,6 @@ public class BossController : MonoBehaviour
     private BossStatusHp statHp = null;
     private BossShield shield = null;
     private TimeBombPatternController timeBombPatternCtrl = null;
+
+    private bool isBossStartRotation = false;
 }

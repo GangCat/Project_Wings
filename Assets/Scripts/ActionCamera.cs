@@ -20,8 +20,8 @@ public class ActionCamera : MonoBehaviour
             cam.enabled = true;
             anim.SetTrigger($"Phase{_curPhaseNum}");
         }
-        else
-            Invoke("FinishAction",1f);
+        //else
+        //    Invoke("FinishAction",1f);
     }
 
     private void FinishAction()
