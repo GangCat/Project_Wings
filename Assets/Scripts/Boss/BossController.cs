@@ -72,7 +72,8 @@ public class BossController : MonoBehaviour
         cameraActionCallback?.Invoke(curPhaseNum);
 
         // 패턴 시작
-        timeBombPatternCtrl.StartPattern();
+        if(curPhaseNum == 1)
+            timeBombPatternCtrl.StartPattern();
 
         // 연출 시작
 
@@ -86,8 +87,8 @@ public class BossController : MonoBehaviour
         {
             ++curPhaseNum;
             InitNewWeakPoint();
-            isChangingPhase = false;
             myRunner.StartNextPhase(curPhaseNum);
+            isChangingPhase = false;
         }
     }
 

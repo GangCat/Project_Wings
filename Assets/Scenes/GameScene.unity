@@ -6629,7 +6629,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602a4efa876136e4a95c24491bdf96d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrShieldGeneratorSpawnPoints: []
+  arrShieldGeneratorSpawnPoints:
+  - {fileID: 1326640377}
+  - {fileID: 2032668267}
+  - {fileID: 2007005526}
+  - {fileID: 712522044}
 --- !u!1 &1039127747
 GameObject:
   m_ObjectHideFlags: 0
