@@ -37,14 +37,20 @@ public class PlayerMovementController : MonoBehaviour
 
     public void CalcPlayerMove(float _inputZ, bool _inputShift)
     {
-        if (playerData.isAction == true || isDodge == true || isFrontMove == false)
+        if (playerData.isAction == true || isDodge == true)
         {
+            playerVelocity = moveSpeed * playerTr.forward;
+            return;
+        } else if (isFrontMove == false)
+        {
+            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
             playerVelocity = moveSpeed * playerTr.forward;
             return;
         }
         
         if (_inputZ != 0f)
         {
+
             playerData.isDash = isDash;
             moveAccelResult = isDash ? moveAccel + moveDashAccel : moveAccel;
             moveDashSpeed = isDash ? playerData.moveDashSpeed : 0f;
@@ -65,7 +71,6 @@ public class PlayerMovementController : MonoBehaviour
                     gravitySpeed = 0;
                 }
             }
-
             moveSpeed += (moveAccelResult + gravityAccel) * Time.deltaTime * _inputZ;
         }
         else if (moveSpeed > 0f && _inputZ < 0f)
@@ -74,26 +79,26 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveStopAccel * Time.deltaTime);
-            isDash = false;
-        }
-
-        resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed) * dodgeSpeedRatio;
-        
-        if (_inputZ > 0f)
-        {
-            if(resultForwardVelocityLimit > currentForwardVelocityLimit)
-            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f* moveAccelResult * Time.deltaTime);
-            else
-            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.1f * Time.deltaTime);
-        }
-        else
-        {
-            currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f * moveAccelResult * Time.deltaTime);
+            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
         }
         
+        addVelocity = Mathf.Lerp(addVelocity, moveDashSpeed + gravitySpeed, Time.deltaTime);
+        resultForwardVelocityLimit = (moveForwardVelocityLimit + addVelocity);
+        
+        //if (_inputZ > 0f)
+        //{
+        //    if(resultForwardVelocityLimit > currentForwardVelocityLimit)
+        //    currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f* moveAccelResult * Time.deltaTime);
+        //    else
+        //    currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.1f * Time.deltaTime);
+        //}
+        //else
+        //{
+        //    currentForwardVelocityLimit = Mathf.Lerp(currentForwardVelocityLimit, resultForwardVelocityLimit, 0.5f * moveAccelResult * Time.deltaTime);
+        //}
+        
 
-        moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, currentForwardVelocityLimit);
+        moveSpeed = Mathf.Clamp(moveSpeed, moveBackVelocityLimit, resultForwardVelocityLimit);
 
         if (!isKnockBack)
             playerVelocity = moveSpeed * playerTr.forward;
@@ -108,7 +113,7 @@ public class PlayerMovementController : MonoBehaviour
                 CollisionCrash();
             }
 
-            calcMoveSpeed = currentForwardVelocityLimit * Mathf.Clamp01((1 - angle / 170));
+            calcMoveSpeed = resultForwardVelocityLimit * Mathf.Clamp01((1 - angle / 170));
             moveSpeed = Mathf.Lerp(moveSpeed, calcMoveSpeed, moveAccel * Time.deltaTime);
             //Debug.Log(moveSpeed);
 
@@ -184,34 +189,45 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerDodge(bool _inputQ, bool _inputE)
     {
-        if (_inputQ == true && isDodge == false)
+        if (isDodge == false)
         {
-            Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
-            isDodge = true;
-            StartCoroutine(DecreaseSpeed(SkyAclTime));
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
-        }
 
-        if (_inputE == true && isDodge == false)
-        {
-            Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
-            isDodge = true;
-            StartCoroutine(DecreaseSpeed(SkyAclTime));
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
-        }
+            if (_inputQ == true)
+            {
+                Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
+                isDodge = true;
+                playerData.isAction = true;
+                StartCoroutine(DecreaseSpeed(SkyAclTime));
+                StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isDodge == false)
-        {
-            Vector3 forwardUp = Vector3.up;
-            isDodge = true;
-            StartCoroutine(DecreaseSpeed(SkyAclTime));
-            StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardUp));
+            if (_inputE == true)
+            {
+                Vector3 forwardRight = Vector3.Cross(playerTr.forward, Vector3.down);
+                isDodge = true;
+                playerData.isAction = true;
+                StartCoroutine(DecreaseSpeed(SkyAclTime));
+                StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Vector3 forwardUp = Vector3.up;
+                isDodge = true;
+                playerData.isAction = true;
+                StartCoroutine(DecreaseSpeed(SkyAclTime));
+                //SetVelocityOverTime(playerData.dodgeSpeed, dodgeDuration, forwardUp);
+                StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardUp));
+            }
         }
+        else
+            playerData.isAction = false;
 
     }
+
     private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
-        Vector3 direction = _dir.normalized; // 방향 벡터 정규화
+        Vector3 direction = _dir.normalized;
         float distance = speed * duration;
         float elapsedTime = 0f;
 
@@ -222,10 +238,7 @@ public class PlayerMovementController : MonoBehaviour
         while (elapsedTime < duration)
         {
             
-            // 이동 속도를 조절하는 보간 값 계산
             float t = Mathf.SmoothStep(0f, 1f, elapsedTime / duration);
-
-            // 현재 위치와 목표 위치 사이를 보간
             Vector3 new_pos = Vector3.Lerp(initialPosition, targetPosition, t);
 
             RaycastHit hit;
@@ -238,9 +251,25 @@ public class PlayerMovementController : MonoBehaviour
             rb.MovePosition(new_pos);
 
             elapsedTime += Time.fixedDeltaTime;
-            yield return waitFixedUpdate; // 다음 FixedUpdate까지 대기
+            yield return waitFixedUpdate; 
         }
 
+        isDodge = false;
+    }
+
+    private IEnumerator SetVelocityOverTime(float speed, float duration, Vector3 _dir)
+    {
+        float initMoveSpeed = moveSpeed;
+        float timeElapsed = 0f;
+        yield return new WaitForSeconds(SkyAclTime);
+
+        while (timeElapsed < duration)
+        {
+            moveSpeed = Mathf.Lerp(initMoveSpeed, speed, timeElapsed/duration);
+            playerVelocity = _dir * moveSpeed;
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
         isDodge = false;
     }
 
@@ -259,14 +288,15 @@ public class PlayerMovementController : MonoBehaviour
         CameraMovement cam = Camera.main.GetComponent<CameraMovement>();
         float offset = cam.offset;
         cameraMinSpeed = playerData.moveForwardVelocityLimit;
-        cameraMaxSpeed = playerData.moveForwardVelocityLimit + playerData.moveDashSpeed;
+        cameraMaxSpeed = playerData.moveForwardVelocityLimit + playerData.moveDashSpeed + playerData.gravitySpeed;
+        float lerpSpeedRatio = 0f;
         while (true)
         {
             float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed);
-            //Debug.Log(speedRatio);
-            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
+            lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, fovLerpRate);
+            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, lerpSpeedRatio);
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
-            float targetOffset = Mathf.Lerp(10, 6, speedRatio);
+            float targetOffset = Mathf.Lerp(10, 3, lerpSpeedRatio);
             cam.offset = Mathf.Lerp(cam.offset, targetOffset, fovLerpRate);
             yield return waitFixedUpdate;
         }
@@ -294,7 +324,7 @@ public class PlayerMovementController : MonoBehaviour
 
             if (playerData.input.InputZ != 0 && !isFrontMove)
             {
-                yield return new WaitForSeconds(SkyAclTime);
+                yield return null;
                 isFrontMove = true;
             }
 
@@ -305,6 +335,7 @@ public class PlayerMovementController : MonoBehaviour
             yield return null;
         }
     }
+
     private IEnumerator DashCheker()
     {
         while (true)
@@ -330,6 +361,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private float moveBackVelocityLimit = 0f;
     private float moveForwardVelocityLimit = 0f;
+    private float addVelocity = 0f;
     private float resultForwardVelocityLimit = 0f;
     private float currentForwardVelocityLimit = 0f;
 
@@ -345,7 +377,6 @@ public class PlayerMovementController : MonoBehaviour
     private float moveStopAccel = 0f;
     private float moveAccelResult = 0f;
 
-    private float dodgeSpeedRatio = 1f;
     private float SkyAclTime = 0.3f;
 
 
@@ -371,6 +402,6 @@ public class PlayerMovementController : MonoBehaviour
     private float cameraMinSpeed = 80f;
     private float cameraMaxSpeed = 120f;
     private float cameraminFOV = 70f;
-    private float cameramaxFOV = 100f;
+    private float cameramaxFOV = 90f;
 
 }

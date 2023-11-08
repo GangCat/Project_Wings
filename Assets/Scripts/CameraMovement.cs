@@ -66,6 +66,7 @@ public class CameraMovement : MonoBehaviour
         float smoothedPosX = Mathf.Lerp(transform.position.x, calcPos.x, posSmoothX * Time.deltaTime);
         float smoothedPosY = Mathf.Lerp(transform.position.y, calcPos.y, posSmoothY * Time.deltaTime);
         float smoothedPosZ = Mathf.Lerp(transform.position.z, calcPos.z, posSmoothZ * Time.deltaTime);
+     //   cameraPos = calcPos;
         cameraPos = new Vector3(smoothedPosX, smoothedPosY, smoothedPosZ);
     }
 
@@ -87,6 +88,7 @@ public class CameraMovement : MonoBehaviour
         float zRot = Mathf.SmoothDampAngle(currentRotation.z, desiredRotation.z, ref rotVectorVelocity.z, rotSmoothZ * Time.deltaTime);
 
         quaternion = Quaternion.Euler(new Vector3(xRot, yRot, zRot));
+
     }
 
     private bool CameraRay() // 장애물 카메라에 걸리면 당겨지게 하는건데 레이어 설정이 안되있어서 이상함 추후 수정.

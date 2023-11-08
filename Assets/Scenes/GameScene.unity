@@ -9798,9 +9798,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pitchMinMax: {x: -40, y: 85}
-  posSmoothX: 20
+  posSmoothX: 100
   posSmoothY: 100
-  posSmoothZ: 20
+  posSmoothZ: 100
   rotSmoothX: 0.1
   rotSmoothY: 0.05
   rotSmoothZ: 0.1
