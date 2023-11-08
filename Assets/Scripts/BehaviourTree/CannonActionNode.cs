@@ -48,14 +48,14 @@ public class CannonActionNode : ActionNode
         if (rnd1.x < 0) mapRadious.x *= -1;
         if (rnd1.y < 0) mapRadious.y *= -1;
 
-        rndAttackPos = new Vector3(Random.Range(rnd1.x * bossOffSet, mapRadious.x), 0, Random.Range(rnd1.y * bossOffSet , mapRadious.y)); //00나중에 예외처리 추후 duration이랑 term차이 확인, running을 반환하지 않으면?
+        rndAttackPos = new Vector3(Random.Range(rnd1.x * bossOffSet, mapRadious.x),0 , Random.Range(rnd1.y * bossOffSet , mapRadious.y)); //00나중에 예외처리 추후 duration이랑 term차이 확인, running을 반환하지 않으면?
 
 
         if (Time.time - startTime <= duration)
         {
             if (Time.time - lastAttackTime > term)
             {
-                Destroy(Instantiate(attackAreaPrefab, rndAttackPos, Quaternion.identity),3f);
+                Destroy(Instantiate(attackAreaPrefab, new Vector3(rndAttackPos.x,rndAttackPos.y + attackMinHeight,rndAttackPos.z), Quaternion.identity), 10f);
                 for (int i=0; i < cannonBallCnt; ++i)
                 {
                     Vector2 rnd2 = Random.insideUnitCircle * radious;
