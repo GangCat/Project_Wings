@@ -19,8 +19,6 @@ public class PlayerMovementController : MonoBehaviour
         moveDashAccel = playerData.moveDashAccel;
         moveStopAccel = playerData.moveStopAccel;
 
-        oriCamParent = cam.transform.parent;
-
 
         StartCoroutine(ChangeFOV());
         StartCoroutine(FrontMoveCheker());
@@ -84,9 +82,8 @@ public class PlayerMovementController : MonoBehaviour
             moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
         }
         
-        addVelocity = Mathf.Lerp(addVelocity, moveDashSpeed + gravitySpeed, 0.1F);
+        addVelocity = Mathf.Lerp(addVelocity, moveDashSpeed + gravitySpeed, Time.deltaTime);
         resultForwardVelocityLimit = (moveForwardVelocityLimit + addVelocity);
-        //resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed);
         
         //if (_inputZ > 0f)
         //{
@@ -194,6 +191,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (isDodge == false)
         {
+
             if (_inputQ == true)
             {
                 Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
@@ -229,8 +227,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
-        cam.transform.parent = transform;
-
         Vector3 direction = _dir.normalized;
         float distance = speed * duration;
         float elapsedTime = 0f;
@@ -257,7 +253,7 @@ public class PlayerMovementController : MonoBehaviour
             elapsedTime += Time.fixedDeltaTime;
             yield return waitFixedUpdate; 
         }
-        cam.transform.parent = oriCamParent;
+
         isDodge = false;
     }
 
@@ -297,8 +293,13 @@ public class PlayerMovementController : MonoBehaviour
         while (true)
         {
             float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed);
+<<<<<<< HEAD
+            //Debug.Log(speedRatio);
+            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
+=======
             lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, fovLerpRate);
             targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, lerpSpeedRatio);
+>>>>>>> origin/PB
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
             float targetOffset = Mathf.Lerp(10, 3, lerpSpeedRatio);
             cam.offset = Mathf.Lerp(cam.offset, targetOffset, fovLerpRate);
@@ -397,13 +398,6 @@ public class PlayerMovementController : MonoBehaviour
     private float dodgeDuration = 1f;
     [SerializeField]
     private float knockBackDelay = 5f;
-
-
-    [SerializeField]
-    private GameObject cam = null;
-
-    private Transform oriCamParent = null;
-
 
     private Transform playerTr = null;
     private PlayerData playerData = null;

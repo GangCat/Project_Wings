@@ -16,7 +16,7 @@ public class LaunchMissileSelectorNode : CompositeNode
     }
 
     protected override void OnStop() {
-        if (rndNum < groupMissileRatio * 100)
+        if (rndNum < curGroupMissileRatio * 100)
             curGroupMissileRatio -= 0.1f;
         else
             curGroupMissileRatio = groupMissileRatio;

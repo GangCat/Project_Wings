@@ -64,7 +64,7 @@ public class GiantHomingMissileController : AttackableObject
         // 라디안을 도 단위로 변환합니다.
         //float angleInDegrees = Mathf.Rad2Deg * angleInRadians;
 
-        //moveSpeed *= (mappedValue * 0.3f + 0.7f);
+        //moveSpeed *= (mappedValue * 0.5f + 0.5f);
 
         transform.position += transform.forward * moveSpeed * Time.fixedDeltaTime;
     }
@@ -86,23 +86,23 @@ public class GiantHomingMissileController : AttackableObject
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (isFirstTrigger && _other.CompareTag("Boss"))
-            return;
-
         if (_other.CompareTag("Obstacle"))
             Destroy(gameObject);
         else if (_other.CompareTag("Floor"))
             Destroy(gameObject);
-        else if (AttackDmg(_other))
-        {
-            if (isFirstTrigger)
-            {
-                isFirstTrigger = false;
-                return;
-            }
+        else if (isFirstTrigger)
+            return;
 
+        if (AttackDmg(_other))
+        {
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("BossShield"))
+            isFirstTrigger = false;
     }
 
 

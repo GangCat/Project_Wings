@@ -66,8 +66,8 @@ public class CameraMovement : MonoBehaviour
         float smoothedPosX = Mathf.Lerp(transform.position.x, calcPos.x, posSmoothX * Time.deltaTime);
         float smoothedPosY = Mathf.Lerp(transform.position.y, calcPos.y, posSmoothY * Time.deltaTime);
         float smoothedPosZ = Mathf.Lerp(transform.position.z, calcPos.z, posSmoothZ * Time.deltaTime);
-     //   cameraPos = calcPos;
-        cameraPos = new Vector3(smoothedPosX, smoothedPosY, smoothedPosZ);
+        cameraPos = calcPos;
+        //cameraPos = new Vector3(smoothedPosX, smoothedPosY, smoothedPosZ);
     }
 
     private void FollowPlayerPos(Vector3 _playerPos)

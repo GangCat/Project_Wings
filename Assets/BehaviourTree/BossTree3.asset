@@ -79,7 +79,6 @@ MonoBehaviour:
   children:
   - {fileID: -9121813816973104360}
   - {fileID: -8149892216632681123}
-  - {fileID: 7237907964407477179}
 --- !u!114 &-8305457244676183389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,30 +136,6 @@ MonoBehaviour:
   child: {fileID: 1210790204114747789}
   restartOnSuccess: 1
   restartOnFailure: 1
---- !u!114 &-6807460380424380840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9e411f4095d0a44acd9a25323f5e73, type: 3}
-  m_Name: Log
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: cd4d4ef94d87ecc41a76163bee6b8593
-  position: {x: 1755.0001, y: 960.9999}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  message: 
 --- !u!114 &-6734967783781693836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,7 +667,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5b8e13fd6497f344ca33b18bf090827f
-  position: {x: -552, y: 987}
+  position: {x: -369, y: 1011}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -700,9 +675,7 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  children:
-  - {fileID: 1307758401035877982}
-  - {fileID: 6670595513324080788}
+  children: []
   groupMissileRatio: 0.7
   curGroupMissileRatio: 0.7
 --- !u!114 &11400000
@@ -734,7 +707,6 @@ MonoBehaviour:
   - {fileID: 7237907964407477179}
   - {fileID: -4026051781191520773}
   - {fileID: -3385513496737040516}
-  - {fileID: 1561259895918018650}
   - {fileID: -5494756302704093715}
   - {fileID: -3666812728917473473}
   - {fileID: -8305457244676183389}
@@ -754,7 +726,6 @@ MonoBehaviour:
   - {fileID: 3843690250053409745}
   - {fileID: 6915879143102228442}
   - {fileID: -4054882901305631100}
-  - {fileID: -6807460380424380840}
   - {fileID: -3920158228874092110}
   - {fileID: -3961328576919720251}
   - {fileID: -3764200336901690060}
@@ -768,6 +739,7 @@ MonoBehaviour:
   - {fileID: 6670595513324080788}
   - {fileID: -148561462514814858}
   - {fileID: 1307758401035877982}
+  - {fileID: 8359478510653348154}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -822,7 +794,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: 2738026427128793326}
-  - {fileID: -148561462514814858}
+  - {fileID: 8359478510653348154}
 --- !u!114 &1307758401035877982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,37 +820,11 @@ MonoBehaviour:
   drawGizmos: 0
   missilePrefab: {fileID: 6519272339437649605, guid: e0286bdea80e5df419a142192f36ac21,
     type: 3}
-  moveAccel: 400
-  maxMoveSpeed: 300
+  moveAccel: 700
+  maxMoveSpeed: 500
   rotateAccel: 0.2
-  maxRotateAccel: 1
+  maxRotateAccel: 3
   autoDestroyTime: 200
---- !u!114 &1561259895918018650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
-  m_Name: Repeat
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: baea527c6b00a1645998c3dfd869c1e7
-  position: {x: 1754.9999, y: 832.9999}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-  description: 
-  drawGizmos: 0
-  child: {fileID: -6807460380424380840}
-  restartOnSuccess: 1
-  restartOnFailure: 1
 --- !u!114 &2016969803888250028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,8 +1119,8 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveAccel: 400
-  maxMoveSpeed: 300
+  moveAccel: 800
+  maxMoveSpeed: 700
   rotateAccel: 0.2
   maxRotateAccel: 1
   autoDestroyTime: 2000
@@ -1235,7 +1181,6 @@ MonoBehaviour:
   children:
   - {fileID: -4026051781191520773}
   - {fileID: -3385513496737040516}
-  - {fileID: 1561259895918018650}
 --- !u!114 &7618470226603610064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1292,6 +1237,31 @@ MonoBehaviour:
   shakeBodyTag: ShakeBodyCollider
   effectTornado: {fileID: 6185979661563687016, guid: 74b7b164fd9c7a64c900280d76948ba0,
     type: 3}
+--- !u!114 &8359478510653348154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f89e67904478120439cae9865e457ad6
+  position: {x: -552, y: 1001}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 6670595513324080788}
 --- !u!114 &8618335190615036909
 MonoBehaviour:
   m_ObjectHideFlags: 0

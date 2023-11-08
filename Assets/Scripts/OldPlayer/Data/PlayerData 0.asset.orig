@@ -18,7 +18,11 @@ MonoBehaviour:
   stamina: 100
   moveBackVelocityLimit: -20
   moveForwardVelocityLimit: 300
-  moveAccel: 600
+<<<<<<< HEAD
+  moveAccel: 400
+=======
+  moveAccel: 1000
+>>>>>>> origin/PB
   moveDashSpeed: 60
   moveDashAccel: 100
   moveStopAccel: 40
@@ -27,8 +31,8 @@ MonoBehaviour:
   isDash: 0
   isCrash: 0
   isAction: 0
-  dodgeSpeed: 200
-  dodgeDuration: 8
+  dodgeSpeed: 500
+  dodgeDuration: 0.3
   rotCamSpeed: 75
   rotCamXAxisSensitive: 2
   rotCamYAxisSensitive: 1.5
@@ -46,4 +50,8 @@ MonoBehaviour:
   rollMaxAngle: 80
   rollReturnAccel: 100
   currentRotZ: 0
+<<<<<<< HEAD
+  currentMoveSpeed: 204.0337
+=======
   currentMoveSpeed: 0
+>>>>>>> origin/PB
