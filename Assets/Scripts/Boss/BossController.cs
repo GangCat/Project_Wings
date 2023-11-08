@@ -100,7 +100,7 @@ public class BossController : MonoBehaviour
                 firstShieldGeneratorSpawnPointHolder.Init();
                 foreach (BossShieldGeneratorSpawnPoint wp in firstShieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
                 {
-                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity, wp.transform));
+                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
                 }
                 break;
             case 2:
@@ -108,7 +108,7 @@ public class BossController : MonoBehaviour
                 foreach (BossShieldGeneratorSpawnPoint wp in secondShieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
                 {
                     wp.Init();
-                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity, wp.transform));
+                    curWeakPoint.Add(Instantiate(bossWeakPointPrefab, wp.GetPos(), Quaternion.identity));
                 }
                 break;
             case 3:
@@ -116,6 +116,8 @@ public class BossController : MonoBehaviour
                 break;
             default:
                 break;
+
+
         }
 
         foreach (GameObject go in curWeakPoint)

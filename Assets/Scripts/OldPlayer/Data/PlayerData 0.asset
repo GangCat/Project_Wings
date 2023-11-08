@@ -16,15 +16,15 @@ MonoBehaviour:
   input: {fileID: 0}
   maxHealth: 100
   stamina: 100
-  moveBackVelocityLimit: -20
-  moveForwardVelocityLimit: 300
-  moveAccel: 600
+  moveBackVelocityLimit: -50
+  moveForwardVelocityLimit: 200
+  moveAccel: 300
   moveDashSpeed: 60
   moveDashAccel: 100
   moveStopAccel: 40
   gravityAccel: 0
   gravitySpeed: 100
-  isDash: 0
+  isDash: 1
   isCrash: 0
   isAction: 0
   dodgeSpeed: 200

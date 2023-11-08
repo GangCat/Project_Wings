@@ -17,26 +17,37 @@ public class LaunchMissileGroupActionNode : ActionNode
     private float maxRotateAccel = 0f;
     [SerializeField]
     private float autoDestroyTime = 0f;
+    [SerializeField]
+    private float spawnRate = 0f;
 
     private GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos = null;
     private GameObject[] arrMissileGroup = new GameObject[32];
     private bool isArrayEmpty = false;
+    private int missileSpawnIdx = 0;
+    private float startTime = 0;
+    private bool isSpawnFinish = false;
+
     protected override void OnStart() 
     {
         arrGroupHomingMissileSpawnPos = context.arrGroupHomingMissileSpawnPos;
+        startTime = Time.time;
 
-        for (int i = 0; i < arrGroupHomingMissileSpawnPos.Length; ++i)
-        {
-            arrMissileGroup[i] = Instantiate(missilePrefab, arrGroupHomingMissileSpawnPos[i].GetPos(), arrGroupHomingMissileSpawnPos[i].GetRot());
-            arrMissileGroup[i].GetComponent<GiantHomingMissileController>().Init(moveAccel, maxMoveSpeed, rotateAccel, maxRotateAccel, context.playerTr, autoDestroyTime);
-        }
+        SpawnMissile();
     }
 
     protected override void OnStop() {
     }
 
     protected override State OnUpdate() {
-        for(int i = 0; i < arrMissileGroup.Length; ++i)
+
+        if (!isSpawnFinish && Time.time - startTime > spawnRate)
+        {
+            SpawnMissile();
+            startTime = Time.time;
+        }
+
+
+        for (int i = 0; i < arrMissileGroup.Length; ++i)
         {
             if (arrMissileGroup[i] != null)
             {
@@ -44,7 +55,22 @@ public class LaunchMissileGroupActionNode : ActionNode
             }
         }
 
+
         Debug.Log("LaunchMissileGroup");
         return State.Success;
+    }
+
+    private void SpawnMissile()
+    {
+        for (int i = missileSpawnIdx; i < arrGroupHomingMissileSpawnPos.Length; i += 8)
+        {
+            arrMissileGroup[i] = Instantiate(missilePrefab, arrGroupHomingMissileSpawnPos[i].GetPos(), arrGroupHomingMissileSpawnPos[i].GetRot());
+            arrMissileGroup[i].GetComponent<GiantHomingMissileController>().Init(moveAccel, maxMoveSpeed, rotateAccel, maxRotateAccel, context.playerTr, autoDestroyTime);
+        }
+
+        ++missileSpawnIdx;
+
+        if (missileSpawnIdx >= 8)
+            isSpawnFinish = true;
     }
 }
