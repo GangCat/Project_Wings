@@ -6,11 +6,11 @@ public class BossShieldGeneratorSpawnPointHolder : MonoBehaviour
 {
     public void Init()
     {
-        arrShieldGeneratorSpawnPoints = GetComponentsInChildren<BossShieldGeneratorSpawnPoint>();
+        //arrShieldGeneratorSpawnPoints = GetComponentsInChildren<BossShieldGeneratorSpawnPoint>();
     }
 
     public BossShieldGeneratorSpawnPoint[] ShieldGeneratorSpawnPoints => arrShieldGeneratorSpawnPoints;
 
-
+    [SerializeField]
     private BossShieldGeneratorSpawnPoint[] arrShieldGeneratorSpawnPoints = null;
 }

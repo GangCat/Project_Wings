@@ -76,19 +76,35 @@ public class GiantHomingMissileController : AttackableObject
 
     private void RotateHomingMissile(Vector3 _moveDir)
     {
-        rotateSpeed += rotateAccel * Time.deltaTime;
-        rotateSpeed = Mathf.Min(rotateSpeed, maxRotateSpeed);
+        //rotateSpeed += rotateAccel * Time.deltaTime;
+        //rotateSpeed = Mathf.Min(rotateSpeed, maxRotateSpeed);
         //rotateSpeed = maxRotateSpeed;
 
-        float dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (targetTr.position - transform.position).normalized), -1f, 1f);
-        float normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
-        float mappedValue = 1f - normalizedAngle;
+        //float dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (targetTr.position - transform.position).normalized), -1f, 1f);
+        //float normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetTr.position);
+        float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
+
+        // 목표 회전에 도달하지 않은 경우 가속도를 더하여 회전 속도를 조절
+        if (angleDifference > 0.1f)
+        {
+            rotateSpeed += rotateAccel * Time.deltaTime;
+        }
+        else
+        {
+            // 목표 회전에 도달한 경우 가속도 초기화
+            rotateSpeed = 0.0f;
+        }
+        //float mappedValue = 1f - normalizedAngle;
 
         //if(normalizedAngle > 0.95f)
 
-        rotateSpeed *= mappedValue;
+        //rotateSpeed *= normalizedAngle;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_moveDir), rotateSpeed * Time.fixedDeltaTime);
+        //transform.rotation *= Quaternion.LookRotation(_moveDir) * rotateSpeed * Time.fixedDeltaTime;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_moveDir), rotateSpeed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter(Collider _other)
