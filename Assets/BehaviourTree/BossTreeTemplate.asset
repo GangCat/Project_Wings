@@ -24,6 +24,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   radious: 0
+  bossOffSet: 2000
+  mapRadious: 50000
   duration: 0
   attackMinHeight: 0
   attackMaxHeight: 0
@@ -281,6 +283,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   radious: 50
+  bossOffSet: 2000
+  mapRadious: 50000
   duration: 9.1
   attackMinHeight: 400
   attackMaxHeight: 1000
@@ -1178,6 +1182,8 @@ MonoBehaviour:
   rotationSpeed: 0.5
   fireRate: 10
   headRotationSpeed: 0
+  rebound: 2
+  autoDestroyTime: 20
 --- !u!114 &2454858616945427538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1441,6 +1447,8 @@ MonoBehaviour:
   rotationSpeed: 0
   fireRate: 0
   headRotationSpeed: 0
+  rebound: 2
+  autoDestroyTime: 20
 --- !u!114 &4411011695780444250
 MonoBehaviour:
   m_ObjectHideFlags: 0
