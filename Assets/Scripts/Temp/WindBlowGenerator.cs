@@ -107,21 +107,6 @@ public class WindBlowGenerator : MonoBehaviour
         lastColliderSpawnTime = 0f;
     }
 
-    private void CreateCollider(float height, float radiusLarge)
-    {
-        lastColliderSpawnTime = Time.time;
-        GameObject colliderObject = new GameObject("WindBlowCollider");
-        colliderObject.transform.position = transform.position + transform.up * height;
-        colliderObject.transform.parent = windCylinder.transform;
-        colliderObject.transform.tag = "WindBlow";
-        colliderObject.layer = LayerMask.NameToLayer("BossProjectile");
-
-        BoxCollider collider = colliderObject.AddComponent<BoxCollider>();
-        collider.isTrigger = true;
-        collider.size = new Vector3(2f * radiusLarge, cylinderLengthPerSecond * colliderInterval, 2f * radiusLarge);
-        collider.center = new Vector3(0f, collider.center.y, 0f);
-    }
-
     private void UpdateWindCylinder(float radiusLarge, float height)
     {
         Vector3[] vertices = new Vector3[numVertices * 2];
@@ -151,5 +136,4 @@ public class WindBlowGenerator : MonoBehaviour
         meshFilter.mesh.triangles = triangles;
 
     }
-
 }

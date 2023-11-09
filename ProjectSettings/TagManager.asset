@@ -16,6 +16,7 @@ TagManager:
   - gatlingGunMuzzle
   - BossShield
   - GiantHomingMissile
+  - TimeBomb
   layers:
   - Default
   - TransparentFX

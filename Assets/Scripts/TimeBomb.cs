@@ -4,11 +4,12 @@ using UnityEngine.UIElements;
 
 public class TimeBomb : MonoBehaviour
 {
-    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity)
+    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, float _explosionTime)
     {
         launchAngle = _launchAngle;
         targetPos = _targetPos;
         gravity = _gravity;
+        timer = _explosionTime;
         waitFixedTime = new WaitForFixedUpdate();
         rb = GetComponent<Rigidbody>();
 
@@ -55,7 +56,7 @@ public class TimeBomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        Debug.Log("Trig");
     }
 
     private IEnumerator TimerCoroutine()

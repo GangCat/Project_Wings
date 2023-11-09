@@ -68,19 +68,23 @@ public class GiantHomingMissileController : AttackableObject
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (_other.CompareTag("Obstacle"))
-            Explosion();
-        else if (_other.CompareTag("Floor"))
-            Explosion();
-        else if (isFirstTrigger)
+        if (isFirstTrigger)
             return;
-        else if (_other.CompareTag("GiantHomingMissile"))
-            Explosion();
 
-        if (AttackDmg(_other))
-        {
-            Explosion();
-        }
+        Explosion();
+        //if (_other.CompareTag("Obstacle"))
+        //    Explosion();
+        //else if (_other.CompareTag("Floor"))
+        //    Explosion();
+        //else if (isFirstTrigger)
+        //    return;
+        //else if (_other.CompareTag("GiantHomingMissile"))
+        //    Explosion();
+
+        //if (AttackDmg(_other))
+        //{
+        //    Explosion();
+        //}
     }
 
     public void Explosion()
@@ -99,6 +103,7 @@ public class GiantHomingMissileController : AttackableObject
             else
                 AttackDmg(col);
         }
+
         Destroy(gameObject);
     }
 

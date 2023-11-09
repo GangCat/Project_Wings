@@ -43,7 +43,7 @@ public class TimeBombPatternController : MonoBehaviour
             if (Time.time - spawnTime > spawnBombDelay)
             {
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
-                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity);
+                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, explosionTime);
                 arrBombGo[bombIdx] = bombGo;
                 ++bombIdx;
                 spawnTime = Time.time;
@@ -83,7 +83,7 @@ public class TimeBombPatternController : MonoBehaviour
     {
         GameObject laserGo = Instantiate(laserPrefab, laserLaunchTr.position, laserLaunchTr.rotation);
         laserGo.GetComponent<LaserController>().Init(laserDuration, laserLengthPerSec,
-            (_value) =>
+            _value =>
         {
             foreach (GameObject go in arrBombGo)
             {
@@ -92,7 +92,7 @@ public class TimeBombPatternController : MonoBehaviour
 
                 Destroy(go);
             }
-        });
+        }, 100, 20);
 
     }
 
@@ -127,8 +127,9 @@ public class TimeBombPatternController : MonoBehaviour
     private float laserLengthPerSec = 0f;
 
     private GameObject[] arrBombGo = null;
-
     private VoidVoidDelegate patternFinishCallback = null;
     private VoidVoidDelegate startBossRotationCallback = null;
     private WaitForFixedUpdate waitFixedTime = null;
+
+    private float curLaserLength = 0f;
 }
