@@ -127,7 +127,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         DebugColorChange();
-
         moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
         virtualMouse.UpdateMouseInput();
     }

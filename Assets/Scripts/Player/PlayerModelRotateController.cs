@@ -16,7 +16,7 @@ public class PlayerModelRotateController : MonoBehaviour
     {
         if (playerData.currentMoveSpeed < 5 || playerData.input.InputZ <= 0)
         {
- //           rotZ = Mathf.MoveTowards(rotZ, 0, playerData.rollReturnAccel * Time.deltaTime);
+            //currentRotZ = Mathf.MoveTowards(currentRotZ, 0, playerData.rollReturnAccel * Time.deltaTime);
         }
         else
         {
@@ -53,13 +53,13 @@ public class PlayerModelRotateController : MonoBehaviour
 
         currentRotZ += rollVelocity * Time.deltaTime;
         _eulerAngleZ = rollVelocity * Time.deltaTime;
-        currentRotZ = Mathf.Clamp(currentRotZ, -rollMaxAngle, rollMaxAngle);
+        //currentRotZ = Mathf.Clamp(currentRotZ, -rollMaxAngle, rollMaxAngle);
 
-        if (Mathf.Abs(currentRotZ).Equals(rollMaxAngle))
-        {
-            rollVelocity = 0f;
-            _eulerAngleZ = 0f;
-        }
+        //if (Mathf.Abs(currentRotZ).Equals(rollMaxAngle))
+        //{
+        //    rollVelocity = 0f;
+        //    _eulerAngleZ = 0f;
+        //}
         transform.Rotate(tr.forward * _eulerAngleZ, Space.World);
     }
 
