@@ -1122,7 +1122,7 @@ MonoBehaviour:
   moveAccel: 800
   maxMoveSpeed: 700
   rotateAccel: 0.2
-  maxRotateAccel: 1
+  maxRotateAccel: 3
   autoDestroyTime: 2000
 --- !u!114 &6915879143102228442
 MonoBehaviour:
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: 6670595513324080788}
+  - {fileID: 1307758401035877982}
 --- !u!114 &8618335190615036909
 MonoBehaviour:
   m_ObjectHideFlags: 0

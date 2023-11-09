@@ -1178,6 +1178,8 @@ MonoBehaviour:
   rotationSpeed: 0.5
   fireRate: 10
   headRotationSpeed: 0
+  rebound: 2
+  autoDestroyTime: 20
 --- !u!114 &2454858616945427538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1441,6 +1443,8 @@ MonoBehaviour:
   rotationSpeed: 0
   fireRate: 0
   headRotationSpeed: 0
+  rebound: 2
+  autoDestroyTime: 20
 --- !u!114 &4411011695780444250
 MonoBehaviour:
   m_ObjectHideFlags: 0
