@@ -257,7 +257,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1de11659f2ab5204e821e1497e94437c
-  position: {x: 990.0001, y: 994}
+  position: {x: 990.39996, y: 1008.895}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1372,7 +1372,6 @@ MonoBehaviour:
   children:
   - {fileID: -4026051781191520773}
   - {fileID: -3385513496737040516}
-  - {fileID: 2438082988901231028}
 --- !u!114 &7618470226603610064
 MonoBehaviour:
   m_ObjectHideFlags: 0

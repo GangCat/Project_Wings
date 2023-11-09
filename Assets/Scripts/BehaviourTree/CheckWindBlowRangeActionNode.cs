@@ -30,12 +30,12 @@ public class CheckWindBlowRangeActionNode : ActionNode
         return State.Failure;
     }
 
-    public override void OnDrawGizmos()
-    {
-        for(int i = 0; i < weakPoints.Length; ++i)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(weakPoints[i].GetPos(), range);
-        }
-    }
+    //public override void OnDrawGizmos()
+    //{
+    //    for(int i = 0; i < weakPoints.Length; ++i)
+    //    {
+    //        Gizmos.color = Color.green;
+    //        Gizmos.DrawSphere(weakPoints[i].GetPos(), range);
+    //    }
+    //}
 }

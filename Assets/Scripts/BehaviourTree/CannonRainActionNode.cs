@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
+using System.Buffers;
 
 public class CannonRainActionNode : ActionNode
 {
@@ -26,9 +27,13 @@ public class CannonRainActionNode : ActionNode
     private float lastAttackTime;
     private Vector3 rndAttackPos;
     private Vector2 rnd1;
+
+
     protected override void OnStart()
     {
         startTime = Time.time;
+
+        
     }
 
     protected override void OnStop()
@@ -48,9 +53,14 @@ public class CannonRainActionNode : ActionNode
                 rndAttackPos = new Vector3(Random.Range(rnd1.x * bossOffSet, mapRadious.x), 0, Random.Range(rnd1.y * bossOffSet, mapRadious.y));
                 Destroy(Instantiate(attackAreaPrefab, rndAttackPos, Quaternion.identity), 15f);
                 Vector3 spawnPositionWithHeight = rndAttackPos + new Vector3(0, Random.Range(attackMinHeight, attackMaxHeight), 0);
-                GameObject bullet = Instantiate(cannonBallPrefab, spawnPositionWithHeight, Quaternion.identity);
-                bullet.GetComponent<CannonBallController>().Init(cannonBallSpeed);
+
+                GameObject bullet =  context.cannonRainMemoryPool.ActivateCannonBall();
+                bullet.GetComponent<CannonBallController>().Init(cannonBallSpeed, spawnPositionWithHeight, context.cannonRainMemoryPool);
+
                 lastAttackTime = Time.time;
+                
+
+                //GameObject bullet = Instantiate(cannonBallPrefab, spawnPositionWithHeight, Quaternion.identity);
             }
 
         return State.Success;

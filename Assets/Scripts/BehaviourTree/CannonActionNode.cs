@@ -61,7 +61,7 @@ public class CannonActionNode : ActionNode
                     Vector2 rnd2 = Random.insideUnitCircle * radious;
                     Vector3 spawnPositionWithHeight = rndAttackPos + new Vector3(rnd2.x, Random.Range(attackMinHeight, attackMaxHeight), rnd2.y);
                     GameObject bullet = Instantiate(cannonBallPrefab, spawnPositionWithHeight, Quaternion.identity);
-                    bullet.GetComponent<CannonBallController>().Init(cannonBallSpeed);
+                    bullet.GetComponent<CannonBallController>().Init(cannonBallSpeed, spawnPositionWithHeight);
                     lastAttackTime = Time.time;
                 }
             }

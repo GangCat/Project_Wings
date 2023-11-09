@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,12 @@ public class CannonBallController : AttackableObject
 {
     private float speed;
     private WaitForFixedUpdate waitFixedUpdate = null;
-    public void Init(float _speed)
+    private CannonRainMemoryPool memoryPool = null;
+    public void Init(float _speed, Vector3 _spawnPos, CannonRainMemoryPool _memoryPool = null)
     {
         speed = _speed;
+        transform.position = _spawnPos;
+        memoryPool = _memoryPool;
         waitFixedUpdate = new WaitForFixedUpdate();
         StartCoroutine(UpdateCoroutine());
     }
@@ -37,6 +41,6 @@ public class CannonBallController : AttackableObject
     private void OnTriggerEnter(Collider _other)
     {
         if (AttackDmg(_other))
-            Destroy(gameObject);
+            memoryPool.DeactivateCannonBall(gameObject);
     }
 }

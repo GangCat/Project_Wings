@@ -17,9 +17,10 @@ namespace TheKiwiCoder
             BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
-            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos)
+            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
+            CannonRainMemoryPool _cannonRainMemoryPool)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
+            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -54,9 +55,10 @@ namespace TheKiwiCoder
             BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
-            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos)
+            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
+            CannonRainMemoryPool _cannonRainMemoryPool)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
+            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool);
         }
 
         private void OnDrawGizmosSelected()

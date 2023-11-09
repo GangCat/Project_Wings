@@ -19,21 +19,28 @@ public class BossController : MonoBehaviour
         bossCollider.Init();
         statHp.Init(StartPhaseChange);
         shield.Init();
-        timeBombPatternCtrl.Init(FinishPhaseChange);
+        //timeBombPatternCtrl.Init(FinishPhaseChange);
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
+        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos, cannonRainMemoryPool);
 
         curWeakPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
 
         InitNewWeakPoint();
 
+        InitMemoryPools();
         cameraActionCallback = _cameraActionCallback;
         //myRunner.FinishCurrentPhase();
         //StartPhaseChange();
 
         //StartCoroutine("UpdateCoroutine");
+    }
+
+    private void InitMemoryPools()
+    {
+        GetComponentInChildren<CannonRainMemoryPool>().Init();
+
     }
 
     public void GameStart()
@@ -158,7 +165,8 @@ public class BossController : MonoBehaviour
     private GameObject giantHomingMissilePrefab = null;
     [SerializeField]
     private GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos = null;
-
+    [SerializeField]
+    private CannonRainMemoryPool cannonRainMemoryPool = null;
 
     private BossCollider bossCollider = null;
     private List<GameObject> curWeakPoint = null;
@@ -172,4 +180,5 @@ public class BossController : MonoBehaviour
     private BossStatusHp statHp = null;
     private BossShield shield = null;
     private TimeBombPatternController timeBombPatternCtrl = null;
+    
 }
