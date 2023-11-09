@@ -1,158 +1,93 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TimeBomb : MonoBehaviour
 {
-    public void Init(Vector3 _targetPos, float _maxHeight, float _initialSpeed)
+    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity)
     {
-        targetPosition = _targetPos;
-        maxHeight = _maxHeight;
-        initialSpeed = _initialSpeed;
+        launchAngle = _launchAngle;
+        targetPos = _targetPos;
+        gravity = _gravity;
         waitFixedTime = new WaitForFixedUpdate();
+        rb = GetComponent<Rigidbody>();
 
-        initialPosition = transform.position;
-        initialTime = Time.time;
-
-        transform.rotation = Quaternion.LookRotation(targetPosition);
-
-        //StartCoroutine("UpdateCoroutine");
+        //Test();
+        StartCoroutine(SimulateProjectile());
     }
 
-    private void Update()
+    IEnumerator SimulateProjectile()
     {
-        
-        // Æ÷¹°¼± ¿îµ¿ °è»ê
-        float horizontalDistance = (targetPosition - initialPosition).magnitude;
-        float timeToReachTarget = horizontalDistance / initialSpeed;
+        // ì‹œì‘ ì „ ì ì‹œ ë”œë ˆì´
+        yield return new WaitForSeconds(0.1f);
 
-        // ¼öÆò ¹æÇâÀÇ ¼Óµµ °è»ê
-        float horizontalSpeed = initialSpeed;
+        // ê±°ë¦¬ ê³„ì‚°
+        float targetDistance = Vector3.Distance(transform.position, targetPos);
 
-        // ¼öÁ÷ ¹æÇâÀÇ ÃÊ±â ¼Óµµ °è»ê (¼öÁ÷ ¹æÇâÀ¸·Î µ¿ÀÏÇÑ ½Ã°£¿¡ ³ôÀÌ maxHeight¿¡ µµ´ŞÇØ¾ß ÇÔ)
-        float verticalSpeed = (targetPosition.y - initialPosition.y) / timeToReachTarget - 0.5f * gravity * timeToReachTarget;
+        float sinAngle = Mathf.Sin(launchAngle * Mathf.Deg2Rad);
+        float cosinAngle = Mathf.Cos(launchAngle * Mathf.Deg2Rad);
 
-        // ÀÌµ¿ Àü ¿ÀºêÁ§Æ®ÀÇ ÁøÇà¹æÇâÀ» ÇâÇØ È¸Àü
-        //Vector3 targetDirection = (targetPosition - transform.position).normalized;
-        //transform.forward = targetDirection;
+        // ê°ë„ì™€ ê±°ë¦¬ë¥¼ ì´ìš©í•œ ì´ˆê¸°ì†ë„ ê³„ì‚°
+        float initVelocity = Mathf.Sqrt(targetDistance / (2 * sinAngle * cosinAngle / gravity));
 
-        // Æ÷¹°¼± ¿îµ¿ÀÇ »õ·Î¿î À§Ä¡ °è»ê
-        float currentTime = Time.time - initialTime;
-        Vector3 newPosition = initialPosition + horizontalSpeed * transform.forward * currentTime +
-                              verticalSpeed * Vector3.up * currentTime +
-                              0.5f * gravity * Vector3.up * Mathf.Pow(currentTime, 2);
+        // ì´ˆê¸° ì†ë„ë¥¼ ì´ìš©í•œ ìˆ˜í‰, ìˆ˜ì§ ì†ë„ ê³„ì‚°
+        float HorizontalVelocity = initVelocity * cosinAngle;
+        float VerticalVelocity = initVelocity * sinAngle;
 
-        // »õ·Î¿î À§Ä¡·Î ÀÌµ¿
-        transform.position = newPosition;
+        // ì´ ë¹„í–‰ì‹œê°„ ê³„ì‚°
+        float flightDuration = targetDistance / HorizontalVelocity;
 
-        // ¸ñÇ¥ ÁöÁ¡¿¡ µµ´ŞÇÏ¸é ¿îµ¿ ÁßÁö
-        if (currentTime >= timeToReachTarget)
+        // íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ íšŒì „
+        // Translateì´ê¸° ë•Œë¬¸ì— ëŒë¦¼
+        transform.rotation = Quaternion.LookRotation(targetPos - Projectile.position);
+
+        float elapsedtime = 0;
+        while (elapsedtime < flightDuration)
         {
-            enabled = false;
-        }
-    }
+            transform.Translate(0, (VerticalVelocity - (gravity * elapsedtime)) * Time.fixedDeltaTime, HorizontalVelocity * Time.fixedDeltaTime);
+            elapsedtime += Time.fixedDeltaTime;
 
-    private IEnumerator UpdateCoroutine()
-    {
-        while (true)
-        {
-            // Æ÷¹°¼± ¿îµ¿ °è»ê
-            float timeToReachTarget = CalculateTimeToReachTarget();
-            if (timeToReachTarget >= 0f)
-            {
-                float horizontalSpeed = (targetPosition - transform.position).magnitude / timeToReachTarget;
-                Vector3 horizontalDirection = (targetPosition - transform.position).normalized;
-                Vector3 verticalDirection = Vector3.up;
-
-                // Æ÷¹°¼± ¿îµ¿ÀÇ »õ·Î¿î À§Ä¡ °è»ê
-                float horizontalDistance = horizontalSpeed * Time.fixedDeltaTime;
-                float verticalDistance = CalculateVerticalDistance(horizontalDistance, horizontalSpeed, timeToReachTarget);
-                Vector3 newPosition = transform.position + horizontalDirection * horizontalDistance + verticalDirection * verticalDistance;
-
-                // »õ·Î¿î À§Ä¡·Î ÀÌµ¿
-                transform.position = newPosition;
-            }
             yield return waitFixedTime;
         }
-        
-    }
 
-    float CalculateTimeToReachTarget()
-    {
-        // ¸ñÇ¥ ÁöÁ¡±îÁöÀÇ °Å¸®
-        float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
-
-        // ¼öÆò ¹æÇâÀÇ ÀÌµ¿ ½Ã°£ °è»ê
-        float timeToReachHorizontalTarget = distanceToTarget / initialSpeed;
-
-        // ÃÖ´ë °íµµ¿¡ µµ´ŞÇÏ´Â ½Ã°£ °è»ê
-        float timeToReachMaxHeight = Mathf.Sqrt(2 * maxHeight / -gravity);
-
-        // ÃÑ ¿îµ¿ ½Ã°£ °è»ê
-        float totalTime = timeToReachMaxHeight + timeToReachHorizontalTarget;
-
-        // ¸ñÇ¥ ÁöÁ¡¿¡ µµ´ŞÇÒ ¼ö ÀÖ´Â °æ¿ì ÃÑ ¿îµ¿ ½Ã°£ ¹İÈ¯, ±×·¸Áö ¾ÊÀ¸¸é -1 ¹İÈ¯
-        if (totalTime > 0f)
-        {
-            return totalTime;
-        }
-        else
-        {
-            return -1f;
-        }
-    }
-
-    float CalculateVerticalDistance(float horizontalDistance, float horizontalSpeed, float totalTime)
-    {
-        // Æ÷¹°¼± ¿îµ¿¿¡¼­ÀÇ ¼öÁ÷ °Å¸® °è»ê
-        float verticalSpeed = maxHeight / Mathf.Sqrt(2 * maxHeight / -gravity); // ÃÖ´ë °íµµ¿¡¼­ÀÇ ¼öÁ÷ ¼Óµµ
-        float verticalTime = Mathf.Sqrt(2 * maxHeight / -gravity); // ÃÖ´ë °íµµ¿¡ µµ´ŞÇÏ´Â ½Ã°£
-        float timeRemaining = totalTime - verticalTime; // ÃÖ´ë °íµµ¿¡ µµ´ŞÇÑ ÈÄ ³²Àº ½Ã°£
-
-        // ¼öÁ÷ ¹æÇâÀÇ ÀÌµ¿ °Å¸® °è»ê
-        float verticalDistance = verticalSpeed * timeRemaining + 0.5f * gravity * Mathf.Pow(timeRemaining, 2);
-
-        return verticalDistance;
+        StartCoroutine("TimerCoroutine");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TriggerTimer");
 
-        if(other.CompareTag("Obstacle"))
-        {
-            StopCoroutine("UpdateCoroutine");
-            StartCoroutine("TimerCoroutine");
-        }
     }
 
     private IEnumerator TimerCoroutine()
     {
-        float startTime = Time.time;
-        while(Time.time - startTime < timer)
-        {
-            yield return waitFixedTime;
-        }
+        Debug.Log("TriggerTimer");
 
+        yield return new WaitForSeconds(timer);
+        //float startTime = Time.time;
+        //while (Time.time - startTime < timer)
+        //{
+        //    yield return waitFixedTime;
+        //}
         Explosion();
     }
 
     private void Explosion()
     {
-        // Æø¹ßÇÏ¸ç ÇÃ·¹ÀÌ¾î¿¡°Ô Å« µ¥¹ÌÁö
-        // È­¸é ¿¬Ãâ
+        // í­ë°œí•˜ë©° í”Œë ˆì´ì–´ì—ê²Œ í° ë°ë¯¸ì§€
+        // í™”ë©´ ì—°ì¶œ
+        Debug.Log("Explosion!");
         Destroy(gameObject);
     }
 
 
-    private Vector3 targetPosition; // ¸ñÇ¥ ÁöÁ¡ÀÇ À§Ä¡
-    private float maxHeight = 10f; // ÃÖ´ë °íµµ
-    private float initialSpeed = 10f; // ÃÊ±â ¼Óµµ
-    private float gravity = Physics.gravity.y; // Áß·Â °¡¼Óµµ
+    private Vector3 targetPos;
+    private float launchAngle = 45.0f;
+    private float gravity = 9.81f;
+    private float timer = 0f; // í„°ì§ˆë•Œê¹Œì§€ ê±¸ë¦¬ëŠ” ì‹œê°„
 
-    private float timer = 0f; // ÅÍÁú¶§±îÁö °É¸®´Â ½Ã°£
+    [SerializeField]
+    private Transform Projectile;
 
     private WaitForFixedUpdate waitFixedTime = null;
-
-    private Vector3 initialPosition = Vector3.zero;
-    float initialTime = 0f;
+    private Rigidbody rb = null;
 }

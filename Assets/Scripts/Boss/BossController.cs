@@ -73,16 +73,29 @@ public class BossController : MonoBehaviour
 
     private void RotateToTarget()
     {
-        //bossRb.MoveRotation(bossRb.rotation * Quaternion.Euler(Vector3.up * rotationSpeed * Mathf.Deg2Rad));
-        if (playerTr != null)
-        {
-            Vector3 playerDirection = new Vector3(playerTr.position.x - transform.position.x, transform.position.y, playerTr.position.z - transform.position.z);
-            Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
-            Debug.DrawRay(transform.position, playerDirection * 1000f, Color.red);
+        // 플레이어의 위치와 보스의 위치 사이의 벡터를 계산
+        Vector3 directionToPlayer = playerTr.position - transform.position;
 
-            // 부드럽게 회전하기 위해 Lerp 사용
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        // y축 회전을 제외한 방향 벡터를 얻기 위해 y값을 0으로 만듭니다.
+        directionToPlayer.y = 0f;
+
+        // 방향 벡터를 사용하여 보스를 회전시킵니다.
+        if (directionToPlayer != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = targetRotation;
         }
+
+        //bossRb.MoveRotation(bossRb.rotation * Quaternion.Euler(Vector3.up * rotationSpeed * Mathf.Deg2Rad));
+        //if (playerTr != null)
+        //{
+        //    Vector3 playerDirection = new Vector3(playerTr.position.x, transform.position.y, playerTr.position.z);
+        //    Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
+        //    Debug.DrawRay(transform.position, playerDirection * 1000f, Color.red);
+
+        //    // 부드럽게 회전하기 위해 Lerp 사용
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        //}
     }
 
     private void StartPhaseChange()

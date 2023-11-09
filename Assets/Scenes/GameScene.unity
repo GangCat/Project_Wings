@@ -7003,7 +7003,7 @@ Transform:
   m_GameObject: {fileID: 1089861122}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.60169995, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5722224, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7162,7 +7162,7 @@ Transform:
   m_GameObject: {fileID: 1138999915}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -334, z: 103}
+  m_LocalPosition: {x: 0, y: -334, z: 119.400055}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7198,8 +7198,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1138999916}
   - {fileID: 381053478}
+  - {fileID: 1138999916}
   m_Father: {fileID: 1295538132}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &1158119501
@@ -7216,19 +7216,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBombPrefab: {fileID: 7467958955893833239, guid: 5185d6b2535d39d4e9054503d0556cce,
     type: 3}
-  laserPrefab: {fileID: 363644970690299257, guid: 9133f2a84dcc1fd4cbc045a83ca16f4a,
-    type: 3}
   timeBombDestTr:
   - {fileID: 1089861123}
   - {fileID: 1809290439}
   - {fileID: 879915977}
   - {fileID: 1453752597}
   timeBombSpawnTr: {fileID: 1138999916}
-  laserLaunchTr: {fileID: 381053478}
   spawnBombDelay: 3
-  maxHeight: 20
-  initialSpeed: 50
+  launchAngle: 70
+  gravity: 500
   explosionTime: 40
+  laserPrefab: {fileID: 363644970690299257, guid: 9133f2a84dcc1fd4cbc045a83ca16f4a,
+    type: 3}
+  laserLaunchTr: {fileID: 381053478}
   laserDelay: 10
   laserDuration: 5
   laserLengthPerSec: 200
@@ -9068,7 +9068,7 @@ Transform:
   m_GameObject: {fileID: 1295538131}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 318, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:

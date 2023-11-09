@@ -43,7 +43,7 @@ public class TimeBombPatternController : MonoBehaviour
             if (Time.time - spawnTime > spawnBombDelay)
             {
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
-                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, maxHeight, initialSpeed);
+                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity);
                 arrBombGo[bombIdx] = bombGo;
                 ++bombIdx;
                 spawnTime = Time.time;
@@ -97,26 +97,28 @@ public class TimeBombPatternController : MonoBehaviour
     }
 
 
-
+    [Header("-TimeBomb")]
     [SerializeField]
     private GameObject timeBombPrefab = null;
-    [SerializeField]
-    private GameObject laserPrefab = null;
     [SerializeField]
     private Transform[] timeBombDestTr = null;
     [SerializeField]
     private Transform timeBombSpawnTr = null;
     [SerializeField]
-    private Transform laserLaunchTr = null;
-
-    [SerializeField]
     private float spawnBombDelay = 0f; // ÆøÅº 4°³ °¢°¢ »ý¼ºÇÏ´Â µô·¹ÀÌ
     [SerializeField]
-    private float maxHeight = 0f;
+    private float launchAngle = 45f;
     [SerializeField]
-    private float initialSpeed = 0f;
+    private float gravity = 9.81f;
     [SerializeField]
     private float explosionTime = 0f;
+
+
+    [Header("-Laser")]
+    [SerializeField]
+    private GameObject laserPrefab = null;
+    [SerializeField]
+    private Transform laserLaunchTr = null;
     [SerializeField]
     private float laserDelay = 0f;
     [SerializeField]

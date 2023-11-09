@@ -1038,7 +1038,7 @@ MonoBehaviour:
   moveAccel: 400
   maxMoveSpeed: 300
   rotateAccel: 0.2
-  maxRotateAccel: 1
+  maxRotateAccel: 3
   autoDestroyTime: 2000
 --- !u!114 &6915879143102228442
 MonoBehaviour:
@@ -1174,11 +1174,11 @@ MonoBehaviour:
   missilePrefab: {fileID: 6519272339437649605, guid: e0286bdea80e5df419a142192f36ac21,
     type: 3}
   moveAccel: 400
-  maxMoveSpeed: 300
+  maxMoveSpeed: 200
   rotateAccel: 0.2
-  maxRotateAccel: 1
-  autoDestroyTime: 200
-  spawnRate: 0
+  maxRotateAccel: 2
+  autoDestroyTime: 20
+  spawnRate: 1
 --- !u!114 &8266297438010400843
 MonoBehaviour:
   m_ObjectHideFlags: 0

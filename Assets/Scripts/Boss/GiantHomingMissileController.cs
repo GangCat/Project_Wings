@@ -30,7 +30,7 @@ public class GiantHomingMissileController : AttackableObject
         {
             MoveHomingMissile();
             RotateHomingMissile((targetTr.position - transform.position).normalized);
-            Debug.Log($"MissileSpeed: {moveSpeed}");
+            //Debug.Log($"MissileSpeed: {moveSpeed}");
 
             yield return waitFixed;
         }
