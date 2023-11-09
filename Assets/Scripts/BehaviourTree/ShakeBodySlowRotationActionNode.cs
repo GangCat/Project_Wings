@@ -38,6 +38,8 @@ public class ShakeBodySlowRotationActionNode : ActionNode
         //bossTr.rotation = Quaternion.Euler(Vector3.up * curRotationDegree);
 
         curRotation = bossTr.rotation.eulerAngles.y;
+        curRotation -= 180;
+
         if (curRotation > 180)
             curRotation -= 360;
 

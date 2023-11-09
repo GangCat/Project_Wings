@@ -28,7 +28,7 @@ public class CannonBallController : AttackableObject
         {
             if(transform.position.y < 0)
             {
-                Destroy(gameObject);
+                memoryPool.DeactivateCannonBall(gameObject);
                 yield break;
             }
 

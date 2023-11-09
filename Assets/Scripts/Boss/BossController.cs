@@ -21,9 +21,10 @@ public class BossController : MonoBehaviour
         statHp.Init(StartPhaseChange);
         shield.Init();
         timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
+        InitMemoryPools();
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, shieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
+        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, shieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos, cannonRainMemoryPool, cannonMemoryPool, gatlinMemoryPool, groupMissileMemoryPool);
 
         curShieldGeneratorPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
@@ -52,6 +53,15 @@ public class BossController : MonoBehaviour
             Destroy(bwpGo);
 
         curShieldGeneratorPoint.Clear();
+    }
+
+    private void InitMemoryPools()
+    {
+        GetComponentInChildren<CannonRainMemoryPool>().Init();
+        GetComponentInChildren<CannonMemoryPool>().Init();
+        GetComponentInChildren<GatlinMemoryPool>().Init();
+        GetComponentInChildren<GroupMissileMemoryPool>().Init();
+
     }
 
     private IEnumerator UpdateCoroutine()
@@ -169,6 +179,14 @@ public class BossController : MonoBehaviour
     private GameObject giantHomingMissilePrefab = null;
     [SerializeField]
     private GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos = null;
+    [SerializeField]
+    private CannonRainMemoryPool cannonRainMemoryPool = null;
+    [SerializeField]
+    private CannonMemoryPool cannonMemoryPool = null;
+    [SerializeField]
+    private GatlinMemoryPool gatlinMemoryPool = null;
+    [SerializeField]
+    private GroupMissileMemoryPool groupMissileMemoryPool = null;
 
     [Header("-InformationForBossController")]
     [SerializeField]

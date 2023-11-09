@@ -21,7 +21,8 @@ public class GroupHomingMissileController : AttackableObject
         gameObject.transform.rotation = _spawnRot;
         groupMissileMemoryPool = _groupMissileMemoryPool;
 
-        Destroy(gameObject, _autoDestroyTime);
+        //Destroy(gameObject, _autoDestroyTime);
+        Invoke("Explosion", _autoDestroyTime);
 
   
         StartCoroutine(MoveUpdateCoroutine());

@@ -210,6 +210,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3387968954581324278}
+  - {fileID: 7618470226603610064}
 --- !u!114 &-5833006940616095522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +226,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 24b1672bc39164b4fb0890dabb52a4ac
-  position: {x: 2298.6672, y: 722.9997}
+  position: {x: 2203.332, y: 865.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -469,6 +470,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3920158228874092110}
+  - {fileID: 4411008589422368910}
 --- !u!114 &-3385513496737040516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,15 +741,15 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 50c38d1a65ba1134382ec9e6d1dd144e
-  position: {x: 191, y: 1563}
+  position: {x: 190.99998, y: 1563}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
   description: 
-  drawGizmos: 1
-  range: 600
+  drawGizmos: 0
+  range: 400
 --- !u!114 &1210790204114747789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,7 +841,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0b3b4ff3fce8ba548bf55b90400a2966
-  position: {x: 2148.6672, y: 1108.9996}
+  position: {x: 2053.332, y: 1251.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -863,7 +865,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: bb6d657309cfa7546978a38e1a267255
-  position: {x: 2298.6672, y: 1108.9996}
+  position: {x: 2203.332, y: 1251.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -934,7 +936,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a187f789b2aab8f4bb0241c2f06d8774
-  position: {x: 2298.6672, y: 932.99976}
+  position: {x: 2203.332, y: 1075.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1004,7 +1006,7 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  range: 3000
+  range: 700
 --- !u!114 &4365113027542136525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1172,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3385513496737040516}
+  - {fileID: -5833006940616095522}
 --- !u!114 &7618470226603610064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,7 +1282,7 @@ MonoBehaviour:
   maxRotSpeed: 15
   rotationLimitAngle: -20
   rotationAccel: 5
-  attackRange: 2500
+  attackRange: 800
   shakeBodyTag: ShakeBodyCollider
   effectTornado: {fileID: 6185979661563687016, guid: 74b7b164fd9c7a64c900280d76948ba0,
     type: 3}

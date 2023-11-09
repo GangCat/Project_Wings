@@ -18,7 +18,8 @@ public class BulletController : AttackableObject
     }
     public void Init(float _destroyTime, Vector3 _position, Quaternion _rotation,GatlinMemoryPool _gatlinMemoryPooll = null)
     {
-        Destroy(gameObject, _destroyTime);
+        //Destroy(gameObject, _destroyTime);
+        Invoke("DeactivateBullet", _destroyTime);
         gameObject.transform.position = _position;
         gameObject.transform.rotation = _rotation;
         gatlinMemoryPool = _gatlinMemoryPooll;
@@ -43,8 +44,13 @@ public class BulletController : AttackableObject
         
         if (AttackDmg(_other))
         {
-            gatlinMemoryPool.DeactivateBullet(gameObject);
+            DeactivateBullet();
         }
+    }
+
+    private void DeactivateBullet()
+    {
+        gatlinMemoryPool.DeactivateBullet(gameObject);
     }
 
 }

@@ -23,7 +23,7 @@ namespace TheKiwiCoder
             GatlinMemoryPool _gatlinMemoryPool,
             GroupMissileMemoryPool _groupMissileMemoryPool)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool,_groupMissileMemoryPool);
+            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _shieldGeneratorHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool,_groupMissileMemoryPool);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -64,7 +64,7 @@ namespace TheKiwiCoder
             GatlinMemoryPool _gatlinMemoryPool,
             GroupMissileMemoryPool _groupMissileMemoryPool)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool, _groupMissileMemoryPool);
+            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _shieldGeneratorHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool, _groupMissileMemoryPool);
         }
 
         private void OnDrawGizmosSelected()
