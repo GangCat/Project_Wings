@@ -66,7 +66,6 @@ public class PlayerRotateController : MonoBehaviour
         _eulerAngleY += rotCamSpeed * rotCamYAxisSensitive * Time.deltaTime * (mousePos.x / 100);
         _eulerAngleX -= rotCamSpeed * rotCamXAxisSensitive * Time.deltaTime * (mousePos.y / 100);
 
-
         //_eulerAngleY += rotCamSpeed * rotCamYAxisSensitive * Time.deltaTime * Input.GetAxis("Mouse X");
         //_eulerAngleX -= rotCamSpeed * rotCamXAxisSensitive * Time.deltaTime * Input.GetAxis("Mouse Y");
 
