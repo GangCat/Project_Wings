@@ -102,7 +102,9 @@ public class GatilingActionNode : ActionNode
         Matrix4x4 rotationMatrix = Matrix4x4.TRS(Vector3.zero, rot, Vector3.one);
         Vector3 targetPos = rotationMatrix.MultiplyPoint3x4(tmp) + playerTr.position;
 
-        GameObject bullet = Instantiate(bulletPrefab, gunMuzzleTr.position, gunMuzzleTr.rotation * Quaternion.Euler(rndRebound));
-        bullet.GetComponent<BulletController>().Init(autoDestroyTime);
+        GameObject bullet= context.gatlinMemoryPool.ActivateBullet();
+        Vector3 spawnPos = gunMuzzleTr.position;
+        Quaternion spawnRot = gunMuzzleTr.rotation * Quaternion.Euler(rndRebound);
+        bullet.GetComponent<BulletController>().Init(autoDestroyTime, spawnPos, spawnRot, context.gatlinMemoryPool);
     }
 }

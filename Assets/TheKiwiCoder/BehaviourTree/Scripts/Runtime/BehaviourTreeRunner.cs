@@ -17,9 +17,13 @@ namespace TheKiwiCoder
             BossShieldGeneratorSpawnPointHolder _shieldGeneratorHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
-            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos)
+            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
+            CannonRainMemoryPool _cannonRainMemoryPool,
+            CannonMemoryPool _cannonMemoryPool,
+            GatlinMemoryPool _gatlinMemoryPool,
+            GroupMissileMemoryPool _groupMissileMemoryPool)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _shieldGeneratorHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
+            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool,_groupMissileMemoryPool);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -54,9 +58,13 @@ namespace TheKiwiCoder
             BossShieldGeneratorSpawnPointHolder _shieldGeneratorHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
-            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos)
+            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
+            CannonRainMemoryPool _cannonRainMemoryPool,
+            CannonMemoryPool _cannonMemoryPool,
+            GatlinMemoryPool _gatlinMemoryPool,
+            GroupMissileMemoryPool _groupMissileMemoryPool)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _shieldGeneratorHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
+            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool, _groupMissileMemoryPool);
         }
 
         private void OnDrawGizmosSelected()

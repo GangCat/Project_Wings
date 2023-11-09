@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
-public class GiantHomingMissileController : AttackableObject
+public class GroupHomingMissileController : AttackableObject
 {
-    public void Init(float _moveAccel, float _maxMoveSpeed, float _rotateAccel, float _maxRotateAccel, Transform _targetTr, float _autoDestroyTime, GroupMissileMemoryPool _groupMissileMemoryPool = null)
+    public void Init(float _moveAccel, float _maxMoveSpeed, float _rotateAccel, float _maxRotateAccel, Transform _targetTr, float _autoDestroyTime, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool)
     {
         moveAccel = _moveAccel;
         maxMoveSpeed = _maxMoveSpeed;
@@ -17,11 +17,13 @@ public class GiantHomingMissileController : AttackableObject
         waitFixed = new WaitForFixedUpdate();
         moveSpeed = maxMoveSpeed;
         rotateSpeed = 0f;
+        gameObject.transform.position = _spawnPos;
+        gameObject.transform.rotation = _spawnRot;
         groupMissileMemoryPool = _groupMissileMemoryPool;
 
         Destroy(gameObject, _autoDestroyTime);
 
-
+  
         StartCoroutine(MoveUpdateCoroutine());
     }
 
@@ -31,7 +33,7 @@ public class GiantHomingMissileController : AttackableObject
         {
             MoveHomingMissile();
             RotateHomingMissile((targetTr.position - transform.position).normalized);
-            //Debug.Log($"MissileSpeed: {moveSpeed}");
+            Debug.Log($"MissileSpeed: {moveSpeed}");
 
             yield return waitFixed;
         }
@@ -69,23 +71,19 @@ public class GiantHomingMissileController : AttackableObject
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (isFirstTrigger)
+        if (_other.CompareTag("Obstacle"))
+            Explosion();
+        else if (_other.CompareTag("Floor"))
+            Explosion();
+        else if (isFirstTrigger)
             return;
+        else if (_other.CompareTag("GiantHomingMissile"))
+            Explosion();
 
-        Explosion();
-        //if (_other.CompareTag("Obstacle"))
-        //    Explosion();
-        //else if (_other.CompareTag("Floor"))
-        //    Explosion();
-        //else if (isFirstTrigger)
-        //    return;
-        //else if (_other.CompareTag("GiantHomingMissile"))
-        //    Explosion();
-
-        //if (AttackDmg(_other))
-        //{
-        //    Explosion();
-        //}
+        if (AttackDmg(_other))
+        {
+            Explosion();
+        }
     }
 
     public void Explosion()
@@ -104,8 +102,7 @@ public class GiantHomingMissileController : AttackableObject
             else
                 AttackDmg(col);
         }
-
-        Destroy(gameObject);
+        groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
     }
 
     private void OnTriggerExit(Collider other)

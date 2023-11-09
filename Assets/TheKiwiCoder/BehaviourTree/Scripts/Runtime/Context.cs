@@ -23,6 +23,10 @@ namespace TheKiwiCoder {
         public AnimationControllerBase anim;
         public BossShieldGeneratorSpawnPointHolder shieldGeneratorHolder;
         public GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos;
+        public CannonRainMemoryPool cannonRainMemoryPool;
+        public CannonMemoryPool cannonMemoryPool;
+        public GatlinMemoryPool gatlinMemoryPool;
+        public GroupMissileMemoryPool groupMissileMemoryPool;
         public bool isPhaseEnd;
         // Add other game specific systems here
 
@@ -37,8 +41,12 @@ namespace TheKiwiCoder {
             BossShieldGeneratorSpawnPointHolder _shieldGeneratorHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
-            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos) {
-            // Fetch all commonly used components
+            GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
+            CannonRainMemoryPool _cannonRainMemoryPool,
+            CannonMemoryPool _cannonMemoryPool,
+            GatlinMemoryPool _gatlinMemoryPool,
+            GroupMissileMemoryPool _groupMissileMemoryPool) {
+            // Fetch all commonly used components   
             Context context = new Context();
             context.gameObject = gameObject;
             context.transform = gameObject.transform;
@@ -54,6 +62,10 @@ namespace TheKiwiCoder {
             context.giantHomingMissileSpawnTr = _giantHomingMissileSpawnTr;
             context.shieldGeneratorHolder = _shieldGeneratorHolder;
             context.arrGroupHomingMissileSpawnPos = _arrGroupHomingMissileSpawnPos;
+            context.cannonRainMemoryPool = _cannonRainMemoryPool;
+            context.cannonMemoryPool = _cannonMemoryPool;
+            context.gatlinMemoryPool = _gatlinMemoryPool;
+            context.groupMissileMemoryPool = _groupMissileMemoryPool;
             // Add whatever else you need here...
 
             return context;

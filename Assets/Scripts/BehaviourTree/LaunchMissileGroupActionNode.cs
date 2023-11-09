@@ -64,8 +64,11 @@ public class LaunchMissileGroupActionNode : ActionNode
     {
         for (int i = missileSpawnIdx; i < arrGroupHomingMissileSpawnPos.Length; i += 8)
         {
-            arrMissileGroup[i] = Instantiate(missilePrefab, arrGroupHomingMissileSpawnPos[i].GetPos(), arrGroupHomingMissileSpawnPos[i].GetRot());
-            arrMissileGroup[i].GetComponent<GiantHomingMissileController>().Init(moveAccel, maxMoveSpeed, rotateAccel, maxRotateAccel, context.playerTr, autoDestroyTime);
+            //arrMissileGroup[i] = Instantiate(missilePrefab, arrGroupHomingMissileSpawnPos[i].GetPos(), arrGroupHomingMissileSpawnPos[i].GetRot());
+            context.groupMissileMemoryPool.ActivateGroupMissile();
+            Vector3 spawnPos = arrGroupHomingMissileSpawnPos[i].GetPos();
+            Quaternion spawnRot = arrGroupHomingMissileSpawnPos[i].GetRot();
+            arrMissileGroup[i].GetComponent<GroupHomingMissileController>().Init(moveAccel, maxMoveSpeed, rotateAccel, maxRotateAccel, context.playerTr, autoDestroyTime, spawnPos, spawnRot, context.groupMissileMemoryPool);
         }
 
         ++missileSpawnIdx;

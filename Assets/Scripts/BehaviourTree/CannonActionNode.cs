@@ -32,6 +32,7 @@ public class CannonActionNode : ActionNode
     private float lastAttackTime;
     private Vector3 rndAttackPos;
     private Vector2 rnd1;
+
     protected override void OnStart() {
         startTime = Time.time;
         lastAttackTime = 0;
@@ -60,8 +61,8 @@ public class CannonActionNode : ActionNode
                 {
                     Vector2 rnd2 = Random.insideUnitCircle * radious;
                     Vector3 spawnPositionWithHeight = rndAttackPos + new Vector3(rnd2.x, Random.Range(attackMinHeight, attackMaxHeight), rnd2.y);
-                    GameObject bullet = Instantiate(cannonBallPrefab, spawnPositionWithHeight, Quaternion.identity);
-                    bullet.GetComponent<CannonBallController>().Init(cannonBallSpeed);
+                    GameObject bullet = context.cannonMemoryPool.ActivateCannonBall();
+                    bullet.GetComponent<CannonBallController>().Init(cannonBallSpeed, spawnPositionWithHeight,context.cannonMemoryPool);
                     lastAttackTime = Time.time;
                 }
             }
