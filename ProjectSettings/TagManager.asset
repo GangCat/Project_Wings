@@ -17,6 +17,7 @@ TagManager:
   - BossShield
   - GiantHomingMissile
   - TimeBomb
+  - BossLaser
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - BossHomingMIssile
   - Boss
   - Obstacle
-  - 
+  - TimeBomb
   - 
   - 
   - 

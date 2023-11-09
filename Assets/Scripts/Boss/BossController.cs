@@ -23,12 +23,12 @@ public class BossController : MonoBehaviour
         timeBombPatternCtrl.Init(FinishPhaseChange, () => { isBossStartRotation = true; });
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
+        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, shieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
 
-        curWeakPoint = new List<GameObject>();
+        curShieldGeneratorPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
 
-        InitNewWeakPoint();
+        InitShieldGeneratorPoint();
 
         cameraActionCallback = _cameraActionCallback;
         playerTr = _playerTr;
@@ -48,10 +48,10 @@ public class BossController : MonoBehaviour
 
     public void ClearCurPhase()
     {
-        foreach (GameObject bwpGo in curWeakPoint)
+        foreach (GameObject bwpGo in curShieldGeneratorPoint)
             Destroy(bwpGo);
 
-        curWeakPoint.Clear();
+        curShieldGeneratorPoint.Clear();
     }
 
     private IEnumerator UpdateCoroutine()
@@ -122,7 +122,7 @@ public class BossController : MonoBehaviour
         {
             isBossStartRotation = false;
             ++curPhaseNum;
-            InitNewWeakPoint();
+            InitShieldGeneratorPoint();
             myRunner.StartNextPhase(curPhaseNum);
             isChangingPhase = false;
         }
@@ -130,40 +130,21 @@ public class BossController : MonoBehaviour
 
     private bool IsWeakPointRemain()
     {
-        return curWeakPoint.Count > 0;
+        return curShieldGeneratorPoint.Count > 0;
     }
 
-    private void InitNewWeakPoint()
+    private void InitShieldGeneratorPoint()
     {
-        curWeakPoint.Clear();
+        curShieldGeneratorPoint.Clear();
 
-        switch (curPhaseNum)
+        shieldGeneratorSpawnPointHolder.Init();
+        foreach (BossShieldGeneratorSpawnPoint wp in shieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
         {
-            case 1:
-                firstShieldGeneratorSpawnPointHolder.Init();
-                foreach (BossShieldGeneratorSpawnPoint wp in firstShieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
-                {
-                    curWeakPoint.Add(Instantiate(bossShieldGeneratorPrefab, wp.GetPos(), Quaternion.identity));
-                }
-                break;
-            case 2:
-                secondShieldGeneratorSpawnPointHolder.Init();
-                foreach (BossShieldGeneratorSpawnPoint wp in secondShieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
-                {
-                    wp.Init();
-                    curWeakPoint.Add(Instantiate(bossShieldGeneratorPrefab, wp.GetPos(), Quaternion.identity));
-                }
-                break;
-            case 3:
-                curWeakPoint.Add(Instantiate(bossShieldGeneratorPrefab, thirdShieldGeneratorSpawnPoint.GetPos(), Quaternion.identity, thirdShieldGeneratorSpawnPoint.transform));
-                break;
-            default:
-                break;
-
-
+            wp.Init();
+            curShieldGeneratorPoint.Add(Instantiate(bossShieldGeneratorPrefab, wp.GetPos(), Quaternion.identity));
         }
 
-        foreach (GameObject go in curWeakPoint)
+        foreach (GameObject go in curShieldGeneratorPoint)
         {
             go.GetComponent<BossShieldGenerator>().Init(RemoveWeakPointFromList);
         }
@@ -171,16 +152,12 @@ public class BossController : MonoBehaviour
 
     private void RemoveWeakPointFromList(GameObject _go)
     {
-        curWeakPoint.Remove(_go);
+        curShieldGeneratorPoint.Remove(_go);
     }
 
     [Header("-InformationForContext")]
     [SerializeField]
-    private BossShieldGeneratorSpawnPointHolder firstShieldGeneratorSpawnPointHolder = null;
-    [SerializeField]
-    private BossShieldGeneratorSpawnPointHolder secondShieldGeneratorSpawnPointHolder = null;
-    [SerializeField]
-    private BossShieldGeneratorSpawnPoint thirdShieldGeneratorSpawnPoint = null;
+    private BossShieldGeneratorSpawnPointHolder shieldGeneratorSpawnPointHolder = null;
     [SerializeField]
     private GameObject gatlingHolderGo = null;
     [SerializeField]
@@ -202,7 +179,7 @@ public class BossController : MonoBehaviour
 
     private Transform playerTr = null;
     private BossCollider bossCollider = null;
-    private List<GameObject> curWeakPoint = null;
+    private List<GameObject> curShieldGeneratorPoint = null;
     private BehaviourTreeRunner myRunner = null;
     private int curPhaseNum = 0;
     private bool isChangingPhase = false;

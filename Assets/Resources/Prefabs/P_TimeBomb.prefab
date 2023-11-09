@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7933827681400738274}
   - component: {fileID: 2774609214988710903}
   - component: {fileID: 6033947744142834261}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4270280909587198845}
   - component: {fileID: 5671047688315065943}
   - component: {fileID: 4222107536252209743}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: P_TimeBomb
   m_TagString: TimeBomb
   m_Icon: {fileID: 0}
@@ -151,8 +151,8 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
+  m_Height: 2
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4222107536252209743
 Rigidbody:

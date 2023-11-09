@@ -57,6 +57,9 @@ public class TimeBomb : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trig");
+
+        if (other.CompareTag("BossLaser"))
+            Destroy(gameObject);
     }
 
     private IEnumerator TimerCoroutine()

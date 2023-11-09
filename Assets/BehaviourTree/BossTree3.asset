@@ -210,7 +210,6 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3387968954581324278}
-  - {fileID: 7618470226603610064}
 --- !u!114 &-5833006940616095522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,7 +469,6 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: -3920158228874092110}
-  - {fileID: 4411008589422368910}
 --- !u!114 &-3385513496737040516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,8 +746,8 @@ MonoBehaviour:
     curPhaseNum: 0
     curClosedWeakPoint: 0
   description: 
-  drawGizmos: 0
-  range: 300
+  drawGizmos: 1
+  range: 600
 --- !u!114 &1210790204114747789
 MonoBehaviour:
   m_ObjectHideFlags: 0

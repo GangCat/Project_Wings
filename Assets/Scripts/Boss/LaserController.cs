@@ -16,7 +16,11 @@ public class LaserController : MonoBehaviour
 
         waitFixedTime = new WaitForFixedUpdate();
 
-        mf = GetComponentInChildren<MeshFilter>();
+        mf = GetComponent<MeshFilter>();
+        mc = GetComponent<MeshCollider>();
+        Mesh mesh = new Mesh();
+        mf.mesh = mesh;
+        mc.sharedMesh = mesh;
 
         StartCoroutine(LaunchLaserCoroutine(Time.time));
     }
@@ -39,17 +43,20 @@ public class LaserController : MonoBehaviour
     {
         //mf.mesh = mesh;
 
+        float halfInitWidth = initWidth * 0.5f;
+        float halfInitHeigth = initHeight * 0.5f;
+
         // 버텍스 버퍼
         Vector3[] verticesArr = new Vector3[]
             {
-                new Vector3(-initWidth * 0.5f, initHeight * 0.5f, 0f),
-                new Vector3(initWidth * 0.5f, initHeight * 0.5f, 0f),
-                new Vector3(-initWidth * 0.5f, -initHeight * 0.5f, 0f),
-                new Vector3(initWidth * 0.5f, -initHeight * 0.5f, 0f),
-                new Vector3(-initWidth * (0.5f + curHeight * 0.005f), initHeight * (0.5f + curHeight * 0.005f), curHeight),
-                new Vector3(initWidth * (0.5f + curHeight * 0.005f), initHeight * (0.5f + curHeight * 0.005f), curHeight),
-                new Vector3(-initWidth * (0.5f + curHeight * 0.005f), -initHeight * (0.5f + curHeight * 0.005f), curHeight),
-                new Vector3(initWidth * (0.5f + curHeight * 0.005f), -initHeight * (0.5f + curHeight * 0.005f), curHeight)
+                new Vector3(-halfInitWidth, halfInitHeigth, 0f),
+                new Vector3(halfInitWidth, halfInitHeigth, 0f),
+                new Vector3(-halfInitWidth, -halfInitHeigth, 0f),
+                new Vector3(halfInitWidth, -halfInitHeigth, 0f),
+                new Vector3(-initWidth * (0.5f + curHeight * increaseSizeRatio), initHeight * (0.5f + curHeight * increaseSizeRatio), curHeight),
+                new Vector3(initWidth * (0.5f + curHeight * increaseSizeRatio), initHeight * (0.5f + curHeight * increaseSizeRatio), curHeight),
+                new Vector3(-initWidth * (0.5f + curHeight * increaseSizeRatio), -initHeight * (0.5f + curHeight * increaseSizeRatio), curHeight),
+                new Vector3(initWidth * (0.5f + curHeight * increaseSizeRatio), -initHeight * (0.5f + curHeight * increaseSizeRatio), curHeight)
                 //,
                 //new Vector3(-0.5f, 0.5f,-0.5f),
                 //new Vector3(0.5f,0.5f,-0.5f),
@@ -68,11 +75,12 @@ public class LaserController : MonoBehaviour
         // 노멀값
         Vector3[] normals = CalcNormal(vertices, indices);
 
-
         mf.mesh.Clear();
         mf.mesh.vertices = vertices;
         mf.mesh.triangles = indices;
         mf.mesh.normals = normals;
+
+        mc.sharedMesh = mf.mesh;
     }
 
     private Vector3[] SetVertices(Vector3[] _verticesArr)
@@ -169,12 +177,17 @@ public class LaserController : MonoBehaviour
             destroyBombCallback?.Invoke(other.gameObject);
     }
 
+    [SerializeField]
+    private float increaseSizeRatio = 0.005f;
+
+
     private DestroyBombDelegate destroyBombCallback = null;
     private float launchDuration = 0f;
     private float lengthPerSec = 0f;
     private WaitForFixedUpdate waitFixedTime = null;
 
     private MeshFilter mf = null;
+    private MeshCollider mc = null;
     private float initWidth = 0f;
     private float initHeight = 0f;
     private float curHeight = 0f;

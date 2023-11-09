@@ -14,12 +14,12 @@ namespace TheKiwiCoder
             Transform _gunMuzzleTr, 
             BossAnimationController _anim, 
             BossCollider _bossCollider, 
-            BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
+            BossShieldGeneratorSpawnPointHolder _shieldGeneratorHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
+            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _shieldGeneratorHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -51,12 +51,12 @@ namespace TheKiwiCoder
             Transform _gunMuzzleTr, 
             BossAnimationController _anim, 
             BossCollider _bossCollider, 
-            BossShieldGeneratorSpawnPointHolder _secondWeakPointHolder,
+            BossShieldGeneratorSpawnPointHolder _shieldGeneratorHolder,
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
+            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _shieldGeneratorHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos);
         }
 
         private void OnDrawGizmosSelected()

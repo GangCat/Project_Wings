@@ -8,19 +8,19 @@ public class CheckWindBlowRangeActionNode : ActionNode
 {
     [SerializeField]
     private float range = 0f;
-    private BossShieldGeneratorSpawnPoint[] weakPoints = null;
+    private BossShieldGeneratorSpawnPoint[] shieldGenerators = null;
 
     protected override void OnStart() {
-        weakPoints = context.secondWeakPointHolder.ShieldGeneratorSpawnPoints;
+        shieldGenerators = context.shieldGeneratorHolder.ShieldGeneratorSpawnPoints;
     }
 
     protected override void OnStop() {
     }
 
     protected override State OnUpdate() {
-        for(int i = 0; i < weakPoints.Length; ++i)
+        for(int i = 0; i < shieldGenerators.Length; ++i)
         {
-            if (Physics.OverlapSphere(weakPoints[i].GetPos(), range, 1 << LayerMask.NameToLayer("Player")).Length > 0)
+            if (Physics.OverlapSphere(shieldGenerators[i].GetPos(), range, 1 << LayerMask.NameToLayer("Player")).Length > 0)
             {
                 blackboard.curClosedWeakPoint = i;
                 return State.Success;
@@ -32,10 +32,10 @@ public class CheckWindBlowRangeActionNode : ActionNode
 
     public override void OnDrawGizmos()
     {
-        for(int i = 0; i < weakPoints.Length; ++i)
+        for(int i = 0; i < shieldGenerators.Length; ++i)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawSphere(weakPoints[i].GetPos(), range);
+            Gizmos.DrawSphere(shieldGenerators[i].GetPos(), range);
         }
     }
 }

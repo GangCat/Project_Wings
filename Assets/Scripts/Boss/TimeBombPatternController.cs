@@ -92,7 +92,7 @@ public class TimeBombPatternController : MonoBehaviour
 
                 Destroy(go);
             }
-        }, 100, 20);
+        }, initWidth, initHeight);
 
     }
 
@@ -125,6 +125,10 @@ public class TimeBombPatternController : MonoBehaviour
     private float laserDuration = 0f;
     [SerializeField]
     private float laserLengthPerSec = 0f;
+    [SerializeField]
+    private float initWidth = 20f;
+    [SerializeField]
+    private float initHeight = 20f;
 
     private GameObject[] arrBombGo = null;
     private VoidVoidDelegate patternFinishCallback = null;
