@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class TimeBombPatternController : MonoBehaviour
 {
-    public void Init(VoidVoidDelegate _patternFinishDelegate, VoidVoidDelegate _startBossRotationCallback)
+    public void Init(VoidVoidDelegate _patternFinishDelegate, VoidBoolDelegate _bossRotationCallback, Transform _targetTr)
     {
         patternFinishCallback = _patternFinishDelegate;
-        startBossRotationCallback = _startBossRotationCallback;
+        bossRotationCallback = _bossRotationCallback;
+        targetTr = _targetTr;
         arrBombGo = new GameObject[4];
         waitFixedTime = new WaitForFixedUpdate();
     }
@@ -52,22 +53,35 @@ public class TimeBombPatternController : MonoBehaviour
             yield return waitFixedTime;
         }
 
-        startBossRotationCallback?.Invoke();
+        bossRotationCallback?.Invoke(true);
 
         float laserStartTime = Time.time;
         int laserCount = 0;
+        GameObject laserGo = null;
+        Debug.Log("StartLaserCharge");
         while (laserCount < 4)
         {
             if (Time.time - laserStartTime > laserDelay)
             {
-                LaunchLaser();
+                bossRotationCallback?.Invoke(false);
+                laserGo = LaunchLaser();
                 ++laserCount;
+            }
+
+            if (laserGo)
+            {
+                while (laserGo)
+                    yield return waitFixedTime;
+
+                Debug.Log("StartLaserCharge");
                 laserStartTime = Time.time;
+                bossRotationCallback?.Invoke(true);
             }
 
             yield return waitFixedTime;
         }
 
+        bossRotationCallback?.Invoke(false);
         while (true)
         {
             if (arrBombGo.Length < 1)
@@ -79,7 +93,7 @@ public class TimeBombPatternController : MonoBehaviour
         FinishPattern();
     }
 
-    private void LaunchLaser()
+    private GameObject LaunchLaser()
     {
         GameObject laserGo = Instantiate(laserPrefab, laserLaunchTr.position, laserLaunchTr.rotation);
         laserGo.GetComponent<LaserController>().Init(laserDuration, laserLengthPerSec,
@@ -94,6 +108,8 @@ public class TimeBombPatternController : MonoBehaviour
             }
         }, initWidth, initHeight);
 
+        Destroy(laserGo, laserDuration);
+        return laserGo;
     }
 
 
@@ -132,8 +148,9 @@ public class TimeBombPatternController : MonoBehaviour
 
     private GameObject[] arrBombGo = null;
     private VoidVoidDelegate patternFinishCallback = null;
-    private VoidVoidDelegate startBossRotationCallback = null;
+    private VoidBoolDelegate bossRotationCallback = null;
     private WaitForFixedUpdate waitFixedTime = null;
+    private Transform targetTr = null;
 
     private float curLaserLength = 0f;
 }

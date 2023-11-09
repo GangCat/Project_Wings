@@ -20,7 +20,7 @@ public class BossController : MonoBehaviour
         bossCollider.Init();
         statHp.Init(StartPhaseChange);
         shield.Init();
-        timeBombPatternCtrl.Init(FinishPhaseChange, () => { isBossStartRotation = true; });
+        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, playerTr);
 
         myRunner = GetComponent<BehaviourTreeRunner>();
         myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, shieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
