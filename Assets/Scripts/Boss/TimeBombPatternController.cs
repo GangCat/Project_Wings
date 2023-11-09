@@ -95,7 +95,11 @@ public class TimeBombPatternController : MonoBehaviour
 
     private GameObject LaunchLaser()
     {
-        GameObject laserGo = Instantiate(laserPrefab, laserLaunchTr.position, laserLaunchTr.rotation);
+        float angleToPlayer = Mathf.Asin((targetTr.position.y - laserLaunchTr.position.y) / Vector3.Distance(laserLaunchTr.position, targetTr.position));
+        angleToPlayer = Mathf.Clamp(angleToPlayer, -launchAngleLimit, launchAngleLimit);
+        Quaternion newRotation = Quaternion.Euler(Vector3.left * Mathf.Rad2Deg * angleToPlayer);
+
+        GameObject laserGo = Instantiate(laserPrefab, laserLaunchTr.position, laserLaunchTr.rotation * newRotation);
         laserGo.GetComponent<LaserController>().Init(laserDuration, laserLengthPerSec,
             _value =>
         {
@@ -145,6 +149,8 @@ public class TimeBombPatternController : MonoBehaviour
     private float initWidth = 20f;
     [SerializeField]
     private float initHeight = 20f;
+    [SerializeField]
+    private float launchAngleLimit = 30f;
 
     private GameObject[] arrBombGo = null;
     private VoidVoidDelegate patternFinishCallback = null;

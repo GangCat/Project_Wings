@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 4480090}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 63.5, y: 9.500001, z: 22.4}
+  m_LocalPosition: {x: 68.3, y: 9.500001, z: 58.1}
   m_LocalScale: {x: 5, y: 30, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1563,15 +1563,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282463442}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.026666664, y: 0.0044444436, z: 0.026666664}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1014577800}
   - {fileID: 598873448}
   - {fileID: 1695965890}
-  m_Father: {fileID: 1326640376}
+  m_Father: {fileID: 1089861123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &282463444
 MonoBehaviour:
@@ -3101,7 +3101,7 @@ Transform:
   m_GameObject: {fileID: 533093035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -63.2, y: 9.500001, z: 23.4}
+  m_LocalPosition: {x: -68.7, y: 9.500001, z: 54.7}
   m_LocalScale: {x: 5, y: 30, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3832,15 +3832,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700336659}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.000047683716, z: -0.000061035156}
+  m_LocalScale: {x: 0.53333336, y: 0.88888896, z: 0.53333336}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1621952708}
   - {fileID: 1734054805}
   - {fileID: 790439954}
-  m_Father: {fileID: 2032668266}
+  m_Father: {fileID: 1809290439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &700336661
 MonoBehaviour:
@@ -3882,51 +3882,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 70222690664163882, guid: eaa24a731e2e5664ba395e4408ba8f42, type: 3}
---- !u!1 &712522042
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 712522043}
-  - component: {fileID: 712522044}
-  m_Layer: 13
-  m_Name: BossShieldGeneratorSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &712522043
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712522042}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -476.25, y: 39.632492, z: -168}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1010921779}
-  m_Father: {fileID: 1034166956}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &712522044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712522042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 798a0d06343f1b448ab41021e7e442b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &715824549
 GameObject:
   m_ObjectHideFlags: 0
@@ -4363,15 +4318,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767335633}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.000030517578, y: 0.000035762787, z: 0.000015258789}
+  m_LocalScale: {x: 0.53333336, y: 0.88888896, z: 0.53333336}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 440641099}
   - {fileID: 747405399}
   - {fileID: 594815734}
-  m_Father: {fileID: 2007005525}
+  m_Father: {fileID: 879915977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &767335635
 MonoBehaviour:
@@ -5304,7 +5259,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.60169995, z: 0}
   m_LocalScale: {x: 0.05, y: 0.005, z: 0.05}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 767335634}
   m_Father: {fileID: 533093036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &879915978
@@ -6218,15 +6174,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010921778}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.000035762787, z: 0.000015258789}
+  m_LocalScale: {x: 0.53333336, y: 0.88888896, z: 0.53333336}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1768682056}
   - {fileID: 1958705429}
   - {fileID: 1121697338}
-  m_Father: {fileID: 712522043}
+  m_Father: {fileID: 1453752597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1010921780
 MonoBehaviour:
@@ -6475,11 +6431,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1326640376}
-  - {fileID: 2032668266}
-  - {fileID: 2007005525}
-  - {fileID: 712522043}
+  m_Children: []
   m_Father: {fileID: 1295538132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1034166957
@@ -6495,10 +6447,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrShieldGeneratorSpawnPoints:
-  - {fileID: 1326640377}
-  - {fileID: 2032668267}
-  - {fileID: 2007005526}
-  - {fileID: 712522044}
+  - {fileID: 1089861124}
+  - {fileID: 1809290440}
+  - {fileID: 879915978}
+  - {fileID: 1453752598}
 --- !u!1 &1039127747
 GameObject:
   m_ObjectHideFlags: 0
@@ -6840,7 +6792,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5722224, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 282463443}
   m_Father: {fileID: 212948061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1089861124
@@ -7121,8 +7074,8 @@ MonoBehaviour:
     type: 3}
   laserLaunchTr: {fileID: 381053478}
   laserDelay: 10
-  laserDuration: 5
-  laserLengthPerSec: 600
+  laserDuration: 2
+  laserLengthPerSec: 1500
   initWidth: 20
   initHeight: 20
 --- !u!1 &1170017072
@@ -9156,51 +9109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caaff4192e18e6a4786ef6ce8fa7a943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1326640375
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1326640376}
-  - component: {fileID: 1326640377}
-  m_Layer: 13
-  m_Name: BossShieldGeneratorSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1326640376
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326640375}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 495, y: 33.00003, z: 471.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 282463443}
-  m_Father: {fileID: 1034166956}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1326640377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326640375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 798a0d06343f1b448ab41021e7e442b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1340172037
 GameObject:
   m_ObjectHideFlags: 0
@@ -10443,7 +10351,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.60169995, z: 0}
   m_LocalScale: {x: 0.05, y: 0.005, z: 0.05}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1010921779}
   m_Father: {fileID: 4480091}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1453752598
@@ -12850,7 +12759,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.6017, z: 0}
   m_LocalScale: {x: 0.05, y: 0.005, z: 0.05}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 700336660}
   m_Father: {fileID: 715824550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1809290440
@@ -14104,51 +14014,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5235648689648786991, guid: eaa24a731e2e5664ba395e4408ba8f42, type: 3}
---- !u!1 &2007005524
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2007005525}
-  - component: {fileID: 2007005526}
-  m_Layer: 13
-  m_Name: BossShieldGeneratorSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2007005525
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007005524}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 474, y: 39.632492, z: -175.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 767335634}
-  m_Father: {fileID: 1034166956}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2007005526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007005524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 798a0d06343f1b448ab41021e7e442b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2011758205
 GameObject:
   m_ObjectHideFlags: 0
@@ -14513,51 +14378,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031883003}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2032668265
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2032668266}
-  - component: {fileID: 2032668267}
-  m_Layer: 13
-  m_Name: BossShieldGeneratorSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2032668266
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032668265}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -320.25, y: 39.632523, z: 548.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 700336660}
-  m_Father: {fileID: 1034166956}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2032668267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032668265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 798a0d06343f1b448ab41021e7e442b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2054765580
 GameObject:
   m_ObjectHideFlags: 0

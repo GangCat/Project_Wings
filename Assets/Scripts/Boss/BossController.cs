@@ -20,7 +20,7 @@ public class BossController : MonoBehaviour
         bossCollider.Init();
         statHp.Init(StartPhaseChange);
         shield.Init();
-        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, playerTr);
+        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
 
         myRunner = GetComponent<BehaviourTreeRunner>();
         myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, shieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos);
@@ -82,8 +82,7 @@ public class BossController : MonoBehaviour
         // 방향 벡터를 사용하여 보스를 회전시킵니다.
         if (directionToPlayer != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-            transform.rotation = targetRotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
         }
 
         //bossRb.MoveRotation(bossRb.rotation * Quaternion.Euler(Vector3.up * rotationSpeed * Mathf.Deg2Rad));
