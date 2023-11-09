@@ -45,7 +45,8 @@ public class PlayerMovementController : MonoBehaviour
         } else if (isFrontMove == false)
         {
             moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
-            playerVelocity = moveSpeed * playerTr.forward;
+            if(!isKnockBack)
+                playerVelocity = moveSpeed * playerTr.forward;
             return;
         }
         

@@ -18,6 +18,7 @@ TagManager:
   - GiantHomingMissile
   - TimeBomb
   - BossLaser
+  - WindBlowForPattern
   layers:
   - Default
   - TransparentFX

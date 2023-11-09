@@ -98,7 +98,14 @@ public class PlayerController : MonoBehaviour
         else if (_collider.CompareTag("WindBlow"))
         {
             knockBackAmount = 250f;
+            knockBackDir = Vector3.up;
             knockBackDelay = 4f;
+        }
+        else if (_collider.CompareTag("WindBlowForPattern"))
+        {
+            knockBackAmount = 1000f;
+            knockBackDir = Vector3.up;
+            knockBackDelay = 3f;
         }
         else if (_collider.CompareTag("CrossLaser"))
         {

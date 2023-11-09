@@ -10,25 +10,48 @@ public class TimeBombPatternController : MonoBehaviour
         patternFinishCallback = _patternFinishDelegate;
         bossRotationCallback = _bossRotationCallback;
         targetTr = _targetTr;
+        windBlowHolder = GetComponentInChildren<WindBlowHolder>();
+
+        windBlowHolder.Init();
         arrBombGo = new GameObject[4];
         waitFixedTime = new WaitForFixedUpdate();
     }
 
     public void StartPattern()
     {
+        StartWindBlow();
         StartCoroutine(PatternCoroutine());
         Debug.Log("PatterStart");
         //Invoke("FinishPattern", 5f);
     }
 
+    private void StartWindBlow()
+    {
+        WindBlowPoint[] arrWindBlowPoints = windBlowHolder.WindBlowPoints;
+
+        foreach(WindBlowPoint wbp in arrWindBlowPoints)
+        {
+            wbp.StartGenerateSecond(windBlowCylinderPrefab);
+        }    
+    }
+
     private void FinishPattern()
     {
+        WindBlowPoint[] arrWindBlowPoints = windBlowHolder.WindBlowPoints;
+
+        foreach (WindBlowPoint wbp in arrWindBlowPoints)
+        {
+            wbp.FinishGenerate();
+        }
+
         Debug.Log("PatterFinish");
         patternFinishCallback?.Invoke();
     }
 
     private IEnumerator PatternCoroutine()
     {
+        yield return new WaitForSeconds(startDelay);
+
         while (true)
         {
             // 일어나는 애니메이션
@@ -152,11 +175,18 @@ public class TimeBombPatternController : MonoBehaviour
     [SerializeField]
     private float launchAngleLimit = 30f;
 
+    [Header("-E.T.C")]
+    [SerializeField]
+    private GameObject windBlowCylinderPrefab = null;
+    [SerializeField]
+    private float startDelay = 10f;
+
     private GameObject[] arrBombGo = null;
     private VoidVoidDelegate patternFinishCallback = null;
     private VoidBoolDelegate bossRotationCallback = null;
     private WaitForFixedUpdate waitFixedTime = null;
     private Transform targetTr = null;
+    private WindBlowHolder windBlowHolder = null;
 
     private float curLaserLength = 0f;
 }

@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8056366466029694415}
   m_Layer: 9
-  m_Name: Cylinder2
+  m_Name: P_WindBlowCylinder
   m_TagString: WindBlow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
