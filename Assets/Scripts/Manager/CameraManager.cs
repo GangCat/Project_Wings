@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
     public void Init(Transform _playerTr,PlayerData _playerData, VoidVoidDelegate _actionFinishCallback)
     {
         cam = GetComponent<Camera>();
-        mainCam = GetComponentInChildren<CameraMovement>();
+        //mainCam = GetComponentInChildren<CameraMovement>();
         actionCam = GetComponentInChildren<ActionCamera>();
 
         mainCam.Init(_playerTr, _playerData);
@@ -34,7 +34,7 @@ public class CameraManager : MonoBehaviour
 
         camera.fieldOfView = targetFOV;
     }
-
+    [SerializeField]
     private CameraMovement mainCam = null;
     private Camera cam = null;
     private ActionCamera actionCam = null;

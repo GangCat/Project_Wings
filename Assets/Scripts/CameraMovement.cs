@@ -13,20 +13,28 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1)) // 마우스 우클릭을 처음 누를 때
+        if (Input.GetMouseButtonDown(1) && !backMirror) 
         {
             cameraYaw = currentRotation.y;
             cameraPitch = currentRotation.x;
-            playerData.isFreeLock = true; // 프리룩 활성화
-
+            playerData.isFreeLock = true;
         }
-        else if (Input.GetMouseButtonUp(1)) // 마우스 우클릭을 놓을 때
+        else if (Input.GetMouseButtonUp(1) ) 
         {
-            playerData.isFreeLock = false; // 프리룩 비활성화
-
-
+            playerData.isFreeLock = false;
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Tab) && !playerData.isFreeLock) 
+        {
+            Debug.Log("탭 ON");
+            backMirror = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab)) 
+        {
+            backMirror = false;
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -47,12 +55,7 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-
-
-      
         //transform.position = Pos;
-
-
         //desiredRotation = Quaternion.LookRotation(playerTr.forward);
         //quaternion = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
         //Pos = playerTr.position + -playerTr.forward * offset + transform.up * 3f;
@@ -62,6 +65,9 @@ public class CameraMovement : MonoBehaviour
 
     private void FollowPlayerPos()
     {
+        if(backMirror)
+            calcPos = playerTr.position + playerTr.forward * offset + transform.up * 3f;
+        else
         calcPos = playerTr.position - playerTr.forward * offset + transform.up * 3f;
         float smoothedPosX = Mathf.Lerp(transform.position.x, calcPos.x, posSmoothX * Time.deltaTime);
         float smoothedPosY = Mathf.Lerp(transform.position.y, calcPos.y, posSmoothY * Time.deltaTime);
@@ -81,6 +87,9 @@ public class CameraMovement : MonoBehaviour
     private void FollowPlayerRot()
     {
         currentRotation = transform.rotation.eulerAngles;
+        if(backMirror)
+            desiredRotation = Quaternion.LookRotation(-playerTr.forward).eulerAngles;
+        else
         desiredRotation = Quaternion.LookRotation(playerTr.forward).eulerAngles;
 
         float xRot = Mathf.SmoothDampAngle(currentRotation.x, desiredRotation.x, ref rotVectorVelocity.x, rotSmoothX * Time.deltaTime);
@@ -91,7 +100,7 @@ public class CameraMovement : MonoBehaviour
 
     }
 
-    private bool CameraRay() // 장애물 카메라에 걸리면 당겨지게 하는건데 레이어 설정이 안되있어서 이상함 추후 수정.
+    private bool CameraRay()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, playerTr.position - transform.position, out hit))
@@ -116,10 +125,9 @@ public class CameraMovement : MonoBehaviour
 
         // 카메라의 회전을 적용
         quaternion = Quaternion.Euler(cameraPitch, cameraYaw, 0);
-        Vector3 CalcPlayerPos = playerTr.position - (quaternion * Vector3.forward) * (offset+1f) + transform.up * 3f;
-        cameraPos = CalcPlayerPos;
-        //FollowPlayerPos(CalcPlayerPos);
-
+        Vector3 calcPlayerPos = playerTr.position - (quaternion * Vector3.forward) * (offset) + transform.up * 3f;
+        cameraPos = calcPlayerPos;
+       
     }
 
 
@@ -127,6 +135,7 @@ public class CameraMovement : MonoBehaviour
     private Vector3 cameraOffset;
     private float cameraYaw; 
     private float cameraPitch;
+
     public Vector2 pitchMinMax = new Vector2(-40, 85);
 
     public float posSmoothX = 10f;
@@ -136,8 +145,6 @@ public class CameraMovement : MonoBehaviour
     public float rotSmoothX = 0.1f;
     public float rotSmoothY = 0.05f;
     public float rotSmoothZ = 0.1f;
-
-
 
     public float offset = 0f;
 
@@ -149,5 +156,6 @@ public class CameraMovement : MonoBehaviour
     private Quaternion quaternion = Quaternion.identity;
     private Transform playerTr = null;
     private PlayerData playerData = null;
+    private bool backMirror = false;
 
 }

@@ -27,7 +27,7 @@ MonoBehaviour:
   isDash: 1
   isCrash: 0
   isAction: 0
-  dodgeSpeed: 200
+  dodgeSpeed: 400
   dodgeDuration: 8
   rotCamSpeed: 75
   rotCamXAxisSensitive: 2
@@ -45,5 +45,5 @@ MonoBehaviour:
   rollMaxVelocity: 200
   rollMaxAngle: 80
   rollReturnAccel: 100
-  currentRotZ: 0
+  currentRotZ: -14
   currentMoveSpeed: 0

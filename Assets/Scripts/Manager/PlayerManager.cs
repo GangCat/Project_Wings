@@ -20,6 +20,11 @@ public class PlayerManager : MonoBehaviour
         pmc.Init(playerData);
     }
 
+    private void FixedUpdate()
+    {
+        pmc.PlayerModelRotate();
+    }
+
 
 
     [SerializeField]
