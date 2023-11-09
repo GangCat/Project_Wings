@@ -18,9 +18,12 @@ namespace TheKiwiCoder
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
-            CannonRainMemoryPool _cannonRainMemoryPool)
+            CannonRainMemoryPool _cannonRainMemoryPool,
+            CannonMemoryPool _cannonMemoryPool,
+            GatlinMemoryPool _gatlinMemoryPool,
+            GroupMissileMemoryPool _groupMissileMemoryPool)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool);
+            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool,_groupMissileMemoryPool);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -56,9 +59,12 @@ namespace TheKiwiCoder
             GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
-            CannonRainMemoryPool _cannonRainMemoryPool)
+            CannonRainMemoryPool _cannonRainMemoryPool,
+            CannonMemoryPool _cannonMemoryPool,
+            GatlinMemoryPool _gatlinMemoryPool,
+            GroupMissileMemoryPool _groupMissileMemoryPool)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool);
+            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _secondWeakPointHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool, _groupMissileMemoryPool);
         }
 
         private void OnDrawGizmosSelected()

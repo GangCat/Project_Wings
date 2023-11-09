@@ -8,12 +8,12 @@ using UnityEngine;
 /// 플레이어와 부딪히면 폭발하고 데미지를 준다.
 /// 땅과 부딪히면 폭발한다.
 /// </summary>
-public class CannonBallController : AttackableObject
+public class CannonRainBallController : AttackableObject
 {
     private float speed;
     private WaitForFixedUpdate waitFixedUpdate = null;
-    private CannonMemoryPool memoryPool = null;
-    public void Init(float _speed, Vector3 _spawnPos, CannonMemoryPool _memoryPool = null)
+    private CannonRainMemoryPool memoryPool = null;
+    public void Init(float _speed, Vector3 _spawnPos, CannonRainMemoryPool _memoryPool = null)
     {
         speed = _speed;
         transform.position = _spawnPos;

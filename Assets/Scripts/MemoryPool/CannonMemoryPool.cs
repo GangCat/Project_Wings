@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonRainMemoryPool : MonoBehaviour
+public class CannonMemoryPool : MonoBehaviour
 {
     public void Init()
     {
-        memoryPool = new MemoryPool(cannonRainBallPrefab, 100, transform);
+        memoryPool = new MemoryPool(cannonBallPrefab, 50, transform);
     }
 
     public GameObject ActivateCannonBall()
     {
-        GameObject cannonRainBallGo = memoryPool.ActivatePoolItem(5, transform);
-        return cannonRainBallGo;
+        GameObject cannonBallGo = memoryPool.ActivatePoolItem(5, transform);
+        return cannonBallGo;
     }
 
     public void DeactivateCannonBall(GameObject _deactivateGo)
@@ -21,5 +21,5 @@ public class CannonRainMemoryPool : MonoBehaviour
     }
     private MemoryPool memoryPool;
     [SerializeField]
-    private GameObject cannonRainBallPrefab = null;
+    private GameObject cannonBallPrefab = null;
 }

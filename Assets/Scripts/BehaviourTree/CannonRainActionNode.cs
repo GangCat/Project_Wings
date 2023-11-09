@@ -55,7 +55,7 @@ public class CannonRainActionNode : ActionNode
                 Vector3 spawnPositionWithHeight = rndAttackPos + new Vector3(0, Random.Range(attackMinHeight, attackMaxHeight), 0);
 
                 GameObject bullet =  context.cannonRainMemoryPool.ActivateCannonBall();
-                bullet.GetComponent<CannonBallController>().Init(cannonBallSpeed, spawnPositionWithHeight, context.cannonRainMemoryPool);
+                bullet.GetComponent<CannonRainBallController>().Init(cannonBallSpeed, spawnPositionWithHeight, context.cannonRainMemoryPool);
 
                 lastAttackTime = Time.time;
                 

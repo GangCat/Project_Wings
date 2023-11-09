@@ -1,6 +1,8 @@
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BulletController : AttackableObject
 {
@@ -8,14 +10,18 @@ public class BulletController : AttackableObject
     private float speed = 200f;
 
     Rigidbody rb = null;
+    private GatlinMemoryPool gatlinMemoryPool = null;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
-    public void Init(float _destroyTime)
+    public void Init(float _destroyTime, Vector3 _position, Quaternion _rotation,GatlinMemoryPool _gatlinMemoryPooll = null)
     {
         Destroy(gameObject, _destroyTime);
+        gameObject.transform.position = _position;
+        gameObject.transform.rotation = _rotation;
+        gatlinMemoryPool = _gatlinMemoryPooll;
     }
     //private void Start()
     //{
@@ -37,7 +43,7 @@ public class BulletController : AttackableObject
         
         if (AttackDmg(_other))
         {
-            Destroy(gameObject);
+            gatlinMemoryPool.DeactivateBullet(gameObject);
         }
     }
 

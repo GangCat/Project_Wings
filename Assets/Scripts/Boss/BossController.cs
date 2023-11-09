@@ -22,7 +22,7 @@ public class BossController : MonoBehaviour
         //timeBombPatternCtrl.Init(FinishPhaseChange);
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos, cannonRainMemoryPool);
+        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, secondShieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos, cannonRainMemoryPool, cannonMemoryPool, gatlinMemoryPool, groupMissileMemoryPool);
 
         curWeakPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
@@ -40,6 +40,9 @@ public class BossController : MonoBehaviour
     private void InitMemoryPools()
     {
         GetComponentInChildren<CannonRainMemoryPool>().Init();
+        GetComponentInChildren<CannonMemoryPool>().Init();
+        GetComponentInChildren<GatlinMemoryPool>().Init();
+        GetComponentInChildren<GroupMissileMemoryPool>().Init();
 
     }
 
@@ -167,6 +170,12 @@ public class BossController : MonoBehaviour
     private GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos = null;
     [SerializeField]
     private CannonRainMemoryPool cannonRainMemoryPool = null;
+    [SerializeField]
+    private CannonMemoryPool cannonMemoryPool = null;
+    [SerializeField]
+    private GatlinMemoryPool gatlinMemoryPool = null;
+    [SerializeField]
+    private GroupMissileMemoryPool groupMissileMemoryPool = null;
 
     private BossCollider bossCollider = null;
     private List<GameObject> curWeakPoint = null;
