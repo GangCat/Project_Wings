@@ -112,6 +112,32 @@ MonoBehaviour:
   headRotationSpeed: 20
   rebound: 5
   autoDestroyTime: 20
+--- !u!114 &-8282850204031634666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 677f9493e49a3194bb9230935a9c3ecb
+  position: {x: 2366.4243, y: 1593.5488}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 613423840867159952}
+  - {fileID: 4314603584088981510}
 --- !u!114 &-8149892216632681123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +552,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -8305457244676183389}
   - {fileID: 3119450158616902581}
 --- !u!114 &-3387968954581324278
 MonoBehaviour:
@@ -754,8 +779,8 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
-  bossOffSet: 120
-  mapRadious: {x: 2000, y: 2000}
+  bossOffSet: 140
+  mapRadious: {x: 1300, y: 1300}
   attackMinHeight: 50000
   attackMaxHeight: 150000
   cannonBallCnt: 25
@@ -829,11 +854,40 @@ MonoBehaviour:
   - {fileID: 8083542919116634970}
   - {fileID: 8001639174447310299}
   - {fileID: -6789884967937151623}
+  - {fileID: 2337605505830079684}
+  - {fileID: -8282850204031634666}
+  - {fileID: 613423840867159952}
+  - {fileID: 4314603584088981510}
+  - {fileID: 2438082988901231028}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+--- !u!114 &613423840867159952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5134d9de14153468b48928d3e7359a, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 150b49df011cb2f42907214a3261345d
+  position: {x: 2287.702, y: 1833.7006}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  duration: 1
 --- !u!114 &749988045687392448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,6 +988,57 @@ MonoBehaviour:
   - {fileID: 4365113027542136525}
   - {fileID: 8266297438010400843}
   - {fileID: -6627441640048975056}
+--- !u!114 &2337605505830079684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
+  m_Name: Repeat
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 24e88b4549c0ce045a8241c6874ec760
+  position: {x: 2366.4243, y: 1491.949}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  child: {fileID: -8282850204031634666}
+  restartOnSuccess: 1
+  restartOnFailure: 0
+--- !u!114 &2438082988901231028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3274ab7a4105de545bad14c39d44b4b0, type: 3}
+  m_Name: PhasePatternSelectorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: fbe1d219a92e0a3438f4c28d04c1acbe
+  position: {x: 2054.4, y: 1104.8}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 2337605505830079684}
 --- !u!114 &2663481157983243140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1078,6 +1183,29 @@ MonoBehaviour:
   description: 
   drawGizmos: 1
   range: 3000
+--- !u!114 &4314603584088981510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393f90a8d4006aa4ba1b0e118c6f230b, type: 3}
+  m_Name: AirPushAcionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 7219343846a0d074d86187613a4a139e
+  position: {x: 2470.9019, y: 1823.3007}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+  description: 
+  drawGizmos: 0
 --- !u!114 &4365113027542136525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,6 +1372,7 @@ MonoBehaviour:
   children:
   - {fileID: -4026051781191520773}
   - {fileID: -3385513496737040516}
+  - {fileID: 2438082988901231028}
 --- !u!114 &7618470226603610064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,7 +1440,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 99f2d88d4b702194c8809794671f48ba
-  position: {x: -175.61134, y: 1240.7998}
+  position: {x: -177.15009, y: 1249.9174}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1326,6 +1455,7 @@ MonoBehaviour:
   rotateAccel: 0.2
   maxRotateAccel: 1
   autoDestroyTime: 200
+  spawnRate: 0
 --- !u!114 &8266297438010400843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1341,7 +1471,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 589a5d3feddbe9146bcd95a9734120d9
-  position: {x: 1287.0345, y: 1758.9998}
+  position: {x: 1285.4508, y: 1758.4}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
