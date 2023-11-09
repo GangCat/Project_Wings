@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class PlayerAnimationController : AnimationControllerBase
 {
-    private Animator animCtrl = null;
 
-
-    private void Start()
+    public override void Init()
     {
-        animCtrl = GetComponent<Animator>();
+        base.Init();
     }
 
 
-    public void SetAnimBool(string _name, bool _bool)
+    public void SetSpeedFloat(float _moveSpeed)
     {
-        animCtrl.SetBool(_name, _bool);
+        anim.SetFloat("moveSpeed", _moveSpeed);
     }
+
+    public void SetMousePos(float _mouseX, float _mouseY)
+    {
+        anim.SetFloat("mouseX", _mouseX);
+        anim.SetFloat("mouseY", _mouseY);
+    }
+
+
 }

@@ -9,32 +9,22 @@ public class PlayerModelRotateController : MonoBehaviour
         tr = GetComponent<Transform>();
         playerData = _data;
 
-        StartCoroutine("Test2");
     }
 
     public void PlayerModelRotate()
     {
         if (playerData.currentMoveSpeed < 5 || playerData.input.InputZ <= 0)
         {
-            //currentRotZ = Mathf.MoveTowards(currentRotZ, 0, playerData.rollReturnAccel * Time.deltaTime);
+            rotZ = Mathf.MoveTowards(rotZ, 0, playerData.rollReturnAccel * Time.deltaTime);
         }
         else
         {
-            RotateToKeyboardZ(ref rotZ);
+            RotateToMouse(ref rotZ);
         }
         //rotation.y = rotation.z;
-        playerData.currentRotZ = currentRotZ;
+        playerData.currentRotZ = rotZ;
 
-//        tr.localRotation = Quaternion.Euler(rotation);
-//       tr.rotation *= Quaternion.Euler(Vector3.forward * rotZ);
-
-
-        
-        // 로컬 회전 적용
-//        transform.Rotate(rotation, Space.Self);
-
-        // 월드 회전 적용
-        
+      tr.localRotation = Quaternion.Euler(Vector3.forward * rotZ);
 
     }
 
@@ -52,68 +42,87 @@ public class PlayerModelRotateController : MonoBehaviour
         rollVelocity = Mathf.Clamp(rollVelocity, -rollMaxVelocity, rollMaxVelocity);
 
         currentRotZ += rollVelocity * Time.deltaTime;
-        _eulerAngleZ = rollVelocity * Time.deltaTime;
-        //currentRotZ = Mathf.Clamp(currentRotZ, -rollMaxAngle, rollMaxAngle);
+        currentRotZ = Mathf.Clamp(currentRotZ, -rollMaxAngle, rollMaxAngle);
 
-        //if (Mathf.Abs(currentRotZ).Equals(rollMaxAngle))
-        //{
-        //    rollVelocity = 0f;
-        //    _eulerAngleZ = 0f;
-        //}
-        transform.Rotate(tr.forward * _eulerAngleZ, Space.World);
+        if (Mathf.Abs(currentRotZ).Equals(rollMaxAngle))
+        {
+            rollVelocity = 0f;
+        }
     }
 
-
-    private void RotateToSpeedX()
+    private void RotateToMouse(ref float _eulerAngleZ)
     {
-        float eulerAngleX;
-        if (Mathf.Abs(playerData.input.InputX) > 0f)
-            rollVelocity += rollAccel * Time.deltaTime * -playerData.input.InputX;
+        rollAccel = playerData.rollAccel;
+        rollMaxVelocity = playerData.rollMaxVelocity;
+        rollMaxAngle = playerData.rollMaxAngle;
+
+        mousePos = playerData.currentMousePos;
+
+        if (Mathf.Abs(mousePos.x) > 0f)
+            rollVelocity += rollAccel * Time.deltaTime * -mousePos.x / 100;
         else
             rollVelocity = Mathf.MoveTowards(rollVelocity, 0, rollAccel * Time.deltaTime);
 
         rollVelocity = Mathf.Clamp(rollVelocity, -rollMaxVelocity, rollMaxVelocity);
 
-        currentRotX += rollVelocity * Time.deltaTime;
-        eulerAngleX = rollVelocity * Time.deltaTime;
-        currentRotX = Mathf.Clamp(currentRotZ, -rollMaxAngle, currentMaxAngle);
+        _eulerAngleZ += rollVelocity * Time.deltaTime;
+        _eulerAngleZ = Mathf.Clamp(_eulerAngleZ, -rollMaxAngle, rollMaxAngle);
 
-        if (Mathf.Abs(currentRotZ).Equals(currentMaxAngle))
-        {
+        if (Mathf.Abs(_eulerAngleZ).Equals(rollMaxAngle))
             rollVelocity = 0f;
-            eulerAngleX = 0f;
-        }
-        transform.Rotate(tr.right * eulerAngleX, Space.World);
     }
 
-    private IEnumerator Test2()
-    {
-        while (true)
-        {
-            currentMoveVelocityRatio = playerData.currentMoveSpeed/playerData.moveForwardVelocityLimit;
-            InputZRot = 45 * currentMoveVelocityRatio;
-            if (Mathf.Abs(playerData.currentRotZ) <= 30)
-            {
-                mousePosRatio = 1;
-            }
-            else if(playerData.currentRotZ < 0)
-            {
-                if (playerData.currentMousePos.x < 0)
-                    mousePosRatio = 1 + -(playerData.currentMousePos.x / 100);
-            }
-            else{
-                if (playerData.currentMousePos.x > 0)
-                    mousePosRatio = 1+(playerData.currentMousePos.x / 100);
-            }
-            resultRot = InputZRot * (mousePosRatio);
-            currentMaxAngle = Mathf.Lerp(currentMaxAngle, resultRot, smoothness);
-            currentMaxAngle = Mathf.Clamp(currentMaxAngle, -90, 90);
 
-            rotation.x = currentMaxAngle;
+    //private void RotateToSpeedX()
+    //{
+    //    float eulerAngleX;
+    //    if (Mathf.Abs(playerData.input.InputX) > 0f)
+    //        rollVelocity += rollAccel * Time.deltaTime * -playerData.input.InputX;
+    //    else
+    //        rollVelocity = Mathf.MoveTowards(rollVelocity, 0, rollAccel * Time.deltaTime);
 
-            yield return new WaitForFixedUpdate();
-        }
-    }
+    //    rollVelocity = Mathf.Clamp(rollVelocity, -rollMaxVelocity, rollMaxVelocity);
+
+    //    currentRotX += rollVelocity * Time.deltaTime;
+    //    eulerAngleX = rollVelocity * Time.deltaTime;
+    //    currentRotX = Mathf.Clamp(currentRotZ, -rollMaxAngle, currentMaxAngle);
+
+    //    if (Mathf.Abs(currentRotZ).Equals(currentMaxAngle))
+    //    {
+    //        rollVelocity = 0f;
+    //        eulerAngleX = 0f;
+    //    }
+    //    transform.Rotate(tr.right * eulerAngleX, Space.World);
+    //}
+
+    //private IEnumerator Test2()
+    //{
+    //    while (true)
+    //    {
+    //        currentMoveVelocityRatio = playerData.currentMoveSpeed/playerData.moveForwardVelocityLimit;
+    //        InputZRot = 45 * currentMoveVelocityRatio;
+    //        if (Mathf.Abs(playerData.currentRotZ) <= 30)
+    //        {
+    //            mousePosRatio = 1;
+    //        }
+    //        else if(playerData.currentRotZ < 0)
+    //        {
+    //            if (playerData.currentMousePos.x < 0)
+    //                mousePosRatio = 1 + -(playerData.currentMousePos.x / 100);
+    //        }
+    //        else{
+    //            if (playerData.currentMousePos.x > 0)
+    //                mousePosRatio = 1+(playerData.currentMousePos.x / 100);
+    //        }
+    //        resultRot = InputZRot * (mousePosRatio);
+    //        currentMaxAngle = Mathf.Lerp(currentMaxAngle, resultRot, smoothness);
+    //        currentMaxAngle = Mathf.Clamp(currentMaxAngle, -90, 90);
+
+    //        rotation.x = currentMaxAngle;
+
+    //        yield return new WaitForFixedUpdate();
+    //    }
+    //}
 
     private Vector3 rotation;
     private float rotZ;

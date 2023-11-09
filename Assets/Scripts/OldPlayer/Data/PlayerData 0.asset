@@ -40,10 +40,10 @@ MonoBehaviour:
   maxMouseSpeed: 6
   maxMouseRadius: 100
   returnMouseRadius: 90
-  currentMousePos: {x: 0, y: 0}
+  currentMousePos: {x: 21.264866, y: 1.052022}
   rollAccel: 1000
   rollMaxVelocity: 200
-  rollMaxAngle: 80
+  rollMaxAngle: 30
   rollReturnAccel: 100
-  currentRotZ: -14
-  currentMoveSpeed: 0
+  currentRotZ: 10.582626
+  currentMoveSpeed: 36.016174

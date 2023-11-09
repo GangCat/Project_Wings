@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour
         DebugColorChange();
         moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
         virtualMouse.UpdateMouseInput();
+        animCtrl.SetSpeedFloat(playerData.currentMoveSpeed);
     }
 
     private void FixedUpdate()
@@ -145,6 +146,10 @@ public class PlayerController : MonoBehaviour
             screenMat.SetFloat("_isDash", 1);
         else
             screenMat.SetFloat("_isDash", 0);
+    }
+
+    private void AnimatorTest()
+    {
     }
 
 
