@@ -14,7 +14,6 @@ public class PlayerModelRotateController : MonoBehaviour
 
     public void PlayerModelRotate()
     {
-     //   tr.localRotation = Quaternion.Euler(rotation);
         if (playerData.currentMoveSpeed < 5 || playerData.input.InputZ <= 0)
         {
  //           rotZ = Mathf.MoveTowards(rotZ, 0, playerData.rollReturnAccel * Time.deltaTime);
@@ -22,11 +21,19 @@ public class PlayerModelRotateController : MonoBehaviour
         else
         {
             RotateToKeyboardZ(ref rotZ);
-            //RotateToSpeedX();
         }
         //rotation.y = rotation.z;
         playerData.currentRotZ = currentRotZ;
 
+//        tr.localRotation = Quaternion.Euler(rotation);
+//       tr.rotation *= Quaternion.Euler(Vector3.forward * rotZ);
+
+
+        
+        // 로컬 회전 적용
+//        transform.Rotate(rotation, Space.Self);
+
+        // 월드 회전 적용
         
 
     }
@@ -59,31 +66,24 @@ public class PlayerModelRotateController : MonoBehaviour
 
     private void RotateToSpeedX()
     {
-        pitchMaxVelocity = 90f;
         float eulerAngleX;
-
-        if (Mathf.Abs(playerData.input.InputZ) > 0f)
-        {
-            pitchVelocity += pitchAccel * Time.deltaTime * playerData.input.InputZ;
-            Debug.Log(pitchVelocity);
-        }
+        if (Mathf.Abs(playerData.input.InputX) > 0f)
+            rollVelocity += rollAccel * Time.deltaTime * -playerData.input.InputX;
         else
-            pitchVelocity = Mathf.MoveTowards(pitchVelocity, 0, pitchAccel * Time.deltaTime);
+            rollVelocity = Mathf.MoveTowards(rollVelocity, 0, rollAccel * Time.deltaTime);
 
-        pitchVelocity = Mathf.Clamp(pitchVelocity, -pitchMaxVelocity, pitchMaxVelocity);
+        rollVelocity = Mathf.Clamp(rollVelocity, -rollMaxVelocity, rollMaxVelocity);
 
-        currentRotX += pitchVelocity * Time.deltaTime; // 변수 이름 수정 (currentRotZ -> currentRotX)
-        eulerAngleX = pitchVelocity * Time.deltaTime; // 변수 이름 수정 (rollVelocity -> pitchVelocity)
-        currentRotX = Mathf.Clamp(currentRotX, -90, 90); // 변수 이름 수정 (currentRotZ -> currentRotX)
+        currentRotX += rollVelocity * Time.deltaTime;
+        eulerAngleX = rollVelocity * Time.deltaTime;
+        currentRotX = Mathf.Clamp(currentRotZ, -rollMaxAngle, currentMaxAngle);
 
-        if (Mathf.Abs(currentRotX).Equals(90)) // 변수 이름 수정 (currentRotZ -> currentRotX)
+        if (Mathf.Abs(currentRotZ).Equals(currentMaxAngle))
         {
-            pitchVelocity = 0f; // 변수 이름 수정 (rollVelocity -> pitchVelocity)
+            rollVelocity = 0f;
             eulerAngleX = 0f;
         }
-
-        // X 축 주위의 회전을 적용
-        transform.Rotate(Vector3.right * eulerAngleX, Space.Self); // 변수 이름 수정 (tr.right -> Vector3.right)
+        transform.Rotate(tr.right * eulerAngleX, Space.World);
     }
 
     private IEnumerator Test2()
@@ -128,12 +128,6 @@ public class PlayerModelRotateController : MonoBehaviour
     private float mousePosRatio;
 
     private float currentMoveVelocityRatio;
-
-    private float pitchVelocity = 0f;
-    private float pitchAccel = 1000f;
-    private float pitchMaxVelocity = 0f;
-    private float pitchMaxAngle = 90f;
-
 
 
     private float rollVelocity = 0f;

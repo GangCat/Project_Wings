@@ -23,10 +23,18 @@ public class CameraMovement : MonoBehaviour
         else if (Input.GetMouseButtonUp(1)) // 마우스 우클릭을 놓을 때
         {
             playerData.isFreeLock = false; // 프리룩 비활성화
-
-
         }
-        
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Debug.Log("탭 ON");
+            backMirror = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            backMirror = false;
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -62,6 +70,9 @@ public class CameraMovement : MonoBehaviour
 
     private void FollowPlayerPos()
     {
+        if(backMirror)
+            calcPos = playerTr.position + playerTr.forward * offset + transform.up * 3f;
+        else
         calcPos = playerTr.position - playerTr.forward * offset + transform.up * 3f;
         float smoothedPosX = Mathf.Lerp(transform.position.x, calcPos.x, posSmoothX * Time.deltaTime);
         float smoothedPosY = Mathf.Lerp(transform.position.y, calcPos.y, posSmoothY * Time.deltaTime);
@@ -81,6 +92,9 @@ public class CameraMovement : MonoBehaviour
     private void FollowPlayerRot()
     {
         currentRotation = transform.rotation.eulerAngles;
+        if(backMirror)
+            desiredRotation = Quaternion.LookRotation(-playerTr.forward).eulerAngles;
+        else
         desiredRotation = Quaternion.LookRotation(playerTr.forward).eulerAngles;
 
         float xRot = Mathf.SmoothDampAngle(currentRotation.x, desiredRotation.x, ref rotVectorVelocity.x, rotSmoothX * Time.deltaTime);
@@ -149,5 +163,6 @@ public class CameraMovement : MonoBehaviour
     private Quaternion quaternion = Quaternion.identity;
     private Transform playerTr = null;
     private PlayerData playerData = null;
+    private bool backMirror = false;
 
 }
