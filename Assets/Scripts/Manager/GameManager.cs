@@ -62,9 +62,9 @@ public class GameManager : MonoBehaviour, IPublisher
     private void InitManagers()
     {
         //audioMng.Init();
+        uiMng.Init();
         camMng.Init(playerTr, playerMng.PData, ActionFinish);
-        bossMng.Init(playerTr, CameraAction);
-        //uiMng.Init();
+        bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); });
         //playerMng.Init();
     }
 

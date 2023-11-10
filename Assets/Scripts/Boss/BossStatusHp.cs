@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class BossStatusHp : StatusHp, IBossDamageable
 {
-    public void Init(VoidVoidDelegate _phaseChangeCallback)
+    public void Init(VoidVoidDelegate _phaseChangeCallback, VoidFloatDelegate _hpUpdateCallback)
     {
         curHp = maxHp;
         curPhaseNum = 1;
         phaseChangeCallback = _phaseChangeCallback;
+        hpUpdateCallback = _hpUpdateCallback;
     }
 
     public float GetCurHp => curHp;
+    public float GetMaxHp => maxHp;
 
     public void GetDamage(float _dmg)
     {
@@ -21,6 +23,8 @@ public class BossStatusHp : StatusHp, IBossDamageable
             ChangePhase();
         else if (curPhaseNum == 2 && curHp < 0)
             ChangePhase();
+
+        hpUpdateCallback?.Invoke(curHp / maxHp);
     }
 
     private void ChangePhase()
@@ -30,5 +34,6 @@ public class BossStatusHp : StatusHp, IBossDamageable
     }
 
     private VoidVoidDelegate phaseChangeCallback = null;
+    private VoidFloatDelegate hpUpdateCallback = null;
     private int curPhaseNum = 0;
 }

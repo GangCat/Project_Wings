@@ -12,6 +12,11 @@ public class UIManager : MonoBehaviour
         canvasPlayer.Init();
     }
 
+    public void BossHpUpdate(float _ratio)
+    {
+        canvasBoss.UpdateHpBar(_ratio);
+    }
+
     private CanvasBoss canvasBoss = null;
     private CanvasPlayer canvasPlayer = null;
 }

@@ -9,7 +9,7 @@ public class BossShield : MonoBehaviour, IDamageable
         mr = GetComponent<MeshRenderer>();
         oriLayer = gameObject.layer;
         //brokenLayer = LayerMask.NameToLayer("BossShieldBroken");
-        RespawnGenerator();
+        curGeneratorCount = 4;
         UpdateEffect();
     }
 
@@ -20,7 +20,9 @@ public class BossShield : MonoBehaviour, IDamageable
 
     public void RespawnGenerator()
     {
+        SetActive(true);
         curGeneratorCount = 4;
+        UpdateEffect();
     }
 
     public void SetActive(bool _active)
@@ -41,6 +43,8 @@ public class BossShield : MonoBehaviour, IDamageable
 
     private void UpdateEffect()
     {
+        if (curGeneratorCount < 1)
+            SetActive(false);
         mr.material.SetFloat("_Dissolve", curGeneratorCount * 0.25f);
         // 쉐이더에서 수치 1, 0.75, 0.5, 0.25 조절
         // curGeneratorCount * 0.25f;

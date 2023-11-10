@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BossManager : MonoBehaviour
 {
-    public void Init(Transform _PlayerTr, VoidIntDelegate _cameraActionCallback)
+    public void Init(Transform _PlayerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback)
     {
         bossCtrl = GetComponentInChildren<BossController>();
-        bossCtrl.Init(_PlayerTr, _cameraActionCallback);
+        bossCtrl.Init(_PlayerTr, _cameraActionCallback, _hpUpdateCallback);
     }
 
     public void ClearCurPhase()

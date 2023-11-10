@@ -13,5 +13,7 @@ namespace TheKiwiCoder {
         public bool isPhaseEnd;
         public int curPhaseNum;
         public int curClosedWeakPoint;
+
+        public bool isShieldDestroy;
     }
 }

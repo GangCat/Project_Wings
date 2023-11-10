@@ -9,6 +9,11 @@ public class CanvasBoss : MonoBehaviour
         hpbar.Init();
     }
 
+    public void UpdateHpBar(float _ratio)
+    {
+        hpbar.UpdateLength(_ratio);
+    }
+
     [SerializeField]
     private ImageProgressbar hpbar = null;
 }

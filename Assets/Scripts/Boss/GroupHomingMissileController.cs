@@ -5,7 +5,17 @@ using UnityEngine.UIElements;
 
 public class GroupHomingMissileController : AttackableObject, IDamageable
 {
-    public void Init(float _moveAccel, float _maxMoveSpeed, float _rotateAccel, float _maxRotateAccel, Transform _targetTr, float _autoDestroyTime, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool)
+    public void Init(
+        float _moveAccel, 
+        float _maxMoveSpeed, 
+        float _rotateAccel, 
+        float _maxRotateAccel, 
+        Transform _targetTr, 
+        float _autoDestroyTime, 
+        Vector3 _spawnPos, 
+        Quaternion _spawnRot, 
+        GroupMissileMemoryPool _groupMissileMemoryPool,
+        bool _isShieldBreak)
     {
         moveAccel = _moveAccel;
         maxMoveSpeed = _maxMoveSpeed;
@@ -18,6 +28,7 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
         gameObject.transform.position = _spawnPos;
         gameObject.transform.rotation = _spawnRot;
         groupMissileMemoryPool = _groupMissileMemoryPool;
+        isShieldBreak = _isShieldBreak;
 
         isFirstTrigger = true;
         isExplosed = false;
@@ -80,19 +91,10 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (_other.CompareTag("Obstacle"))
-            Explosion();
-        else if (_other.CompareTag("Floor"))
-            Explosion();
-        else if (isFirstTrigger)
+        if (!isShieldBreak && isFirstTrigger)
             return;
-        else if (_other.CompareTag("GiantHomingMissile"))
-            Explosion();
 
-        if (AttackDmg(_other))
-        {
-            Explosion();
-        }
+        Explosion();
     }
 
     public void Explosion()
@@ -146,6 +148,7 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
 
     private Transform targetTr = null;
     private bool isExplosed = false;
+    private bool isShieldBreak = false;
 
     [SerializeField]
     private GameObject explosionEffectPrefab;

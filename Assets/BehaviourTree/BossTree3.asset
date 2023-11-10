@@ -21,6 +21,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   child: {fileID: 2016969803888250028}
@@ -47,6 +48,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -74,6 +76,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -102,6 +105,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   child: {fileID: 1210790204114747789}
@@ -128,6 +132,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   child: {fileID: 8001639174447310299}
@@ -154,6 +159,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   child: {fileID: -5663312727242357505}
@@ -180,6 +186,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   maxRotSpeed: 5
@@ -206,6 +213,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -232,6 +240,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   child: {fileID: 3667352480315104408}
@@ -258,6 +267,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
 --- !u!114 &-5577211489743933035
@@ -281,6 +291,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
 --- !u!114 &-4676318912752695626
@@ -304,6 +315,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -330,6 +342,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -357,6 +370,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   crossLaserPrefab: {fileID: 3966714899875067037, guid: b82f45a60c292f64bbe87fa9bc387d33,
@@ -389,6 +403,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   animTime: 3
@@ -414,6 +429,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -441,6 +457,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   animTime: 3
@@ -466,6 +483,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -492,6 +510,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   child: {fileID: -6606512983389126247}
@@ -518,6 +537,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   duration: 15
@@ -542,6 +562,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -570,6 +591,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   totalDuration: 5
@@ -596,6 +618,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   child: {fileID: -4676318912752695626}
@@ -620,6 +643,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -646,6 +670,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   bossOffSet: 120
@@ -726,6 +751,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
 --- !u!114 &749988045687392448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,6 +773,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   range: 400
@@ -771,6 +798,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -797,6 +825,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
 --- !u!114 &2055624564037474365
@@ -820,6 +849,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -847,6 +877,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   duration: 1
@@ -871,6 +902,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
 --- !u!114 &2663481157983243140
@@ -894,6 +926,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   duration: 4
@@ -918,6 +951,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   duration: 2
@@ -942,6 +976,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -968,6 +1003,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   radious: 10
@@ -1004,6 +1040,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   range: 700
@@ -1028,6 +1065,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   maxRotSpeed: 5
@@ -1054,6 +1092,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: "\uADFC\uAC70\uB9AC"
   drawGizmos: 0
   children:
@@ -1081,6 +1120,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   child: {fileID: -185823795940874659}
@@ -1107,6 +1147,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
@@ -1137,6 +1178,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   bulletPrefab: {fileID: 6519272339437649605, guid: cd6c9962db9d58b42b351e01d640131f,
@@ -1168,6 +1210,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -1194,6 +1237,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: "\uC6D0\uAC70\uB9AC"
   drawGizmos: 0
   children:
@@ -1220,6 +1264,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   children:
@@ -1246,6 +1291,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   missilePrefab: {fileID: 6519272339437649605, guid: e0286bdea80e5df419a142192f36ac21,
@@ -1277,6 +1323,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   maxRotSpeed: 15
@@ -1307,6 +1354,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   duration: 4
@@ -1331,6 +1379,7 @@ MonoBehaviour:
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
+    isShieldDestroy: 0
   description: 
   drawGizmos: 0
   duration: 4

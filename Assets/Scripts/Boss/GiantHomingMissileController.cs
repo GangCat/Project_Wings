@@ -5,12 +5,13 @@ using UnityEngine;
 public class GiantHomingMissileController : AttackableObject, IDamageable
 {
     public void Init(
-        float _moveAccel, 
-        float _maxMoveSpeed, 
-        float _rotateAccel, 
-        float _maxRotateAccel, 
-        Transform _targetTr, 
-        float _autoDestroyTime, 
+        float _moveAccel,
+        float _maxMoveSpeed,
+        float _rotateAccel,
+        float _maxRotateAccel,
+        Transform _targetTr,
+        float _autoDestroyTime,
+        bool _isShieldBreak,
         GroupMissileMemoryPool _groupMissileMemoryPool = null
         )
     {
@@ -22,6 +23,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable
         waitFixed = new WaitForFixedUpdate();
         moveSpeed = maxMoveSpeed;
         rotateSpeed = 0f;
+        isShieldBreak = _isShieldBreak;
         groupMissileMemoryPool = _groupMissileMemoryPool;
 
         isFirstTrigger = true;
@@ -77,7 +79,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (isFirstTrigger)
+        if (!isShieldBreak && isFirstTrigger)
             return;
 
         Explosion();
@@ -148,6 +150,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable
 
     private Transform targetTr = null;
     private bool isExplosed = false;
+    private bool isShieldBreak = false;
 
     [SerializeField]
     private GameObject explosionEffectPrefab;

@@ -28,6 +28,12 @@ namespace TheKiwiCoder
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
             tree.blackboard.curPhaseNum = 1;
+            tree.blackboard.isShieldDestroy = false;
+        }
+
+        public void IsShieldDestroy(bool _value)
+        {
+            tree.blackboard.isShieldDestroy = _value;
         }
 
         public void FinishCurrentPhase()

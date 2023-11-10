@@ -7,7 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class BossController : MonoBehaviour
 {
-    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback)
+    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -19,7 +19,7 @@ public class BossController : MonoBehaviour
 
         animCtrl.Init();
         bossCollider.Init();
-        statHp.Init(StartPhaseChange);
+        statHp.Init(StartPhaseChange, _hpUpdateCallback);
         shield.Init();
         timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
         InitMemoryPools();
@@ -38,6 +38,11 @@ public class BossController : MonoBehaviour
         //StartPhaseChange();
 
         //StartCoroutine("UpdateCoroutine");
+    }
+
+    public void SetBossRotationBoolean(bool _canRotation)
+    {
+        isBossStartRotation = _canRotation;
     }
 
     public void GameStart()
@@ -67,17 +72,20 @@ public class BossController : MonoBehaviour
 
     private IEnumerator UpdateCoroutine()
     {
+        float maxHp = statHp.GetMaxHp;
+
         while (true)
         {
             if (isBossStartRotation)
                 RotateToTarget();
 
-            myRunner.RunnerUpdate();
-            if (!IsShieldGeneratorRemain() && !isChangingPhase)
+            if(statHp.GetCurHp < maxHp * 0.5f)
             {
-                myRunner.FinishCurrentPhase();
                 StartPhaseChange();
+                yield break;
             }
+
+            myRunner.RunnerUpdate();
             yield return waitFixedUpdate;
         }
     }
@@ -110,19 +118,31 @@ public class BossController : MonoBehaviour
 
     private void StartPhaseChange()
     {
+        if (isChangingPhase)
+            return;
+
         isChangingPhase = true;
         cameraActionCallback?.Invoke(curPhaseNum);
 
         // 패턴 시작
         if(curPhaseNum == 1)
         {
-
             timeBombPatternCtrl.StartPattern();
+            StartCoroutine("UpdatePatternCoroutine");
         }
 
         // 연출 시작
 
         //Invoke("FinishPhaseChange", 5f); // 테스트용
+    }
+
+    private IEnumerator UpdatePatternCoroutine()
+    {
+        while (true)
+        {
+            if (isBossStartRotation)
+                RotateToTarget();
+        }
     }
 
     public void FinishPhaseChange()
@@ -135,6 +155,8 @@ public class BossController : MonoBehaviour
             InitShieldGeneratorPoint();
             myRunner.StartNextPhase(curPhaseNum);
             isChangingPhase = false;
+            StopCoroutine("UpdatePatternCoroutine");
+            StartCoroutine(UpdateCoroutine());
         }
     }
 
@@ -164,6 +186,23 @@ public class BossController : MonoBehaviour
     {
         shield.GeneratorDestroy();
         curShieldGeneratorPoint.Remove(_go);
+
+        if (curShieldGeneratorPoint.Count < 1)
+        {
+            foreach (GameObject go in arrModelGo)
+                go.layer = LayerMask.NameToLayer("Boss");
+            StartCoroutine("ResapwnShieldGeneratorCoroutine");
+            myRunner.IsShieldDestroy(true);
+        }
+    }
+
+    private IEnumerator ResapwnShieldGeneratorCoroutine()
+    {
+        yield return new WaitForSeconds(respawnShieldGeneratorTime);
+
+        InitShieldGeneratorPoint();
+        shield.RespawnGenerator();
+        myRunner.IsShieldDestroy(false);
     }
 
     [Header("-InformationForContext")]
@@ -195,6 +234,10 @@ public class BossController : MonoBehaviour
     private GameObject bossShieldGeneratorPrefab = null;
     [SerializeField]
     private float rotationSpeed = 20f;
+    [SerializeField]
+    private float respawnShieldGeneratorTime = 0f;
+    [SerializeField]
+    private GameObject[] arrModelGo = null;
 
     private Transform playerTr = null;
     private BossCollider bossCollider = null;
