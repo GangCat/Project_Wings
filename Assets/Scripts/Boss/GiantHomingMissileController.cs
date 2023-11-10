@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 
-public class GiantHomingMissileController : AttackableObject
+public class GiantHomingMissileController : AttackableObject, IDamageable
 {
     public void Init(float _moveAccel, float _maxMoveSpeed, float _rotateAccel, float _maxRotateAccel, Transform _targetTr, float _autoDestroyTime, GroupMissileMemoryPool _groupMissileMemoryPool = null)
     {
@@ -18,6 +15,9 @@ public class GiantHomingMissileController : AttackableObject
         moveSpeed = maxMoveSpeed;
         rotateSpeed = 0f;
         groupMissileMemoryPool = _groupMissileMemoryPool;
+
+        isFirstTrigger = true;
+        isExplosed = false;
 
         Destroy(gameObject, _autoDestroyTime);
 
@@ -94,15 +94,14 @@ public class GiantHomingMissileController : AttackableObject
             return;
 
         isExplosed = true;
+        GameObject go = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        go.transform.localScale = Vector3.one * explosionRange;
+        Destroy(go, 5f);
+
         Collider[] arrTempCollider = Physics.OverlapSphere(transform.position, explosionRange, explosionLayer);
         foreach(Collider col in arrTempCollider)
         {
-            if (col.CompareTag("GiantHomingMissile"))
-            {
-                col.GetComponent<GiantHomingMissileController>().Explosion();
-            }
-            else
-                AttackDmg(col);
+            AttackDmg(col);
         }
 
         Destroy(gameObject);
@@ -118,6 +117,11 @@ public class GiantHomingMissileController : AttackableObject
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRange);
+    }
+
+    public void GetDamage(float _dmg)
+    {
+        Explosion();
     }
 
     private GroupMissileMemoryPool groupMissileMemoryPool = null;
@@ -143,4 +147,6 @@ public class GiantHomingMissileController : AttackableObject
     private float explosionRange = 0f;
     [SerializeField]
     private LayerMask explosionLayer;
+
+    public float GetCurHp => throw new System.NotImplementedException();
 }

@@ -72,8 +72,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 200
-  explosionEffectPrefab: {fileID: 0}
+  explosionEffectPrefab: {fileID: 8892962482691636397, guid: efbb3c64fa77aab49ae3b22d772f9554,
+    type: 3}
   explosionRange: 70
+  explosionLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &7731077181299898714
 Rigidbody:
   m_ObjectHideFlags: 0

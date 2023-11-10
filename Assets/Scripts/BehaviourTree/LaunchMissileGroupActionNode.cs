@@ -49,7 +49,7 @@ public class LaunchMissileGroupActionNode : ActionNode
 
         for (int i = 0; i < arrMissileGroup.Length; ++i)
         {
-            if (arrMissileGroup[i] != null)
+            if (arrMissileGroup[i].activeSelf)
             {
                 return State.Running;
             }

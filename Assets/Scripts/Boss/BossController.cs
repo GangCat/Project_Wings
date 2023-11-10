@@ -29,7 +29,7 @@ public class BossController : MonoBehaviour
         curShieldGeneratorPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
 
-        InitShieldGeneratorPoint();
+        //InitShieldGeneratorPoint();
 
         cameraActionCallback = _cameraActionCallback;
         playerTr = _playerTr;
