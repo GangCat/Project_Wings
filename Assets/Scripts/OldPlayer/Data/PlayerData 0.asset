@@ -17,14 +17,14 @@ MonoBehaviour:
   maxHealth: 100
   stamina: 100
   moveBackVelocityLimit: -50
-  moveForwardVelocityLimit: 200
+  moveForwardVelocityLimit: 300
   moveAccel: 300
   moveDashSpeed: 60
   moveDashAccel: 100
   moveStopAccel: 40
   gravityAccel: 0
   gravitySpeed: 100
-  isDash: 0
+  isDash: 1
   isCrash: 0
   isAction: 0
   dodgeSpeed: 400
@@ -46,4 +46,4 @@ MonoBehaviour:
   rollMaxAngle: 80
   rollReturnAccel: 100
   currentRotZ: 0
-  currentMoveSpeed: 110
+  currentMoveSpeed: 65.81363

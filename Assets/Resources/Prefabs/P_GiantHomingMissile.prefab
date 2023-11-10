@@ -55,8 +55,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
-  m_Height: 30
+  m_Radius: 10
+  m_Height: 90
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-6195783275947323698
@@ -71,13 +71,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3142876194eb0e47b06c9a75e442620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 200
+  dmg: 100
   explosionEffectPrefab: {fileID: 8892962482691636397, guid: efbb3c64fa77aab49ae3b22d772f9554,
     type: 3}
-  explosionRange: 70
+  explosionRange: 200
   explosionLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 12480
 --- !u!54 &7731077181299898714
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e77d911d6086ae44fb89832cb9c9a6a7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.4
+      value: -38.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e77d911d6086ae44fb89832cb9c9a6a7,
         type: 3}
@@ -275,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Turret_missile
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e77d911d6086ae44fb89832cb9c9a6a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

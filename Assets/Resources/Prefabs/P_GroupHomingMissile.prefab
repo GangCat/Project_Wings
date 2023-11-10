@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5147824405307316662}
-  - component: {fileID: 2294510696366887271}
+  - component: {fileID: 2773770674558850998}
   - component: {fileID: -3175506910698676958}
   - component: {fileID: -8085328202076350454}
   m_Layer: 12
@@ -36,8 +36,8 @@ Transform:
   - {fileID: 543043544553022368}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2294510696366887271
-CapsuleCollider:
+--- !u!135 &2773770674558850998
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -54,11 +54,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
-  m_Height: 3.02
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 2.73}
 --- !u!54 &-3175506910698676958
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,13 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545eef0e135591f4296dea2b576349bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 200
+  dmg: 20
   explosionEffectPrefab: {fileID: 8892962482691636397, guid: efbb3c64fa77aab49ae3b22d772f9554,
     type: 3}
-  explosionRange: 70
+  explosionRange: 60
   explosionLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8384
 --- !u!1 &7620544338611520829
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,17 +197,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e77d911d6086ae44fb89832cb9c9a6a7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e77d911d6086ae44fb89832cb9c9a6a7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e77d911d6086ae44fb89832cb9c9a6a7,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.234568
+      value: 2.469136
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e77d911d6086ae44fb89832cb9c9a6a7,
         type: 3}

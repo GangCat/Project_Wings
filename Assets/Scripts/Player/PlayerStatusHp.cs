@@ -23,6 +23,17 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
         curHp -= 1;
         if (curHp <= 0)
             deadCallback?.Invoke();
+
+        if (_dmg == 20)
+        {
+            if(GetComponent<PlayerController>())
+                Debug.Log("소형유도미사일 히트");
+        }
+        else if (_dmg == 100)
+        {
+            if (GetComponent<PlayerController>())
+                Debug.Log("대형유도미사일 히트");
+        }
     }
 
     public void Heal()

@@ -37,8 +37,8 @@ TagManager:
   - Boss
   - Obstacle
   - TimeBomb
-  - BossShieldDestroyed
-  - 
+  - BossShieldBroken
+  - BossInvincible
   - 
   - 
   - 

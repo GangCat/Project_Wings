@@ -14,6 +14,9 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
 
     public void GetDamage(float _dmg)
     {
+        if (curHp < 0)
+            return;
+
         curHp -= _dmg;
         if (curHp < 0)
         {

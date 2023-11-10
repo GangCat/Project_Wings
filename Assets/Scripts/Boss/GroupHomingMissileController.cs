@@ -23,10 +23,17 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
         isExplosed = false;
 
         //Destroy(gameObject, _autoDestroyTime);
-        Invoke("Explosion", _autoDestroyTime);
+        StartCoroutine("AutoExplosionCorutine", _autoDestroyTime);
 
   
         StartCoroutine(MoveUpdateCoroutine());
+    }
+
+    private IEnumerator AutoExplosionCorutine(float _autoDestoryTime)
+    {
+        yield return new WaitForSeconds(_autoDestoryTime);
+
+        Explosion();
     }
 
     private IEnumerator MoveUpdateCoroutine()
@@ -93,6 +100,7 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
         if (isExplosed)
             return;
 
+        StopCoroutine("AutoExplosionCorutine");
         isExplosed = true;
         GameObject go = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
         go.transform.localScale = Vector3.one * explosionRange;

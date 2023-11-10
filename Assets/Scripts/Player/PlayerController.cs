@@ -83,11 +83,15 @@ public class PlayerController : MonoBehaviour
         {
             knockBackAmount = 50f;
             knockBackDir = Vector3.down;
+            Debug.Log("Hit");
+
         }
         else if (_collider.CompareTag("GatlingGunBullet"))
         {
             knockBackAmount = 50f;
             knockBackDir = _collider.transform.forward;
+
+            Debug.Log("Hit");
         }
         else if (_collider.CompareTag("ShakeBodyCollider"))
         {
@@ -111,6 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             knockBackAmount = 100f;
             knockBackDir = _collider.transform.forward;
+            Debug.Log("Hit");
         }
         else if (_collider.CompareTag("BossShield"))
         {

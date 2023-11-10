@@ -6,10 +6,16 @@ public class BossShield : MonoBehaviour, IDamageable
 {
     public void Init()
     {
+        mr = GetComponent<MeshRenderer>();
         oriLayer = gameObject.layer;
-        destroyLayer = LayerMask.NameToLayer("BossShieldDestroyed");
+        //brokenLayer = LayerMask.NameToLayer("BossShieldBroken");
         RespawnGenerator();
         UpdateEffect();
+    }
+
+    public bool IsShieldBreak()
+    {
+        return gameObject.layer.Equals(brokenLayer);
     }
 
     public void RespawnGenerator()
@@ -24,7 +30,7 @@ public class BossShield : MonoBehaviour, IDamageable
 
     public void ChangeLayerToggle()
     {
-        gameObject.layer = gameObject.layer.Equals(oriLayer) ? destroyLayer : oriLayer;
+        gameObject.layer = gameObject.layer.Equals(oriLayer) ? brokenLayer : oriLayer;
     }
 
     public void GeneratorDestroy()
@@ -50,6 +56,6 @@ public class BossShield : MonoBehaviour, IDamageable
 
     private int curGeneratorCount = 0;
     private MeshRenderer mr = null;
-    private LayerMask destroyLayer;
+    private LayerMask brokenLayer;
     private LayerMask oriLayer;
 }

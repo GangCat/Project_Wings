@@ -31,6 +31,8 @@ public class LaunchMissileGroupActionNode : ActionNode
     {
         arrGroupHomingMissileSpawnPos = context.arrGroupHomingMissileSpawnPos;
         startTime = Time.time;
+        isSpawnFinish = false;
+        missileSpawnIdx = 0;
 
         SpawnMissile();
     }

@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class GiantHomingMissileController : AttackableObject, IDamageable
 {
-    public void Init(float _moveAccel, float _maxMoveSpeed, float _rotateAccel, float _maxRotateAccel, Transform _targetTr, float _autoDestroyTime, GroupMissileMemoryPool _groupMissileMemoryPool = null)
+    public void Init(
+        float _moveAccel, 
+        float _maxMoveSpeed, 
+        float _rotateAccel, 
+        float _maxRotateAccel, 
+        Transform _targetTr, 
+        float _autoDestroyTime, 
+        GroupMissileMemoryPool _groupMissileMemoryPool = null
+        )
     {
         moveAccel = _moveAccel;
         maxMoveSpeed = _maxMoveSpeed;
