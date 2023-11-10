@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TheKiwiCoder;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 //using Cysharp.Threading.Tasks;
 
 public class BossController : MonoBehaviour
@@ -72,7 +73,7 @@ public class BossController : MonoBehaviour
                 RotateToTarget();
 
             myRunner.RunnerUpdate();
-            if (!IsWeakPointRemain() && !isChangingPhase)
+            if (!IsShieldGeneratorRemain() && !isChangingPhase)
             {
                 myRunner.FinishCurrentPhase();
                 StartPhaseChange();
@@ -137,7 +138,7 @@ public class BossController : MonoBehaviour
         }
     }
 
-    private bool IsWeakPointRemain()
+    private bool IsShieldGeneratorRemain()
     {
         return curShieldGeneratorPoint.Count > 0;
     }
@@ -155,12 +156,13 @@ public class BossController : MonoBehaviour
 
         foreach (GameObject go in curShieldGeneratorPoint)
         {
-            go.GetComponent<BossShieldGenerator>().Init(RemoveWeakPointFromList);
+            go.GetComponent<BossShieldGenerator>().Init(RemoveSheildGeneratorFromList);
         }
     }
 
-    private void RemoveWeakPointFromList(GameObject _go)
+    private void RemoveSheildGeneratorFromList(GameObject _go)
     {
+        shield.GeneratorDestroy();
         curShieldGeneratorPoint.Remove(_go);
     }
 
