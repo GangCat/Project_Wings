@@ -20,6 +20,7 @@ public class PlayerModelRotateController : MonoBehaviour
         else
         {
             RotateToMouse(ref rotZ);
+            
         }
         //rotation.y = rotation.z;
         playerData.currentRotZ = rotZ;
@@ -55,18 +56,22 @@ public class PlayerModelRotateController : MonoBehaviour
         rollAccel = playerData.rollAccel;
         rollMaxVelocity = playerData.rollMaxVelocity;
         rollMaxAngle = playerData.rollMaxAngle;
-
         mousePos = playerData.currentMousePos;
+        float mouseRatio = (-mousePos.x / 100);
+        
 
         if (Mathf.Abs(mousePos.x) > 0f)
-            rollVelocity += rollAccel * Time.deltaTime * -mousePos.x / 100;
+            rollVelocity += rollAccel * Time.deltaTime * mouseRatio;
         else
-            rollVelocity = Mathf.MoveTowards(rollVelocity, 0, rollAccel * Time.deltaTime);
+        {
+          rollVelocity = Mathf.MoveTowards(rollVelocity, 0, rollAccel * Time.deltaTime);
+          _eulerAngleZ = Mathf.MoveTowards(_eulerAngleZ, 0, playerData.rollReturnAccel * Time.deltaTime);
+        }
 
         rollVelocity = Mathf.Clamp(rollVelocity, -rollMaxVelocity, rollMaxVelocity);
-
+        lerpMouseRatio = Mathf.Lerp(lerpMouseRatio, mouseRatio, 2f * Time.deltaTime);
         _eulerAngleZ += rollVelocity * Time.deltaTime;
-        _eulerAngleZ = Mathf.Clamp(_eulerAngleZ, -rollMaxAngle, rollMaxAngle);
+        _eulerAngleZ = Mathf.Clamp(_eulerAngleZ, -rollMaxAngle*Mathf.Abs(lerpMouseRatio), rollMaxAngle * Mathf.Abs(lerpMouseRatio));
 
         if (Mathf.Abs(_eulerAngleZ).Equals(rollMaxAngle))
             rollVelocity = 0f;
@@ -143,7 +148,7 @@ public class PlayerModelRotateController : MonoBehaviour
     private float rollAccel = 0f;
     private float rollMaxVelocity = 0f;
     private float rollMaxAngle = 0f;
-
+    private float lerpMouseRatio = 0;
 
     private Transform tr = null;
     private PlayerData playerData = null;
