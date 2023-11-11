@@ -9349,6 +9349,8 @@ MonoBehaviour:
   bossShieldGeneratorPrefab: {fileID: 670741263585795909, guid: b682bc85d723e2947a7f127a70c1acda,
     type: 3}
   rotationSpeed: 1
+  respawnShieldGeneratorTime: 0
+  arrModelGo: []
 --- !u!114 &1295538136
 MonoBehaviour:
   m_ObjectHideFlags: 0
