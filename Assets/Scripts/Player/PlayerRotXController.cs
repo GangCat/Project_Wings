@@ -6,16 +6,29 @@ public class PlayerRotXController : MonoBehaviour
 {
     [SerializeField]
     private Transform tr;
+    [SerializeField]
+    private PlayerData playerData;
+    public float smooth;
 
+    float currentXRotation = 0f;
+    float targetRotateX;
+    float calcRotateX;
     private void Update()
     {
-        // 현재 X 축 회전을 읽어옴
-        float currentXRotation = tr.rotation.eulerAngles.x;
-        Debug.Log(currentXRotation);
-        // 만약 X 축 회전이 0 이하일 때, 부정값으로 변경
-        if (currentXRotation >= 280)
+        targetRotateX = tr.rotation.eulerAngles.x;
+        Debug.Log(targetRotateX);
+        if (targetRotateX >= 250)
         {
-            transform.localRotation = Quaternion.Euler(-currentXRotation, 0f, 0f);
+            calcRotateX = 360-targetRotateX;
+        } else if(targetRotateX >= 5 && targetRotateX <= 100)
+        {
+            calcRotateX = targetRotateX * (playerData.currentMoveSpeed/playerData.moveForwardVelocityLimit);
+        
         }
+
+        currentXRotation = Mathf.Lerp(currentXRotation, calcRotateX, smooth*Time.deltaTime);
+
+        transform.localRotation = Quaternion.Euler(currentXRotation, 0f, 0f);
+
     }
 }
