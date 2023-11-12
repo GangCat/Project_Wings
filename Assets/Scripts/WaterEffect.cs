@@ -9,6 +9,5 @@ public class WaterEffect : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Ãæµ¹ ´ð´Â´ñÁÒ");
     }
 }
