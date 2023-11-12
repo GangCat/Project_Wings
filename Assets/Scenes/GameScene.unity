@@ -14413,6 +14413,9 @@ MonoBehaviour:
   - {fileID: 1198348537}
   - {fileID: 1530858460}
   - {fileID: 1951262666}
+  coreGo:
+  - {fileID: 1951262666}
+  - {fileID: 1979736870}
 --- !u!114 &1295538136
 MonoBehaviour:
   m_ObjectHideFlags: 0

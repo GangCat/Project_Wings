@@ -97,17 +97,6 @@ public class BossController : MonoBehaviour, IPublisher
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
         }
-
-        //bossRb.MoveRotation(bossRb.rotation * Quaternion.Euler(Vector3.up * rotationSpeed * Mathf.Deg2Rad));
-        //if (playerTr != null)
-        //{
-        //    Vector3 playerDirection = new Vector3(playerTr.position.x, transform.position.y, playerTr.position.z);
-        //    Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
-        //    Debug.DrawRay(transform.position, playerDirection * 1000f, Color.red);
-
-        //    // 부드럽게 회전하기 위해 Lerp 사용
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        //}
     }
 
     private void StartPhaseChange()
@@ -119,7 +108,8 @@ public class BossController : MonoBehaviour, IPublisher
         myRunner.RunnerUpdate();
         isChangingPhase = true;
         StopCoroutine("ResapwnShieldGeneratorCoroutine");
-        gameObject.layer = LayerMask.NameToLayer("BossInvincible");
+        foreach (GameObject go in arrModelGo)
+            go.layer = LayerMask.NameToLayer("BossInvincible");
         cameraActionCallback?.Invoke(curPhaseNum);
         PushMessageToBroker(EMessageType.PHASE_CHANGE);
 
@@ -146,14 +136,29 @@ public class BossController : MonoBehaviour, IPublisher
     public void FinishPhaseChange()
     {
         // 연출 종료시 호출
-        if (curPhaseNum < 3 && isChangingPhase)
+        if (!isChangingPhase)
+            return;
+
+        if(curPhaseNum == 0)
         {
-            isBossStartRotation = false;
-            isChangingPhase = false;
-            ++curPhaseNum;
+            foreach (GameObject go in arrModelGo)
+                go.layer = LayerMask.NameToLayer("BossInvincible");
             InitShieldGeneratorPoint();
-            myRunner.StartNextPhase(curPhaseNum);
+            shield.RespawnGenerator();
         }
+        else if(curPhaseNum == 1)
+        {
+            foreach (GameObject go in arrModelGo)
+                go.layer = LayerMask.NameToLayer("BossInvincible");
+
+            foreach (GameObject go in coreGo)
+                go.layer = LayerMask.NameToLayer("Boss");
+        }
+
+        isBossStartRotation = false;
+        isChangingPhase = false;
+        ++curPhaseNum;
+        myRunner.StartNextPhase(curPhaseNum);
     }
 
     private bool IsShieldGeneratorRemain()
@@ -244,6 +249,8 @@ public class BossController : MonoBehaviour, IPublisher
     private float respawnShieldGeneratorTime = 0f;
     [SerializeField]
     private GameObject[] arrModelGo = null;
+    [SerializeField]
+    private GameObject[] coreGo = null;
 
     private Transform playerTr = null;
     private BossCollider bossCollider = null;
