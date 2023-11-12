@@ -29,6 +29,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         isFirstTrigger = true;
         isExplosed = false;
         isPhaseChange = false;
+        isBodyTrigger = isShieldBreak;
 
         Subscribe();
         Destroy(gameObject, _autoDestroyTime);
