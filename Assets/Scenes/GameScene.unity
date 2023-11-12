@@ -12175,7 +12175,7 @@ MonoBehaviour:
   laserLengthPerSec: 1500
   initWidth: 20
   initHeight: 20
-  launchAngleLimit: 30
+  launchAngleLimit: 20
   windBlowCylinderPrefab: {fileID: 1588479054048128854, guid: 21a9654e2c587a8468cf0806ab8d365f,
     type: 3}
   startDelay: 10

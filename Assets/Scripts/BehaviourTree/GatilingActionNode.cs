@@ -17,6 +17,8 @@ public class GatilingActionNode : ActionNode
     private float rebound = 2f;
     [SerializeField]
     private float autoDestroyTime = 20f;
+    [SerializeField]
+    private float minDegreeToRotateGun = -30f;
 
 
     private Transform playerTr;
@@ -76,6 +78,7 @@ public class GatilingActionNode : ActionNode
         {
             diffY = playerTr.position.y - context.gatlingHeadGo.transform.position.y;
             cetha = Mathf.Asin(diffY / Vector3.Distance(playerTr.position, context.gatlingHeadGo.transform.position)) * Mathf.Rad2Deg;
+            cetha = Mathf.Clamp(cetha, 80, minDegreeToRotateGun);
             context.gatlingHeadGo.transform.localRotation = Quaternion.Euler(Vector3.left * cetha);
 
             //Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
