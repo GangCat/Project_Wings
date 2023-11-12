@@ -79,12 +79,6 @@ public class BossController : MonoBehaviour, IPublisher
             if (isBossStartRotation)
                 RotateToTarget();
 
-            if(statHp.GetCurHp < maxHp * 0.5f)
-            {
-                StartPhaseChange();
-                yield break;
-            }
-
             myRunner.RunnerUpdate();
             yield return waitFixedUpdate;
         }
@@ -124,6 +118,7 @@ public class BossController : MonoBehaviour, IPublisher
         myRunner.FinishCurrentPhase();
         myRunner.RunnerUpdate();
         isChangingPhase = true;
+        StopCoroutine("ResapwnShieldGeneratorCoroutine");
         gameObject.layer = LayerMask.NameToLayer("BossInvincible");
         cameraActionCallback?.Invoke(curPhaseNum);
         PushMessageToBroker(EMessageType.PHASE_CHANGE);
@@ -135,9 +130,8 @@ public class BossController : MonoBehaviour, IPublisher
             // 연출 시작
             // 연출 종료시 시작
             timeBombPatternCtrl.StartPattern();
-            StartCoroutine("UpdatePatternCoroutine");
         }
-        else if(curPhaseNum == 2)
+        else if (curPhaseNum == 2)
         {
             // 마지막 빨아당기는 패턴
             Invoke("FinishPhaseChange", 5f);
@@ -148,16 +142,6 @@ public class BossController : MonoBehaviour, IPublisher
         //Invoke("FinishPhaseChange", 5f); // 테스트용
     }
 
-    private IEnumerator UpdatePatternCoroutine()
-    {
-        while (true)
-        {
-            if (isBossStartRotation)
-                RotateToTarget();
-
-            yield return waitFixedUpdate;
-        }
-    }
 
     public void FinishPhaseChange()
     {
@@ -165,12 +149,10 @@ public class BossController : MonoBehaviour, IPublisher
         if (curPhaseNum < 3 && isChangingPhase)
         {
             isBossStartRotation = false;
+            isChangingPhase = false;
             ++curPhaseNum;
             InitShieldGeneratorPoint();
             myRunner.StartNextPhase(curPhaseNum);
-            isChangingPhase = false;
-            StopCoroutine("UpdatePatternCoroutine");
-            StartCoroutine(UpdateCoroutine());
         }
     }
 

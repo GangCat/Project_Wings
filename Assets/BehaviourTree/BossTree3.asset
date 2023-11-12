@@ -111,6 +111,38 @@ MonoBehaviour:
   child: {fileID: 1210790204114747789}
   restartOnSuccess: 1
   restartOnFailure: 1
+--- !u!114 &-7693059815548584974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92573731de47a4449f1c4eb9210c101, type: 3}
+  m_Name: GatilingActionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: b325ed55837f5d04f96b65927e711ae3
+  position: {x: 2203, y: 1252}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+    isShieldDestroy: 0
+  description: 
+  drawGizmos: 0
+  bulletPrefab: {fileID: 6519272339437649605, guid: cd6c9962db9d58b42b351e01d640131f,
+    type: 3}
+  maxBulletCnt: 80
+  rotationSpeed: 30
+  fireRate: 10
+  headRotationSpeed: 20
+  rebound: 2
+  autoDestroyTime: 20
 --- !u!114 &-6789884967937151623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,9 +775,9 @@ MonoBehaviour:
   - {fileID: 8001639174447310299}
   - {fileID: -6789884967937151623}
   - {fileID: -5833006940616095522}
-  - {fileID: 2642290816038836525}
   - {fileID: 2349733678763966179}
   - {fileID: 3667352480315104408}
+  - {fileID: -7693059815548584974}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -881,30 +913,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   duration: 1
---- !u!114 &2642290816038836525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 393f90a8d4006aa4ba1b0e118c6f230b, type: 3}
-  m_Name: AirPushAcionNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: bb6d657309cfa7546978a38e1a267255
-  position: {x: 2203.332, y: 1251.9998}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    isPhaseEnd: 0
-    curPhaseNum: 0
-    curClosedWeakPoint: 0
-    isShieldDestroy: 0
-  description: 
-  drawGizmos: 0
 --- !u!114 &2663481157983243140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,7 +989,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: 2349733678763966179}
-  - {fileID: 2642290816038836525}
+  - {fileID: -7693059815548584974}
 --- !u!114 &3843690250053409745
 MonoBehaviour:
   m_ObjectHideFlags: 0
