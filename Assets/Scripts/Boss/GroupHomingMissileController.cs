@@ -33,6 +33,7 @@ public class GroupHomingMissileController : AttackableObject, IDamageable, ISubs
         isFirstTrigger = true;
         isExplosed = false;
         isPhaseChanged = false;
+        isBodyTrigger = isShieldBreak;
 
         //Destroy(gameObject, _autoDestroyTime);
         Subscribe();

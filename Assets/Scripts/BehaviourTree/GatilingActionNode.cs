@@ -78,7 +78,7 @@ public class GatilingActionNode : ActionNode
         {
             diffY = playerTr.position.y - context.gatlingHeadGo.transform.position.y;
             cetha = Mathf.Asin(diffY / Vector3.Distance(playerTr.position, context.gatlingHeadGo.transform.position)) * Mathf.Rad2Deg;
-            cetha = Mathf.Clamp(cetha, 80, minDegreeToRotateGun);
+            cetha = Mathf.Clamp(cetha, minDegreeToRotateGun, 80);
             context.gatlingHeadGo.transform.localRotation = Quaternion.Euler(Vector3.left * cetha);
 
             //Quaternion targetRotation = Quaternion.LookRotation(playerDirection);

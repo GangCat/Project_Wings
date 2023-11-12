@@ -1198,7 +1198,7 @@ MonoBehaviour:
   headRotationSpeed: 20
   rebound: 2
   autoDestroyTime: 20
-  minDegreeToRotateGun: -30
+  minDegreeToRotateGun: -25
 --- !u!114 &7237907964407477179
 MonoBehaviour:
   m_ObjectHideFlags: 0

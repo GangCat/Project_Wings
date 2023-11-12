@@ -12166,7 +12166,7 @@ MonoBehaviour:
   spawnBombDelay: 3
   launchAngle: 70
   gravity: 500
-  explosionTime: 40
+  explosionTime: 50
   laserPrefab: {fileID: 8151265587540947119, guid: 569b216cc8c7ddb4a862708fefbb2f4e,
     type: 3}
   laserLaunchTr: {fileID: 381053478}
