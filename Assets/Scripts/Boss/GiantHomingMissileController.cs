@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GiantHomingMissileController : AttackableObject, IDamageable
+public class GiantHomingMissileController : AttackableObject, IDamageable, ISubscriber
 {
     public void Init(
         float _moveAccel,
@@ -28,7 +28,9 @@ public class GiantHomingMissileController : AttackableObject, IDamageable
 
         isFirstTrigger = true;
         isExplosed = false;
+        isPhaseChange = false;
 
+        Subscribe();
         Destroy(gameObject, _autoDestroyTime);
 
 
@@ -44,6 +46,9 @@ public class GiantHomingMissileController : AttackableObject, IDamageable
             //Debug.Log($"MissileSpeed: {moveSpeed}");
 
             yield return waitFixed;
+
+            if (isPhaseChange)
+                Destroy(gameObject);
         }
     }
 
@@ -134,6 +139,22 @@ public class GiantHomingMissileController : AttackableObject, IDamageable
         Explosion();
     }
 
+    private void OnDestroy()
+    {
+        Broker.UnSubscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void Subscribe()
+    {
+        Broker.Subscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void ReceiveMessage(EMessageType _message)
+    {
+        if (_message == EMessageType.PHASE_CHANGE)
+            isPhaseChange = true;
+    }
+
     private GroupMissileMemoryPool groupMissileMemoryPool = null;
     private WaitForFixedUpdate waitFixed = null;
 
@@ -151,6 +172,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable
     private Transform targetTr = null;
     private bool isExplosed = false;
     private bool isShieldBreak = false;
+    private bool isPhaseChange = false;
 
     [SerializeField]
     private GameObject explosionEffectPrefab;

@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TheKiwiCoder;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 //using Cysharp.Threading.Tasks;
 
-public class BossController : MonoBehaviour
+public class BossController : MonoBehaviour, IPublisher
 {
     public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback)
     {
@@ -22,6 +21,7 @@ public class BossController : MonoBehaviour
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
         shield.Init();
         timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
+        RegisterBroker();
         InitMemoryPools();
 
         myRunner = GetComponent<BehaviourTreeRunner>();
@@ -121,14 +121,26 @@ public class BossController : MonoBehaviour
         if (isChangingPhase)
             return;
 
+        myRunner.FinishCurrentPhase();
+        myRunner.RunnerUpdate();
         isChangingPhase = true;
+        gameObject.layer = LayerMask.NameToLayer("BossInvincible");
         cameraActionCallback?.Invoke(curPhaseNum);
+        PushMessageToBroker(EMessageType.PHASE_CHANGE);
 
         // 패턴 시작
-        if(curPhaseNum == 1)
+        if (curPhaseNum == 1)
         {
+            // 모든 발사체들과 모든 패턴의 오브젝트들 비활성화(O)
+            // 연출 시작
+            // 연출 종료시 시작
             timeBombPatternCtrl.StartPattern();
             StartCoroutine("UpdatePatternCoroutine");
+        }
+        else if(curPhaseNum == 2)
+        {
+            // 마지막 빨아당기는 패턴
+            Invoke("FinishPhaseChange", 5f);
         }
 
         // 연출 시작
@@ -142,6 +154,8 @@ public class BossController : MonoBehaviour
         {
             if (isBossStartRotation)
                 RotateToTarget();
+
+            yield return waitFixedUpdate;
         }
     }
 
@@ -203,6 +217,16 @@ public class BossController : MonoBehaviour
         InitShieldGeneratorPoint();
         shield.RespawnGenerator();
         myRunner.IsShieldDestroy(false);
+    }
+
+    public void RegisterBroker()
+    {
+        Broker.Regist(EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void PushMessageToBroker(EMessageType _message)
+    {
+        Broker.AlertMessageToSub(_message, EPublisherType.BOSS_CONTROLLER);
     }
 
     [Header("-InformationForContext")]

@@ -4,18 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BulletController : AttackableObject
+public class BulletController : AttackableObject, ISubscriber
 {
     [SerializeField]
     private float speed = 200f;
 
-    Rigidbody rb = null;
     private GatlinMemoryPool gatlinMemoryPool = null;
+    private bool isPhaseChange = false;
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
     public void Init(float _destroyTime, Vector3 _position, Quaternion _rotation,GatlinMemoryPool _gatlinMemoryPooll = null)
     {
         //Destroy(gameObject, _destroyTime);
@@ -23,6 +19,8 @@ public class BulletController : AttackableObject
         gameObject.transform.position = _position;
         gameObject.transform.rotation = _rotation;
         gatlinMemoryPool = _gatlinMemoryPooll;
+        isPhaseChange = false;
+
     }
     //private void Start()
     //{
@@ -32,6 +30,9 @@ public class BulletController : AttackableObject
     private void FixedUpdate()
     {
         transform.position += transform.forward * speed * Time.fixedDeltaTime;
+
+        if (isPhaseChange)
+            DeactivateBullet();
     }
 
     private void OnTriggerEnter(Collider _other)
@@ -53,4 +54,19 @@ public class BulletController : AttackableObject
         gatlinMemoryPool.DeactivateBullet(gameObject);
     }
 
+    private void OnDisable()
+    {
+        Broker.UnSubscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void Subscribe()
+    {
+        Broker.Subscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void ReceiveMessage(EMessageType _message)
+    {
+        if (_message == EMessageType.PHASE_CHANGE)
+            isPhaseChange = true;
+    }
 }

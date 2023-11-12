@@ -48,7 +48,10 @@ public class GatilingActionNode : ActionNode
         {
             FireBullet();
         }
-        
+
+        if (blackboard.isPhaseEnd)
+            return State.Success;
+
         if (curBulletCnt > 0)
             return State.Running;
 

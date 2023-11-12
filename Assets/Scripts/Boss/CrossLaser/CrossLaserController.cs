@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossLaserController : AttackableObject
+public class CrossLaserController : AttackableObject, ISubscriber
 {
     public void Init(float _moveAccel, float _maxMoveSpeed, float _rotateAccel, float _maxRotateAccel, float _ChangeFormDistance, Transform _targetTr, float _autoDestroyTime)
     {
@@ -15,11 +15,13 @@ public class CrossLaserController : AttackableObject
         waitFixed = new WaitForFixedUpdate();
         moveSpeed = 0f;
         rotateSpeed = 0f;
+        isPhaseChange = false;
 
         laserObject.SetActive(false);
         sphereObject.SetActive(true);
         Destroy(gameObject, _autoDestroyTime);
 
+        Subscribe();
         StartCoroutine(MoveUpdateCoroutine());
     }
 
@@ -42,12 +44,18 @@ public class CrossLaserController : AttackableObject
             if (isFormChange || isPathBlock())
             {
                 yield return waitFixed;
+                if (isPhaseChange)
+                    Destroy(gameObject);
                 continue;
             }
 
             RotateCrossLaser(targetDistance.normalized);
 
             yield return waitFixed;
+
+            if (isPhaseChange)
+                Destroy(gameObject);
+
         }
     }
 
@@ -93,6 +101,21 @@ public class CrossLaserController : AttackableObject
         AttackDmg(_other);
     }
 
+    private void OnDestroy()
+    {
+        Broker.UnSubscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void Subscribe()
+    {
+        Broker.Subscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void ReceiveMessage(EMessageType _message)
+    {
+        if (_message == EMessageType.PHASE_CHANGE)
+            isPhaseChange = true;
+    }
 
     private WaitForFixedUpdate waitFixed = null;
     private float moveAccel = 0f;
@@ -106,6 +129,7 @@ public class CrossLaserController : AttackableObject
     private bool isTargetInRange = false;
     private bool isFormChange = false;
     private Vector3 moveDir = Vector3.zero;
+    private bool isPhaseChange = false;
 
 
     [SerializeField]

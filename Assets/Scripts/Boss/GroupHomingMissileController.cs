@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class GroupHomingMissileController : AttackableObject, IDamageable
+public class GroupHomingMissileController : AttackableObject, IDamageable, ISubscriber
 {
     public void Init(
         float _moveAccel, 
@@ -32,8 +32,10 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
 
         isFirstTrigger = true;
         isExplosed = false;
+        isPhaseChanged = false;
 
         //Destroy(gameObject, _autoDestroyTime);
+        Subscribe();
         StartCoroutine("AutoExplosionCorutine", _autoDestroyTime);
 
   
@@ -56,6 +58,12 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
             //Debug.Log($"MissileSpeed: {moveSpeed}");
 
             yield return waitFixed;
+
+            if (isPhaseChanged)
+            {
+                groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
+                yield break;
+            }
         }
     }
 
@@ -132,6 +140,22 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
         Explosion();
     }
 
+    private void OnDisable()
+    {
+        Broker.UnSubscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void Subscribe()
+    {
+        Broker.Subscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void ReceiveMessage(EMessageType _message)
+    {
+        if (_message == EMessageType.PHASE_CHANGE)
+            isPhaseChanged = true;
+    }
+
     private GroupMissileMemoryPool groupMissileMemoryPool = null;
     private WaitForFixedUpdate waitFixed = null;
 
@@ -149,6 +173,7 @@ public class GroupHomingMissileController : AttackableObject, IDamageable
     private Transform targetTr = null;
     private bool isExplosed = false;
     private bool isShieldBreak = false;
+    private bool isPhaseChanged = false;
 
     [SerializeField]
     private GameObject explosionEffectPrefab;

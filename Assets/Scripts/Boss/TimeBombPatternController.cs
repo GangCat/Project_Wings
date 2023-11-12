@@ -105,9 +105,20 @@ public class TimeBombPatternController : MonoBehaviour
         }
 
         bossRotationCallback?.Invoke(false);
+        bool isPatternFinish = false;
         while (true)
         {
-            if (arrBombGo.Length < 1)
+            isPatternFinish = true;
+            foreach(GameObject go in arrBombGo)
+            {
+                if (go != null)
+                {
+                    isPatternFinish = false;
+                    break;
+                }
+            }
+
+            if (isPatternFinish)
                 break;
 
             yield return waitFixedTime;

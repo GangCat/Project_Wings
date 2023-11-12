@@ -21,7 +21,8 @@ public class Broker
 
     public static void AlertMessageToSub(EMessageType _message, EPublisherType _publisherType)
     {
-        for (int i = 0; i < arrListSub[(int)_publisherType].Count; ++i)
+        int count = arrListSub[(int)_publisherType].Count;
+        for (int i = 0; i < count; ++i)
             arrListSub[(int)_publisherType][i].ReceiveMessage(_message);
     }
 

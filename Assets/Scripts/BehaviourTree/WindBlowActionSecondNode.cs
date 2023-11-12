@@ -31,7 +31,7 @@ public class WindBlowActionSecondNode : ActionNode
     }
 
     protected override State OnUpdate() {
-        if (Time.time >= finishTime)
+        if (blackboard.isPhaseEnd || Time.time >= finishTime)
             return State.Success;
 
         return State.Running;
