@@ -41,12 +41,12 @@ public class BulletController : AttackableObject, ISubscriber
             return;
         else if (_other.CompareTag("BossShield"))
             return;
-
         
-        if (AttackDmg(_other))
-        {
+        
+        if (_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
             DeactivateBullet();
-        }
+        else if (AttackDmg(_other))
+            DeactivateBullet();
     }
 
     private void DeactivateBullet()

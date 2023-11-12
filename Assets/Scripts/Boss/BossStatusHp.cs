@@ -33,6 +33,18 @@ public class BossStatusHp : StatusHp, IBossDamageable
         phaseChangeCallback?.Invoke();
     }
 
+    public void GetDamage(float _dmg, GameObject _attackGo)
+    {
+        curHp -= _dmg;
+
+        if (curPhaseNum == 1 && curHp < maxHp * 0.5f)
+            ChangePhase();
+        else if (curPhaseNum == 2 && curHp < 0)
+            ChangePhase();
+
+        hpUpdateCallback?.Invoke(curHp / maxHp);
+    }
+
     private VoidVoidDelegate phaseChangeCallback = null;
     private VoidFloatDelegate hpUpdateCallback = null;
     private int curPhaseNum = 0;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -29,6 +30,11 @@ public class PlayerMovementController : MonoBehaviour
 
     public float MoveSpeed => moveSpeed;
     public bool IsDash => isDash;
+    public bool IsLastPattern
+    {
+        get => isLastPattern;
+        set => isLastPattern = value;
+    }
 
     public void ChangeCollisionCondition(Collision collision, bool _bool)
     {
@@ -105,6 +111,8 @@ public class PlayerMovementController : MonoBehaviour
 
         if (!isKnockBack)
             playerVelocity = moveSpeed * playerTr.forward;
+
+
 
 
         if (isCollision)
@@ -185,6 +193,9 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerMove()
     {
+        if (isLastPattern)
+            playerVelocity += 200 * (bossCoreEnterance.position - transform.position).normalized;
+
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
     }
@@ -391,6 +402,7 @@ public class PlayerMovementController : MonoBehaviour
     private bool isCollision = false;
     private bool isKnockBack = false;
     private bool isFrontMove = false;
+    private bool isLastPattern = false;
 
 
     [SerializeField]
@@ -399,6 +411,8 @@ public class PlayerMovementController : MonoBehaviour
     private float dodgeDuration = 1f;
     [SerializeField]
     private float knockBackDelay = 5f;
+    [SerializeField]
+    private Transform bossCoreEnterance = null;
 
 
     [SerializeField]

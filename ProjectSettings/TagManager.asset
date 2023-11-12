@@ -20,6 +20,7 @@ TagManager:
   - BossLaser
   - WindBlowForPattern
   - HomingMissile
+  - BossBody
   layers:
   - Default
   - TransparentFX
@@ -39,7 +40,7 @@ TagManager:
   - TimeBomb
   - BossShieldBroken
   - BossInvincible
-  - 
+  - BossBody
   - 
   - 
   - 

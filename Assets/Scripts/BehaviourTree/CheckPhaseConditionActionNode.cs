@@ -12,7 +12,7 @@ public class CheckPhaseConditionActionNode : ActionNode
     }
 
     protected override State OnUpdate() {
-        Debug.Log($"BlackBoard.IsPhaseEnd: {blackboard.isPhaseEnd}");
+        //Debug.Log($"BlackBoard.IsPhaseEnd: {blackboard.isPhaseEnd}");
         return blackboard.isPhaseEnd ? State.Failure : State.Success;
     }
 }

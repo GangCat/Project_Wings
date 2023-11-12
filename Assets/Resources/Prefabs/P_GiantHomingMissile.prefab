@@ -77,7 +77,7 @@ MonoBehaviour:
   explosionRange: 200
   explosionLayer:
     serializedVersion: 2
-    m_Bits: 12480
+    m_Bits: 8384
 --- !u!54 &7731077181299898714
 Rigidbody:
   m_ObjectHideFlags: 0

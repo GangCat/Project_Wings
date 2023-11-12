@@ -16,7 +16,7 @@ public class PlayerRotXController : MonoBehaviour
     private void Update()
     {
         targetRotateX = tr.rotation.eulerAngles.x;
-        Debug.Log(targetRotateX);
+        //Debug.Log(targetRotateX);
         if (targetRotateX >= 250)
         {
             calcRotateX = 360-targetRotateX;

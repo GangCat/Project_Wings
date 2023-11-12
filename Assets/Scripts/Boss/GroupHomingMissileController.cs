@@ -102,6 +102,9 @@ public class GroupHomingMissileController : AttackableObject, IDamageable, ISubs
         if (!isShieldBreak && isFirstTrigger)
             return;
 
+        else if(isBodyTrigger && _other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
+            return;
+
         Explosion();
     }
 
@@ -115,9 +118,11 @@ public class GroupHomingMissileController : AttackableObject, IDamageable, ISubs
         GameObject go = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
         go.transform.localScale = Vector3.one * explosionRange;
         Destroy(go, 5f);
+
         Collider[] arrTempCollider = Physics.OverlapSphere(transform.position, explosionRange, explosionLayer);
         foreach(Collider col in arrTempCollider)
         {
+            Debug.Log(col.name);
             AttackDmg(col);
         }
         groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
@@ -127,6 +132,8 @@ public class GroupHomingMissileController : AttackableObject, IDamageable, ISubs
     {
         if (other.CompareTag("BossShield"))
             isFirstTrigger = false;
+        else if (other.CompareTag("BossBody"))
+            isBodyTrigger = false;
     }
 
     public void OnDrawGizmos()
@@ -174,6 +181,7 @@ public class GroupHomingMissileController : AttackableObject, IDamageable, ISubs
     private bool isExplosed = false;
     private bool isShieldBreak = false;
     private bool isPhaseChanged = false;
+    private bool isBodyTrigger = true;
 
     [SerializeField]
     private GameObject explosionEffectPrefab;

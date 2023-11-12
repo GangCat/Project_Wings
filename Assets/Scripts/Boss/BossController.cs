@@ -121,10 +121,11 @@ public class BossController : MonoBehaviour, IPublisher
             // 연출 종료시 시작
             timeBombPatternCtrl.StartPattern();
         }
-        else if (curPhaseNum == 2)
+            else if (curPhaseNum == 2)
         {
             // 마지막 빨아당기는 패턴
-            Invoke("FinishPhaseChange", 5f);
+            playerTr.GetComponent<PlayerMovementController>().IsLastPattern = true;
+            //Invoke("FinishPhaseChange", 5f);
         }
 
         // 연출 시작
@@ -141,15 +142,13 @@ public class BossController : MonoBehaviour, IPublisher
 
         if(curPhaseNum == 0)
         {
-            foreach (GameObject go in arrModelGo)
-                go.layer = LayerMask.NameToLayer("BossInvincible");
             InitShieldGeneratorPoint();
             shield.RespawnGenerator();
         }
         else if(curPhaseNum == 1)
         {
             foreach (GameObject go in arrModelGo)
-                go.layer = LayerMask.NameToLayer("BossInvincible");
+                go.layer = LayerMask.NameToLayer("BossBody");
 
             foreach (GameObject go in coreGo)
                 go.layer = LayerMask.NameToLayer("Boss");

@@ -14,6 +14,7 @@ public class CannonBallController : AttackableObject, ISubscriber
     private WaitForFixedUpdate waitFixedUpdate = null;
     private CannonMemoryPool memoryPool = null;
     private bool isPhaseChanged = false;
+
     public void Init(float _speed, Vector3 _spawnPos, CannonMemoryPool _memoryPool = null)
     {
         speed = _speed;
@@ -50,6 +51,9 @@ public class CannonBallController : AttackableObject, ISubscriber
 
     private void OnTriggerEnter(Collider _other)
     {
+        if(_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
+            memoryPool.DeactivateCannonBall(gameObject);
+
         if (AttackDmg(_other))
             memoryPool.DeactivateCannonBall(gameObject);
     }

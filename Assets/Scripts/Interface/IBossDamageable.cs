@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBossDamageable : IDamageable
 {
-
+    public void GetDamage(float _dmg, GameObject _attackGo);
 }

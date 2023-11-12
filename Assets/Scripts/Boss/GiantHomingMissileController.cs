@@ -87,20 +87,10 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         if (!isShieldBreak && isFirstTrigger)
             return;
 
-        Explosion();
-        //if (_other.CompareTag("Obstacle"))
-        //    Explosion();
-        //else if (_other.CompareTag("Floor"))
-        //    Explosion();
-        //else if (isFirstTrigger)
-        //    return;
-        //else if (_other.CompareTag("GiantHomingMissile"))
-        //    Explosion();
+        else if (isBodyTrigger && _other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
+            return;
 
-        //if (AttackDmg(_other))
-        //{
-        //    Explosion();
-        //}
+        Explosion();
     }
 
     public void Explosion()
@@ -116,6 +106,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         Collider[] arrTempCollider = Physics.OverlapSphere(transform.position, explosionRange, explosionLayer);
         foreach(Collider col in arrTempCollider)
         {
+            Debug.Log(col.name);
             AttackDmg(col);
         }
 
@@ -126,6 +117,8 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     {
         if (other.CompareTag("BossShield"))
             isFirstTrigger = false;
+        else if (other.CompareTag("BossBody"))
+            isBodyTrigger = false;
     }
 
     public void OnDrawGizmos()
@@ -173,6 +166,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     private bool isExplosed = false;
     private bool isShieldBreak = false;
     private bool isPhaseChange = false;
+    private bool isBodyTrigger = true;
 
     [SerializeField]
     private GameObject explosionEffectPrefab;
