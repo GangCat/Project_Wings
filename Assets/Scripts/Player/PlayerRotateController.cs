@@ -20,7 +20,6 @@ public class PlayerRotateController : MonoBehaviour
     public void PlayerRotate() // Update 돌리는거
     {
         RotateToMouse(ref rotVec.x, ref rotVec.y);
-
         playerTr.rotation = Quaternion.Euler(rotVec);
 
 
@@ -54,6 +53,7 @@ public class PlayerRotateController : MonoBehaviour
 
 
             playerData.currentRotZ = currentAngleZ;
+            
             playerTr.rotation = Quaternion.Euler(currentAngleX, currentAngleY, currentAngleZ);
 
     }
