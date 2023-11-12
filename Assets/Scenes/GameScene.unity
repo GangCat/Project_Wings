@@ -20273,8 +20273,18 @@ PrefabInstance:
     - target: {fileID: 4815037372279851656, guid: 454ccede727d7e7498ab9d8e53c9e887,
         type: 3}
       propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815037372279851656, guid: 454ccede727d7e7498ab9d8e53c9e887,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4815037372279851656, guid: 454ccede727d7e7498ab9d8e53c9e887,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d3e9250f42532d46bcb91add25854a9, type: 2}
     - target: {fileID: 5540255369469002498, guid: 454ccede727d7e7498ab9d8e53c9e887,
         type: 3}
       propertyPath: m_Name
@@ -20284,6 +20294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540255369469002498, guid: 454ccede727d7e7498ab9d8e53c9e887,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8323313499340489402, guid: 454ccede727d7e7498ab9d8e53c9e887,
         type: 3}

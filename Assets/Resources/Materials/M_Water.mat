@@ -30,7 +30,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -113,7 +113,7 @@ Material:
     - FoamScale: 50000
     - FoamSpeed: 1
     - HightFrequency: 1
-    - NormalStrength: 1
+    - NormalStrength: 0.5
     - RefractionSpeed: 0.1
     - RefractionStrength: 0.61
     - Smoothness: 0.85
@@ -145,7 +145,7 @@ Material:
     - _Normal_Strength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _QueueControl: 0
+    - _QueueControl: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 1
@@ -161,7 +161,7 @@ Material:
     - _ZWrite: 1
     - waveamplitude: 10
     m_Colors:
-    - DeepColor: {r: 0.2805714, g: 0.43305856, b: 0.6132076, a: 0.8666667}
+    - DeepColor: {r: 0.28057134, g: 0.4330585, b: 0.6132076, a: 0.5803922}
     - FoamColor: {r: 0.8584906, g: 0.8293343, b: 0.8293343, a: 1}
     - RefractionScale: {r: 500, g: 500, b: 0, a: 0}
     - SurfaceColor: {r: 0.41037738, g: 0.9306326, b: 1, a: 0.6666667}
