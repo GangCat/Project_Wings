@@ -8,8 +8,10 @@ public class UIManager : MonoBehaviour
     {
         canvasBoss = GetComponentInChildren<CanvasBoss>();
         canvasPlayer = GetComponentInChildren<CanvasPlayer>();
+        canvasUI = GetComponentInChildren<CanvasUI>();
         canvasBoss.Init();
         canvasPlayer.Init();
+        canvasUI.Init();
     }
 
     public void BossHpUpdate(float _ratio)
@@ -24,9 +26,11 @@ public class UIManager : MonoBehaviour
     public void GameClear()
     {
         Debug.Log("GameClear");
+        canvasUI.GameClear();
         //canvasInformation.GameClear();
     }
 
     private CanvasBoss canvasBoss = null;
     private CanvasPlayer canvasPlayer = null;
+    private CanvasUI canvasUI = null;
 }
