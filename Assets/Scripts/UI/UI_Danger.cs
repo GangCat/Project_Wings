@@ -19,7 +19,7 @@ public class UI_Danger : MonoBehaviour
 
     void Update()
     {
-        Collider[] missiles = Physics.OverlapSphere(player.position, 10000f, layer); //일단 레이어에 대문자 있는거 불편한데 일단 넣음.
+        Collider[] missiles = Physics.OverlapSphere(player.position, 10000f, layer);
         if (missiles != null)
         {
             foreach (Collider missile in missiles)
@@ -36,7 +36,7 @@ public class UI_Danger : MonoBehaviour
                     Vector3 uiPosition = Camera.main.WorldToScreenPoint(middlePoint);
 
                     // UI 요소의 위치 업데이트
-                    dangerImage.transform.position = new Vector3(uiPosition.x*0.7f,-20,0f);
+                    dangerImage.transform.position = new Vector3(uiPosition.x*0.7f,0f,0f);
                 }
                 else
                 {
