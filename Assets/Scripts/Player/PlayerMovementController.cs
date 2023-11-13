@@ -203,7 +203,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerDodge(bool _inputQ, bool _inputE)
     {
-        if (isDodge == false)
+        if (isDodge == false && StaminaChecke())
         {
             if (_inputQ == true)
             {
@@ -212,6 +212,7 @@ public class PlayerMovementController : MonoBehaviour
                 playerData.isAction = true;
                 StartCoroutine(DecreaseSpeed(SkyAclTime));
                 StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
+                DecreaseStamina(1);
             }
 
             if (_inputE == true)
@@ -221,6 +222,7 @@ public class PlayerMovementController : MonoBehaviour
                 playerData.isAction = true;
                 StartCoroutine(DecreaseSpeed(SkyAclTime));
                 StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
+                DecreaseStamina(1);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -230,6 +232,7 @@ public class PlayerMovementController : MonoBehaviour
                 playerData.isAction = true;
                 StartCoroutine(DecreaseSpeed(SkyAclTime));
                 StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardUp));
+                DecreaseStamina(1);
             }
         }
         else
@@ -356,14 +359,39 @@ public class PlayerMovementController : MonoBehaviour
         while (true)
         {
 
-            if (playerData.input.InputShift && isFrontMove)
+            if (playerData.input.InputShift && isFrontMove && StaminaChecke())
             {
+                DecreaseStamina(1);
                 isDash = true;
                 yield return new WaitForSeconds(3f);
                 isDash = false;
             }
 
             yield return null;
+        }
+    }
+
+    private bool StaminaChecke()
+    {
+        Debug.Log(playerData.stamina);
+        int currentStamina = playerData.stamina;
+        if (currentStamina > 0)
+        {
+            return true;
+        }
+        return false;
+
+    }
+    private void DecreaseStamina(int _decreaseAmount)
+    {
+        int currentStamina = playerData.stamina;
+        if (currentStamina>=1)
+        {
+            if (currentStamina >= 1 && currentStamina <= 3)
+            {
+                currentStamina -= _decreaseAmount;
+                playerData.stamina = currentStamina;
+            }
         }
     }
 
@@ -394,7 +422,7 @@ public class PlayerMovementController : MonoBehaviour
     private float moveStopAccel = 0f;
     private float moveAccelResult = 0f;
 
-    private float SkyAclTime = 0.1f;
+    private float SkyAclTime = 0f;
 
 
     private bool isDash = false;

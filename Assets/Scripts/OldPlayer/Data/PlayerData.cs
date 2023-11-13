@@ -10,7 +10,7 @@ public class PlayerData : ScriptableObject
 
     [Header("Status Data")]
     public int maxHealth = 100;
-    public int stamina = 100;
+    public int stamina = 3;
 
     [Header("Move Data")]
     public float moveBackVelocityLimit = 0f;
@@ -53,7 +53,6 @@ public class PlayerData : ScriptableObject
     public float rollMaxVelocity = 0f;
     public float rollMaxAngle = 0f;
     public float rollReturnAccel = 0f;
-
 
     public float currentRotZ = 0f;
     public float currentMoveSpeed = 0f;
