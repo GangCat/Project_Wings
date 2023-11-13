@@ -878,14 +878,15 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 263b82ce9c685b5418c2980bbf0b50d5
-  position: {x: 774.7212, y: 1173}
+  position: {x: 775.0001, y: 1173.0002}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
     curPhaseNum: 0
     curClosedWeakPoint: 0
     isShieldDestroy: 0
-  description: 
+  description: "\uD604\uC7AC \uD398\uC774\uC988\uAC00 2\uAC00 \uC544\uB2C8\uBA74
+    \uBB34\uC870\uAC74 failiure \uBC18\uD658"
   drawGizmos: 0
   range: 1000
 --- !u!114 &749988045687392448
