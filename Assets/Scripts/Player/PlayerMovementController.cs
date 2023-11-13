@@ -26,6 +26,7 @@ public class PlayerMovementController : MonoBehaviour
         StartCoroutine(ChangeFOV());
         StartCoroutine(FrontMoveCheker());
         StartCoroutine(DashCheker());
+        StartCoroutine(StaminaRegen());
     }
 
     public float MoveSpeed => moveSpeed;
@@ -367,6 +368,20 @@ public class PlayerMovementController : MonoBehaviour
                 isDash = false;
             }
 
+            yield return null;
+        }
+    }
+
+    private IEnumerator StaminaRegen()
+    {
+        while (true)
+        {
+            if (playerData.stamina<3)
+            {
+                yield return new WaitForSeconds(5f);
+                playerData.stamina++;
+                Debug.Log(playerData.stamina);
+            }
             yield return null;
         }
     }
