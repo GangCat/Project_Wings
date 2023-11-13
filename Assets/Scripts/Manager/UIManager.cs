@@ -16,6 +16,10 @@ public class UIManager : MonoBehaviour
     {
         canvasBoss.UpdateHpBar(_ratio);
     }
+    public void PlayerSpUpdate(int _Stamina)
+    {
+        canvasPlayer.UpdateSp(_Stamina);
+    }
 
     private CanvasBoss canvasBoss = null;
     private CanvasPlayer canvasPlayer = null;

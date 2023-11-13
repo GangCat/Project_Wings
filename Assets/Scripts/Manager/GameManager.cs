@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour, IPublisher
         //audioMng.Init();
         uiMng.Init();
         camMng.Init(playerTr, playerMng.PData, ActionFinish);
-        bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); }, GetRandomSpawnPoint);
+        bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); });
+        playerMng.Init(value => { uiMng.PlayerSpUpdate(value); }); 
         obstacleMng.Init();
-        //playerMng.Init();
     }
 
     public void CameraAction(int _curPhaseNum)

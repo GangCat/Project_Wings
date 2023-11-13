@@ -7,12 +7,7 @@ using UnityEngine.TextCore.Text;
 
 public class PlayerMovementController : MonoBehaviour
 {
-
-    [SerializeField]
-    private bool test = false;
-    [SerializeField]
-    private float shakefloat = 0f;
-    public void Init(PlayerData _playerData)
+    public void Init(PlayerData _playerData,VoidIntDelegate _spUpdateCallback)
     {
         playerData = _playerData;
         playerTr = playerData.tr;
@@ -26,7 +21,7 @@ public class PlayerMovementController : MonoBehaviour
         moveStopAccel = playerData.moveStopAccel;
 
         oriCamParent = cam.transform.parent;
-
+        spUpdateDelegate = _spUpdateCallback;
 
         StartCoroutine(ChangeFOV());
         StartCoroutine(FrontMoveCheker());
@@ -200,9 +195,7 @@ public class PlayerMovementController : MonoBehaviour
     public void PlayerMove()
     {
         if (isLastPattern)
-            playerVelocity += suckPower * (bossCoreEnterance.position - transform.position).normalized;
-
-        
+            playerVelocity += 200 * (bossCoreEnterance.position - transform.position).normalized;
 
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
@@ -387,7 +380,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 yield return new WaitForSeconds(5f);
                 playerData.stamina++;
-                Debug.Log(playerData.stamina);
+                spUpdateDelegate.Invoke(playerData.stamina);
             }
             yield return null;
         }
@@ -395,7 +388,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool StaminaChecke()
     {
-        //Debug.Log(playerData.stamina);
         int currentStamina = playerData.stamina;
         if (currentStamina > 0)
         {
@@ -413,6 +405,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 currentStamina -= _decreaseAmount;
                 playerData.stamina = currentStamina;
+                spUpdateDelegate.Invoke(currentStamina);
             }
         }
     }
@@ -463,8 +456,6 @@ public class PlayerMovementController : MonoBehaviour
     private float knockBackDelay = 5f;
     [SerializeField]
     private Transform bossCoreEnterance = null;
-    [SerializeField]
-    private float suckPower = 200f;
 
 
     [SerializeField]
@@ -482,5 +473,7 @@ public class PlayerMovementController : MonoBehaviour
     private float cameraMaxSpeed = 120f;
     private float cameraminFOV = 70f;
     private float cameramaxFOV = 90f;
+
+    private VoidIntDelegate spUpdateDelegate = null;
 
 }

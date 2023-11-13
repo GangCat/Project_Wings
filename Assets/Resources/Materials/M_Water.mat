@@ -107,7 +107,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Distance: 1
+    - Distance: 163.76
     - FoamAmount: 30
     - FoamCuttoff: 1.2
     - FoamScale: 50000
@@ -161,10 +161,10 @@ Material:
     - _ZWrite: 1
     - waveamplitude: 10
     m_Colors:
-    - DeepColor: {r: 0.28057134, g: 0.4330585, b: 0.6132076, a: 0.5803922}
+    - DeepColor: {r: 0.28057128, g: 0.43305844, b: 0.6132076, a: 1}
     - FoamColor: {r: 0.8584906, g: 0.8293343, b: 0.8293343, a: 1}
     - RefractionScale: {r: 500, g: 500, b: 0, a: 0}
-    - SurfaceColor: {r: 0.41037738, g: 0.9306326, b: 1, a: 0.6666667}
+    - SurfaceColor: {r: 0.11764706, g: 0.1841417, b: 0.29411766, a: 0.8392157}
     - UV: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.4190548, g: 0.5311314, b: 0.6886792, a: 1}
     - _Color: {r: 0.41905478, g: 0.5311314, b: 0.6886792, a: 1}
