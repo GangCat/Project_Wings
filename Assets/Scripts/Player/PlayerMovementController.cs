@@ -200,7 +200,7 @@ public class PlayerMovementController : MonoBehaviour
     public void PlayerMove()
     {
         if (isLastPattern)
-            playerVelocity += 200 * (bossCoreEnterance.position - transform.position).normalized;
+            playerVelocity += suckPower * (bossCoreEnterance.position - transform.position).normalized;
 
         
 
@@ -395,7 +395,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private bool StaminaChecke()
     {
-        Debug.Log(playerData.stamina);
+        //Debug.Log(playerData.stamina);
         int currentStamina = playerData.stamina;
         if (currentStamina > 0)
         {
@@ -463,6 +463,8 @@ public class PlayerMovementController : MonoBehaviour
     private float knockBackDelay = 5f;
     [SerializeField]
     private Transform bossCoreEnterance = null;
+    [SerializeField]
+    private float suckPower = 200f;
 
 
     [SerializeField]

@@ -12,6 +12,10 @@ public class CheckIsLastPhase : ActionNode
     }
 
     protected override State OnUpdate() {
-        return State.Success;
+
+        if (blackboard.curPhaseNum > 2)
+            return State.Success;
+
+        return State.Failure;
     }
 }

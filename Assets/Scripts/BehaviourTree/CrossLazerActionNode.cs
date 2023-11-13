@@ -8,19 +8,19 @@ public class CrossLazerActionNode : ActionNode
     [SerializeField]
     private GameObject crossLaserPrefab = null;
     [SerializeField]
-    private float moveAccel = 0f;
+    private float moveAccel = 300f;
     [SerializeField]
-    private float maxMoveSpeed = 0f;
+    private float maxMoveSpeed = 500f;
     [SerializeField]
-    private float rotateAccel = 0f;
+    private float rotateAccel = 5f;
     [SerializeField]
-    private float maxRotateAccel = 0f;
+    private float maxRotateAccel = 5f;
     [SerializeField]
-    private float autoDestroyTime = 0f;
+    private float autoDestroyTime = 20f;
     [SerializeField]
-    private float changeFormDistnacec = 0f;
+    private float changeFormDistnacec = 500f;
     [SerializeField]
-    private float patternFinishTime = 0f;
+    private float patternFinishTime = 10f;
 
     private float patternStartTime = 0f;
     private Transform spawnTr = null;

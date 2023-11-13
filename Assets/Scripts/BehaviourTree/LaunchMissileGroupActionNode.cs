@@ -8,17 +8,17 @@ public class LaunchMissileGroupActionNode : ActionNode
     [SerializeField]
     private GameObject missilePrefab = null;
     [SerializeField]
-    private float moveAccel = 0f;
+    private float moveAccel = 400f;
     [SerializeField]
-    private float maxMoveSpeed = 0f;
+    private float maxMoveSpeed = 400f;
     [SerializeField]
-    private float rotateAccel = 0f;
+    private float rotateAccel = 0.2f;
     [SerializeField]
-    private float maxRotateAccel = 0f;
+    private float maxRotateAccel = 2f;
     [SerializeField]
-    private float autoDestroyTime = 0f;
+    private float autoDestroyTime = 20f;
     [SerializeField]
-    private float spawnRate = 0f;
+    private float spawnRate = 1f;
 
     private GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos = null;
     private GameObject[] arrMissileGroup = new GameObject[32];

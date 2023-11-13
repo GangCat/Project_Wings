@@ -19,11 +19,14 @@ public class GatilingActionNode : ActionNode
     private float autoDestroyTime = 20f;
     [SerializeField]
     private float minDegreeToRotateGun = -30f;
+    [SerializeField]
+    private bool isRandomShoot = false;
 
 
     private Transform playerTr;
     private Transform gunMuzzleTr;
     private GameObject gatlingHolder;
+    private Transform gatlinGeadTr;
 
     private float curBulletCnt;
     private float lastFireTime;
@@ -36,6 +39,7 @@ public class GatilingActionNode : ActionNode
         playerTr = context.playerTr;
         gunMuzzleTr = context.gunMuzzleTr;
         gatlingHolder = context.gatlingHolderGo;
+        gatlinGeadTr = context.gatlingHeadGo.transform;
     }
 
     protected override void OnStop() {
@@ -43,8 +47,16 @@ public class GatilingActionNode : ActionNode
 
     protected override State OnUpdate() {
         rndRebound = new Vector3(Random.Range(-rebound, rebound), Random.Range(-rebound, rebound), Random.Range(-rebound, rebound));
-        RotateTurretToPlayer();
-        RotateTurretHeadToPlayer();
+
+        if (!isRandomShoot)
+        {
+            RotateTurretToPlayer();
+            RotateTurretHeadToPlayer();
+        }
+        else
+        {
+            RotateTurretHeadRandom();
+        }
 
         if (CanFire())
         {
@@ -68,7 +80,8 @@ public class GatilingActionNode : ActionNode
             Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
 
             // 부드럽게 회전하기 위해 Lerp 사용
-            gatlingHolder.transform.rotation = Quaternion.Slerp(gatlingHolder.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            //gatlingHolder.transform.rotation = Mathf.PingPong();
+            //핑퐁써서 하기
         }
     }
 
@@ -79,12 +92,17 @@ public class GatilingActionNode : ActionNode
             diffY = playerTr.position.y - context.gatlingHeadGo.transform.position.y;
             cetha = Mathf.Asin(diffY / Vector3.Distance(playerTr.position, context.gatlingHeadGo.transform.position)) * Mathf.Rad2Deg;
             cetha = Mathf.Clamp(cetha, minDegreeToRotateGun, 80);
-            context.gatlingHeadGo.transform.localRotation = Quaternion.Euler(Vector3.left * cetha);
+            gatlinGeadTr.localRotation = Quaternion.Euler(Vector3.left * cetha);
 
             //Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
             // 부드럽게 회전하기 위해 Lerp 사용
             //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    private void RotateTurretHeadRandom()
+    {
+        gatlinGeadTr.localRotation = Quaternion.Euler(Vector3.left * (Mathf.Sin(Time.time) * 15f * Time.deltaTime));
     }
 
     private bool CanFire()

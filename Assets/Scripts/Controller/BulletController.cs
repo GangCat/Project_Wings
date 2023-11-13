@@ -11,6 +11,7 @@ public class BulletController : AttackableObject, ISubscriber
 
     private GatlinMemoryPool gatlinMemoryPool = null;
     private bool isPhaseChange = false;
+    private bool isBodyTrigger = true;
 
     public void Init(float _destroyTime, Vector3 _position, Quaternion _rotation,GatlinMemoryPool _gatlinMemoryPooll = null)
     {
@@ -20,7 +21,7 @@ public class BulletController : AttackableObject, ISubscriber
         gameObject.transform.rotation = _rotation;
         gatlinMemoryPool = _gatlinMemoryPooll;
         isPhaseChange = false;
-
+        isBodyTrigger = true;
     }
     //private void Start()
     //{
@@ -41,12 +42,19 @@ public class BulletController : AttackableObject, ISubscriber
             return;
         else if (_other.CompareTag("BossShield"))
             return;
-        
-        
+        else if (isBodyTrigger && _other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
+            return;
+
         if (_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
             DeactivateBullet();
-        else if (AttackDmg(_other))
+        else if(AttackDmg(_other))
             DeactivateBullet();
+    }
+
+    private void OnTriggerExit(Collider _other)
+    {
+        if (_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
+            isBodyTrigger = false;
     }
 
     private void DeactivateBullet()

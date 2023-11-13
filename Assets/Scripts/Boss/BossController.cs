@@ -82,15 +82,15 @@ public class BossController : MonoBehaviour, IPublisher
     public void JumpToNextPhase()
     {
         ClearShieldGenerator();
-        statHp.GetDamage(statHp.GetMaxHp * 0.5f);
+        statHp.GetDamage(statHp.GetMaxHp * 0.51f);
     }
 
     private void InitMemoryPools()
     {
-        GetComponentInChildren<CannonRainMemoryPool>().Init();
-        GetComponentInChildren<CannonMemoryPool>().Init();
-        GetComponentInChildren<GatlinMemoryPool>().Init();
-        GetComponentInChildren<GroupMissileMemoryPool>().Init();
+        cannonRainMemoryPool.Init();
+        cannonMemoryPool.Init();
+        gatlinMemoryPool.Init();
+        groupMissileMemoryPool.Init();
 
     }
 
@@ -117,10 +117,11 @@ public class BossController : MonoBehaviour, IPublisher
         directionToPlayer.y = 0f;
 
         // 방향 벡터를 사용하여 보스를 회전시킵니다.
-        if (directionToPlayer != Vector3.zero)
-        {
+        if (curPhaseNum >= 2)
+            transform.localRotation *= Quaternion.Euler(new Vector3(0f, autoRotateDegree * Time.deltaTime, 0f));
+        else if (directionToPlayer != Vector3.zero)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
-        }
+
     }
 
     private void StartPhaseChange()
@@ -168,12 +169,15 @@ public class BossController : MonoBehaviour, IPublisher
         if (!isChangingPhase)
             return;
 
-        if(curPhaseNum == 0)
+        isBossStartRotation = false;
+        isChangingPhase = false;
+
+        if (curPhaseNum == 0)
         {
             InitShieldGeneratorPoint();
             shield.RespawnGenerator();
         }
-        else if(curPhaseNum == 1)
+        else if (curPhaseNum == 1)
         {
             foreach (GameObject go in arrModelGo)
                 go.layer = LayerMask.NameToLayer("BossBody");
@@ -181,16 +185,16 @@ public class BossController : MonoBehaviour, IPublisher
             foreach (GameObject go in coreGo)
                 go.layer = LayerMask.NameToLayer("Boss");
         }
+        else if(curPhaseNum >= 2)
+        {
+            foreach (GameObject go in arrModelGo)
+                go.layer = LayerMask.NameToLayer("BossBody");
 
-        isBossStartRotation = false;
-        isChangingPhase = false;
+            isBossStartRotation = true;
+        }
+
         ++curPhaseNum;
         myRunner.StartNextPhase(curPhaseNum);
-    }
-
-    private bool IsShieldGeneratorRemain()
-    {
-        return curShieldGeneratorPoint.Count > 0;
     }
 
     private void InitShieldGeneratorPoint()
@@ -245,8 +249,6 @@ public class BossController : MonoBehaviour, IPublisher
 
     [Header("-InformationForContext")]
     [SerializeField]
-    private BossShieldGeneratorSpawnPointHolder shieldGeneratorSpawnPointHolder = null;
-    [SerializeField]
     private GameObject gatlingHolderGo = null;
     [SerializeField]
     private GameObject gatlingHeadGo = null;
@@ -278,6 +280,9 @@ public class BossController : MonoBehaviour, IPublisher
     private GameObject[] arrModelGo = null;
     [SerializeField]
     private GameObject[] coreGo = null;
+    [SerializeField]
+    private float autoRotateDegree = 30f;
+
 
     private Transform playerTr = null;
     private BossCollider bossCollider = null;
