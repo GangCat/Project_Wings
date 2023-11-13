@@ -6,16 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, IPublisher
 {
-    private void Awake()
-    {
-        if (FindObjectsByType<GameManager>(FindObjectsSortMode.None).Length > 1)
-            Destroy(gameObject);
-        else
-            DontDestroyOnLoad(gameObject);
-
-
-    }
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -24,24 +14,7 @@ public class GameManager : MonoBehaviour, IPublisher
         Screen.SetResolution(1920, 1080, true);
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
 
-        //SceneManager.sceneLoaded += OnSceneLoaded;
-
         StartGame();
-    }
-
-    private void OnSceneLoaded(Scene _scene, LoadSceneMode _mode)
-    {
-        if (_scene.name.Equals("GameScene"))
-        {
-            StartGame();
-            RegisterBroker();
-        }
-        else if (_scene.name.Equals("CampusScene"))
-        {
-            Broker.Clear();
-            //mainMenuMng = FindAnyObjectByType<MainMenuManager>();
-            //mainMenuMng.Init(isFullHD, isFullScreen);
-        }
     }
 
     public void StartGame()
@@ -94,11 +67,19 @@ public class GameManager : MonoBehaviour, IPublisher
             bossMng.ClearCurPhase();
         else if (Input.GetKeyDown(startGameKeyCode))
             bossMng.GameStart();
+        else if (Input.GetKeyDown(jumpToNextPatternKeyCode))
+            bossMng.JumpToNextPattern();
+            
     }
 
     [SerializeField]
     private Transform playerTr = null;
-
+    [SerializeField]
+    private KeyCode startGameKeyCode = KeyCode.Home;
+    [SerializeField]
+    private KeyCode nextPhaseKeyCode = KeyCode.PageUp;
+    [SerializeField]
+    private KeyCode jumpToNextPatternKeyCode = KeyCode.PageDown;
 
     private AudioManager audioMng = null;
     private BossManager bossMng = null;
@@ -107,9 +88,5 @@ public class GameManager : MonoBehaviour, IPublisher
     private PlayerManager playerMng = null;
 
 
-    [SerializeField]
-    private KeyCode startGameKeyCode = KeyCode.Home;
-    [SerializeField]
-    private KeyCode nextPhaseKeyCode = KeyCode.PageUp;
 
 }

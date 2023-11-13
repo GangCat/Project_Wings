@@ -53,12 +53,20 @@ public class BossController : MonoBehaviour, IPublisher
         StartCoroutine("UpdateCoroutine");
     }
 
-    public void ClearCurPhase()
+    public void ClearShieldGenerator()
     {
-        foreach (GameObject bwpGo in curShieldGeneratorPoint)
-            Destroy(bwpGo);
+        int curGenCnt = curShieldGeneratorPoint.Count;
+        for (int i = 0; i < curGenCnt; ++i)
+            curShieldGeneratorPoint[0].GetComponent<IDamageable>().GetDamage(999);
 
-        curShieldGeneratorPoint.Clear();
+        //foreach (GameObject go in curShieldGeneratorPoint)
+        //    go.GetComponent<BossShieldGenerator>().GetDamage(999);
+    }
+
+    public void JumpToNextPhase()
+    {
+        ClearShieldGenerator();
+        statHp.GetDamage(statHp.GetMaxHp * 0.5f);
     }
 
     private void InitMemoryPools()

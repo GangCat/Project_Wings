@@ -18,6 +18,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
             return;
 
         curHp -= _dmg;
+
         if (curHp < 0)
         {
             destroyCallback?.Invoke(gameObject);

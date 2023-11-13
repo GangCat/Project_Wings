@@ -12,12 +12,17 @@ public class BossManager : MonoBehaviour
 
     public void ClearCurPhase()
     {
-        bossCtrl.ClearCurPhase();
+        bossCtrl.ClearShieldGenerator();
     }
 
     public void ActionFinish()
     {
         bossCtrl.FinishPhaseChange();
+    }
+
+    public void JumpToNextPattern()
+    {
+        bossCtrl.JumpToNextPhase();
     }
 
     public void GameStart()

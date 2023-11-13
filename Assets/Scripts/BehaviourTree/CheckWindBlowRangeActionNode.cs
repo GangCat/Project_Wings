@@ -18,6 +18,9 @@ public class CheckWindBlowRangeActionNode : ActionNode
     }
 
     protected override State OnUpdate() {
+        if (blackboard.curPhaseNum != 1)
+            return State.Failure;
+
         for(int i = 0; i < shieldGenerators.Length; ++i)
         {
             if (Physics.OverlapSphere(shieldGenerators[i].GetPos(), range, 1 << LayerMask.NameToLayer("Player")).Length > 0)
