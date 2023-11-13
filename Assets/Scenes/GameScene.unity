@@ -6708,7 +6708,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.08
+      value: -3.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
@@ -6718,27 +6718,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.04
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99615425
+      value: 0.98308927
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.014143752
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.16080701
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.087616555
+      value: -0.086467445
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
@@ -6748,7 +6748,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -18.58
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de4490f2a6f06604186f3603b90803fc,
         type: 3}
@@ -9762,6 +9762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f72fddceeaaf09489aa55462d52aa3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: 0
+  shakefloat: 10
   rb: {fileID: 798473342}
   dodgeDuration: 1
   knockBackDelay: 2

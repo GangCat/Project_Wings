@@ -7,6 +7,11 @@ using UnityEngine.TextCore.Text;
 
 public class PlayerMovementController : MonoBehaviour
 {
+
+    [SerializeField]
+    private bool test = false;
+    [SerializeField]
+    private float shakefloat = 0f;
     public void Init(PlayerData _playerData)
     {
         playerData = _playerData;
@@ -195,6 +200,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (isLastPattern)
             playerVelocity += 200 * (bossCoreEnterance.position - transform.position).normalized;
+
+        
 
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
