@@ -38,9 +38,14 @@ public class GameManager : MonoBehaviour, IPublisher
         //audioMng.Init();
         uiMng.Init();
         camMng.Init(playerTr, playerMng.PData, ActionFinish);
-        bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); }, GetRandomSpawnPoint, BossClear);
-        playerMng.Init(value => { uiMng.PlayerSpUpdate(value); }); 
+<<<<<<< HEAD
+        bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); }, GetRandomSpawnPoint);
         obstacleMng.Init();
+        //playerMng.Init();
+=======
+        bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); });
+        playerMng.Init(value => { uiMng.PlayerSpUpdate(value); }); 
+>>>>>>> origin/PB
     }
 
     public void CameraAction(int _curPhaseNum)
@@ -48,12 +53,9 @@ public class GameManager : MonoBehaviour, IPublisher
         camMng.CameraAction(_curPhaseNum);
     }
 
-    public void ActionFinish(bool _isGameClear = false)
+    public void ActionFinish()
     {
-        if (!_isGameClear)
-            bossMng.ActionFinish();
-        else
-            uiMng.GameClear();
+        bossMng.ActionFinish();
     }
 
     public void RegisterBroker()
@@ -69,11 +71,6 @@ public class GameManager : MonoBehaviour, IPublisher
     public BossShieldGeneratorSpawnPoint[] GetRandomSpawnPoint()
     {
         return obstacleMng.GetRandomSpawnPoint();
-    }
-
-    private void BossClear()
-    {
-        camMng.CameraAction(3);
     }
 
     private void Update()

@@ -8,7 +8,7 @@ using UnityEngine;
 public class BossController : MonoBehaviour, IPublisher
 {
     public delegate BossShieldGeneratorSpawnPoint[] GetRandomSpawnPointDelegate();
-    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback)
+    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, VoidVoidDelegate _bossClearCalblack)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -17,6 +17,7 @@ public class BossController : MonoBehaviour, IPublisher
         shield = GetComponentInChildren<BossShield>();
         timeBombPatternCtrl = GetComponentInChildren<TimeBombPatternController>();
         bossRb = GetComponent<Rigidbody>();
+        lastPatternCtrl = GetComponentInChildren<LastPatternController>();
 
         getRandomSpawnPointCallback = _getRandomSpawnPointCallback;
 
@@ -24,6 +25,7 @@ public class BossController : MonoBehaviour, IPublisher
         bossCollider.Init();
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
         shield.Init();
+        lastPatternCtrl.Init(_bossClearCalblack);
         timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
         RegisterBroker();
         InitMemoryPools();
@@ -52,8 +54,6 @@ public class BossController : MonoBehaviour, IPublisher
     public GroupMissileMemoryPool GroupMissileMemoryPool => groupMissileMemoryPool;
     public GatlinMemoryPool GatlinMemoryPool => gatlinMemoryPool;
     public CannonRainMemoryPool CannonRainMemoryPool => cannonRainMemoryPool;
-
-
 
 
     public void SetBossRotationBoolean(bool _canRotation)
@@ -137,35 +137,32 @@ public class BossController : MonoBehaviour, IPublisher
             go.layer = LayerMask.NameToLayer("BossInvincible");
         cameraActionCallback?.Invoke(curPhaseNum);
         PushMessageToBroker(EMessageType.PHASE_CHANGE);
+    }
 
-        // 패턴 시작
+    public void PatternStart()
+    {
+        // 연출 종료시 호출
+        if (!isChangingPhase)
+            return;
+
         if (curPhaseNum == 1)
         {
-            // 모든 발사체들과 모든 패턴의 오브젝트들 비활성화(O)
-            // 연출 시작
-            // 연출 종료시 시작
             timeBombPatternCtrl.StartPattern();
+            return;
         }
-            else if (curPhaseNum == 2)
+        
+        if (curPhaseNum >= 2)
         {
-
-            // 플레이어를 아래로 빨아당기도록 함.
             playerTr.GetComponent<PlayerMovementController>().IsLastPattern = true;
-            
-            // 마지막 빨아당기는 패턴 연출
-            // 연출종료시 FinishPhaseChange
-            Invoke("FinishPhaseChange", 5f);
+            lastPatternCtrl.StartPattern();
         }
 
-        // 연출 시작
-
-        //Invoke("FinishPhaseChange", 5f); // 테스트용
+        FinishPhaseChange();
     }
 
 
     public void FinishPhaseChange()
     {
-        // 연출 종료시 호출
         if (!isChangingPhase)
             return;
 
@@ -300,6 +297,7 @@ public class BossController : MonoBehaviour, IPublisher
     private TimeBombPatternController timeBombPatternCtrl = null;
     private GetRandomSpawnPointDelegate getRandomSpawnPointCallback = null;
     private BossShieldGeneratorSpawnPoint[] arrCurShieldGeneratorSpawnPoints = null;
+    private LastPatternController lastPatternCtrl = null;
 
     private bool isBossStartRotation = false;
 }

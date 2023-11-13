@@ -8,15 +8,15 @@ public class NewLaunchMissileActionNode : ActionNode
     [SerializeField]
     private GameObject giantHomingMissilePrefab = null;
     [SerializeField]
-    private float moveAccel = 0f;
+    private float moveAccel = 400f;
     [SerializeField]
-    private float maxMoveSpeed = 0f;
+    private float maxMoveSpeed = 600f;
     [SerializeField]
-    private float rotateAccel = 0f;
+    private float rotateAccel = 0.2f;
     [SerializeField]
-    private float maxRotateAccel = 0f;
+    private float maxRotateAccel = 3f;
     [SerializeField]
-    private float autoDestroyTime = 0f;
+    private float autoDestroyTime = 20f;
 
     private Transform spawnTr = null;
     private GameObject crossLaserGo = null;

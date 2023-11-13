@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public void Init(Transform _playerTr,PlayerData _playerData, VoidVoidDelegate _actionFinishCallback)
+    public void Init(Transform _playerTr,PlayerData _playerData, VoidBoolDelegate _actionFinishCallback)
     {
         cam = GetComponent<Camera>();
         //mainCam = GetComponentInChildren<CameraMovement>();

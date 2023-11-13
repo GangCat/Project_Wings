@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActionCamera : MonoBehaviour
 {
-    public void Init(VoidVoidDelegate _actionFinishCallback)
+    public void Init(VoidBoolDelegate _actionFinishCallback)
     {
         anim = GetComponent<Animator>();
         cam = GetComponent<Camera>();
@@ -14,23 +14,41 @@ public class ActionCamera : MonoBehaviour
 
     public void StartAction(int _curPhaseNum)
     {
-        // Å×½ºÆ®
-        if (_curPhaseNum < 1)
+        cam.enabled = true;
+        anim.SetTrigger($"Phase{_curPhaseNum}");
+        StartCoroutine(CheckIsAnimFinishCoroutine(_curPhaseNum));
+
+        if (_curPhaseNum > 2)
+            isLastAction = true;
+
+        Debug.Log(_curPhaseNum);
+    }
+
+    private IEnumerator CheckIsAnimFinishCoroutine(int _curPhaseNum)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        while (true)
         {
-            cam.enabled = true;
-            anim.SetTrigger($"Phase{_curPhaseNum}");
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName($"Phase{_curPhaseNum}"))
+            {
+                FinishAction();
+                yield break;
+            }
+
+            yield return null;
         }
-        //else
-        //    Invoke("FinishAction",1f);
     }
 
     private void FinishAction()
     {
-        actionFinishCallback?.Invoke();
+        actionFinishCallback?.Invoke(isLastAction);
         cam.enabled = false;
     }
 
     private Animator anim = null;
-    private VoidVoidDelegate actionFinishCallback = null;
+    private VoidBoolDelegate actionFinishCallback = null;
     private Camera cam = null;
+
+    private bool isLastAction = false;
 }

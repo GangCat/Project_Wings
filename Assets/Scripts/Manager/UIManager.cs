@@ -21,6 +21,12 @@ public class UIManager : MonoBehaviour
         canvasPlayer.UpdateSp(_Stamina);
     }
 
+    public void GameClear()
+    {
+        Debug.Log("GameClear");
+        //canvasInformation.GameClear();
+    }
+
     private CanvasBoss canvasBoss = null;
     private CanvasPlayer canvasPlayer = null;
 }

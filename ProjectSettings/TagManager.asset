@@ -21,6 +21,7 @@ TagManager:
   - WindBlowForPattern
   - HomingMissile
   - BossBody
+  - LastPatternCollider
   layers:
   - Default
   - TransparentFX

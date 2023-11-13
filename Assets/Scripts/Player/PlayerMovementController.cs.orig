@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
 public class PlayerMovementController : MonoBehaviour
 {
+<<<<<<< HEAD
+
+    [SerializeField]
+    private bool test = false;
+    [SerializeField]
+    private float shakefloat = 0f;
     public void Init(PlayerData _playerData)
+=======
+    public void Init(PlayerData _playerData,VoidIntDelegate _spUpdateCallback)
+>>>>>>> origin/PB
     {
         playerData = _playerData;
         playerTr = playerData.tr;
@@ -19,14 +29,22 @@ public class PlayerMovementController : MonoBehaviour
         moveDashAccel = playerData.moveDashAccel;
         moveStopAccel = playerData.moveStopAccel;
 
+        oriCamParent = cam.transform.parent;
+        spUpdateDelegate = _spUpdateCallback;
 
         StartCoroutine(ChangeFOV());
         StartCoroutine(FrontMoveCheker());
         StartCoroutine(DashCheker());
+        StartCoroutine(StaminaRegen());
     }
 
     public float MoveSpeed => moveSpeed;
     public bool IsDash => isDash;
+    public bool IsLastPattern
+    {
+        get => isLastPattern;
+        set => isLastPattern = value;
+    }
 
     public void ChangeCollisionCondition(Collision collision, bool _bool)
     {
@@ -39,12 +57,12 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (playerData.isAction == true || isDodge == true)
         {
-            playerVelocity = moveSpeed * playerTr.forward;
             return;
         } else if (isFrontMove == false)
         {
             moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
-            playerVelocity = moveSpeed * playerTr.forward;
+            if(!isKnockBack)
+                playerVelocity = moveSpeed * playerTr.forward;
             return;
         }
         
@@ -82,8 +100,9 @@ public class PlayerMovementController : MonoBehaviour
             moveSpeed = Mathf.MoveTowards(moveSpeed, 0, moveAccel * Time.deltaTime);
         }
         
-        addVelocity = Mathf.Lerp(addVelocity, moveDashSpeed + gravitySpeed, Time.deltaTime);
+        addVelocity = Mathf.Lerp(addVelocity, moveDashSpeed + gravitySpeed, 0.1F);
         resultForwardVelocityLimit = (moveForwardVelocityLimit + addVelocity);
+        //resultForwardVelocityLimit = (moveForwardVelocityLimit + moveDashSpeed + gravitySpeed);
         
         //if (_inputZ > 0f)
         //{
@@ -102,6 +121,8 @@ public class PlayerMovementController : MonoBehaviour
 
         if (!isKnockBack)
             playerVelocity = moveSpeed * playerTr.forward;
+
+
 
 
         if (isCollision)
@@ -182,6 +203,11 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerMove()
     {
+        if (isLastPattern)
+            playerVelocity += suckPower * (bossCoreEnterance.position - transform.position).normalized;
+
+        
+
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
     }
@@ -189,9 +215,8 @@ public class PlayerMovementController : MonoBehaviour
 
     public void PlayerDodge(bool _inputQ, bool _inputE)
     {
-        if (isDodge == false)
+        if (isDodge == false && StaminaChecke())
         {
-
             if (_inputQ == true)
             {
                 Vector3 forwardLeft = Vector3.Cross(playerTr.forward, Vector3.up);
@@ -199,6 +224,7 @@ public class PlayerMovementController : MonoBehaviour
                 playerData.isAction = true;
                 StartCoroutine(DecreaseSpeed(SkyAclTime));
                 StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardLeft));
+                DecreaseStamina(1);
             }
 
             if (_inputE == true)
@@ -208,6 +234,7 @@ public class PlayerMovementController : MonoBehaviour
                 playerData.isAction = true;
                 StartCoroutine(DecreaseSpeed(SkyAclTime));
                 StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardRight));
+                DecreaseStamina(1);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -216,8 +243,8 @@ public class PlayerMovementController : MonoBehaviour
                 isDodge = true;
                 playerData.isAction = true;
                 StartCoroutine(DecreaseSpeed(SkyAclTime));
-                //SetVelocityOverTime(playerData.dodgeSpeed, dodgeDuration, forwardUp);
                 StartCoroutine(MoveToDir(playerData.dodgeSpeed, dodgeDuration, forwardUp));
+                DecreaseStamina(1);
             }
         }
         else
@@ -227,12 +254,14 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator MoveToDir(float speed, float duration, Vector3 _dir)
     {
+        //cam.transform.parent = transform;
+
         Vector3 direction = _dir.normalized;
         float distance = speed * duration;
         float elapsedTime = 0f;
 
         yield return new WaitForSeconds(SkyAclTime);
-
+        
         Vector3 initialPosition = rb.position;
         Vector3 targetPosition = initialPosition + direction * distance;
         while (elapsedTime < duration)
@@ -253,23 +282,25 @@ public class PlayerMovementController : MonoBehaviour
             elapsedTime += Time.fixedDeltaTime;
             yield return waitFixedUpdate; 
         }
-
+        //cam.transform.parent = oriCamParent;
         isDodge = false;
     }
 
     private IEnumerator SetVelocityOverTime(float speed, float duration, Vector3 _dir)
     {
+        cam.transform.parent = transform;
         float initMoveSpeed = moveSpeed;
         float timeElapsed = 0f;
         yield return new WaitForSeconds(SkyAclTime);
-
         while (timeElapsed < duration)
         {
             moveSpeed = Mathf.Lerp(initMoveSpeed, speed, timeElapsed/duration);
             playerVelocity = _dir * moveSpeed;
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.fixedDeltaTime;
             yield return null;
+            
         }
+        cam.transform.parent = oriCamParent;
         isDodge = false;
     }
 
@@ -283,7 +314,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator ChangeFOV()
     {
-        float fovLerpRate = 0.5f;
         float targetFOV = Camera.main.fieldOfView;
         CameraMovement cam = Camera.main.GetComponent<CameraMovement>();
         float offset = cam.offset;
@@ -293,16 +323,11 @@ public class PlayerMovementController : MonoBehaviour
         while (true)
         {
             float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed);
-<<<<<<< HEAD
-            //Debug.Log(speedRatio);
-            targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, speedRatio);
-=======
-            lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, fovLerpRate);
+            lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, Time.fixedDeltaTime);
             targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, lerpSpeedRatio);
->>>>>>> origin/PB
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, fovLerpRate);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.fixedDeltaTime);
             float targetOffset = Mathf.Lerp(10, 3, lerpSpeedRatio);
-            cam.offset = Mathf.Lerp(cam.offset, targetOffset, fovLerpRate);
+            //cam.offset = Mathf.Lerp(cam.offset, targetOffset, Time.fixedDeltaTime);
             yield return waitFixedUpdate;
         }
     }
@@ -346,8 +371,9 @@ public class PlayerMovementController : MonoBehaviour
         while (true)
         {
 
-            if (playerData.input.InputShift && isFrontMove)
+            if (playerData.input.InputShift && isFrontMove && StaminaChecke())
             {
+                DecreaseStamina(1);
                 isDash = true;
                 yield return new WaitForSeconds(3f);
                 isDash = false;
@@ -357,8 +383,51 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    private IEnumerator StaminaRegen()
+    {
+        while (true)
+        {
+            if (playerData.stamina<3)
+            {
+                yield return new WaitForSeconds(5f);
+                playerData.stamina++;
+                spUpdateDelegate.Invoke(playerData.stamina);
+            }
+            yield return null;
+        }
+    }
+
+    private bool StaminaChecke()
+    {
+<<<<<<< HEAD
+        //Debug.Log(playerData.stamina);
+=======
+>>>>>>> origin/PB
+        int currentStamina = playerData.stamina;
+        if (currentStamina > 0)
+        {
+            return true;
+        }
+        return false;
+
+    }
+    private void DecreaseStamina(int _decreaseAmount)
+    {
+        int currentStamina = playerData.stamina;
+        if (currentStamina>=1)
+        {
+            if (currentStamina >= 1 && currentStamina <= 3)
+            {
+                currentStamina -= _decreaseAmount;
+                playerData.stamina = currentStamina;
+                spUpdateDelegate.Invoke(currentStamina);
+            }
+        }
+    }
+
 
     private Vector3 playerVelocity = Vector3.zero;
+    private Vector3 PlayerDir = Vector3.zero;
 
     private WaitForFixedUpdate waitFixedUpdate = null;
 
@@ -366,6 +435,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private float moveBackVelocityLimit = 0f;
     private float moveForwardVelocityLimit = 0f;
+
     private float addVelocity = 0f;
     private float resultForwardVelocityLimit = 0f;
     private float currentForwardVelocityLimit = 0f;
@@ -382,7 +452,7 @@ public class PlayerMovementController : MonoBehaviour
     private float moveStopAccel = 0f;
     private float moveAccelResult = 0f;
 
-    private float SkyAclTime = 0.3f;
+    private float SkyAclTime = 0f;
 
 
     private bool isDash = false;
@@ -390,6 +460,7 @@ public class PlayerMovementController : MonoBehaviour
     private bool isCollision = false;
     private bool isKnockBack = false;
     private bool isFrontMove = false;
+    private bool isLastPattern = false;
 
 
     [SerializeField]
@@ -398,6 +469,17 @@ public class PlayerMovementController : MonoBehaviour
     private float dodgeDuration = 1f;
     [SerializeField]
     private float knockBackDelay = 5f;
+    [SerializeField]
+    private Transform bossCoreEnterance = null;
+    [SerializeField]
+    private float suckPower = 200f;
+
+
+    [SerializeField]
+    private GameObject cam = null;
+
+    private Transform oriCamParent = null;
+
 
     private Transform playerTr = null;
     private PlayerData playerData = null;
@@ -408,5 +490,7 @@ public class PlayerMovementController : MonoBehaviour
     private float cameraMaxSpeed = 120f;
     private float cameraminFOV = 70f;
     private float cameramaxFOV = 90f;
+
+    private VoidIntDelegate spUpdateDelegate = null;
 
 }

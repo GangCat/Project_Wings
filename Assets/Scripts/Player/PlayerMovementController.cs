@@ -195,7 +195,7 @@ public class PlayerMovementController : MonoBehaviour
     public void PlayerMove()
     {
         if (isLastPattern)
-            playerVelocity += 200 * (bossCoreEnterance.position - transform.position).normalized;
+            playerVelocity += suckSpeed * (bossCoreEnterance.position - transform.position).normalized;
 
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유
@@ -456,6 +456,8 @@ public class PlayerMovementController : MonoBehaviour
     private float knockBackDelay = 5f;
     [SerializeField]
     private Transform bossCoreEnterance = null;
+    [SerializeField]
+    private float suckSpeed = 100f;
 
 
     [SerializeField]

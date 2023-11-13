@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BossManager : MonoBehaviour
 {
-    public void Init(Transform _PlayerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, BossController.GetRandomSpawnPointDelegate _callback)
+    public void Init(Transform _PlayerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, BossController.GetRandomSpawnPointDelegate _callback, VoidVoidDelegate _bossClearCallback)
     {
         bossCtrl = GetComponentInChildren<BossController>();
-        bossCtrl.Init(_PlayerTr, _cameraActionCallback, _hpUpdateCallback, _callback);
+        bossCtrl.Init(_PlayerTr, _cameraActionCallback, _hpUpdateCallback, _callback, _bossClearCallback);
     }
 
     public void ClearCurPhase()
@@ -17,7 +17,7 @@ public class BossManager : MonoBehaviour
 
     public void ActionFinish()
     {
-        bossCtrl.FinishPhaseChange();
+        bossCtrl.PatternStart();
     }
 
     public void JumpToNextPattern()

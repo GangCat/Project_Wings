@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class LastPatternController : MonoBehaviour
 { 
-    public void Init()
+    public void Init(VoidVoidDelegate _patternFinishCallback)
     {
-
+        lastPatternCollider = GetComponentInChildren<LastPatternCollider>();
+        lastPatternCollider.Init(_patternFinishCallback);
     }
 
+    public void StartPattern()
+    {
+        lastPatternCollider.Enable(true);
+    }
+
+
+
+    private LastPatternCollider lastPatternCollider = null;
 }
