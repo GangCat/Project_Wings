@@ -15,7 +15,7 @@ public class WindBlowActionSecondNode : ActionNode
 
     protected override void OnStart() {
 
-        windBlowPoints = context.shieldGeneratorHolder.ShieldGeneratorSpawnPoints[blackboard.curClosedWeakPoint].GetWindBlowHolder().WindBlowPoints;
+        windBlowPoints = context.bossCtrl.CurSpawnPoints[blackboard.curClosedWeakPoint].GetWindBlowHolder().WindBlowPoints;
         foreach (WindBlowPoint wbp in windBlowPoints)
             wbp.StartGenerateSecond(windCylinderPrefab);
 

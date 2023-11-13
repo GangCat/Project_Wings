@@ -9,21 +9,13 @@ namespace TheKiwiCoder
         // Start is called before the first frame update
         public void Init(
             Transform _playerTr, 
-            GameObject _gatlingHolderGo, 
-            GameObject _gatlingHeadGo, 
-            Transform _gunMuzzleTr, 
             BossAnimationController _anim, 
             BossCollider _bossCollider, 
-            BossShieldGeneratorSpawnPointHolder _shieldGeneratorHolder,
-            GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
-            CannonRainMemoryPool _cannonRainMemoryPool,
-            CannonMemoryPool _cannonMemoryPool,
-            GatlinMemoryPool _gatlinMemoryPool,
-            GroupMissileMemoryPool _groupMissileMemoryPool)
+            BossController _bossCtrl)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _shieldGeneratorHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool,_groupMissileMemoryPool);
+            context = CreateBehaviourTreeContext(_playerTr, _anim, _bossCollider, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _bossCtrl);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -56,21 +48,13 @@ namespace TheKiwiCoder
 
         Context CreateBehaviourTreeContext(
             Transform _playerTr, 
-            GameObject _gatlingHolderGo, 
-            GameObject _gatlingHeadGo, 
-            Transform _gunMuzzleTr, 
             BossAnimationController _anim, 
             BossCollider _bossCollider, 
-            BossShieldGeneratorSpawnPointHolder _shieldGeneratorHolder,
-            GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
-            CannonRainMemoryPool _cannonRainMemoryPool,
-            CannonMemoryPool _cannonMemoryPool,
-            GatlinMemoryPool _gatlinMemoryPool,
-            GroupMissileMemoryPool _groupMissileMemoryPool)
+            BossController _bossCtrl)
         {
-            return Context.CreateFromGameObject(gameObject, _playerTr, _gatlingHolderGo, _gatlingHeadGo, _gunMuzzleTr, _anim, _bossCollider, _shieldGeneratorHolder, _giantHomingMissileGo, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _cannonRainMemoryPool, _cannonMemoryPool, _gatlinMemoryPool, _groupMissileMemoryPool);
+            return Context.CreateFromGameObject(_playerTr, _anim, _bossCollider, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _bossCtrl);
         }
 
         private void OnDrawGizmosSelected()

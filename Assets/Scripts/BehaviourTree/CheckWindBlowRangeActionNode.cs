@@ -11,7 +11,7 @@ public class CheckWindBlowRangeActionNode : ActionNode
     private BossShieldGeneratorSpawnPoint[] shieldGenerators = null;
 
     protected override void OnStart() {
-        shieldGenerators = context.shieldGeneratorHolder.ShieldGeneratorSpawnPoints;
+        shieldGenerators = context.bossCtrl.CurSpawnPoints;
     }
 
     protected override void OnStop() {

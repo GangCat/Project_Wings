@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TheKiwiCoder;
@@ -6,7 +7,8 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour, IPublisher
 {
-    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback)
+    public delegate BossShieldGeneratorSpawnPoint[] GetRandomSpawnPointDelegate();
+    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -15,6 +17,8 @@ public class BossController : MonoBehaviour, IPublisher
         shield = GetComponentInChildren<BossShield>();
         timeBombPatternCtrl = GetComponentInChildren<TimeBombPatternController>();
         bossRb = GetComponent<Rigidbody>();
+
+        getRandomSpawnPointCallback = _getRandomSpawnPointCallback;
 
         animCtrl.Init();
         bossCollider.Init();
@@ -25,7 +29,7 @@ public class BossController : MonoBehaviour, IPublisher
         InitMemoryPools();
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, gatlingHolderGo, gatlingHeadGo, gunMuzzleTr, animCtrl, bossCollider, shieldGeneratorSpawnPointHolder, giantHomingMissilePrefab, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos, cannonRainMemoryPool, cannonMemoryPool, gatlinMemoryPool, groupMissileMemoryPool);
+        myRunner.Init(_playerTr, animCtrl, bossCollider, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos, this);
 
         curShieldGeneratorPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
@@ -39,6 +43,18 @@ public class BossController : MonoBehaviour, IPublisher
 
         //StartCoroutine("UpdateCoroutine");
     }
+
+    public BossShieldGeneratorSpawnPoint[] CurSpawnPoints => arrCurShieldGeneratorSpawnPoints;
+    public GameObject GatlingHolder => gatlingHolderGo;
+    public GameObject GatlingHead => gatlingHeadGo;
+    public Transform GunMuzzle => gunMuzzleTr;
+    public CannonMemoryPool CannonMemoryPool => cannonMemoryPool;
+    public GroupMissileMemoryPool GroupMissileMemoryPool => groupMissileMemoryPool;
+    public GatlinMemoryPool GatlinMemoryPool => gatlinMemoryPool;
+    public CannonRainMemoryPool CannonRainMemoryPool => cannonRainMemoryPool;
+
+
+
 
     public void SetBossRotationBoolean(bool _canRotation)
     {
@@ -131,9 +147,13 @@ public class BossController : MonoBehaviour, IPublisher
         }
             else if (curPhaseNum == 2)
         {
-            // 마지막 빨아당기는 패턴
+
+            // 플레이어를 아래로 빨아당기도록 함.
             playerTr.GetComponent<PlayerMovementController>().IsLastPattern = true;
-            //Invoke("FinishPhaseChange", 5f);
+            
+            // 마지막 빨아당기는 패턴 연출
+            // 연출종료시 FinishPhaseChange
+            Invoke("FinishPhaseChange", 5f);
         }
 
         // 연출 시작
@@ -176,9 +196,9 @@ public class BossController : MonoBehaviour, IPublisher
     private void InitShieldGeneratorPoint()
     {
         curShieldGeneratorPoint.Clear();
+        arrCurShieldGeneratorSpawnPoints = getRandomSpawnPointCallback?.Invoke();
 
-        shieldGeneratorSpawnPointHolder.Init();
-        foreach (BossShieldGeneratorSpawnPoint wp in shieldGeneratorSpawnPointHolder.ShieldGeneratorSpawnPoints)
+        foreach (BossShieldGeneratorSpawnPoint wp in arrCurShieldGeneratorSpawnPoints)
         {
             wp.Init();
             curShieldGeneratorPoint.Add(Instantiate(bossShieldGeneratorPrefab, wp.GetPos(), Quaternion.identity));
@@ -273,6 +293,8 @@ public class BossController : MonoBehaviour, IPublisher
     private BossStatusHp statHp = null;
     private BossShield shield = null;
     private TimeBombPatternController timeBombPatternCtrl = null;
+    private GetRandomSpawnPointDelegate getRandomSpawnPointCallback = null;
+    private BossShieldGeneratorSpawnPoint[] arrCurShieldGeneratorSpawnPoints = null;
 
     private bool isBossStartRotation = false;
 }

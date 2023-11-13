@@ -13,7 +13,6 @@ namespace TheKiwiCoder {
         public GameObject gameObject;
         public GameObject gatlingHolderGo;
         public GameObject gatlingHeadGo;
-        public GameObject giantHomingMissileGo;
         public Transform transform;
         public Transform playerTr;
         public Transform gunMuzzleTr;
@@ -21,51 +20,41 @@ namespace TheKiwiCoder {
         public Rigidbody physics;
         public BossCollider bossCollider;
         public AnimationControllerBase anim;
-        public BossShieldGeneratorSpawnPointHolder shieldGeneratorHolder;
         public GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos;
         public CannonRainMemoryPool cannonRainMemoryPool;
         public CannonMemoryPool cannonMemoryPool;
         public GatlinMemoryPool gatlinMemoryPool;
         public GroupMissileMemoryPool groupMissileMemoryPool;
         public bool isPhaseEnd;
+        public BossController bossCtrl;
         // Add other game specific systems here
 
         public static Context CreateFromGameObject(
-            GameObject gameObject, 
             Transform _playerTr, 
-            GameObject _gatlingHolder, 
-            GameObject _gatlingHead,
-            Transform _gunMuzzleTr, 
             AnimationControllerBase _anim, 
             BossCollider _bossCollider, 
-            BossShieldGeneratorSpawnPointHolder _shieldGeneratorHolder,
-            GameObject _giantHomingMissileGo,
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
-            CannonRainMemoryPool _cannonRainMemoryPool,
-            CannonMemoryPool _cannonMemoryPool,
-            GatlinMemoryPool _gatlinMemoryPool,
-            GroupMissileMemoryPool _groupMissileMemoryPool) {
+            BossController _bossCtrl) {
             // Fetch all commonly used components   
             Context context = new Context();
-            context.gameObject = gameObject;
-            context.transform = gameObject.transform;
-            context.physics = gameObject.GetComponent<Rigidbody>();
+            context.bossCtrl = _bossCtrl;
+            context.gameObject = _bossCtrl.gameObject;
+            context.transform = _bossCtrl.transform;
+            context.physics = _bossCtrl.GetComponent<Rigidbody>();
             context.bossCollider = _bossCollider;
             context.playerTr = _playerTr;
-            context.gatlingHolderGo = _gatlingHolder;
-            context.gatlingHeadGo = _gatlingHead;
-            context.gunMuzzleTr = _gunMuzzleTr;
+            context.gatlingHolderGo = _bossCtrl.GatlingHolder;
+            context.gatlingHeadGo = _bossCtrl.GatlingHead;
+            context.gunMuzzleTr = _bossCtrl.GunMuzzle;
             context.anim = _anim;
             context.isPhaseEnd = false;
-            context.giantHomingMissileGo = _giantHomingMissileGo;
             context.giantHomingMissileSpawnTr = _giantHomingMissileSpawnTr;
-            context.shieldGeneratorHolder = _shieldGeneratorHolder;
             context.arrGroupHomingMissileSpawnPos = _arrGroupHomingMissileSpawnPos;
-            context.cannonRainMemoryPool = _cannonRainMemoryPool;
-            context.cannonMemoryPool = _cannonMemoryPool;
-            context.gatlinMemoryPool = _gatlinMemoryPool;
-            context.groupMissileMemoryPool = _groupMissileMemoryPool;
+            context.cannonRainMemoryPool = _bossCtrl.CannonRainMemoryPool;
+            context.cannonMemoryPool = _bossCtrl.CannonMemoryPool;
+            context.gatlinMemoryPool = _bossCtrl.GatlinMemoryPool;
+            context.groupMissileMemoryPool = _bossCtrl.GroupMissileMemoryPool;
             // Add whatever else you need here...
 
             return context;

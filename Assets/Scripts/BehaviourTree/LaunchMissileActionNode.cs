@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 
 /// <summary> 
 /// 호출 될 때마다 미사일 생성 
@@ -27,13 +25,16 @@ public class LaunchMissileActionNode : ActionNode
     private float acceleration;
     [SerializeField]
     private float autoDestroyTime;
+    [SerializeField]
+    private GameObject giantHomingMissilePrefab;
 
     private float currentSpeed;
     private float rotateAngle = 0f;
-    GameObject missile;
+    private GameObject missile;
+
     protected override void OnStart()
     {
-        missile = Instantiate(context.giantHomingMissileGo, context.giantHomingMissileSpawnTr.position, Quaternion.identity);
+        missile = Instantiate(giantHomingMissilePrefab, context.giantHomingMissileSpawnTr.position, Quaternion.identity);
         Destroy(missile, autoDestroyTime);
         currentSpeed = minSpeed;
     }

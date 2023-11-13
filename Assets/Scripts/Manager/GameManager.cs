@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour, IPublisher
         uiMng = FindFirstObjectByType<UIManager>();
         camMng = FindFirstObjectByType<CameraManager>();
         playerMng = FindFirstObjectByType<PlayerManager>();
+        obstacleMng = FindFirstObjectByType<ObstacleManager>();
     }
 
     private void InitManagers()
@@ -37,7 +38,8 @@ public class GameManager : MonoBehaviour, IPublisher
         //audioMng.Init();
         uiMng.Init();
         camMng.Init(playerTr, playerMng.PData, ActionFinish);
-        bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); });
+        bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); }, GetRandomSpawnPoint);
+        obstacleMng.Init();
         //playerMng.Init();
     }
 
@@ -59,6 +61,11 @@ public class GameManager : MonoBehaviour, IPublisher
     public void PushMessageToBroker(EMessageType _message)
     {
         Broker.AlertMessageToSub(_message, EPublisherType.GAME_MANAGER);
+    }
+
+    public BossShieldGeneratorSpawnPoint[] GetRandomSpawnPoint()
+    {
+        return obstacleMng.GetRandomSpawnPoint();
     }
 
     private void Update()
@@ -86,7 +93,7 @@ public class GameManager : MonoBehaviour, IPublisher
     private UIManager uiMng = null;
     private CameraManager camMng = null;
     private PlayerManager playerMng = null;
-
+    private ObstacleManager obstacleMng = null;
 
 
 }

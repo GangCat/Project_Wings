@@ -13,4 +13,6 @@ public class BossShieldGeneratorSpawnPointHolder : MonoBehaviour
 
     [SerializeField]
     private BossShieldGeneratorSpawnPoint[] arrShieldGeneratorSpawnPoints = null;
+    [SerializeField]
+    private ObstacleHolder[] arrObstacleHolders = null;
 }
