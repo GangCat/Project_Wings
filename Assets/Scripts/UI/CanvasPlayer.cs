@@ -7,7 +7,7 @@ public class CanvasPlayer : MonoBehaviour
     public void Init()
     {
         hpPanel = GetComponentInChildren<PlayerHpCountPanel>();
-        spPanel = GetComponentInChildren<PlayerStaminaPanel>();
+        spPanel = GetComponentInChildren<PlayerStaminaVer2>();
         hpPanel.Init();
         spPanel.Init();
     }
@@ -19,5 +19,5 @@ public class CanvasPlayer : MonoBehaviour
     }
 
     private PlayerHpCountPanel hpPanel;
-    private PlayerStaminaPanel spPanel;
+    private PlayerStaminaVer2 spPanel;
 }
