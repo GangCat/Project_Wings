@@ -5,18 +5,13 @@ using UnityEngine.Windows;
 
 public class PlayerManager : MonoBehaviour
 {
-    private void Awake()
+    public void Init(VoidIntDelegate _spUpdateCallback)
     {
-        // 나중에 이렇게 게으른 초기화로 할거임
-        // public void Init();
         input = GetComponent<PlayerInputHandler>();
         playerCtrl = GetComponentInChildren<PlayerController>();
-
-
         playerData.input = input;
 
-        playerCtrl.Init(playerData);
-
+        playerCtrl.Init(playerData, _spUpdateCallback);
         pmc.Init(playerData);
     }
 

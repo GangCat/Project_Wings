@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public void Init(PlayerData _playerData)
+    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback)
     {
         playerData = _playerData;
         moveCtrl = GetComponentInChildren<PlayerMovementController>();
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
         playerData.tr = transform;
 
-        moveCtrl.Init(playerData);
+        moveCtrl.Init(playerData,_spUpdateCallback);
         rotCtrl.Init(playerData);
         animCtrl.Init();
         colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack);

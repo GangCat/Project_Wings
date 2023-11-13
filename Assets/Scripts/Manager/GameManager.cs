@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour, IPublisher
         uiMng.Init();
         camMng.Init(playerTr, playerMng.PData, ActionFinish);
         bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); });
-        //playerMng.Init();
+        playerMng.Init(value => { uiMng.PlayerSpUpdate(value); }); 
     }
 
     public void CameraAction(int _curPhaseNum)

@@ -12,6 +12,12 @@ public class CanvasPlayer : MonoBehaviour
         spPanel.Init();
     }
 
+
+    public void UpdateSp(int _stamina)
+    {
+        spPanel.UpdateSpChecker(_stamina);
+    }
+
     private PlayerHpCountPanel hpPanel;
     private PlayerStaminaPanel spPanel;
 }
