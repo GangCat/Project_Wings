@@ -8,7 +8,7 @@ using UnityEngine;
 public class BossController : MonoBehaviour, IPublisher
 {
     public delegate BossShieldGeneratorSpawnPoint[] GetRandomSpawnPointDelegate();
-    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, VoidFloatDelegate _shieldUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, VoidVoidDelegate _bossClearCalblack)
+    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, VoidFloatDelegate _shieldUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, VoidVoidDelegate _bossClearCalblack, VoidVoidDelegate _removeShieldCallback)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -24,7 +24,7 @@ public class BossController : MonoBehaviour, IPublisher
         animCtrl.Init();
         bossCollider.Init();
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
-        shield.Init(RestorShieldFinish, _shieldUpdateCallback);
+        shield.Init(RestorShieldFinish, _shieldUpdateCallback, _removeShieldCallback);
         lastPatternCtrl.Init(_bossClearCalblack);
         timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
         RegisterBroker();
@@ -137,6 +137,12 @@ public class BossController : MonoBehaviour, IPublisher
             go.layer = LayerMask.NameToLayer("BossInvincible");
         cameraActionCallback?.Invoke(curPhaseNum);
         PushMessageToBroker(EMessageType.PHASE_CHANGE);
+
+        if (curPhaseNum == 1)
+        {
+            shield.StopRestorShield();
+
+        }
     }
 
     public void PatternStart()
@@ -147,7 +153,6 @@ public class BossController : MonoBehaviour, IPublisher
 
         if (curPhaseNum == 1)
         {
-            shield.StopRestorShield();
             timeBombPatternCtrl.StartPattern();
             return;
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossShield : MonoBehaviour, IDamageable
 {
-    public void Init(VoidVoidDelegate _restorShieldFinishCallback, VoidFloatDelegate _shieldUpdateCallback)
+    public void Init(VoidVoidDelegate _restorShieldFinishCallback, VoidFloatDelegate _shieldUpdateCallback, VoidVoidDelegate _removeShieldCallback)
     {
         mr = GetComponent<MeshRenderer>();
         mc = GetComponent<MeshCollider>();
@@ -12,6 +12,7 @@ public class BossShield : MonoBehaviour, IDamageable
         curGeneratorCount = 4;
         restorShieldFinishCallback = _restorShieldFinishCallback;
         shieldUpdateCallback = _shieldUpdateCallback;
+        removeShieldCallback = _removeShieldCallback;
         UpdateEffect();
         mc.enabled = false;
     }
@@ -32,6 +33,7 @@ public class BossShield : MonoBehaviour, IDamageable
     public void StopRestorShield()
     {
         StopCoroutine("RestoreShieldCoroutine");
+        removeShieldCallback?.Invoke();
         gameObject.SetActive(false);
     }
 
@@ -79,6 +81,7 @@ public class BossShield : MonoBehaviour, IDamageable
     private MeshCollider mc = null;
     private float restoreShieldDelay = 30f;
     private VoidVoidDelegate restorShieldFinishCallback = null;
+    private VoidVoidDelegate removeShieldCallback = null;
     private VoidFloatDelegate shieldUpdateCallback = null;
 
 }

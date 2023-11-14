@@ -20,8 +20,13 @@ public class CanvasBoss : MonoBehaviour
         shieldBar.UpdateLength(_ratio);
     }
 
+    public void RemoveBossShield()
+    {
+        shieldBar.RemoveBossShield();
+    }
+
     [SerializeField]
     private ImageProgressbar hpBar = null;
     [SerializeField]
-    private ImageProgressbar shieldBar = null;
+    private ShieldProgressbar shieldBar = null;
 }

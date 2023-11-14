@@ -23,6 +23,12 @@ public class UIManager : MonoBehaviour
     {
         canvasBoss.UpdateShieldBar(_ratio);
     }
+
+    public void RemoveBossShield()
+    {
+        canvasBoss.RemoveBossShield();
+    }
+
     public void UpdateSp(int _Stamina)
     {
         canvasPlayer.UpdateSp(_Stamina);

@@ -4860,7 +4860,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e1496308c2bd85a4a857bc219fe9cc7e, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4880,7 +4879,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4997,6 +4996,11 @@ PrefabInstance:
     - target: {fileID: 3880570592189088146, guid: 1f58020111bdca64098e62c1be7abc89,
         type: 3}
       propertyPath: m_NormalDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880570592189088146, guid: 1f58020111bdca64098e62c1be7abc89,
+        type: 3}
+      propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3880570592189088146, guid: 1f58020111bdca64098e62c1be7abc89,
@@ -5248,6 +5252,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WaterRipples
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832772982309631291, guid: 80bca475e2653584bbce994c1c05b884,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832772982309631291, guid: 80bca475e2653584bbce994c1c05b884,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4887668927562758633, guid: 80bca475e2653584bbce994c1c05b884,
         type: 3}

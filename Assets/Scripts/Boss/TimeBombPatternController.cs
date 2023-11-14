@@ -85,7 +85,7 @@ public class TimeBombPatternController : MonoBehaviour
         GameObject laserGo = null;
         Debug.Log("StartLaserCharge");
         for(int i = 0; i < arrBombGo.Length; ++i)
-            arrBombGo[i].GetComponent<TimeBomb>().StartTimer(i * 12);
+            arrBombGo[i].GetComponent<TimeBomb>().StartTimer((i + 1) * 12);
 
         while (laserCount < 4)
         {
