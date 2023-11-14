@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
+using UnityEngine.VFX;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -22,6 +22,8 @@ public class PlayerMovementController : MonoBehaviour
 
         oriCamParent = cam.transform.parent;
         spUpdateDelegate = _spUpdateCallback;
+
+        SpeedEffect.Stop();
 
         StartCoroutine(ChangeFOV());
         StartCoroutine(FrontMoveCheker());
@@ -315,7 +317,7 @@ public class PlayerMovementController : MonoBehaviour
         while (true)
         {
             float speedRatio = Mathf.InverseLerp(cameraMinSpeed, cameraMaxSpeed, moveSpeed);
-            lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, Time.fixedDeltaTime);
+            lerpSpeedRatio = Mathf.Lerp(lerpSpeedRatio, speedRatio, 5f*Time.fixedDeltaTime);
             targetFOV = Mathf.Lerp(cameraminFOV, cameramaxFOV, lerpSpeedRatio);
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.fixedDeltaTime);
             float targetOffset = Mathf.Lerp(10, 3, lerpSpeedRatio);
@@ -367,7 +369,9 @@ public class PlayerMovementController : MonoBehaviour
             {
                 DecreaseStamina(1);
                 isDash = true;
+                SpeedEffect.Play();
                 yield return new WaitForSeconds(3f);
+                SpeedEffect.Stop();
                 isDash = false;
             }
 
@@ -461,6 +465,8 @@ public class PlayerMovementController : MonoBehaviour
     private Transform bossCoreEnterance = null;
     [SerializeField]
     private float suckSpeed = 100f;
+    [SerializeField]
+    private VisualEffect SpeedEffect = null;
 
 
     [SerializeField]
