@@ -18,9 +18,14 @@ public class UIManager : MonoBehaviour
     {
         canvasBoss.UpdateHpBar(_ratio);
     }
-    public void PlayerSpUpdate(int _Stamina)
+    public void UpdateSp(int _Stamina)
     {
         canvasPlayer.UpdateSp(_Stamina);
+    }
+
+    public void UpdateHp(float _curHpRatio)
+    {
+        canvasPlayer.UpdateHp(_curHpRatio);
     }
 
     public void GameClear()

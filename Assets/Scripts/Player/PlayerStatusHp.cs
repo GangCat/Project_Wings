@@ -7,10 +7,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerStatusHp : StatusHp, IPlayerDamageable
 {
-    public void Init(VoidVoidDelegate _deadCallback)
+    public void Init(VoidVoidDelegate _deadCallback, VoidFloatDelegate _hpUpdateCallback)
     {
         curHp = maxHp;
         deadCallback = _deadCallback;
+        hpUpdateCallback = _hpUpdateCallback;
     }
 
     public float GetCurHp => curHp;
@@ -21,25 +22,19 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
             return;
 
         curHp -= _dmg;
+
+        hpUpdateCallback?.Invoke(curHp / maxHp);
+
         if (curHp <= 0)
             deadCallback?.Invoke();
 
-        if (_dmg == 20)
-        {
-            if(GetComponent<PlayerController>())
-                Debug.Log("소형유도미사일 히트");
-        }
-        else if (_dmg == 100)
-        {
-            if (GetComponent<PlayerController>())
-                Debug.Log("대형유도미사일 히트");
-        }
     }
 
-    public void Heal()
+    public void MaxHeal()
     {
         curHp = maxHp;
     }
 
     private VoidVoidDelegate deadCallback = null;
+    private VoidFloatDelegate hpUpdateCallback = null;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback)
+    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback)
     {
         playerData = _playerData;
         moveCtrl = GetComponentInChildren<PlayerMovementController>();
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         rotCtrl.Init(playerData);
         animCtrl.Init();
         colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack);
-        statHp.Init(IsDead);
+        statHp.Init(IsDead, _hpUpdateCallback);
         virtualMouse.Init(playerData);
 
     }

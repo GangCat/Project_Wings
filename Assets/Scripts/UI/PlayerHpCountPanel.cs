@@ -7,16 +7,14 @@ public class PlayerHpCountPanel : MonoBehaviour
 {
     public void Init()
     {
-        arrImageHp = GetComponentsInChildren<Image>();
-        curHp = 6;
+        imageProgress = GetComponentInChildren<ImageProgressbar>();
+        imageProgress.Init();
     }
 
-    public void DecreaseHp()
+    public void UpdateHp(float _curHpRatio)
     {
-        arrImageHp[curHp - 1].sprite = null;
-        arrImageHp[curHp - 1].color = new Color(0f, 0f, 0f, 0f);
+        imageProgress.UpdateLength(_curHpRatio);
     }
 
-    private Image[] arrImageHp = null;
-    private int curHp = 0;
+    private ImageProgressbar imageProgress = null;
 }

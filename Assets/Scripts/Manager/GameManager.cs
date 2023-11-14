@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour, IPublisher
         uiMng.Init();
         camMng.Init(playerTr, playerMng.PData, ActionFinish);
         bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); }, GetRandomSpawnPoint, BossClear);
-        playerMng.Init(value => { uiMng.PlayerSpUpdate(value); }); 
+        playerMng.Init(value => { uiMng.UpdateSp(value); }, value => { uiMng.UpdateHp(value); }); 
         obstacleMng.Init();
     }
 

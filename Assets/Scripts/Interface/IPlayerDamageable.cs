@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPlayerDamageable : IDamageable
 {
-    public void Heal();
+    public void MaxHeal();
 }
