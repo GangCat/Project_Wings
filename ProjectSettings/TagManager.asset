@@ -13,7 +13,6 @@ TagManager:
   - GatlingGunBullet
   - GatlingGunMuzzle
   - Obstacle
-  - gatlingGunMuzzle
   - BossShield
   - GiantHomingMissile
   - TimeBomb
@@ -27,6 +26,7 @@ TagManager:
   - CannonRainBall
   - Target
   - BossShieldGenerator
+  - GatlinGunMuzzle
   layers:
   - Default
   - TransparentFX

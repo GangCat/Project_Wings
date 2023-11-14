@@ -32927,7 +32927,7 @@ PrefabInstance:
     - target: {fileID: 7245386651563441121, guid: 39b4ec05e7db76c439344b6ab41f84fa,
         type: 3}
       propertyPath: m_TagString
-      value: BossBody
+      value: GatlinGunMuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7283394806597925653, guid: 39b4ec05e7db76c439344b6ab41f84fa,
         type: 3}

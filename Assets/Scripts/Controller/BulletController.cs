@@ -38,7 +38,7 @@ public class BulletController : AttackableObject, ISubscriber
 
     private void OnTriggerEnter(Collider _other)
     {
-        if (_other.CompareTag("GatlingGunMuzzle"))
+        if (_other.CompareTag("GatlinGunMuzzle"))
             return;
         else if (_other.CompareTag("BossShield"))
             return;
