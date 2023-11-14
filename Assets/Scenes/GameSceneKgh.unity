@@ -4593,7 +4593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &735455721
 Transform:
   m_ObjectHideFlags: 0
@@ -5323,6 +5323,8 @@ MonoBehaviour:
   rb: {fileID: 798473342}
   dodgeDuration: 1
   knockBackDelay: 2
+  bossCoreEnterance: {fileID: 0}
+  suckSpeed: 100
   cam: {fileID: 1381941524}
 --- !u!114 &798473340
 MonoBehaviour:
@@ -8299,6 +8301,7 @@ MonoBehaviour:
   playerTr: {fileID: 798473338}
   startGameKeyCode: 256
   nextPhaseKeyCode: 257
+  jumpToNextPatternKeyCode: 281
 --- !u!4 &1213160876
 Transform:
   m_ObjectHideFlags: 0
@@ -9905,7 +9908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061e617686d66014b96363c6ea22f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldGeneratorSpawnPointHolder: {fileID: 1034166957}
   gatlingHolderGo: {fileID: 4960523692840554040}
   gatlingHeadGo: {fileID: 339341889}
   gunMuzzleTr: {fileID: 1132491541745984615}
@@ -9952,6 +9954,10 @@ MonoBehaviour:
   bossShieldGeneratorPrefab: {fileID: 670741263585795909, guid: b682bc85d723e2947a7f127a70c1acda,
     type: 3}
   rotationSpeed: 1
+  respawnShieldGeneratorTime: 0
+  arrModelGo: []
+  coreGo: []
+  autoRotateDegree: 30
 --- !u!114 &1295538136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13340,7 +13346,7 @@ GameObject:
   - component: {fileID: 1713364355}
   m_Layer: 13
   m_Name: AirPushAttackRange
-  m_TagString: Untagged
+  m_TagString: AirPush
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

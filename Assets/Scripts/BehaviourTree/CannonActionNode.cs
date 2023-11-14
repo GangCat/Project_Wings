@@ -49,7 +49,7 @@ public class CannonActionNode : ActionNode
         if (rnd1.x < 0) mapRadious.x *= -1;
         if (rnd1.y < 0) mapRadious.y *= -1;
 
-        rndAttackPos = new Vector3(Random.Range(rnd1.x * bossOffSet, mapRadious.x),0 , Random.Range(rnd1.y * bossOffSet , mapRadious.y)); //00나중에 예외처리 추후 duration이랑 term차이 확인, running을 반환하지 않으면?
+        rndAttackPos = new Vector3(Random.Range(rnd1.x, mapRadious.x),0 , Random.Range(rnd1.y, mapRadious.y)); //00나중에 예외처리 추후 duration이랑 term차이 확인, running을 반환하지 않으면?
 
 
         if (Time.time - startTime <= duration)
@@ -61,8 +61,8 @@ public class CannonActionNode : ActionNode
                 {
                     Vector2 rnd2 = Random.insideUnitCircle * radious;
                     Vector3 spawnPositionWithHeight = rndAttackPos + new Vector3(rnd2.x, Random.Range(attackMinHeight, attackMaxHeight), rnd2.y);
-                    GameObject bullet = context.cannonMemoryPool.ActivateCannonBall();
-                    bullet.GetComponent<CannonBallController>().Init(cannonBallSpeed, spawnPositionWithHeight,context.cannonMemoryPool);
+                    GameObject cannonBall = context.cannonMemoryPool.ActivateCannonBall();
+                    cannonBall.GetComponent<CannonBallController>().Init(cannonBallSpeed, spawnPositionWithHeight,context.cannonMemoryPool);
                     lastAttackTime = Time.time;
                 }
             }

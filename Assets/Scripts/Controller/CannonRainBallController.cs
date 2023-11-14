@@ -14,14 +14,15 @@ public class CannonRainBallController : AttackableObject, ISubscriber
     private WaitForFixedUpdate waitFixedUpdate = null;
     private CannonRainMemoryPool memoryPool = null;
     private bool isPhaseChanged = false;
-    public void Init(float _speed, Vector3 _spawnPos, CannonRainMemoryPool _memoryPool = null)
+    private GameObject attackAreaPrefab = null;
+    public void Init(float _speed, Vector3 _spawnPos, CannonRainMemoryPool _memoryPool = null, GameObject _attackAreaPrefab = null)
     {
         speed = _speed;
         transform.position = _spawnPos;
         memoryPool = _memoryPool;
         waitFixedUpdate = new WaitForFixedUpdate();
         isPhaseChanged = false;
-
+        attackAreaPrefab = Instantiate(_attackAreaPrefab, _spawnPos, Quaternion.identity);
         Subscribe();
         StartCoroutine(UpdateCoroutine());
     }
@@ -33,6 +34,8 @@ public class CannonRainBallController : AttackableObject, ISubscriber
             if(transform.position.y < 0)
             {
                 memoryPool.DeactivateCannonBall(gameObject);
+                Destroy(attackAreaPrefab);
+
                 yield break;
             }
 
@@ -40,15 +43,21 @@ public class CannonRainBallController : AttackableObject, ISubscriber
 
             yield return waitFixedUpdate;
 
-            if(isPhaseChanged)
+            if (isPhaseChanged)
+            {
                 memoryPool.DeactivateCannonBall(gameObject);
+                Destroy(attackAreaPrefab);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider _other)
     {
         if (AttackDmg(_other))
+        {
             memoryPool.DeactivateCannonBall(gameObject);
+            Destroy(attackAreaPrefab);
+        }
     }
 
     private void OnDisable()

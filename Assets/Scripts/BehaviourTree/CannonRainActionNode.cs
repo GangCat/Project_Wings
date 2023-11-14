@@ -7,9 +7,9 @@ using System.Buffers;
 public class CannonRainActionNode : ActionNode
 {
     [SerializeField]
-    private float bossOffSet = 2000;
+    private float bossOffSet;
     [SerializeField]
-    private Vector2 mapRadious = new Vector2(5000, 5000);
+    private Vector2 mapRadious;
     [SerializeField]
     private float attackMinHeight = 500;
     [SerializeField]
@@ -43,28 +43,23 @@ public class CannonRainActionNode : ActionNode
     protected override State OnUpdate()
     {
         
-        for (int i = 0; i < cannonBallCnt; ++i)
-            {
+        for (int i = 0; i <= cannonBallCnt; ++i)
+        {
                 rnd1.x = Random.Range(-1.0f, 1.0f) * bossOffSet;
                 rnd1.y = Random.Range(-1.0f, 1.0f) * bossOffSet;
                 if (rnd1.x < 0) mapRadious.x *= -1;
                 if (rnd1.y < 0) mapRadious.y *= -1;
 
-                rndAttackPos = new Vector3(Random.Range(rnd1.x * bossOffSet, mapRadious.x), 0, Random.Range(rnd1.y * bossOffSet, mapRadious.y));
-                Destroy(Instantiate(attackAreaPrefab, rndAttackPos, Quaternion.identity), 15f);
+                rndAttackPos = new Vector3(Random.Range(rnd1.x, mapRadious.x), 0, Random.Range(rnd1.y, mapRadious.y));
                 Vector3 spawnPositionWithHeight = rndAttackPos + new Vector3(0, Random.Range(attackMinHeight, attackMaxHeight), 0);
-
                 GameObject bullet =  context.cannonRainMemoryPool.ActivateCannonBall();
-                bullet.GetComponent<CannonRainBallController>().Init(cannonBallSpeed, spawnPositionWithHeight, context.cannonRainMemoryPool);
+                bullet.GetComponent<CannonRainBallController>().Init(cannonBallSpeed, spawnPositionWithHeight, context.cannonRainMemoryPool, attackAreaPrefab);
 
                 lastAttackTime = Time.time;
-                
-
+                if(i == cannonBallCnt)
+                return State.Success;
                 //GameObject bullet = Instantiate(cannonBallPrefab, spawnPositionWithHeight, Quaternion.identity);
-            }
-
+        }
         return State.Success;
-
-
     }
 }
