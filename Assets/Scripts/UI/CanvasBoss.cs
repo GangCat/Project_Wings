@@ -6,14 +6,22 @@ public class CanvasBoss : MonoBehaviour
 {
     public void Init()
     {
-        hpbar.Init();
+        hpBar.Init();
+        shieldBar.Init();
     }
 
     public void UpdateHpBar(float _ratio)
     {
-        hpbar.UpdateLength(_ratio);
+        hpBar.UpdateLength(_ratio);
+    }
+
+    public void UpdateShieldBar(float _ratio)
+    {
+        shieldBar.UpdateLength(_ratio);
     }
 
     [SerializeField]
-    private ImageProgressbar hpbar = null;
+    private ImageProgressbar hpBar = null;
+    [SerializeField]
+    private ImageProgressbar shieldBar = null;
 }

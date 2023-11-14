@@ -117,11 +117,11 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         Explosion();
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("BossShield") && isShieldBreak)
-            Explosion();
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("BossShield") && isShieldBreak)
+    //        Explosion();
+    //}
 
     private void OnTriggerExit(Collider other)
     {

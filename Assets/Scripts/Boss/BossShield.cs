@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BossShield : MonoBehaviour, IDamageable
 {
-    public void Init(VoidVoidDelegate _restorShieldFinishCallback)
+    public void Init(VoidVoidDelegate _restorShieldFinishCallback, VoidFloatDelegate _shieldUpdateCallback)
     {
         mr = GetComponent<MeshRenderer>();
         mc = GetComponent<MeshCollider>();
         //brokenLayer = LayerMask.NameToLayer("BossShieldBroken");
         curGeneratorCount = 4;
         restorShieldFinishCallback = _restorShieldFinishCallback;
+        shieldUpdateCallback = _shieldUpdateCallback;
         UpdateEffect();
         mc.enabled = false;
     }
@@ -31,6 +32,7 @@ public class BossShield : MonoBehaviour, IDamageable
     private void UpdateEffect()
     {
         mr.material.SetFloat("_Dissolve", curGeneratorCount * 0.25f);
+        shieldUpdateCallback?.Invoke(curGeneratorCount * 0.25f);
 
         if (curGeneratorCount < 1)
         {
@@ -51,6 +53,7 @@ public class BossShield : MonoBehaviour, IDamageable
             mr.material.SetFloat("_Dissolve", remainTimeRatio);
 
             remainTimeRatio = (Time.time - startTime) / restoreShieldDelay;
+            shieldUpdateCallback?.Invoke(remainTimeRatio);
             yield return new WaitForFixedUpdate();
         }
 
@@ -70,4 +73,6 @@ public class BossShield : MonoBehaviour, IDamageable
     private MeshCollider mc = null;
     private float restoreShieldDelay = 30f;
     private VoidVoidDelegate restorShieldFinishCallback = null;
+    private VoidFloatDelegate shieldUpdateCallback = null;
+
 }

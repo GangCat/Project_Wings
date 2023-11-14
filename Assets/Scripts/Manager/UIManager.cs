@@ -18,6 +18,11 @@ public class UIManager : MonoBehaviour
     {
         canvasBoss.UpdateHpBar(_ratio);
     }
+
+    public void BossShieldUpdate(float _ratio)
+    {
+        canvasBoss.UpdateShieldBar(_ratio);
+    }
     public void UpdateSp(int _Stamina)
     {
         canvasPlayer.UpdateSp(_Stamina);

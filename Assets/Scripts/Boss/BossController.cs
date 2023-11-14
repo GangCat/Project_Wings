@@ -8,7 +8,7 @@ using UnityEngine;
 public class BossController : MonoBehaviour, IPublisher
 {
     public delegate BossShieldGeneratorSpawnPoint[] GetRandomSpawnPointDelegate();
-    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, VoidVoidDelegate _bossClearCalblack)
+    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, VoidFloatDelegate _shieldUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, VoidVoidDelegate _bossClearCalblack)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -24,7 +24,7 @@ public class BossController : MonoBehaviour, IPublisher
         animCtrl.Init();
         bossCollider.Init();
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
-        shield.Init(RestorShieldFinish);
+        shield.Init(RestorShieldFinish, _shieldUpdateCallback);
         lastPatternCtrl.Init(_bossClearCalblack);
         timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
         RegisterBroker();
@@ -219,17 +219,17 @@ public class BossController : MonoBehaviour, IPublisher
 
     private void RemoveSheildGeneratorFromList(GameObject _go)
     {
-        shield.GeneratorDestroy();
         curShieldGeneratorPoint.Remove(_go);
 
         if (curShieldGeneratorPoint.Count < 1)
         {
+            PushMessageToBroker(EMessageType.SHIELD_BROKEN);
             foreach (GameObject go in arrModelGo)
                 go.layer = LayerMask.NameToLayer("Boss");
             myRunner.IsShieldDestroy(true);
-
-            PushMessageToBroker(EMessageType.SHIELD_BROKEN);
         }
+
+        shield.GeneratorDestroy();
     }
 
     public void RegisterBroker()
