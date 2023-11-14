@@ -20,7 +20,7 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
         if (gameObject.layer.Equals(LayerMask.NameToLayer("PlayerInvincible")))
             return;
 
-        curHp -= 1;
+        curHp -= _dmg;
         if (curHp <= 0)
             deadCallback?.Invoke();
 

@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private void IsDead()
     {
         Debug.Log("플레이어 사망");
+        Time.timeScale = 0f;
     }
 
     private void ChangeCollisionCondition(Collision _coli)
