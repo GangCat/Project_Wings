@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_ScreenShader
-  m_Shader: {fileID: -6465566751694194690, guid: 7ee9ef5f94865094bbb07a0424eafee6,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: ceb01b8176f4d2a4aa5a349277561d09, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,12 +23,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 517f6d807b2bee64985a81db99b4e20b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_49c3a98294634857b6cec13893401107_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 8c1f6f2962e801843b3d170670784654, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_7dd4eb0f8dc74ef3a60ba7cbfcd21df4_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 301bdee341d076445a7711d16a386cf2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 517f6d807b2bee64985a81db99b4e20b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_e6465f23254442c58ad72bbc60edd46c_Texture_1_Texture2D:
@@ -53,7 +56,7 @@ Material:
     - _Amplitude: 0.01
     - _Float: 0
     - _Frequency: 100
-    - _isDash: 0
+    - _isDash: 1
     - _powerRatio: 5.78
     m_Colors: []
   m_BuildTextureStacks: []
