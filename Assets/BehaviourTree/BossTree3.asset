@@ -2030,8 +2030,8 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveSpeed: 400
-  rotateSpeed_Degree: 70
+  moveSpeed: 300
+  rotateSpeed_Degree: 80
 --- !u!114 &6871036271617449570
 MonoBehaviour:
   m_ObjectHideFlags: 0
