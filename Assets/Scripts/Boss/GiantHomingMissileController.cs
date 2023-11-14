@@ -1,86 +1,102 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GiantHomingMissileController : AttackableObject, IDamageable, ISubscriber
 {
-    public void Init(
-        float _moveAccel,
-        float _maxMoveSpeed,
-        float _rotateAccel,
-        float _maxRotateAccel,
-        Transform _targetTr,
-        float _autoDestroyTime,
-        bool _isShieldBreak,
-        GroupMissileMemoryPool _groupMissileMemoryPool = null
-        )
-    {
-        moveAccel = _moveAccel;
-        maxMoveSpeed = _maxMoveSpeed;
-        rotateAccel = _rotateAccel;
-        maxRotateSpeed = _maxRotateAccel;
-        targetTr = _targetTr;
-        waitFixed = new WaitForFixedUpdate();
-        moveSpeed = maxMoveSpeed;
-        rotateSpeed = 0f;
-        isShieldBreak = _isShieldBreak;
-        groupMissileMemoryPool = _groupMissileMemoryPool;
+    [Header("REFERENCES")]
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private GameObject target;
+    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private float explosionRange = 0f;
+    [SerializeField] private LayerMask explosionLayer;
 
-        isFirstTrigger = true;
-        isExplosed = false;
-        isPhaseChange = false;
-        isBodyTrigger = isShieldBreak;
+    [Header("MOVEMENT")]
+    [SerializeField] private float speed = 15;
+    [SerializeField] private float rotateSpeed = 95;
+
+    [Header("PREDICTION")]
+    [SerializeField] private float maxDistancePredict = 100;
+    [SerializeField] private float minDistancePredict = 5;
+    [SerializeField] private float maxTimePrediction = 5;
+    private Vector3 standardPrediction, deviatedPrediction;
+
+    [Header("DEVIATION")]
+    [SerializeField] private float deviationAmount = 50;
+    [SerializeField] private float deviationSpeed = 2;
+
+    private bool isPhaseChanged = false;
+    private bool isShieldBreak = false;
+    private bool isBodyTrigger = true;
+    private bool isExplosed = false;
+
+
+    public float GetCurHp => throw new NotImplementedException();
+
+    public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, bool _isShieldBreak)
+    {
+        target = _target;
+        speed = _speed;
+        rotateSpeed = _rotateSpeed;
+        transform.position = _spawnPos;
+        transform.rotation = _spawnRot;
+
+        isShieldBreak = _isShieldBreak;
+        isBodyTrigger = true;
+
+        deviationAmount = UnityEngine.Random.Range(30f, 70f);
+        deviationSpeed = UnityEngine.Random.Range(1f, 3f);
 
         Subscribe();
-        Destroy(gameObject, _autoDestroyTime);
-
-
-        StartCoroutine(MoveUpdateCoroutine());
+        StartCoroutine("FixedUpdateCoroutine");
     }
 
-    private IEnumerator MoveUpdateCoroutine()
+    private IEnumerator FixedUpdateCoroutine()
     {
         while (true)
         {
-            MoveHomingMissile();
-            RotateHomingMissile((targetTr.position - transform.position).normalized);
-            //Debug.Log($"MissileSpeed: {moveSpeed}");
-
-            yield return waitFixed;
-
-            if (isPhaseChange)
+            if (isPhaseChanged)
+            {
                 Destroy(gameObject);
+                yield break;
+            }
+
+            rb.velocity = transform.forward * speed;
+
+            var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(transform.position, target.transform.position));
+
+            PredictMovement(leadTimePercentage);
+            AddDeviation(leadTimePercentage);
+
+            RotateRocket();
+
+            yield return new WaitForFixedUpdate();
         }
     }
 
-    private void MoveHomingMissile()
+    private void PredictMovement(float _leadTimePercentage)
     {
-        moveSpeed += moveAccel * Time.deltaTime;
-        moveSpeed = Mathf.Min(moveSpeed, maxMoveSpeed);
+        var predictionTime = Mathf.Lerp(0, maxTimePrediction, _leadTimePercentage);
 
-        dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (targetTr.position - transform.position).normalized), -1f, 1f);
-        normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
-        mappedValue = 1f - normalizedAngle;
-
-        moveSpeed *= (mappedValue * 0.3f + 0.7f);
-        transform.position += transform.forward * moveSpeed * Time.fixedDeltaTime;
+        standardPrediction = target.transform.position + target.GetComponent<Rigidbody>().velocity * predictionTime;
     }
 
-    private void RotateHomingMissile(Vector3 _moveDir)
+    private void AddDeviation(float _leadTimePercentage)
     {
-        Quaternion targetRotation = Quaternion.LookRotation(targetTr.position);
-        float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
+        var deviation = new Vector3(Mathf.Cos(Time.time * deviationSpeed), 0, 0);
 
-        if (angleDifference > 0.1f)
-        {
-            rotateSpeed += rotateAccel * Time.deltaTime;
-        }
-        else
-        {
-            rotateSpeed = 0.0f;
-        }
+        var predictionOffset = transform.TransformDirection(deviation) * deviationAmount * _leadTimePercentage;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_moveDir), rotateSpeed * Time.deltaTime);
+        deviatedPrediction = standardPrediction + predictionOffset;
+    }
+
+    private void RotateRocket()
+    {
+        var heading = deviatedPrediction - transform.position;
+
+        var rotation = Quaternion.LookRotation(heading);
+        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.deltaTime));
     }
 
     private void OnTriggerEnter(Collider _other)
@@ -94,24 +110,10 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         Explosion();
     }
 
-    public void Explosion()
+    private void OnTriggerStay(Collider other)
     {
-        if (isExplosed)
-            return;
-
-        isExplosed = true;
-        GameObject go = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-        go.transform.localScale = Vector3.one * explosionRange;
-        Destroy(go, 5f);
-
-        Collider[] arrTempCollider = Physics.OverlapSphere(transform.position, explosionRange, explosionLayer);
-        foreach(Collider col in arrTempCollider)
-        {
-            Debug.Log(col.name);
-            AttackDmg(col);
-        }
-
-        Destroy(gameObject);
+        if (other.CompareTag("BossShield") && isShieldBreak)
+            Explosion();
     }
 
     private void OnTriggerExit(Collider other)
@@ -122,18 +124,32 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
             isBodyTrigger = false;
     }
 
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRange);
-    }
-
     public void GetDamage(float _dmg)
     {
         Explosion();
     }
 
-    private void OnDestroy()
+    public void Explosion()
+    {
+        if (isExplosed)
+            return;
+
+        //StopCoroutine("AutoExplosionCorutine");
+        isExplosed = true;
+        GameObject go = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        go.transform.localScale = Vector3.one * explosionRange;
+        Destroy(go, 5f);
+
+        Collider[] arrTempCollider = Physics.OverlapSphere(transform.position, explosionRange, explosionLayer);
+        foreach (Collider col in arrTempCollider)
+        {
+            Debug.Log(col.name);
+            AttackDmg(col);
+        }
+        Destroy(gameObject);
+    }
+
+    private void OnDisable()
     {
         Broker.UnSubscribe(this, EPublisherType.BOSS_CONTROLLER);
     }
@@ -146,35 +162,14 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     public void ReceiveMessage(EMessageType _message)
     {
         if (_message == EMessageType.PHASE_CHANGE)
-            isPhaseChange = true;
+            isPhaseChanged = true;
     }
 
-    private GroupMissileMemoryPool groupMissileMemoryPool = null;
-    private WaitForFixedUpdate waitFixed = null;
-
-    private float moveAccel = 0f;
-    private float moveSpeed = 0f;
-    private float maxMoveSpeed = 0f;
-    private float rotateAccel = 0f;
-    private float rotateSpeed = 0f;
-    private float maxRotateSpeed = 0f;
-
-    float dotProduct = 0f;
-    float normalizedAngle = 0f;
-    float mappedValue = 0f;
-
-    private Transform targetTr = null;
-    private bool isExplosed = false;
-    private bool isShieldBreak = false;
-    private bool isPhaseChange = false;
-    private bool isBodyTrigger = true;
-
-    [SerializeField]
-    private GameObject explosionEffectPrefab;
-    [SerializeField]
-    private float explosionRange = 0f;
-    [SerializeField]
-    private LayerMask explosionLayer;
-
-    public float GetCurHp => throw new System.NotImplementedException();
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, standardPrediction);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(standardPrediction, deviatedPrediction);
+    }
 }

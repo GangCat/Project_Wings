@@ -8,15 +8,9 @@ public class NewLaunchMissileActionNode : ActionNode
     [SerializeField]
     private GameObject giantHomingMissilePrefab = null;
     [SerializeField]
-    private float moveAccel = 400f;
+    private float moveSpeed = 600f;
     [SerializeField]
-    private float maxMoveSpeed = 600f;
-    [SerializeField]
-    private float rotateAccel = 0.2f;
-    [SerializeField]
-    private float maxRotateAccel = 3f;
-    [SerializeField]
-    private float autoDestroyTime = 20f;
+    private float rotateSpeed_Degree = 3f;
 
     private Transform spawnTr = null;
     private GameObject crossLaserGo = null;
@@ -24,7 +18,7 @@ public class NewLaunchMissileActionNode : ActionNode
     protected override void OnStart() {
         spawnTr = context.giantHomingMissileSpawnTr;
         crossLaserGo = Instantiate(giantHomingMissilePrefab, spawnTr.position, spawnTr.rotation);
-        crossLaserGo.GetComponent<GiantHomingMissileController>().Init(moveAccel, maxMoveSpeed, rotateAccel, maxRotateAccel, context.playerTr, autoDestroyTime, blackboard.isShieldDestroy);
+        crossLaserGo.GetComponent<GiantHomingMissileController>().Init(context.playerTr.gameObject, moveSpeed, rotateSpeed_Degree, spawnTr.position, spawnTr.rotation, blackboard.isShieldDestroy);
     }
 
     protected override void OnStop() {

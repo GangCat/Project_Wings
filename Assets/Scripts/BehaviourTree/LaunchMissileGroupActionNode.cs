@@ -8,15 +8,9 @@ public class LaunchMissileGroupActionNode : ActionNode
     [SerializeField]
     private GameObject missilePrefab = null;
     [SerializeField]
-    private float moveAccel = 400f;
+    private float moveSpeed = 400f;
     [SerializeField]
-    private float maxMoveSpeed = 400f;
-    [SerializeField]
-    private float rotateAccel = 0.2f;
-    [SerializeField]
-    private float maxRotateAccel = 2f;
-    [SerializeField]
-    private float autoDestroyTime = 20f;
+    private float rotateSpeed_Degree = 2f;
     [SerializeField]
     private float spawnRate = 1f;
 
@@ -28,7 +22,6 @@ public class LaunchMissileGroupActionNode : ActionNode
     private int missileSpawnIdx = 0;
     private float startTime = 0;
 
-    private bool isArrayEmpty = false;
     private bool isSpawnFinish = false;
 
     protected override void OnStart() 
@@ -72,12 +65,10 @@ public class LaunchMissileGroupActionNode : ActionNode
     {
         for (int i = missileSpawnIdx; i < arrGroupHomingMissileSpawnPos.Length; i += 8)
         {
-            //arrMissileGroup[i] = Instantiate(missilePrefab, arrGroupHomingMissileSpawnPos[i].GetPos(), arrGroupHomingMissileSpawnPos[i].GetRot());
             arrMissileGroup[i] = context.groupMissileMemoryPool.ActivateGroupMissile();
             Vector3 spawnPos = arrGroupHomingMissileSpawnPos[i].GetPos();
             Quaternion spawnRot = arrGroupHomingMissileSpawnPos[i].GetRot();
-            //arrMissileGroup[i].GetComponent<GroupHomingMissileController>().Init(moveAccel, maxMoveSpeed, rotateAccel, maxRotateAccel, playerTr, autoDestroyTime, spawnPos, spawnRot, context.groupMissileMemoryPool, blackboard.isShieldDestroy);
-            arrMissileGroup[i].GetComponent<TempHoming>().Init(playerTr.gameObject, maxMoveSpeed, maxRotateAccel, spawnPos, spawnRot, memoryPool, blackboard.isShieldDestroy);
+            arrMissileGroup[i].GetComponent<GroupHomingMissile>().Init(playerTr.gameObject, moveSpeed, rotateSpeed_Degree, spawnPos, spawnRot, memoryPool, blackboard.isShieldDestroy);
         }
 
         ++missileSpawnIdx;

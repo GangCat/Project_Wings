@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5147824405307316662}
   - component: {fileID: 2294510696366887271}
-  - component: {fileID: -6195783275947323698}
   - component: {fileID: 7731077181299898714}
+  - component: {fileID: -6195783275947323698}
   m_Layer: 12
   m_Name: P_GiantHomingMissile
   m_TagString: GiantHomingMissile
@@ -56,28 +56,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 10
-  m_Height: 90
+  m_Height: 10
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6195783275947323698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6519272339437649605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3142876194eb0e47b06c9a75e442620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 100
-  explosionEffectPrefab: {fileID: 8892962482691636397, guid: efbb3c64fa77aab49ae3b22d772f9554,
-    type: 3}
-  explosionRange: 200
-  explosionLayer:
-    serializedVersion: 2
-    m_Bits: 8384
+  m_Center: {x: 0, y: 0, z: 35.57}
 --- !u!54 &7731077181299898714
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -88,7 +69,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -101,10 +82,38 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6195783275947323698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519272339437649605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3142876194eb0e47b06c9a75e442620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 60
+  rb: {fileID: 7731077181299898714}
+  target: {fileID: 0}
+  explosionPrefab: {fileID: 8892962482691636397, guid: efbb3c64fa77aab49ae3b22d772f9554,
+    type: 3}
+  explosionRange: 100
+  explosionLayer:
+    serializedVersion: 2
+    m_Bits: 8384
+  speed: 15
+  rotateSpeed: 95
+  maxDistancePredict: 1
+  minDistancePredict: 0
+  maxTimePrediction: 0.1
+  deviationAmount: 50
+  deviationSpeed: 2
 --- !u!1 &7497792970494708919
 GameObject:
   m_ObjectHideFlags: 0

@@ -70,7 +70,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b6078a8ea6b0678439d66670557fc758
-  position: {x: -1180.3956, y: 884.94037}
+  position: {x: -1189.2574, y: 780}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -192,11 +192,8 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveAccel: 400
-  maxMoveSpeed: 600
-  rotateAccel: 0.2
-  maxRotateAccel: 3
-  autoDestroyTime: 20
+  moveSpeed: 600
+  rotateSpeed_Degree: 3
 --- !u!114 &-7167244743880846280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +419,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ef5380999ef5fb847a30308be212449d
-  position: {x: -1255.3956, y: 1160.9404}
+  position: {x: -1264.2574, y: 1056}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1037,7 +1034,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e058ee7a701487543bbba7f289e12f91
-  position: {x: 312.41135, y: 973.6}
+  position: {x: 310.00003, y: 972}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1774,11 +1771,8 @@ MonoBehaviour:
   drawGizmos: 0
   missilePrefab: {fileID: 6519272339437649605, guid: e0286bdea80e5df419a142192f36ac21,
     type: 3}
-  moveAccel: 400
-  maxMoveSpeed: 400
-  rotateAccel: 0.2
-  maxRotateAccel: 2
-  autoDestroyTime: 20
+  moveSpeed: 400
+  rotateSpeed_Degree: 2
   spawnRate: 1
 --- !u!114 &4456204010451904621
 MonoBehaviour:
@@ -1928,7 +1922,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a47bfd33d39be8d408b0f312ee97e1d0
-  position: {x: -1105.3956, y: 1160.9404}
+  position: {x: -1114.2574, y: 1056}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1937,14 +1931,14 @@ MonoBehaviour:
     isShieldDestroy: 0
   description: 
   drawGizmos: 0
-  bossOffSet: 2000
-  mapRadious: {x: 5000, y: 5000}
-  attackMinHeight: 500
-  attackMaxHeight: 5000
-  cannonBallCnt: 1000
+  bossOffSet: 300
+  mapRadious: {x: 1500, y: 1500}
+  attackMinHeight: 20000
+  attackMaxHeight: 35000
+  cannonBallCnt: 20
   cannonBallPrefab: {fileID: 8582983355367289449, guid: 8fe2ba31306cd094b80f92e68b37bb36,
     type: 3}
-  cannonBallSpeed: 100
+  cannonBallSpeed: 2000
   attackAreaPrefab: {fileID: 9014645002717474501, guid: 3aa6b741342f001459c4ff4187343e3d,
     type: 3}
 --- !u!114 &6482518635441187889
@@ -2036,11 +2030,8 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveAccel: 400
-  maxMoveSpeed: 600
-  rotateAccel: 0.2
-  maxRotateAccel: 3
-  autoDestroyTime: 20
+  moveSpeed: 400
+  rotateSpeed_Degree: 70
 --- !u!114 &6871036271617449570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2056,7 +2047,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4a863bf72c2bfff4aa5e2f796a113fc3
-  position: {x: -1180.3956, y: 1016.94037}
+  position: {x: -1189.2574, y: 912}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2266,13 +2257,10 @@ MonoBehaviour:
     isShieldDestroy: 0
   description: 
   drawGizmos: 0
-  missilePrefab: {fileID: 6519272339437649605, guid: e0286bdea80e5df419a142192f36ac21,
+  missilePrefab: {fileID: 6519272339437649605, guid: a206188b9df11604cb460e77e58be909,
     type: 3}
-  moveAccel: 400
-  maxMoveSpeed: 400
-  rotateAccel: 0.2
-  maxRotateAccel: 2
-  autoDestroyTime: 20
+  moveSpeed: 300
+  rotateSpeed_Degree: 70
   spawnRate: 1
 --- !u!114 &8191662739534080280
 MonoBehaviour:
@@ -2415,6 +2403,7 @@ MonoBehaviour:
   children:
   - {fileID: 1301360150007528721}
   - {fileID: -3300674228894187429}
+  - {fileID: -8972045692928243962}
   - {fileID: 2756000942064746228}
   - {fileID: 323920228470934289}
   - {fileID: -864796595586614749}
