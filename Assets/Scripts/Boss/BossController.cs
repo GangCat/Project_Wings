@@ -147,6 +147,7 @@ public class BossController : MonoBehaviour, IPublisher
 
         if (curPhaseNum == 1)
         {
+            shield.StopRestorShield();
             timeBombPatternCtrl.StartPattern();
             return;
         }

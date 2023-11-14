@@ -4,12 +4,13 @@ using UnityEngine.UIElements;
 
 public class TimeBomb : MonoBehaviour
 {
-    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, float _explosionTime)
+    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, float _explosionTime, Transform _targetTr)
     {
         launchAngle = _launchAngle;
         targetPos = _targetPos;
         gravity = _gravity;
         timer = _explosionTime;
+        targetTr = _targetTr;
         waitFixedTime = new WaitForFixedUpdate();
         rb = GetComponent<Rigidbody>();
 
@@ -40,7 +41,7 @@ public class TimeBomb : MonoBehaviour
 
         // 타겟 방향으로 회전
         // Translate이기 때문에 돌림
-        transform.rotation = Quaternion.LookRotation(targetPos - Projectile.position);
+        transform.rotation = Quaternion.LookRotation(targetPos - projectile.position);
 
         float elapsedtime = 0;
         while (elapsedtime < flightDuration)
@@ -50,8 +51,11 @@ public class TimeBomb : MonoBehaviour
 
             yield return waitFixedTime;
         }
+    }
 
-        StartCoroutine("TimerCoroutine");
+    public void StartTimer(float _time)
+    {
+        StartCoroutine("TimerCoroutine", _time);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,11 +66,11 @@ public class TimeBomb : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private IEnumerator TimerCoroutine()
+    private IEnumerator TimerCoroutine(float _time)
     {
         Debug.Log("TriggerTimer");
 
-        yield return new WaitForSeconds(timer);
+        yield return new WaitForSeconds(_time);
         //float startTime = Time.time;
         //while (Time.time - startTime < timer)
         //{
@@ -78,7 +82,9 @@ public class TimeBomb : MonoBehaviour
     private void Explosion()
     {
         // 폭발하며 플레이어에게 큰 데미지
+        targetTr.GetComponent<IDamageable>().GetDamage(150);
         // 화면 연출
+        Destroy(Instantiate(explosionPrefab, transform.position, Quaternion.identity), 5f);
         Debug.Log("Explosion!");
         Destroy(gameObject);
     }
@@ -90,8 +96,11 @@ public class TimeBomb : MonoBehaviour
     private float timer = 0f; // 터질때까지 걸리는 시간
 
     [SerializeField]
-    private Transform Projectile;
+    private Transform projectile;
+    [SerializeField]
+    private GameObject explosionPrefab = null;
 
     private WaitForFixedUpdate waitFixedTime = null;
     private Rigidbody rb = null;
+    private Transform targetTr = null;
 }

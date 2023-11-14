@@ -29,6 +29,12 @@ public class BossShield : MonoBehaviour, IDamageable
         UpdateEffect();
     }
 
+    public void StopRestorShield()
+    {
+        StopCoroutine("RestoreShieldCoroutine");
+        gameObject.SetActive(false);
+    }
+
     private void UpdateEffect()
     {
         mr.material.SetFloat("_Dissolve", curGeneratorCount * 0.25f);

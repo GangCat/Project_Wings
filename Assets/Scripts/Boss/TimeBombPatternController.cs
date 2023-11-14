@@ -67,7 +67,7 @@ public class TimeBombPatternController : MonoBehaviour
             if (Time.time - spawnTime > spawnBombDelay)
             {
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
-                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, explosionTime);
+                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, explosionTime, targetTr);
                 arrBombGo[bombIdx] = bombGo;
                 ++bombIdx;
                 spawnTime = Time.time;
@@ -76,12 +76,17 @@ public class TimeBombPatternController : MonoBehaviour
             yield return waitFixedTime;
         }
 
+        // 시한 폭탄이 다 떨어지기까지 기다리는 겸 플레이어 확인하라는 의미의 대기시간
+        yield return new WaitForSeconds(4f);
         bossRotationCallback?.Invoke(true);
 
         float laserStartTime = Time.time;
         int laserCount = 0;
         GameObject laserGo = null;
         Debug.Log("StartLaserCharge");
+        for(int i = 0; i < arrBombGo.Length; ++i)
+            arrBombGo[i].GetComponent<TimeBomb>().StartTimer(i * 12);
+
         while (laserCount < 4)
         {
             if (Time.time - laserStartTime > laserDelay)
