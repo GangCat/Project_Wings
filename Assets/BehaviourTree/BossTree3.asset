@@ -2324,7 +2324,7 @@ MonoBehaviour:
   rotationAccel: 5
   attackRange: 800
   shakeBodyTag: ShakeBodyCollider
-  effectTornado: {fileID: 6185979661563687016, guid: 74b7b164fd9c7a64c900280d76948ba0,
+  effectTornado: {fileID: 1588479054048128854, guid: 0874456697819d049b520757f37f2d87,
     type: 3}
 --- !u!114 &8618335190615036909
 MonoBehaviour:

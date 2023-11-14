@@ -22461,7 +22461,6 @@ MonoBehaviour:
   - {fileID: 1505996911}
   - {fileID: 4562598961165459130}
   - {fileID: 4960523692840554040}
-  - {fileID: 339341889}
   coreGo:
   - {fileID: 1951262666}
   - {fileID: 1979736870}
@@ -22518,7 +22517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774b3983f1aeb5f44b901255386a4f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 2000
+  maxHp: 10000
   curHp: 0
 --- !u!1 &1308830206 stripped
 GameObject:
