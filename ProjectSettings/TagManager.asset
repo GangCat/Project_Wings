@@ -25,6 +25,8 @@ TagManager:
   - HealMarble
   - GroupHomingMissile
   - CannonRainBall
+  - Target
+  - BossShieldGenerator
   layers:
   - Default
   - TransparentFX

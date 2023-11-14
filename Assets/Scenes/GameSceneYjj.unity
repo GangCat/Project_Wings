@@ -8446,7 +8446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a56c4c75a3083d44a682149e19df918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groupMissilePrefab: {fileID: 6519272339437649605, guid: e0286bdea80e5df419a142192f36ac21,
+  groupMissilePrefab: {fileID: 6519272339437649605, guid: a206188b9df11604cb460e77e58be909,
     type: 3}
 --- !u!1 &329774445
 GameObject:
@@ -21901,7 +21901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: c0ae93a3656eabd45a59d79a585daadd, type: 2}
+  tree: {fileID: 11400000, guid: eb9915e568660204f937c48d488fcce8, type: 2}
 --- !u!54 &1295538137
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21941,7 +21941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774b3983f1aeb5f44b901255386a4f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1000
+  maxHp: 10000
   curHp: 0
 --- !u!1 &1308830206 stripped
 GameObject:

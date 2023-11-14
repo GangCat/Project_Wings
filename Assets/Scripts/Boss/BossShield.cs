@@ -13,11 +13,6 @@ public class BossShield : MonoBehaviour, IDamageable
         UpdateEffect();
     }
 
-    public bool IsShieldBreak()
-    {
-        return gameObject.layer.Equals(brokenLayer);
-    }
-
     public void RespawnGenerator()
     {
         SetActive(true);
@@ -28,11 +23,6 @@ public class BossShield : MonoBehaviour, IDamageable
     public void SetActive(bool _active)
     {
         gameObject.SetActive(_active);
-    }
-
-    public void ChangeLayerToggle()
-    {
-        gameObject.layer = gameObject.layer.Equals(oriLayer) ? brokenLayer : oriLayer;
     }
 
     public void GeneratorDestroy()

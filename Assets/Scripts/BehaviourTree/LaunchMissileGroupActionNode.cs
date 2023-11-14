@@ -22,9 +22,13 @@ public class LaunchMissileGroupActionNode : ActionNode
 
     private GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos = null;
     private GameObject[] arrMissileGroup = new GameObject[32];
-    private bool isArrayEmpty = false;
+    private Transform playerTr = null;
+    private GroupMissileMemoryPool memoryPool = null;
+
     private int missileSpawnIdx = 0;
     private float startTime = 0;
+
+    private bool isArrayEmpty = false;
     private bool isSpawnFinish = false;
 
     protected override void OnStart() 
@@ -33,6 +37,8 @@ public class LaunchMissileGroupActionNode : ActionNode
         startTime = Time.time;
         isSpawnFinish = false;
         missileSpawnIdx = 0;
+        playerTr = context.playerTr;
+        memoryPool = context.groupMissileMemoryPool;
 
         SpawnMissile();
     }
@@ -70,7 +76,8 @@ public class LaunchMissileGroupActionNode : ActionNode
             arrMissileGroup[i] = context.groupMissileMemoryPool.ActivateGroupMissile();
             Vector3 spawnPos = arrGroupHomingMissileSpawnPos[i].GetPos();
             Quaternion spawnRot = arrGroupHomingMissileSpawnPos[i].GetRot();
-            arrMissileGroup[i].GetComponent<GroupHomingMissileController>().Init(moveAccel, maxMoveSpeed, rotateAccel, maxRotateAccel, context.playerTr, autoDestroyTime, spawnPos, spawnRot, context.groupMissileMemoryPool, blackboard.isShieldDestroy);
+            //arrMissileGroup[i].GetComponent<GroupHomingMissileController>().Init(moveAccel, maxMoveSpeed, rotateAccel, maxRotateAccel, playerTr, autoDestroyTime, spawnPos, spawnRot, context.groupMissileMemoryPool, blackboard.isShieldDestroy);
+            arrMissileGroup[i].GetComponent<TempHoming>().Init(playerTr.gameObject, maxMoveSpeed, maxRotateAccel, spawnPos, spawnRot, memoryPool, blackboard.isShieldDestroy);
         }
 
         ++missileSpawnIdx;
