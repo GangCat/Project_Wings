@@ -144,7 +144,10 @@ public class PlayerMovementController : MonoBehaviour
 
     public void KnockBack(Vector3 _knockBackAmount, float _knockBackDelay)
     {
-        StartCoroutine(KnockBackCoroutine(_knockBackAmount, _knockBackDelay));
+        if(knockBackCoroutine != null)
+            StopCoroutine(knockBackCoroutine);
+
+        knockBackCoroutine = StartCoroutine(KnockBackCoroutine(_knockBackAmount, _knockBackDelay));
     }
 
     private IEnumerator KnockBackCoroutine(Vector3 _knockBackAmount, float _knockBackDelay)
@@ -477,5 +480,7 @@ public class PlayerMovementController : MonoBehaviour
     private float cameramaxFOV = 90f;
 
     private VoidIntDelegate spUpdateDelegate = null;
+
+    private Coroutine knockBackCoroutine = null;
 
 }

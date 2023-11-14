@@ -30,39 +30,13 @@ public class PlayerController : MonoBehaviour
     private void IsDead()
     {
         Debug.Log("플레이어 사망");
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     private void ChangeCollisionCondition(Collision _coli)
     {
         moveCtrl.ChangeCollisionCondition(_coli, true);
-
-        //float knockBackAmount = 0f;
-
-        //GameObject collisionGo = _coli.gameObject;
-
-        //if (collisionGo.CompareTag("Obstacle"))
-        //    knockBackAmount = 5f;
-        //else if (collisionGo.CompareTag("CannonBall"))
-        //    knockBackAmount = 15f;
-        //else if (collisionGo.CompareTag("GatlingGunBullet"))
-        //    knockBackAmount = 15f;
-        //else if (collisionGo.CompareTag("ShakeBodyCollider"))
-        //    knockBackAmount = 50f;
-        //else if (collisionGo.CompareTag("WindBlow"))
-        //    knockBackAmount = 100f;
-        //else if (collisionGo.CompareTag("CrossLaser"))
-        //    knockBackAmount = 30f;
-
-        //Vector3 knockBackDir = _coli.contacts[0].normal;
-
-        //playerMesh.material.SetFloat("_isDamaged", 1);
-
-        //moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount);
-        //Invoke("ResetPlayerDamagedBollean", 2f);
     }
-
-
 
     private void ChangeCollisionCondition()
     {
@@ -75,23 +49,20 @@ public class PlayerController : MonoBehaviour
             if (_collider.GetComponent<AttackableObject>())
                 return;
 
-        float knockBackAmount = 0f;
         Vector3 knockBackDir = (transform.position - _collider.transform.position).normalized;
+        float knockBackAmount = 0f;
         float knockBackDelay = 2f;
-
 
         if (_collider.CompareTag("CannonBall"))
         {
             knockBackAmount = 50f;
             knockBackDir = Vector3.down;
             Debug.Log("Hit");
-
         }
         else if (_collider.CompareTag("GatlingGunBullet"))
         {
             knockBackAmount = 50f;
             knockBackDir = _collider.transform.forward;
-
             Debug.Log("Hit");
         }
         else if (_collider.CompareTag("ShakeBodyCollider"))
@@ -125,15 +96,15 @@ public class PlayerController : MonoBehaviour
 
         playerMesh.material.SetFloat("_isDamaged", 1);
         StopCoroutine("ResetPlayerDamagedBollean");
-        StartCoroutine("ResetPlayerDamagedBollean");
+        StartCoroutine("ResetPlayerDamagedBollean", knockBackDelay);
         //Invoke("ResetPlayerDamagedBollean", 2f);
 
         moveCtrl.KnockBack(knockBackDir.normalized * knockBackAmount, knockBackDelay);
     }
 
-    private IEnumerator ResetPlayerDamagedBollean()
+    private IEnumerator ResetPlayerDamagedBollean(float _invincibleTime)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_invincibleTime);
         playerMesh.material.SetFloat("_isDamaged", 0);
     }
 

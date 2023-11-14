@@ -19,5 +19,6 @@ public enum EMessageType
     NONE = -1,
     PAUSE,
     PHASE_CHANGE,
+    SHIELD_BROKEN,
     LENGTH
 }

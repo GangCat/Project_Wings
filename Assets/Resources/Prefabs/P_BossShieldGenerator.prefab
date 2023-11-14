@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curHp: 0
-  maxHp: 1
+  maxHp: 300
 --- !u!135 &1870860204344888319
 SphereCollider:
   m_ObjectHideFlags: 0

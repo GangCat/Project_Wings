@@ -24,7 +24,7 @@ public class BossController : MonoBehaviour, IPublisher
         animCtrl.Init();
         bossCollider.Init();
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
-        shield.Init();
+        shield.Init(RestorShieldFinish);
         lastPatternCtrl.Init(_bossClearCalblack);
         timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
         RegisterBroker();
@@ -194,6 +194,12 @@ public class BossController : MonoBehaviour, IPublisher
         myRunner.StartNextPhase(curPhaseNum);
     }
 
+    private void RestorShieldFinish()
+    {
+        InitShieldGeneratorPoint();
+        myRunner.IsShieldDestroy(false);
+    }
+
     private void InitShieldGeneratorPoint()
     {
         curShieldGeneratorPoint.Clear();
@@ -220,18 +226,10 @@ public class BossController : MonoBehaviour, IPublisher
         {
             foreach (GameObject go in arrModelGo)
                 go.layer = LayerMask.NameToLayer("Boss");
-            StartCoroutine("ResapwnShieldGeneratorCoroutine");
             myRunner.IsShieldDestroy(true);
+
+            PushMessageToBroker(EMessageType.SHIELD_BROKEN);
         }
-    }
-
-    private IEnumerator ResapwnShieldGeneratorCoroutine()
-    {
-        yield return new WaitForSeconds(respawnShieldGeneratorTime);
-
-        InitShieldGeneratorPoint();
-        shield.RespawnGenerator();
-        myRunner.IsShieldDestroy(false);
     }
 
     public void RegisterBroker()

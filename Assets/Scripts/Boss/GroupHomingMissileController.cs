@@ -43,11 +43,17 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         transform.position = _spawnPos;
         transform.rotation = _spawnRot;
 
-        isShieldBreak = _isShieldBreak;
+        isPhaseChanged = false;
         isBodyTrigger = true;
+        isExplosed = false;
+        isShieldBreak = _isShieldBreak;
+        if (isShieldBreak)
+            isFirstTrigger = false;
+        else
+            isFirstTrigger = true;
 
-        deviationAmount = UnityEngine.Random.Range(30f, 70f);
-        deviationSpeed = UnityEngine.Random.Range(1f, 3f);
+        deviationAmount = UnityEngine.Random.Range(5f, 20f);
+        deviationSpeed = UnityEngine.Random.Range(0.1f, 1f);
 
         Subscribe();
         StartCoroutine("FixedUpdateCoroutine");
@@ -125,6 +131,11 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             isBodyTrigger = false;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Explosion();
+    }
+
     public void GetDamage(float _dmg)
     {
         Explosion();
@@ -162,8 +173,17 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 
     public void ReceiveMessage(EMessageType _message)
     {
-        if (_message == EMessageType.PHASE_CHANGE)
-            isPhaseChanged = true;
+        switch (_message)
+        {
+            case EMessageType.PHASE_CHANGE:
+                isPhaseChanged = true;
+                break;
+            case EMessageType.SHIELD_BROKEN:
+                isShieldBreak = true;
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnDrawGizmos()

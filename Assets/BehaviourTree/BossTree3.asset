@@ -883,8 +883,8 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: 6670595513324080788}
   - {fileID: 8083542919116634970}
+  - {fileID: 6670595513324080788}
   groupMissileRatio: 0.7
   curGroupMissileRatio: 0.7
 --- !u!114 &-1653398103952708185
@@ -2019,7 +2019,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: af63c3e958be1014799d56d076546007
-  position: {x: 505, y: 1179}
+  position: {x: 680.99994, y: 1177.251}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2031,7 +2031,7 @@ MonoBehaviour:
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
   moveSpeed: 300
-  rotateSpeed_Degree: 80
+  rotateSpeed_Degree: 130
 --- !u!114 &6871036271617449570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,7 +2248,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 99f2d88d4b702194c8809794671f48ba
-  position: {x: 688, y: 1179}
+  position: {x: 485.99994, y: 1177.251}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2260,7 +2260,7 @@ MonoBehaviour:
   missilePrefab: {fileID: 6519272339437649605, guid: a206188b9df11604cb460e77e58be909,
     type: 3}
   moveSpeed: 300
-  rotateSpeed_Degree: 70
+  rotateSpeed_Degree: 130
   spawnRate: 1
 --- !u!114 &8191662739534080280
 MonoBehaviour:
