@@ -827,7 +827,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: eb8c0b277d54b7646937fd1a16e932a4
-  position: {x: 160, y: 977}
+  position: {x: 150.8347, y: 972.261}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e058ee7a701487543bbba7f289e12f91
-  position: {x: 310, y: 977}
+  position: {x: 312.41135, y: 973.6}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1046,14 +1046,14 @@ MonoBehaviour:
     isShieldDestroy: 0
   description: 
   drawGizmos: 0
-  bossOffSet: 120
-  mapRadious: {x: 2000, y: 2000}
-  attackMinHeight: 50000
-  attackMaxHeight: 150000
-  cannonBallCnt: 25
+  bossOffSet: 300
+  mapRadious: {x: 1500, y: 1500}
+  attackMinHeight: 20000
+  attackMaxHeight: 35000
+  cannonBallCnt: 20
   cannonBallPrefab: {fileID: 8582983355367289449, guid: 8fe2ba31306cd094b80f92e68b37bb36,
     type: 3}
-  cannonBallSpeed: 5000
+  cannonBallSpeed: 2000
   attackAreaPrefab: {fileID: 9014645002717474501, guid: 3aa6b741342f001459c4ff4187343e3d,
     type: 3}
 --- !u!114 &-94797651972191598
@@ -1361,7 +1361,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 54b7283d7e96e994e838736c47bcbebb
-  position: {x: 5, y: 824}
+  position: {x: 4.7999663, y: 821.9885}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1596,7 +1596,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6c1f494de66f6504c945205e4f7b4d63
-  position: {x: 2970, y: 1256}
+  position: {x: 2966.487, y: 1252.0869}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1605,17 +1605,17 @@ MonoBehaviour:
     isShieldDestroy: 0
   description: 
   drawGizmos: 0
-  radious: 10
-  bossOffSet: 20
-  mapRadious: {x: 5000, y: 5000}
+  radious: 50
+  bossOffSet: 220
+  mapRadious: {x: 1000, y: 1000}
   duration: 6
-  attackMinHeight: 500
-  attackMaxHeight: 1000
+  attackMinHeight: 20000
+  attackMaxHeight: 30000
   term: 2
-  cannonBallCnt: 80
+  cannonBallCnt: 25
   cannonBallPrefab: {fileID: 8582983355367289449, guid: d818c161b23da574691dde04d782eb3f,
     type: 3}
-  cannonBallSpeed: 200
+  cannonBallSpeed: 2500
   attackAreaPrefab: {fileID: 9014645002717474501, guid: 3cf30d7655db4ab43bcf7a03c2be25b0,
     type: 3}
 --- !u!114 &3897127474239721301
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 854ee4ba16070fb4ab81d4f93b1462d0
-  position: {x: 956, y: 977}
+  position: {x: 956, y: 971.5102}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2230,7 +2230,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: db43a344593cb5f4991217841bb0267f
-  position: {x: 310, y: 824}
+  position: {x: 310.40002, y: 821.6871}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
