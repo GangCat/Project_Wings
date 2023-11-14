@@ -23,6 +23,8 @@ TagManager:
   - BossBody
   - LastPatternCollider
   - HealMarble
+  - GroupHomingMissile
+  - CannonRainBall
   layers:
   - Default
   - TransparentFX

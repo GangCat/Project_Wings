@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: -8085328202076350454}
   m_Layer: 12
   m_Name: P_GroupHomingMissile
-  m_TagString: GiantHomingMissile
+  m_TagString: GroupHomingMissile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
