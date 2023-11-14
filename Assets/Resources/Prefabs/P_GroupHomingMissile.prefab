@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545eef0e135591f4296dea2b576349bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 200
+  dmg: 20
   explosionEffectPrefab: {fileID: 0}
   explosionRange: 70
   explosionLayer:

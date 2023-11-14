@@ -865,7 +865,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: bb6d657309cfa7546978a38e1a267255
-  position: {x: 2203.332, y: 1251.9998}
+  position: {x: 2205.2114, y: 1251.9998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -873,6 +873,10 @@ MonoBehaviour:
     curClosedWeakPoint: 0
   description: 
   drawGizmos: 0
+  attackStartRange: {x: 0, y: 0, z: 0}
+  attackRange: {x: 0, y: 0, z: 0}
+  pushForce: 10
+  accel: 5
 --- !u!114 &2663481157983243140
 MonoBehaviour:
   m_ObjectHideFlags: 0
