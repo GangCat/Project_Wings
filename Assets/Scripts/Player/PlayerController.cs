@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         moveCtrl.Init(playerData,_spUpdateCallback);
         rotCtrl.Init(playerData);
         animCtrl.Init();
-        colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack);
+        colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack, playerData);
         statHp.Init(IsDead, _hpUpdateCallback);
         virtualMouse.Init(playerData);
 
@@ -43,55 +43,60 @@ public class PlayerController : MonoBehaviour
         moveCtrl.ChangeCollisionCondition(null, false);
     }
 
-    private void KnockBack(Collider _collider)
+    private void KnockBack(GameObject _colliderGo)
     {
         if (gameObject.layer.Equals(LayerMask.NameToLayer("PlayerInvincible")))
-            if (_collider.GetComponent<AttackableObject>())
+            if (_colliderGo.GetComponent<AttackableObject>())
                 return;
 
-        Vector3 knockBackDir = (transform.position - _collider.transform.position).normalized;
+        Vector3 knockBackDir = (transform.position - _colliderGo.transform.position).normalized;
         float knockBackAmount = 0f;
         float knockBackDelay = 2f;
 
-        if (_collider.CompareTag("CannonBall"))
+        if (_colliderGo.CompareTag("CannonBall"))
         {
             knockBackAmount = 50f;
             knockBackDir = Vector3.down;
             Debug.Log("Hit");
         }
-        else if (_collider.CompareTag("GatlingGunBullet"))
+        else if (_colliderGo.CompareTag("GatlingGunBullet"))
         {
             knockBackAmount = 50f;
-            knockBackDir = _collider.transform.forward;
+            knockBackDir = _colliderGo.transform.forward;
             Debug.Log("Hit");
         }
-        else if (_collider.CompareTag("ShakeBodyCollider"))
+        else if (_colliderGo.CompareTag("ShakeBodyCollider"))
         {
             knockBackAmount = 500f;
             knockBackDir = Vector3.up;
             knockBackDelay = 4f;
         }
-        else if (_collider.CompareTag("WindBlow"))
+        else if (_colliderGo.CompareTag("WindBlow"))
         {
             knockBackAmount = 250f;
             knockBackDir = Vector3.up;
             knockBackDelay = 4f;
         }
-        else if (_collider.CompareTag("WindBlowForPattern"))
+        else if (_colliderGo.CompareTag("WindBlowForPattern"))
         {
             knockBackAmount = 1000f;
             knockBackDir = Vector3.up;
             knockBackDelay = 3f;
         }
-        else if (_collider.CompareTag("CrossLaser"))
+        else if (_colliderGo.CompareTag("CrossLaser"))
         {
             knockBackAmount = 100f;
-            knockBackDir = _collider.transform.forward;
+            knockBackDir = _colliderGo.transform.forward;
             Debug.Log("Hit");
         }
-        else if (_collider.CompareTag("BossShield"))
+        else if (_colliderGo.CompareTag("BossShield"))
         {
             knockBackAmount = 50f;
+        }
+        else if (_colliderGo.CompareTag("Obstacle") || _colliderGo.CompareTag("Boss") || _colliderGo.CompareTag("BossBody") || _colliderGo.CompareTag("Floor"))
+        {
+            moveCtrl.ReduceSpeed();
+            return;
         }
 
         playerMesh.material.SetFloat("_isDamaged", 1);

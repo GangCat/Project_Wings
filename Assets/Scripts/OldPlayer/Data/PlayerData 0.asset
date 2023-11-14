@@ -24,7 +24,7 @@ MonoBehaviour:
   moveStopAccel: 40
   gravityAccel: 0
   gravitySpeed: 100
-  isDash: 1
+  isDash: 0
   isCrash: 0
   isAction: 0
   dodgeSpeed: 400
@@ -46,4 +46,4 @@ MonoBehaviour:
   rollMaxAngle: 80
   rollReturnAccel: 100
   currentRotZ: 0
-  currentMoveSpeed: 310
+  currentMoveSpeed: 159.68753

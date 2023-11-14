@@ -39,6 +39,11 @@ public class PlayerMovementController : MonoBehaviour
         set => isLastPattern = value;
     }
 
+    public void ReduceSpeed()
+    {
+        moveSpeed *= 0.3f;
+    }
+
     public void ChangeCollisionCondition(Collision collision, bool _bool)
     {
         isCollision = _bool;
@@ -174,7 +179,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void CollisionCrash()
     {
-        if (moveSpeed >= 50)
+        if (moveSpeed >= 150)
         {
             StartCoroutine(PlayerCrash());
             Debug.Log("강한 충돌");

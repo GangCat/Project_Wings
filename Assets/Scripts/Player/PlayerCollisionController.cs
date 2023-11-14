@@ -5,18 +5,19 @@ using UnityEngine;
 public class PlayerCollisionController : MonoBehaviour
 {
     public delegate void ChangeCollisionConditionDelegate(Collision _coli);
-    public delegate void KnockBackDelegate(Collider _collider);
+    public delegate void KnockBackDelegate(GameObject _colliderGo);
 
     private ChangeCollisionConditionDelegate collisionEnterCallback = null;
     private VoidVoidDelegate collisionExitCallback = null;
     private KnockBackDelegate knockBackCallback = null;
 
 
-    public void Init(ChangeCollisionConditionDelegate _collisionEnterCallback, VoidVoidDelegate _collisionExitCallback, KnockBackDelegate _knockBackCallback)
+    public void Init(ChangeCollisionConditionDelegate _collisionEnterCallback, VoidVoidDelegate _collisionExitCallback, KnockBackDelegate _knockBackCallback, PlayerData _playerData)
     {
         collisionEnterCallback = _collisionEnterCallback;
         collisionExitCallback = _collisionExitCallback;
         knockBackCallback = _knockBackCallback;
+        playerData = _playerData;
         oriLayer = gameObject.layer;
         waitInvincibleTime = new WaitForSeconds(invincibleTime);
     }
@@ -25,6 +26,9 @@ public class PlayerCollisionController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         collisionEnterCallback?.Invoke(collision);
+        //if(playerData.currentMoveSpeed > 150f)
+        //    knockBackCallback?.Invoke(collision.gameObject);
+
         //Invincible();
     }
 
@@ -35,7 +39,7 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        knockBackCallback?.Invoke(other);
+        knockBackCallback?.Invoke(other.gameObject);
 
         Invincible();
     }
@@ -62,4 +66,5 @@ public class PlayerCollisionController : MonoBehaviour
 
     private LayerMask oriLayer;
     private WaitForSeconds waitInvincibleTime = null;
+    private PlayerData playerData = null;
 }
