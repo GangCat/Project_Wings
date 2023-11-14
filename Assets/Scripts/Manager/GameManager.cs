@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour, IPublisher
         camMng = FindFirstObjectByType<CameraManager>();
         playerMng = FindFirstObjectByType<PlayerManager>();
         obstacleMng = FindFirstObjectByType<ObstacleManager>();
+       // pauseMng = FindFirstObjectByType<PauseManager>();
     }
 
     private void InitManagers()
@@ -102,6 +103,5 @@ public class GameManager : MonoBehaviour, IPublisher
     private CameraManager camMng = null;
     private PlayerManager playerMng = null;
     private ObstacleManager obstacleMng = null;
-
-
+    private PauseManager pauseMng = null;
 }
