@@ -8,18 +8,20 @@ public class ActionCamera : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         cam = GetComponent<Camera>();
+        subCam = GetComponentInChildren<Camera>();
         actionFinishCallback = _actionFinishCallback;
         cam.enabled = false;
+        subCam.enabled = false;
     }
 
     public void StartAction(int _curPhaseNum)
     {
         cam.enabled = true;
 
-        SetStartPosAndRot(_curPhaseNum);
+        //SetStartPosAndRot(_curPhaseNum);
 
-        anim.SetTrigger($"Phase{_curPhaseNum}");
-        StartCoroutine(CheckIsAnimFinishCoroutine(_curPhaseNum));
+        anim.Play($"Phase{_curPhaseNum}", 0);
+        //anim.SetTrigger($"Phase{_curPhaseNum}");
 
         if (_curPhaseNum > 2)
             isLastAction = true;
@@ -61,31 +63,21 @@ public class ActionCamera : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(_x, _y, _z));
     }
 
-    private IEnumerator CheckIsAnimFinishCoroutine(int _curPhaseNum)
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        while (true)
-        {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName($"Phase{_curPhaseNum}"))
-            {
-                FinishAction();
-                yield break;
-            }
-
-            yield return null;
-        }
-    }
-
     private void FinishAction()
     {
+        if (!isLastAction)
+        {
+            cam.enabled = false;
+            subCam.enabled = false;
+        }
+
         actionFinishCallback?.Invoke(isLastAction);
-        cam.enabled = false;
     }
 
     private Animator anim = null;
     private VoidBoolDelegate actionFinishCallback = null;
     private Camera cam = null;
+    private Camera subCam = null;
 
     private bool isLastAction = false;
 }
