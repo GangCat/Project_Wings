@@ -7,19 +7,19 @@ using System.Buffers;
 public class CannonRainActionNode : ActionNode
 {
     [SerializeField]
-    private float bossOffSet;
+    private float bossOffSet = 300;
     [SerializeField]
-    private Vector2 mapRadious;
+    private Vector2 mapRadious = new Vector2(1500,1500);
     [SerializeField]
-    private float attackMinHeight = 500;
+    private float attackMinHeight = 10000;
     [SerializeField]
-    private float attackMaxHeight = 5000;
+    private float attackMaxHeight = 15000;
     [SerializeField]
-    private int cannonBallCnt = 1000;
+    private int cannonBallCnt = 20;
     [SerializeField]
     private GameObject cannonBallPrefab = null;
     [SerializeField]
-    private float cannonBallSpeed = 100;
+    private float cannonBallSpeed = 2000;
     [SerializeField]
     private GameObject attackAreaPrefab = null;
     [SerializeField]
