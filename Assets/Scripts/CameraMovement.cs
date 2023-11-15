@@ -66,9 +66,9 @@ public class CameraMovement : MonoBehaviour
     private void FollowPlayerPos()
     {
         if(backMirror)
-            calcPos = playerTr.position + playerTr.forward * offset + transform.up * 3f;
+            calcPos = playerTr.position + playerTr.forward * offset + transform.up * upOffset;
         else
-        calcPos = playerTr.position - playerTr.forward * offset + transform.up * 3f;
+        calcPos = playerTr.position - playerTr.forward * offset + transform.up * upOffset;
         float smoothedPosX = Mathf.Lerp(transform.position.x, calcPos.x, posSmoothX * Time.deltaTime);
         float smoothedPosY = Mathf.Lerp(transform.position.y, calcPos.y, posSmoothY * Time.deltaTime);
         float smoothedPosZ = Mathf.Lerp(transform.position.z, calcPos.z, posSmoothZ * Time.deltaTime);
@@ -125,7 +125,7 @@ public class CameraMovement : MonoBehaviour
 
         // 카메라의 회전을 적용
         quaternion = Quaternion.Euler(cameraPitch, cameraYaw, 0);
-        Vector3 calcPlayerPos = playerTr.position - (quaternion * Vector3.forward) * (offset) + transform.up * 3f;
+        Vector3 calcPlayerPos = playerTr.position - (quaternion * Vector3.forward) * (offset) + transform.up * upOffset;
         cameraPos = calcPlayerPos;
        
     }
@@ -147,6 +147,7 @@ public class CameraMovement : MonoBehaviour
     public float rotSmoothZ = 0.1f;
 
     public float offset = 0f;
+    public float upOffset = 3f;
 
     private Vector3 currentRotation = Vector3.zero;
     private Vector3 desiredRotation = Vector3.zero;

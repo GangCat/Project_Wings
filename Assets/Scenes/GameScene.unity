@@ -11445,7 +11445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &474689786
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15494,6 +15494,7 @@ GameObject:
   - component: {fileID: 798473346}
   - component: {fileID: 798473342}
   - component: {fileID: 798473345}
+  - component: {fileID: 798473347}
   m_Layer: 6
   m_Name: PlayerController
   m_TagString: Untagged
@@ -15643,6 +15644,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 300
   curHp: 0
+--- !u!114 &798473347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798473337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3f1dc1e6276264cb7406302a1e4a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  findDistance: 150
+  minOffset: 300
+  maxOffset: 300
+  maxUpOffset: 6
+  smooth: 0.5
 --- !u!1 &803560142
 GameObject:
   m_ObjectHideFlags: 0
@@ -24789,6 +24810,7 @@ MonoBehaviour:
   rotSmoothY: 0.05
   rotSmoothZ: 0.1
   offset: 10
+  upOffset: 3
 --- !u!1 &1385520792
 GameObject:
   m_ObjectHideFlags: 0
