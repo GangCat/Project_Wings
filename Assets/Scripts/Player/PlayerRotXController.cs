@@ -8,11 +8,12 @@ public class PlayerRotXController : MonoBehaviour
     private Transform tr;
     [SerializeField]
     private PlayerData playerData;
-    public float smooth;
+    [SerializeField]
+    private float smooth;
 
-    float currentXRotation = 0f;
-    float targetRotateX;
-    float calcRotateX;
+    private float currentXRotation = 0f;
+    private float targetRotateX;
+    private float calcRotateX;
     private void Update()
     {
         targetRotateX = tr.rotation.eulerAngles.x;
@@ -26,7 +27,6 @@ public class PlayerRotXController : MonoBehaviour
         }
 
         currentXRotation = Mathf.Lerp(currentXRotation, calcRotateX, smooth*Time.deltaTime);
-
         transform.localRotation = Quaternion.Euler(currentXRotation, 0f, 0f);
 
     }
