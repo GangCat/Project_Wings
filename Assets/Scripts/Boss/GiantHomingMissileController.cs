@@ -62,6 +62,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     {
         while (true)
         {
+            // 플레이어와의 거리계산 > 가까울 수록 볼륨 크게 > 미사일 점화소리
             if (isPhaseChanged)
             {
                 Destroy(gameObject);
@@ -140,6 +141,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         if (isExplosed)
             return;
 
+        // 플레이어와의 거리 계산 > 가까울 수록 볼륨 크게 > 대형 미사일 폭발 소리
         //StopCoroutine("AutoExplosionCorutine");
         isExplosed = true;
         GameObject go = Instantiate(explosionPrefab, transform.position, Quaternion.identity);

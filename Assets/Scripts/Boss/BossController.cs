@@ -110,6 +110,8 @@ public class BossController : MonoBehaviour, IPublisher
 
         while (true)
         {
+            //보스 페이즈 스위치로 검사 > 각 페이즈에 맞는 브금 재생 3페이즈의 경우 폭풍우 브금 등
+            //플레이어와의 거리 검사 > 가까울수록 소리 증폭 > 보스 기계혹은 기어 소리 재생
             if (isBossStartRotation)
                 RotateToTarget();
 
@@ -127,6 +129,7 @@ public class BossController : MonoBehaviour, IPublisher
         directionToPlayer.y = 0f;
 
         // 방향 벡터를 사용하여 보스를 회전시킵니다.
+        // 플레이어와의 거리 계산 > 가까울수록 소리 증폭 > 보스 회전하는 소리 추가
         if (curPhaseNum >= 2)
             transform.localRotation *= Quaternion.Euler(new Vector3(0f, autoRotateDegree * Time.deltaTime, 0f));
         else if (directionToPlayer != Vector3.zero)
@@ -136,6 +139,7 @@ public class BossController : MonoBehaviour, IPublisher
 
     private void StartPhaseChange()
     {
+        // 현재 페이즈 검사 > 알맞는 소리 재생 // 1페이즈 시작 연출 , 2페이즈 시작 연출, 3페이즈 시작 연출
         if (isChangingPhase)
             return;
 
@@ -157,6 +161,7 @@ public class BossController : MonoBehaviour, IPublisher
 
     IEnumerator TempBossUP()
     {
+        //거대 보스가 움직이는 소리 & 물결 치는 소리 등
         float t = 0f;
         float oriY = transform.position.y; // 60
         float targetY = 430f;

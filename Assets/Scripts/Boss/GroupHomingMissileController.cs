@@ -63,6 +63,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     {
         while (true)
         {
+            // 미사일의 뒤에 불꽃 점화소리(타는 소리), 플레이어와의 거리 계산, 가까울 수록 볼륨은 커진다.
             if (isPhaseChanged)
             {
                 groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
@@ -108,6 +109,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 
     private void OnTriggerEnter(Collider _other)
     {
+        
         if (!isShieldBreak && isFirstTrigger)
             return;
 
@@ -159,6 +161,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             AttackDmg(col);
         }
         groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
+        // 플레이어와의 거리 계산 > 가까울 수록 볼륨은 커진다 > 미사일이 폭발하는 소리 재생
     }
 
     private void OnDisable()

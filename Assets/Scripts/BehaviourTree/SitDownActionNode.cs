@@ -12,12 +12,14 @@ public class SitDownActionNode : ActionNode
     protected override void OnStart()
     {
         context.sitDownGo.SetActive(true);
+        //플레이어와의 거리 계산 > 가까울수록 소리 증가 > 보스 기계음 시작
         curDurationtime = durationTime;
     }
 
     protected override void OnStop()
     {
         context.sitDownGo.SetActive(false);
+        // 보스 기계음 정지
     }
 
     protected override State OnUpdate()

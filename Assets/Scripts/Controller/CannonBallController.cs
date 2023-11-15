@@ -33,6 +33,7 @@ public class CannonBallController : AttackableObject, ISubscriber
     {
         while (true)
         {
+            //플레이어와의 거리계산 > 가까울 수록 소리 증폭 > 포탄지나가는 바람 소리
             if(transform.position.y < 0)
             {
                 memoryPool.DeactivateCannonBall(gameObject);
@@ -53,11 +54,13 @@ public class CannonBallController : AttackableObject, ISubscriber
 
     private void OnTriggerEnter(Collider _other)
     {
+        
         if(_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
             memoryPool.DeactivateCannonBall(gameObject);
 
         if (AttackDmg(_other))
             memoryPool.DeactivateCannonBall(gameObject);
+        //물인지 그 외의 물체와 충돌인지 검사 > 플레이어와의 거리계산 > 물에서 터지는 포탄 소리 or 그냥 폭발소리중 알맞는 소리 삽입
     }
 
     private void OnDisable()

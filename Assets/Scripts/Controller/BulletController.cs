@@ -30,6 +30,7 @@ public class BulletController : AttackableObject, ISubscriber
 
     private void FixedUpdate()
     {
+        //플레이오와의 거리계산 > 가까울수록 소리 증폭 > 총알이 지나가는 소리
         transform.position += transform.forward * speed * Time.fixedDeltaTime;
 
         if (isPhaseChange)
@@ -49,6 +50,8 @@ public class BulletController : AttackableObject, ISubscriber
             DeactivateBullet();
         else if(AttackDmg(_other))
             DeactivateBullet();
+
+        // 플레이어에 피격, 물에 피격, 그외의 물체 피격 조건 검사 > 물 혹은 그외의 물체일 경우 거리 계산 후 소리 증폭 > 알맞는 소리 삽입
     }
 
     private void OnTriggerExit(Collider _other)
