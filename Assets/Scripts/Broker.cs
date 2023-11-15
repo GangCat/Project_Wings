@@ -6,11 +6,17 @@ public class Broker
 {
     public static void Regist(EPublisherType _publisherType)
     {
+        if (arrListSub[(int)_publisherType] != null)
+            return;
+
         arrListSub[(int)_publisherType] = new List<ISubscriber>();
     }
 
     public static void Subscribe(ISubscriber _sub, EPublisherType _publisherType)
     {
+        if (arrListSub[(int)_publisherType] == null)
+            Regist(_publisherType);
+
         arrListSub[(int)_publisherType].Add(_sub);
     }
 

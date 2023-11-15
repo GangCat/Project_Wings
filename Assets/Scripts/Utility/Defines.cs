@@ -20,5 +20,6 @@ public enum EMessageType
     PAUSE,
     PHASE_CHANGE,
     SHIELD_BROKEN,
+    DANGER_ALERT,
     LENGTH
 }

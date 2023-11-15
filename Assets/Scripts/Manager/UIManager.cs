@@ -9,9 +9,11 @@ public class UIManager : MonoBehaviour
         canvasBoss = GetComponentInChildren<CanvasBoss>();
         canvasPlayer = GetComponentInChildren<CanvasPlayer>();
         canvasUI = GetComponentInChildren<CanvasUI>();
+        canvasAlert = GetComponentInChildren<CanvasAlertMessage>();
         canvasBoss.Init();
         canvasPlayer.Init();
         canvasUI.Init();
+        canvasAlert.Init();
     }
 
     public void BossHpUpdate(float _ratio)
@@ -49,4 +51,5 @@ public class UIManager : MonoBehaviour
     private CanvasBoss canvasBoss = null;
     private CanvasPlayer canvasPlayer = null;
     private CanvasUI canvasUI = null;
+    private CanvasAlertMessage canvasAlert = null;
 }

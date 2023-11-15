@@ -61,6 +61,11 @@ public class BossController : MonoBehaviour, IPublisher
 
     public GameObject SitDownGo => sitDownGo;
 
+    public void DangerAlert()
+    {
+        PushMessageToBroker(EMessageType.DANGER_ALERT);
+    }
+
     public void SetBossRotationBoolean(bool _canRotation)
     {
         isBossStartRotation = _canRotation;
