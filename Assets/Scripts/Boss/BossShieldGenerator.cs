@@ -10,6 +10,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         curHp = maxHp;
 
         StartCoroutine(GenIndicatorCoroutine(_bossPos));
+        StartCoroutine(RotateCoroutine());
     }
 
     private IEnumerator GenIndicatorCoroutine(Vector3 _bossPos)
@@ -24,6 +25,17 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         GameObject indicator = Instantiate(shieldGenIndicatorPrefab, indicatorPos, Quaternion.LookRotation(_bossPos - indicatorPos));
         indicator.transform.localScale = new Vector3(15f, 15f, Vector3.Distance(indicatorPos, hit.point) * 0.5f);
         indicator.transform.parent = transform;
+    }
+
+    private IEnumerator RotateCoroutine()
+    {
+        while (true)
+        {
+            for(int i = 0; i < rotateModelTr.Length; ++i)
+                rotateModelTr[i].rotation *= Quaternion.Euler(Vector3.one * (i + 1) * 8f * Time.deltaTime);
+
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public float GetCurHp => curHp;
@@ -52,4 +64,8 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     private GameObject shieldGenIndicatorPrefab = null;
     [SerializeField]
     private LayerMask bossLayer;
+
+    [Header("InformationForRotation")]
+    [SerializeField]
+    private Transform[] rotateModelTr = null;
 }
