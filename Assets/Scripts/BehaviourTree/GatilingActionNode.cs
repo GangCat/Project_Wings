@@ -80,7 +80,7 @@ public class GatilingActionNode : ActionNode
             Quaternion targetRotation = Quaternion.LookRotation(playerDirection);
 
             // 부드럽게 회전하기 위해 Lerp 사용
-            //gatlingHolder.transform.rotation = Mathf.PingPong();
+            gatlingHolder.transform.rotation = targetRotation;
             //핑퐁써서 하기
         }
     }

@@ -146,7 +146,24 @@ public class BossController : MonoBehaviour, IPublisher
         if (curPhaseNum == 1)
         {
             shield.StopRestorShield();
+            StartCoroutine(TempBossUP());
+        }
+    }
 
+    IEnumerator TempBossUP()
+    {
+        float t = 0f;
+        float oriY = transform.position.y; // 60
+        float targetY = 430f;
+        float startTime = Time.time;
+        Vector3 oriPos = transform.position;
+        Vector3 targetPos = new Vector3(oriPos.x, targetY, oriPos.z);
+        while (t < 1)
+        {
+            t = (Time.time - startTime) / 3.5f;
+            transform.position = Vector3.Lerp(oriPos, targetPos, t);
+
+            yield return new WaitForFixedUpdate();
         }
     }
 

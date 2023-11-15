@@ -19,15 +19,23 @@ public class AirPushAcionNode : ActionNode
 
     private float curDurationTime = 0f;
     protected override void OnStart() {
-        context.airPushGo.SetActive(true);
-        curDurationTime = durationTime;
+
+        if (blackboard.curPhaseNum > 1)
+        {
+            context.airPushGo.SetActive(true);
+            curDurationTime = durationTime;
+        }
     }
 
     protected override void OnStop() {
-        context.airPushGo.SetActive(false);
+        if(blackboard.curPhaseNum > 1)
+            context.airPushGo.SetActive(false);
     }
 
     protected override State OnUpdate() {
+        if (blackboard.curPhaseNum < 2)
+            return State.Success;
+
         curDurationTime -= Time.deltaTime;
 
         if(curDurationTime <= 0)

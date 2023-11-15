@@ -10,7 +10,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         curHp = maxHp;
     }
 
-    public float GetCurHp => 1f;
+    public float GetCurHp => curHp;
 
     public void GetDamage(float _dmg)
     {
