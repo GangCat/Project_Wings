@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
     public delegate void PlayAudioDelegate(EPlayerAudio _playerAudio);
     private PlayAudioDelegate playAudioCallback = null;
-    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback, PlayAudioDelegate _playAudioCallback)
+    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback, PlayAudioDelegate _playAudioCallback, VolumeProfile _volumeProfile)
     {
         playerData = _playerData;
+        volumeProfile = _volumeProfile;
         moveCtrl = GetComponentInChildren<PlayerMovementController>();
         rotCtrl = GetComponentInChildren<PlayerRotateController>();
         animCtrl = GetComponentInChildren<PlayerAnimationController>();
@@ -24,10 +26,27 @@ public class PlayerController : MonoBehaviour
         moveCtrl.Init(playerData,_spUpdateCallback);
         rotCtrl.Init(playerData);
         animCtrl.Init();
-        colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack, playerData);
-        statHp.Init(IsDead, _hpUpdateCallback);
+        colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack, playerData, BoundaryTrigger);
+        statHp.Init(IsDead, _hpUpdateCallback, volumeProfile);
         virtualMouse.Init(playerData);
 
+    }
+
+    private void BoundaryTrigger(bool _isExit)
+    {
+        Debug.Log($"PlayerExitBoundary : {_isExit}");
+
+        if (_isExit)
+            StartCoroutine("BoundaryCoroutine");
+        else
+            StopCoroutine("BoundaryCoroutine");
+    }
+
+    private IEnumerator BoundaryCoroutine()
+    {
+        yield return new WaitForSeconds(immediateDeadDelay);
+
+        IsDead();
     }
 
     private void IsDead()
@@ -178,6 +197,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimationController animCtrl = null;
     private PlayerCollisionController colCtrl = null;
     private PlayerStatusHp statHp = null;
+    private VolumeProfile volumeProfile = null;
 
     private MeshRenderer playerMesh = null;
 
@@ -187,4 +207,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Material screenMat = null;
+    [SerializeField]
+    private float immediateDeadDelay = 10f;
 }

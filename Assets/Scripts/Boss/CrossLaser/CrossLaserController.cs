@@ -4,97 +4,36 @@ using UnityEngine;
 
 public class CrossLaserController : AttackableObject, ISubscriber
 {
-    public void Init(float _moveAccel, float _maxMoveSpeed, float _rotateAccel, float _maxRotateAccel, float _ChangeFormDistance, Transform _targetTr, float _autoDestroyTime)
+    public void Init(float _slowExpandTime, float _autoDestroyTime, float _slowExpandSpeed, float _fastExpandSpeed)
     {
-        moveAccel = _moveAccel;
-        maxMoveSpeed = _maxMoveSpeed;
-        rotateAccel = _rotateAccel;
-        maxRotateSpeed = _maxRotateAccel;
-        changeFormDistance = _ChangeFormDistance;
-        targetTr = _targetTr;
-        waitFixed = new WaitForFixedUpdate();
-        moveSpeed = 0f;
-        rotateSpeed = 0f;
-        isPhaseChange = false;
-
-        laserObject.SetActive(false);
-        sphereObject.SetActive(true);
-        Destroy(gameObject, _autoDestroyTime);
-
+        slowExpandTime = _slowExpandTime;
+        autoDestroyTime = _autoDestroyTime;
+        slowExpandSpeed = _slowExpandSpeed;
+        fastExpandSpeed = _fastExpandSpeed;
         Subscribe();
-        StartCoroutine(MoveUpdateCoroutine());
+        StartCoroutine(FixedUpdateCoroutine());
     }
 
-
-    private IEnumerator MoveUpdateCoroutine()
-    {
-        Vector3 targetDistance = Vector3.zero;
-
-        while (true)
-        {
-            targetDistance = targetTr.position - transform.position;
-            if (!isTargetInRange && Vector3.SqrMagnitude(targetDistance) < Mathf.Pow(changeFormDistance, 2f))
-            {
-                isTargetInRange = true;
-                StartCoroutine(ChangeFormCoroutine());
-            }
-
-            MoveCrossLaser();
-
-            if (isFormChange || isPathBlock())
-            {
-                yield return waitFixed;
-                if (isPhaseChange)
-                    Destroy(gameObject);
-                continue;
-            }
-
-            RotateCrossLaser(targetDistance.normalized);
-
-            yield return waitFixed;
-
-            if (isPhaseChange)
-                Destroy(gameObject);
-
-        }
-    }
-
-    private bool isPathBlock()
-    {
-        return Physics.Linecast(transform.position, transform.forward * 50f, hitLayers);
-    }
-
-    private void MoveCrossLaser()
-    {
-        moveSpeed += moveAccel * Time.deltaTime;
-        moveSpeed = Mathf.Min(moveSpeed, maxMoveSpeed);
-
-        transform.position += transform.forward * moveSpeed * Time.deltaTime;
-        Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
-    }
-
-    private void RotateCrossLaser(Vector3 _moveDir)
-    {
-        rotateSpeed += rotateAccel * Time.deltaTime;
-        rotateSpeed = Mathf.Min(rotateSpeed, maxRotateSpeed);
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_moveDir), rotateSpeed * Time.deltaTime);
-    }
-
-    private IEnumerator ChangeFormCoroutine()
+    private IEnumerator FixedUpdateCoroutine()
     {
         float startTime = Time.time;
-        laserObject.SetActive(true);
-        isFormChange = true;
-        while (Time.time - startTime <= 0.05)
+        while(Time.time - startTime < slowExpandTime)
         {
-            sphereObject.transform.localScale -= Vector3.one * 1 / 3;
-            laserObject.transform.localScale += Vector3.one * 1 / 3;
+            transform.localScale += Vector3.one * slowExpandSpeed * Time.fixedDeltaTime;
 
-            yield return waitFixed;
+            yield return waitFixedUpdate;
         }
-        sphereObject.SetActive(false);
+
+        while (Time.time - startTime < autoDestroyTime)
+        {
+            transform.localScale += Vector3.one * fastExpandSpeed * Time.fixedDeltaTime;
+
+            yield return waitFixedUpdate;
+        }
+
+        Destroy(gameObject);
     }
+
 
     private void OnTriggerEnter(Collider _other)
     {
@@ -114,28 +53,12 @@ public class CrossLaserController : AttackableObject, ISubscriber
     public void ReceiveMessage(EMessageType _message)
     {
         if (_message == EMessageType.PHASE_CHANGE)
-            isPhaseChange = true;
+            Destroy(gameObject);
     }
 
-    private WaitForFixedUpdate waitFixed = null;
-    private float moveAccel = 0f;
-    private float moveSpeed = 0f;
-    private float maxMoveSpeed = 0f;
-    private float rotateAccel = 0f;
-    private float rotateSpeed = 0f;
-    private float maxRotateSpeed = 0f;
-    private float changeFormDistance = 0f;
-    private Transform targetTr = null;
-    private bool isTargetInRange = false;
-    private bool isFormChange = false;
-    private Vector3 moveDir = Vector3.zero;
-    private bool isPhaseChange = false;
-
-
-    [SerializeField]
-    private GameObject laserObject = null;
-    [SerializeField]
-    private GameObject sphereObject = null;
-    [SerializeField]
-    private LayerMask hitLayers;
+    private WaitForFixedUpdate waitFixedUpdate = null;
+    private float slowExpandTime = 3f;
+    private float autoDestroyTime = 10f;
+    private float fastExpandSpeed = 10f;
+    private float slowExpandSpeed = 10f;
 }

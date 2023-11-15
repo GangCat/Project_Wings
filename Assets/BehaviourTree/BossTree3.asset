@@ -552,7 +552,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4b3e099d66c31b44cab967b9f880630c
-  position: {x: 3270, y: 1256}
+  position: {x: -661.00006, y: 525.0001}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -561,15 +561,12 @@ MonoBehaviour:
     isShieldDestroy: 0
   description: 
   drawGizmos: 0
-  crossLaserPrefab: {fileID: 3966714899875067037, guid: b82f45a60c292f64bbe87fa9bc387d33,
+  crossLaserPrefab: {fileID: 4640426641824608814, guid: 8a872aea205b11745b2a325c10c410bf,
     type: 3}
-  moveAccel: 300
-  maxMoveSpeed: 500
-  rotateAccel: 10
-  maxRotateAccel: 5
+  slowExpandTime: 300
   autoDestroyTime: 20
-  changeFormDistnacec: 300
-  patternFinishTime: 10
+  slowExpandSpeed: 500
+  fastExpandSpeed: 5
 --- !u!114 &-3961328576919720251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,7 +886,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: 2021632633882826617}
-  - {fileID: 3974864600644938813}
+  - {fileID: -4054882901305631100}
 --- !u!114 &-994040158755700915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,7 +989,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -2688836715856850680}
   - {fileID: -3630942497505143009}
   - {fileID: -8784311841378576911}
   - {fileID: -6734967783781693836}
@@ -1681,7 +1677,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ec636b296773ccb4f979ffd379a1bbfd
-  position: {x: -660.749, y: 526.68396}
+  position: {x: -661.00006, y: 646.6001}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2298,13 +2294,10 @@ MonoBehaviour:
   drawGizmos: 0
   crossLaserPrefab: {fileID: 3966714899875067037, guid: b82f45a60c292f64bbe87fa9bc387d33,
     type: 3}
-  moveAccel: 300
-  maxMoveSpeed: 500
-  rotateAccel: 5
-  maxRotateAccel: 5
+  slowExpandTime: 300
   autoDestroyTime: 20
-  changeFormDistnacec: 500
-  patternFinishTime: 10
+  slowExpandSpeed: 500
+  fastExpandSpeed: 5
 --- !u!114 &8266297438010400843
 MonoBehaviour:
   m_ObjectHideFlags: 0

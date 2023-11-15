@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Windows;
 
 public class PlayerManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class PlayerManager : MonoBehaviour
         playerCtrl = GetComponentInChildren<PlayerController>();
         playerData.input = input;
 
-        playerCtrl.Init(playerData, _spUpdateCallback, _hpUpdateCallback, _playAudioCallback);
+        playerCtrl.Init(playerData, _spUpdateCallback, _hpUpdateCallback, _playAudioCallback, volumeProfile);
         pmc.Init(playerData);
     }
 
@@ -24,12 +25,14 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     private PlayerData playerData = null;
+    [SerializeField]
+    private PlayerModelRotateController pmc = null;
+    [SerializeField]
+    private VolumeProfile volumeProfile = null;
 
     private PlayerController playerCtrl = null;
     private PlayerInputHandler input = null;
 
-    [SerializeField]
-    private PlayerModelRotateController pmc = null;
 
     public PlayerData PData => playerData;
 

@@ -631,9 +631,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9bd6692f0dc284daba77ab0a0f2872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
   rb: {fileID: 1437709942}
   target: {fileID: 329867274}
   explosionPrefab: {fileID: 329867274}
+  explosionRange: 0
+  explosionLayer:
+    serializedVersion: 2
+    m_Bits: 0
   speed: 15
   rotateSpeed: 95
   maxDistancePredict: 2
@@ -641,8 +646,6 @@ MonoBehaviour:
   maxTimePrediction: 5
   deviationAmount: 50
   deviationSpeed: 2
-  isPredictMove: 1
-  isAddDeviation: 1
 --- !u!65 &1437709944
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -10,13 +10,14 @@ public class PlayerCollisionController : MonoBehaviour
     private ChangeCollisionConditionDelegate collisionEnterCallback = null;
     private VoidVoidDelegate collisionExitCallback = null;
     private KnockBackDelegate knockBackCallback = null;
+    private VoidBoolDelegate boundaryCallback = null;
 
-
-    public void Init(ChangeCollisionConditionDelegate _collisionEnterCallback, VoidVoidDelegate _collisionExitCallback, KnockBackDelegate _knockBackCallback, PlayerData _playerData)
+    public void Init(ChangeCollisionConditionDelegate _collisionEnterCallback, VoidVoidDelegate _collisionExitCallback, KnockBackDelegate _knockBackCallback, PlayerData _playerData, VoidBoolDelegate _boundaryCallback)
     {
         collisionEnterCallback = _collisionEnterCallback;
         collisionExitCallback = _collisionExitCallback;
         knockBackCallback = _knockBackCallback;
+        boundaryCallback = _boundaryCallback;
         playerData = _playerData;
         oriLayer = gameObject.layer;
         waitInvincibleTime = new WaitForSeconds(invincibleTime);
@@ -39,9 +40,22 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Boundary"))
+        // 즉사 코루틴 정지
+        {
+            boundaryCallback?.Invoke(false);
+            return;
+        }
         knockBackCallback?.Invoke(other.gameObject);
 
         Invincible();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Boundary"))
+            //10초 뒤에 즉사
+            boundaryCallback(true);
     }
 
     private void Invincible()

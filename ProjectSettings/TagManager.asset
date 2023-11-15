@@ -28,6 +28,7 @@ TagManager:
   - BossShieldGenerator
   - GatlinGunMuzzle
   - AirPush
+  - Boundary
   layers:
   - Default
   - TransparentFX
