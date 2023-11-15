@@ -55,7 +55,7 @@ public class BossController : MonoBehaviour, IPublisher
     public GroupMissileMemoryPool GroupMissileMemoryPool => groupMissileMemoryPool;
     public GatlinMemoryPool GatlinMemoryPool => gatlinMemoryPool;
     public CannonRainMemoryPool CannonRainMemoryPool => cannonRainMemoryPool;
-    public Transform FootWindTr => footWindTr;
+    public Transform[] FootWindTr => arrFootWindSpawnTr;
 
     public GameObject FootWindGo => footWindGo;
 
@@ -277,7 +277,7 @@ public class BossController : MonoBehaviour, IPublisher
     [SerializeField]
     private GameObject airPush= null;
     [SerializeField]
-    private Transform footWindTr = null;
+    private Transform[] arrFootWindSpawnTr = null;
     [SerializeField]
     private GameObject footWindGo = null;
     [SerializeField]

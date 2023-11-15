@@ -19,6 +19,12 @@ public class CannonRainMemoryPool : MonoBehaviour
     {
         memoryPool.DeactivatePoolItem(_deactivateGo);
     }
+
+    public bool IsActiveItemEmpty()
+    {
+        return memoryPool.ActiveCnt < 1;
+    }
+
     private MemoryPool memoryPool;
     [SerializeField]
     private GameObject cannonRainBallPrefab = null;

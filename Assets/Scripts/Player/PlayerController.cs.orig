@@ -93,16 +93,17 @@ public class PlayerController : MonoBehaviour
         {
             knockBackAmount = 50f;
         }
-        else if (_colliderGo.CompareTag("AirPush"))
-        {
-            knockBackAmount = 1000f;
-            knockBackDir = new Vector3(transform.position.x, 0f, transform.position.z).normalized;
-            knockBackDelay = 4f;
-        }
+<<<<<<< HEAD
         else if (_colliderGo.CompareTag("Obstacle") || _colliderGo.CompareTag("Boss") || _colliderGo.CompareTag("BossBody") || _colliderGo.CompareTag("Floor"))
         {
             moveCtrl.ReduceSpeed();
             return;
+=======
+        else if (_collider.CompareTag("AirPush"))
+        {
+            knockBackAmount = 1000f;
+            knockBackDir = (transform.position - new Vector3(0, transform.position.y, 0)).normalized;
+>>>>>>> origin/geohyung02
         }
 
         playerMesh.material.SetFloat("_isDamaged", 1);

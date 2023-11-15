@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
-using UnityEngine.UIElements;
-using UnityEditor;
-using System;
-using System.Runtime.CompilerServices;
 /// <summary>
 /// 1. 플레이어가 안으로 들어올때마다 보스가 밀어내는 패턴
 /// 2. 보스 안에 일정 범위에 플레이어 있으면 발동
@@ -18,24 +14,24 @@ using System.Runtime.CompilerServices;
 /// </summary>
 public class AirPushAcionNode : ActionNode
 {
-
     [SerializeField]
     private float durationTime = 5f;
+
+    private float curDurationTime = 0f;
     protected override void OnStart() {
         context.airPushGo.SetActive(true);
+        curDurationTime = durationTime;
     }
 
     protected override void OnStop() {
-        
+        context.airPushGo.SetActive(false);
     }
 
     protected override State OnUpdate() {
-        durationTime -= Time.deltaTime;
-        if(durationTime <= 0)
-        {
-            context.airPushGo.SetActive(false);
+        curDurationTime -= Time.deltaTime;
+
+        if(curDurationTime <= 0)
             return State.Success;
-        }
         return State.Running;
     }
 }

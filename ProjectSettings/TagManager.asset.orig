@@ -6,6 +6,32 @@ TagManager:
   tags:
   - Floor
   - Boss
+  - ShakeBodyCollider
+  - WindBlow
+  - CrossLaser
+  - CannonBall
+  - GatlingGunBullet
+  - GatlingGunMuzzle
+  - Obstacle
+  - BossShield
+  - GiantHomingMissile
+  - TimeBomb
+  - BossLaser
+  - WindBlowForPattern
+  - HomingMissile
+  - BossBody
+  - LastPatternCollider
+  - HealMarble
+<<<<<<< HEAD
+  - GroupHomingMissile
+  - CannonRainBall
+  - Target
+  - BossShieldGenerator
+  - GatlinGunMuzzle
+=======
+  - AirPush
+  - InstantDeath
+>>>>>>> origin/geohyung02
   layers:
   - Default
   - TransparentFX
@@ -14,13 +40,20 @@ TagManager:
   - Water
   - UI
   - Player
-<<<<<<< HEAD
-  - BossWeakPoint
-  - 
-=======
-  - 
+  - BossShieldGenerator
   - MuseTextureLayer
->>>>>>> origin/PB
+  - BossProjectile
+  - PlayerInvincible
+  - floor
+  - BossHomingMIssile
+  - Boss
+  - Obstacle
+  - TimeBomb
+  - BossShieldBroken
+  - BossInvincible
+  - BossBody
+  - HealMarble
+  - PlayerWing
   - 
   - 
   - 
@@ -31,19 +64,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - InformationLayer
   m_SortingLayers:
   - name: Default
     uniqueID: 0

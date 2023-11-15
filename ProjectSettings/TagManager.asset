@@ -27,6 +27,7 @@ TagManager:
   - Target
   - BossShieldGenerator
   - GatlinGunMuzzle
+  - AirPush
   layers:
   - Default
   - TransparentFX
@@ -49,7 +50,7 @@ TagManager:
   - BossBody
   - HealMarble
   - PlayerWing
-  - 
+  - BossSitDownAction
   - 
   - 
   - 

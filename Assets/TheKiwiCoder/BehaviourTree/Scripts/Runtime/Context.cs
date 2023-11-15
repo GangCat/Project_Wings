@@ -29,7 +29,7 @@ namespace TheKiwiCoder {
         public GroupMissileMemoryPool groupMissileMemoryPool;
         public bool isPhaseEnd;
         public BossController bossCtrl;
-        public Transform footWindTr;
+        public Transform[] footWindTr;
         public GameObject footWindGo;
         public GameObject sitDownGo;
         // Add other game specific systems here

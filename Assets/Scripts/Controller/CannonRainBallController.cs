@@ -22,7 +22,9 @@ public class CannonRainBallController : AttackableObject, ISubscriber
         memoryPool = _memoryPool;
         waitFixedUpdate = new WaitForFixedUpdate();
         isPhaseChanged = false;
-        attackAreaPrefab = Instantiate(_attackAreaPrefab, _spawnPos, Quaternion.identity);
+        Vector3 attackAreaSpawnPos = _spawnPos;
+        attackAreaSpawnPos.y = 60f;
+        attackAreaPrefab = Instantiate(_attackAreaPrefab, attackAreaSpawnPos, Quaternion.identity);
         Subscribe();
         StartCoroutine(UpdateCoroutine());
     }
