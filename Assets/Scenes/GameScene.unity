@@ -32504,8 +32504,9 @@ MonoBehaviour:
   bossBodyEffectSize: 50
   giantEffectSize: 10
   groupEffectSize: 8
-  BallEffectSize: 30
-  RainBallEffectSize: 100
+  BallEffectSize: 25
+  RainBallEffectSize: 25
+  gatlinBulletSize: 3
 --- !u!65 &1959987142
 BoxCollider:
   m_ObjectHideFlags: 0

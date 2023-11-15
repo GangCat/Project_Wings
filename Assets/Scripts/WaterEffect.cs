@@ -16,6 +16,8 @@ public class WaterEffect : MonoBehaviour
     private float BallEffectSize = 5f;
     [SerializeField]
     private float RainBallEffectSize = 50f;
+    [SerializeField]
+    private float gatlinBulletSize = 3f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,6 +45,11 @@ public class WaterEffect : MonoBehaviour
         else if (other.CompareTag("CannonRainBall"))
         {
             Vector3 newSize = effect.transform.localScale * RainBallEffectSize;
+            effect.transform.localScale = newSize;
+        }
+        else if (other.CompareTag("GatlingGunBullet"))
+        {
+            Vector3 newSize = effect.transform.localScale * gatlinBulletSize;
             effect.transform.localScale = newSize;
         }
         Destroy(effect, 5f);
