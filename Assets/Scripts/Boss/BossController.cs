@@ -204,8 +204,8 @@ public class BossController : MonoBehaviour, IPublisher
 
         if (curPhaseNum == 0)
         {
-            InitShieldGeneratorPoint();
             shield.RespawnGenerator();
+            InitShieldGeneratorPoint();
         }
         else if (curPhaseNum == 1)
         {
@@ -246,7 +246,7 @@ public class BossController : MonoBehaviour, IPublisher
 
         foreach (GameObject go in curShieldGeneratorPoint)
         {
-            go.GetComponent<BossShieldGenerator>().Init(RemoveSheildGeneratorFromList);
+            go.GetComponent<BossShieldGenerator>().Init(RemoveSheildGeneratorFromList, transform.position);
         }
     }
 

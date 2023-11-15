@@ -34992,6 +34992,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 979299840083893319, guid: 454ccede727d7e7498ab9d8e53c9e887,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4815037372279851656, guid: 454ccede727d7e7498ab9d8e53c9e887,
         type: 3}
       propertyPath: m_CastShadows

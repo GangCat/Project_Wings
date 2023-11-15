@@ -195,6 +195,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHp: 0
   maxHp: 100
+  shieldGenIndicatorPrefab: {fileID: 6259324162897319515, guid: 962c81832fef4a14ab8001c309bff7c6,
+    type: 3}
+  bossLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!135 &2508578022077990387
 SphereCollider:
   m_ObjectHideFlags: 0
