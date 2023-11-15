@@ -46,11 +46,11 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
         {
             elapsedTimeRatio = (Time.time - startTime) / saturationTime;
 
-            colorAd.saturation.value = -80f + (elapsedTimeRatio * 130f);
+            colorAd.saturation.value = -80f + (elapsedTimeRatio * 110f);
 
             yield return null;
         }
-        colorAd.saturation.value = 50f;
+        colorAd.saturation.value = 30f;
     }
 
     public void MaxHeal()

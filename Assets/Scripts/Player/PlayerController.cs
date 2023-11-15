@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour
 {
@@ -37,13 +38,22 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"PlayerExitBoundary : {_isExit}");
 
         if (_isExit)
+        {
+            volumeProfile.TryGet(out ColorAdjustments colorAd);
+            colorAd.colorFilter.overrideState = true;
             StartCoroutine("BoundaryCoroutine");
+        }
         else
+        {
+            volumeProfile.TryGet(out ColorAdjustments colorAd);
+            colorAd.colorFilter.overrideState = false;
             StopCoroutine("BoundaryCoroutine");
+        }
     }
 
     private IEnumerator BoundaryCoroutine()
     {
+        
         yield return new WaitForSeconds(immediateDeadDelay);
 
         IsDead();
