@@ -5,6 +5,7 @@ public delegate void VoidFloatDelegate(float _value);
 public delegate void VoidIntDelegate(int _value);
 public delegate void VoidGameObjectDelegate(GameObject _go);
 public delegate void VoidBoolDelegate(bool _value);
+public delegate void PlayEffectAudioDelegate(EEffectAudio _effectAudio);
 
 public enum EPublisherType 
 { 

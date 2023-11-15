@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368801345114356334}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.1325143, z: -0, w: 0.99118114}
-  m_LocalPosition: {x: -0.108, y: 1.24, z: -0.035}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 4.9960036e-16, y: 0.39185548, z: 7.1054274e-15, w: 0.92002684}
+  m_LocalPosition: {x: -0.107999995, y: 1.2400002, z: -0.035}
+  m_LocalScale: {x: 0.85, y: 0.84999996, z: 0.85}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2829466963461887042}
-  m_LocalEulerAnglesHint: {x: 0, y: 15.23, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 46.14, z: 0}
 --- !u!2083052967 &2110042207730843832
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -50,7 +50,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.5
+        m_Name: Particle Size
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:

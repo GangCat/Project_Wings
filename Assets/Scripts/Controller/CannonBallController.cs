@@ -14,14 +14,16 @@ public class CannonBallController : AttackableObject, ISubscriber
     private WaitForFixedUpdate waitFixedUpdate = null;
     private CannonMemoryPool memoryPool = null;
     private bool isPhaseChanged = false;
+    private PlayEffectAudioDelegate audioCallback = null;
 
-    public void Init(float _speed, Vector3 _spawnPos, CannonMemoryPool _memoryPool = null)
+    public void Init(float _speed, Vector3 _spawnPos, CannonMemoryPool _memoryPool = null, PlayEffectAudioDelegate _audioCallback = null)
     {
         speed = _speed;
         transform.position = _spawnPos;
         memoryPool = _memoryPool;
         waitFixedUpdate = new WaitForFixedUpdate();
         isPhaseChanged = false;
+        audioCallback = _audioCallback;
 
         Subscribe();
         StartCoroutine(UpdateCoroutine());
@@ -60,6 +62,7 @@ public class CannonBallController : AttackableObject, ISubscriber
 
     private void OnDisable()
     {
+        audioCallback?.Invoke(EEffectAudio.CannonBallDestroy);
         Broker.UnSubscribe(this, EPublisherType.BOSS_CONTROLLER);
     }
 

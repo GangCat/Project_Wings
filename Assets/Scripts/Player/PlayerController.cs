@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback)
+    public delegate void PlayAudioDelegate(EPlayerAudio _playerAudio);
+    private PlayAudioDelegate playAudioCallback = null;
+    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback, PlayAudioDelegate _playAudioCallback)
     {
         playerData = _playerData;
         moveCtrl = GetComponentInChildren<PlayerMovementController>();
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
         playerMesh = GetComponentInChildren<MeshRenderer>();
 
         playerData.tr = transform;
+        playAudioCallback = _playAudioCallback;
 
         moveCtrl.Init(playerData,_spUpdateCallback);
         rotCtrl.Init(playerData);
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void IsDead()
     {
         Debug.Log("플레이어 사망");
+        playAudioCallback?.Invoke(EPlayerAudio.PLAYER_DEAD);
         //Time.timeScale = 0f;
     }
 
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        playAudioCallback?.Invoke(EPlayerAudio.PLAYER_HIT);
         playerMesh.material.SetFloat("_isDamaged", 1);
         StopCoroutine("ResetPlayerDamagedBollean");
         StartCoroutine("ResetPlayerDamagedBollean", knockBackDelay);

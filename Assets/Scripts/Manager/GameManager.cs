@@ -36,11 +36,11 @@ public class GameManager : MonoBehaviour, IPublisher
 
     private void InitManagers()
     {
-        //audioMng.Init();
+        audioMng.Init();
         uiMng.Init();
         camMng.Init(playerTr, playerMng.PData, ActionFinish);
         bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); }, value => { uiMng.BossShieldUpdate(value); }, () => { uiMng.RemoveBossShield(); }, GetRandomSpawnPoint, BossClear);
-        playerMng.Init(value => { uiMng.UpdateSp(value); }, value => { uiMng.UpdateHp(value); }); 
+        playerMng.Init(value => { uiMng.UpdateSp(value); }, value => { uiMng.UpdateHp(value); }, audioMng.PlayPlayerAudio); 
         obstacleMng.Init();
     }
 

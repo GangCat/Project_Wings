@@ -5,13 +5,13 @@ using UnityEngine.Windows;
 
 public class PlayerManager : MonoBehaviour
 {
-    public void Init(VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback)
+    public void Init(VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback, PlayerController.PlayAudioDelegate _playAudioCallback)
     {
         input = GetComponent<PlayerInputHandler>();
         playerCtrl = GetComponentInChildren<PlayerController>();
         playerData.input = input;
 
-        playerCtrl.Init(playerData, _spUpdateCallback, _hpUpdateCallback);
+        playerCtrl.Init(playerData, _spUpdateCallback, _hpUpdateCallback, _playAudioCallback);
         pmc.Init(playerData);
     }
 

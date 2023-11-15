@@ -16,8 +16,8 @@ public enum EPlayerAudio
 {
     NONE = -1,
     PLAYER_FIRST,
-    PLAYER_SECOND,
-    PLAYER_THIRD
+    PLAYER_HIT,
+    PLAYER_DEAD
 }
 
 public enum EBackgroundAudio
@@ -34,7 +34,7 @@ public enum EEffectAudio
     NONE = -1,
     EFFECT_FIRST,
     EFFECT_SECOND,
-    EFFECT_THIRD
+    CannonBallDestroy
 }
 
 public class AudioManager : MonoBehaviour
