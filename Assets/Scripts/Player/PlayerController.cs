@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
         playerMesh = GetComponentInChildren<MeshRenderer>();
 
+        camShake = CameraShake.Instance;
+
         playerData.tr = transform;
         playAudioCallback = _playAudioCallback;
 
@@ -214,6 +216,7 @@ public class PlayerController : MonoBehaviour
     private VirtualMouse virtualMouse = null;
 
     private PlayerData playerData = null;
+    private CameraShake camShake = null;
 
     [SerializeField]
     private Material screenMat = null;

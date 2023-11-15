@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -15,6 +16,8 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
         deadCallback = _deadCallback;
         hpUpdateCallback = _hpUpdateCallback;
         volumeProfile = _globalVolume;
+        volumeProfile.TryGet(out colorAd);
+        colorAd.saturation.value = 30f;
     }
 
     public float GetCurHp => curHp;
@@ -25,6 +28,8 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
             return;
 
         curHp -= _dmg;
+
+        CameraShake.Instance.ShakeCamera(1f, 3f);
 
         StartCoroutine("SaturationCoroutine");
 
@@ -39,8 +44,6 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
     {
         float startTime = Time.time;
         float elapsedTimeRatio = 0f;
-        ColorAdjustments colorAd;
-        volumeProfile.TryGet(out colorAd);
 
         while (elapsedTimeRatio < 1)
         {
@@ -61,6 +64,7 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
     private VoidVoidDelegate deadCallback = null;
     private VoidFloatDelegate hpUpdateCallback = null;
     private VolumeProfile volumeProfile = null;
+    private ColorAdjustments colorAd;
     [SerializeField]
     private float saturationTime = 2f;
 }
