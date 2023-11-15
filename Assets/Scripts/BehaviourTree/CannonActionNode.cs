@@ -57,6 +57,7 @@ public class CannonActionNode : ActionNode
             if (Time.time - lastAttackTime > term)
             {
                 Destroy(Instantiate(attackAreaPrefab, new Vector3(rndAttackPos.x,60f,rndAttackPos.z), Quaternion.identity), 6f);
+                
                 for (int i=0; i < cannonBallCnt; ++i)
                 {
                     Vector2 rnd2 = Random.insideUnitCircle * radious;

@@ -889,6 +889,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: 2021632633882826617}
+  - {fileID: 3974864600644938813}
 --- !u!114 &-994040158755700915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,6 +992,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
+  - {fileID: -2688836715856850680}
   - {fileID: -3630942497505143009}
   - {fileID: -8784311841378576911}
   - {fileID: -6734967783781693836}
@@ -1152,6 +1154,7 @@ MonoBehaviour:
   - {fileID: 2021632633882826617}
   - {fileID: 337930231209408144}
   - {fileID: 2252517665493931189}
+  - {fileID: 3974864600644938813}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1663,6 +1666,41 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   range: 700
+--- !u!114 &3974864600644938813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a935efe2abc5bcc4192b5d8faf9a0a1a, type: 3}
+  m_Name: CannonRainActionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ec636b296773ccb4f979ffd379a1bbfd
+  position: {x: -660.749, y: 526.68396}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+    isShieldDestroy: 0
+  description: 
+  drawGizmos: 0
+  bossOffSet: 300
+  mapRadious: {x: 1500, y: 1500}
+  attackMinHeight: 10000
+  attackMaxHeight: 15000
+  cannonBallCnt: 20
+  cannonBallPrefab: {fileID: 8582983355367289449, guid: 8fe2ba31306cd094b80f92e68b37bb36,
+    type: 3}
+  cannonBallSpeed: 2000
+  attackAreaPrefab: {fileID: 9014645002717474501, guid: 3aa6b741342f001459c4ff4187343e3d,
+    type: 3}
+  patternFinishTime: 10
 --- !u!114 &4114987902543601734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1991,7 +2029,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: af63c3e958be1014799d56d076546007
-  position: {x: 680.99994, y: 1177.251}
+  position: {x: 682.3208, y: 1229.2642}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2313,7 +2351,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 51a5755b15126724c8d377cd59ba51b3
-  position: {x: 1707, y: 1165}
+  position: {x: 1701.1165, y: 1161.7583}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
