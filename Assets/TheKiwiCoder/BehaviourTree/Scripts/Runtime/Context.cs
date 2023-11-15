@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,7 @@ namespace TheKiwiCoder {
         public GameObject gameObject;
         public GameObject gatlingHolderGo;
         public GameObject gatlingHeadGo;
+        public GameObject airPushGo;
         public Transform transform;
         public Transform playerTr;
         public Transform gunMuzzleTr;
@@ -27,6 +29,9 @@ namespace TheKiwiCoder {
         public GroupMissileMemoryPool groupMissileMemoryPool;
         public bool isPhaseEnd;
         public BossController bossCtrl;
+        public Transform footWindTr;
+        public GameObject footWindGo;
+        public GameObject sitDownGo;
         // Add other game specific systems here
 
         public static Context CreateFromGameObject(
@@ -55,6 +60,10 @@ namespace TheKiwiCoder {
             context.cannonMemoryPool = _bossCtrl.CannonMemoryPool;
             context.gatlinMemoryPool = _bossCtrl.GatlinMemoryPool;
             context.groupMissileMemoryPool = _bossCtrl.GroupMissileMemoryPool;
+            context.airPushGo = _bossCtrl.AirPush;
+            context.footWindTr = _bossCtrl.FootWindTr;
+            context.footWindGo = _bossCtrl.FootWindGo;
+            context.sitDownGo = _bossCtrl.SitDownGo;
             // Add whatever else you need here...
 
             return context;

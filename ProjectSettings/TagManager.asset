@@ -23,6 +23,8 @@ TagManager:
   - BossBody
   - LastPatternCollider
   - HealMarble
+  - AirPush
+  - InstantDeath
   layers:
   - Default
   - TransparentFX

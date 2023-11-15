@@ -121,6 +121,11 @@ public class PlayerController : MonoBehaviour
         {
             knockBackAmount = 50f;
         }
+        else if (_collider.CompareTag("AirPush"))
+        {
+            knockBackAmount = 1000f;
+            knockBackDir = (transform.position - new Vector3(0, transform.position.y, 0)).normalized;
+        }
 
         playerMesh.material.SetFloat("_isDamaged", 1);
         StopCoroutine("ResetPlayerDamagedBollean");
