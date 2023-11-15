@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
         statHp = GetComponentInChildren<PlayerStatusHp>();
         virtualMouse = GetComponentInChildren<VirtualMouse>();
 
+
         playerMesh = GetComponentInChildren<MeshRenderer>();
 
         playerData.tr = transform;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
         animCtrl.Init();
         colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack, playerData);
         statHp.Init(IsDead, _hpUpdateCallback);
+        missileCamCtrl.Init(gameObject.transform);
         virtualMouse.Init(playerData);
 
     }
@@ -173,6 +175,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimationController animCtrl = null;
     private PlayerCollisionController colCtrl = null;
     private PlayerStatusHp statHp = null;
+    private PlayerMissileCam missileCamCtrl = null;
 
     private MeshRenderer playerMesh = null;
 
