@@ -49,12 +49,17 @@ public class BossController : MonoBehaviour, IPublisher
     public BossShieldGeneratorSpawnPoint[] CurSpawnPoints => arrCurShieldGeneratorSpawnPoints;
     public GameObject GatlingHolder => gatlingHolderGo;
     public GameObject GatlingHead => gatlingHeadGo;
+    public GameObject AirPush => airPush;
     public Transform GunMuzzle => gunMuzzleTr;
     public CannonMemoryPool CannonMemoryPool => cannonMemoryPool;
     public GroupMissileMemoryPool GroupMissileMemoryPool => groupMissileMemoryPool;
     public GatlinMemoryPool GatlinMemoryPool => gatlinMemoryPool;
     public CannonRainMemoryPool CannonRainMemoryPool => cannonRainMemoryPool;
+    public Transform FootWindTr => footWindTr;
 
+    public GameObject FootWindGo => footWindGo;
+
+    public GameObject SitDownGo => sitDownGo;
 
     public void SetBossRotationBoolean(bool _canRotation)
     {
@@ -269,6 +274,14 @@ public class BossController : MonoBehaviour, IPublisher
     private GatlinMemoryPool gatlinMemoryPool = null;
     [SerializeField]
     private GroupMissileMemoryPool groupMissileMemoryPool = null;
+    [SerializeField]
+    private GameObject airPush= null;
+    [SerializeField]
+    private Transform footWindTr = null;
+    [SerializeField]
+    private GameObject footWindGo = null;
+    [SerializeField]
+    private GameObject sitDownGo = null;
 
     [Header("-InformationForBossController")]
     [SerializeField]
