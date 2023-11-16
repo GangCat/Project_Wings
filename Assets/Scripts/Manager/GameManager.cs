@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour, IPublisher
         camMng = FindFirstObjectByType<CameraManager>();
         playerMng = FindFirstObjectByType<PlayerManager>();
         obstacleMng = FindFirstObjectByType<ObstacleManager>();
-       // pauseMng = FindFirstObjectByType<PauseManager>();
+        pauseMng = FindFirstObjectByType<PauseManager>();
     }
 
     private void InitManagers()
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour, IPublisher
         bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); }, value => { uiMng.BossShieldUpdate(value); }, () => { uiMng.RemoveBossShield(); }, GetRandomSpawnPoint, BossClear);
         playerMng.Init(value => { uiMng.UpdateSp(value); }, value => { uiMng.UpdateHp(value); }, audioMng.PlayPlayerAudio); 
         obstacleMng.Init();
+        pauseMng.Init(value => { uiMng.SetPauseManger(value); }); 
     }
 
     public void CameraAction(int _curPhaseNum)

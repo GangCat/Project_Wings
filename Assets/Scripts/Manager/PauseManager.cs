@@ -6,6 +6,12 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour
 {
     private bool isPaused = false;
+    private VoidBoolDelegate OnPauseCallback;
+    public void Init(VoidBoolDelegate _OnPauseDelegate)
+    {
+        OnPauseCallback = _OnPauseDelegate;
+        OnPauseCallback?.Invoke(false);
+    }
 
     private void Update()
     {
@@ -22,12 +28,12 @@ public class PauseManager : MonoBehaviour
         if (isPaused)
         {
             PauseGame();
-            //일시정지 메뉴창 띄우는 코드넣는 자리
+            OnPauseCallback?.Invoke(true);
         }
         else
         {
             ResumeGame();
-            //메뉴챵 끄는 코드 넣는 자리
+            OnPauseCallback?.Invoke(false);
         }
     }
 
