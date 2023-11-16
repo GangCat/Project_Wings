@@ -117,7 +117,7 @@ Material:
     - RefractionSpeed: 0.1
     - RefractionStrength: 0.61
     - Smoothness: 0.85
-    - WaveSpeed: 1
+    - WaveSpeed: 10
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0

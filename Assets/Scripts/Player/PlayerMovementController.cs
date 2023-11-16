@@ -121,8 +121,6 @@ public class PlayerMovementController : MonoBehaviour
             playerVelocity = moveSpeed * playerTr.forward;
 
 
-
-
         if (isCollision)
         {
             float angle = Vector3.Angle(playerVelocity, coli.contacts[0].normal);
@@ -479,7 +477,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private Transform oriCamParent = null;
 
-
     private Transform playerTr = null;
     private PlayerData playerData = null;
 
@@ -488,7 +485,7 @@ public class PlayerMovementController : MonoBehaviour
     private float cameraMinSpeed = 80f;
     private float cameraMaxSpeed = 120f;
     private float cameraminFOV = 70f;
-    private float cameramaxFOV = 90f;
+    private float cameramaxFOV = 110f;
 
     private VoidIntDelegate spUpdateDelegate = null;
 
