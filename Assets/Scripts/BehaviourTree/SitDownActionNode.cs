@@ -19,7 +19,6 @@ public class SitDownActionNode : ActionNode
 
     protected override void OnStop()
     {
-        context.anim.BossStandUp();
         context.sitDownGo.SetActive(false);
         // 보스 기계음 정지
     }
@@ -29,8 +28,12 @@ public class SitDownActionNode : ActionNode
         curDurationtime -= Time.deltaTime;
 
         if (curDurationtime <= 0)
+        {
+            context.anim.BossStandUp();
             return State.Success;
+        }
 
         return State.Running;
     }
+
 }

@@ -175,6 +175,8 @@ public class BossController : MonoBehaviour, IPublisher
 
             yield return new WaitForFixedUpdate();
         }
+
+        animCtrl.BossStandUp();
     }
 
     public void PatternStart()

@@ -15,7 +15,6 @@ public class TimeBombPatternController : MonoBehaviour
         bossRotationCallback = _bossRotationCallback;
         reloadCannonCallback = _reloadCannonCallback;
         targetTr = _targetTr;
-        windBlowHolder = GetComponentInChildren<WindBlowHolder>();
 
         windBlowHolder.Init();
         arrBombGo = new GameObject[4];
@@ -211,6 +210,8 @@ public class TimeBombPatternController : MonoBehaviour
     private GameObject windBlowCylinderPrefab = null;
     [SerializeField]
     private float startDelay = 10f;
+    [SerializeField]
+    private WindBlowHolder windBlowHolder = null;
 
     private GameObject[] arrBombGo = null;
     private VoidVoidDelegate patternFinishCallback = null;
@@ -218,7 +219,6 @@ public class TimeBombPatternController : MonoBehaviour
     private VoidVoidDelegate reloadCannonCallback = null;
     private WaitForFixedUpdate waitFixedTime = null;
     private Transform targetTr = null;
-    private WindBlowHolder windBlowHolder = null;
 
     private float curLaserLength = 0f;
 }
