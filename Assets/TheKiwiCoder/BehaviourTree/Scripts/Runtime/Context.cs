@@ -21,7 +21,7 @@ namespace TheKiwiCoder {
         public Transform giantHomingMissileSpawnTr;
         public Rigidbody physics;
         public BossCollider bossCollider;
-        public AnimationControllerBase anim;
+        public BossAnimationController anim;
         public GroupHomingMissileSpawnPos[] arrGroupHomingMissileSpawnPos;
         public CannonRainMemoryPool cannonRainMemoryPool;
         public CannonMemoryPool cannonMemoryPool;
@@ -51,7 +51,7 @@ namespace TheKiwiCoder {
             context.gatlingHolderGo = _bossCtrl.GatlingHolder;
             context.gatlingHeadGo = _bossCtrl.GatlingHead;
             context.gunMuzzleTr = _bossCtrl.GunMuzzle;
-            context.anim = null;
+            context.anim = _bossCtrl.BossAnim;
             context.isPhaseEnd = false;
             context.giantHomingMissileSpawnTr = _giantHomingMissileSpawnTr;
             context.arrGroupHomingMissileSpawnPos = _arrGroupHomingMissileSpawnPos;

@@ -19,7 +19,7 @@ public class ShakeBodySlowRotationActionNode : ActionNode
     private Rigidbody bossRb = null;
 
     protected override void OnStart() {
-        bossTr = context.transform;
+        bossTr = context.bossCtrl.RotateTr;
         bossRb = context.physics;
         //bossRb.maxAngularVelocity = maxRotSpeed * Mathf.Rad2Deg;
         curRotationDegree = bossTr.rotation.eulerAngles.y;

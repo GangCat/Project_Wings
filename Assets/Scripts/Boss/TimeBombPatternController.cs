@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class TimeBombPatternController : MonoBehaviour
 {
-    public void Init(VoidVoidDelegate _patternFinishDelegate, VoidBoolDelegate _bossRotationCallback, Transform _targetTr)
+    public void Init(
+        VoidVoidDelegate _patternFinishDelegate, 
+        VoidBoolDelegate _bossRotationCallback, 
+        VoidVoidDelegate _reloadCannonCallback,
+        Transform _targetTr)
     {
         patternFinishCallback = _patternFinishDelegate;
         bossRotationCallback = _bossRotationCallback;
+        reloadCannonCallback = _reloadCannonCallback;
         targetTr = _targetTr;
         windBlowHolder = GetComponentInChildren<WindBlowHolder>();
 
@@ -71,6 +76,7 @@ public class TimeBombPatternController : MonoBehaviour
                 arrBombGo[bombIdx] = bombGo;
                 ++bombIdx;
                 spawnTime = Time.time;
+                reloadCannonCallback?.Invoke();
             }
 
             yield return waitFixedTime;
@@ -209,6 +215,7 @@ public class TimeBombPatternController : MonoBehaviour
     private GameObject[] arrBombGo = null;
     private VoidVoidDelegate patternFinishCallback = null;
     private VoidBoolDelegate bossRotationCallback = null;
+    private VoidVoidDelegate reloadCannonCallback = null;
     private WaitForFixedUpdate waitFixedTime = null;
     private Transform targetTr = null;
     private WindBlowHolder windBlowHolder = null;

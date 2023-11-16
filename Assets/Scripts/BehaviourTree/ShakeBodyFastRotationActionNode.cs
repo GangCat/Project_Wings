@@ -27,7 +27,7 @@ public class ShakeBodyFastRotationActionNode : ActionNode
     private Rigidbody bossRb = null;
 
     protected override void OnStart() {
-        bossTr = context.transform;
+        bossTr = context.bossCtrl.RotateTr;
         curRotationAngle = bossTr.rotation.eulerAngles.y;
         bossRb = context.physics;
         windAttackInit();

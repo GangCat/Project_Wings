@@ -26,7 +26,7 @@ public class BossController : MonoBehaviour, IPublisher
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
         shield.Init(RestorShieldFinish, _shieldUpdateCallback, _removeShieldCallback);
         lastPatternCtrl.Init(_bossClearCalblack);
-        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, _playerTr);
+        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, ()=> { animCtrl.ReloadTimeBomb(); }, _playerTr);
         RegisterBroker();
         InitMemoryPools();
 
@@ -56,10 +56,10 @@ public class BossController : MonoBehaviour, IPublisher
     public GatlinMemoryPool GatlinMemoryPool => gatlinMemoryPool;
     public CannonRainMemoryPool CannonRainMemoryPool => cannonRainMemoryPool;
     public Transform[] FootWindTr => arrFootWindSpawnTr;
-
+    public BossAnimationController BossAnim => animCtrl;
     public GameObject FootWindGo => footWindGo;
-
     public GameObject SitDownGo => sitDownGo;
+    public Transform RotateTr => rotateBody.transform;
 
     public void DangerAlert()
     {
@@ -131,9 +131,9 @@ public class BossController : MonoBehaviour, IPublisher
         // 방향 벡터를 사용하여 보스를 회전시킵니다.
         // 플레이어와의 거리 계산 > 가까울수록 소리 증폭 > 보스 회전하는 소리 추가
         if (curPhaseNum >= 2)
-            transform.localRotation *= Quaternion.Euler(new Vector3(0f, autoRotateDegree * Time.deltaTime, 0f));
+            rotateBody.transform.localRotation *= Quaternion.Euler(new Vector3(0f, autoRotateDegree * Time.deltaTime, 0f));
         else if (directionToPlayer != Vector3.zero)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
+            rotateBody.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
 
     }
 
@@ -323,6 +323,8 @@ public class BossController : MonoBehaviour, IPublisher
     private GameObject[] coreGo = null;
     [SerializeField]
     private float autoRotateDegree = 30f;
+    [SerializeField]
+    private GameObject rotateBody = null;
 
 
     private Transform playerTr = null;

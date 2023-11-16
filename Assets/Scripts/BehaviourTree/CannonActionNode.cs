@@ -34,6 +34,7 @@ public class CannonActionNode : ActionNode
     private Vector2 rnd1;
 
     protected override void OnStart() {
+        context.anim.OpenRedzoneCannon();
         startTime = Time.time;
         lastAttackTime = 0;
 
@@ -41,6 +42,7 @@ public class CannonActionNode : ActionNode
     }
 
     protected override void OnStop() {
+        context.anim.CloseRedzoneCannon();
     }
 
     protected override State OnUpdate() {

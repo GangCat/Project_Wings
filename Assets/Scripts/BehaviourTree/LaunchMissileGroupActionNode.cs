@@ -32,6 +32,7 @@ public class LaunchMissileGroupActionNode : ActionNode
         missileSpawnIdx = 0;
         playerTr = context.playerTr;
         memoryPool = context.groupMissileMemoryPool;
+        context.anim.OpenMissileDoor();
 
         SpawnMissile();
     }
@@ -74,6 +75,9 @@ public class LaunchMissileGroupActionNode : ActionNode
         ++missileSpawnIdx;
 
         if (missileSpawnIdx >= 8)
+        {
+            context.anim.CloseMissileDoor();
             isSpawnFinish = true;
+        }
     }
 }

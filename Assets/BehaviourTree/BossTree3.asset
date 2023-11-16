@@ -792,7 +792,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e526b4cc0e8575246bab0e11f1d80584
-  position: {x: 700.52246, y: 974.9226}
+  position: {x: 701, y: 973}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1536,7 +1536,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 977840c85b1671e4fae8560c66a1f535
-  position: {x: 553.3225, y: 974.9226}
+  position: {x: 551, y: 973}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2025,7 +2025,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: af63c3e958be1014799d56d076546007
-  position: {x: 683.7226, y: 1230.1227}
+  position: {x: 683.00006, y: 1229.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2036,8 +2036,8 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveSpeed: 302
-  rotateSpeed_Degree: 150
+  moveSpeed: 300
+  rotateSpeed_Degree: 80
 --- !u!114 &6871036271617449570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2265,8 +2265,8 @@ MonoBehaviour:
   drawGizmos: 0
   missilePrefab: {fileID: 6519272339437649605, guid: a206188b9df11604cb460e77e58be909,
     type: 3}
-  moveSpeed: 302
-  rotateSpeed_Degree: 150
+  moveSpeed: 300
+  rotateSpeed_Degree: 80
   spawnRate: 1
 --- !u!114 &8191662739534080280
 MonoBehaviour:

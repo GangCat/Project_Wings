@@ -74,6 +74,12 @@ public class BossAnimationController : MonoBehaviour
         bossAnims[(int)EBossAnimator.Redzone_Cannon].SetTrigger("doClose");
     }
 
+    public void OpenBigMissileDoor()
+    {
+        bossAnims[(int)EBossAnimator.Big_Missile_Door].SetTrigger("doOpen");
+    }
+
+
     [SerializeField]
     private Animator[] bossAnims = null;
 }

@@ -33,6 +33,8 @@ public class CannonRainActionNode : ActionNode
     {
         startTime = Time.time;
 
+        context.anim.OpenRadar();
+
         for (int i = 0; i < cannonBallCnt; ++i)
         {
             rnd1.x = Random.Range(-1.0f, 1.0f) * bossOffSet;
@@ -50,7 +52,7 @@ public class CannonRainActionNode : ActionNode
 
     protected override void OnStop()
     {
-
+        context.anim.CloseRadar();
     }
 
     protected override State OnUpdate()

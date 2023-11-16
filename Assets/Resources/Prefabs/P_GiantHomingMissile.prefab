@@ -109,8 +109,8 @@ MonoBehaviour:
     m_Bits: 8384
   speed: 15
   rotateSpeed: 95
-  maxDistancePredict: 1
-  minDistancePredict: 0
+  maxDistancePredict: 5
+  minDistancePredict: 0.1
   maxTimePrediction: 0.1
   deviationAmount: 50
   deviationSpeed: 2
