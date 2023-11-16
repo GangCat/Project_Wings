@@ -117,8 +117,8 @@ public class CameraMovement : MonoBehaviour
 
     private void FreeLock()
     {
-        cameraYaw += Input.GetAxis("Mouse X") * 300f * Time.deltaTime;
-        cameraPitch -= Input.GetAxis("Mouse Y") * 300f * Time.deltaTime;
+        cameraYaw += Input.GetAxis("Mouse X") * freeLockSensitive * Time.deltaTime;
+        cameraPitch -= Input.GetAxis("Mouse Y") * freeLockSensitive * Time.deltaTime;
 
         // 카메라 Pitch 각도를 제한
         //cameraPitch = Mathf.Clamp(cameraPitch, pitchMinMax.x, pitchMinMax.y);
@@ -148,6 +148,8 @@ public class CameraMovement : MonoBehaviour
 
     public float offset = 0f;
     public float upOffset = 3f;
+
+    public float freeLockSensitive = 300f;
 
     private Vector3 currentRotation = Vector3.zero;
     private Vector3 desiredRotation = Vector3.zero;
