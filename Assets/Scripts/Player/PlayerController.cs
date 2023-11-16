@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         rotCtrl.Init(playerData);
         animCtrl.Init();
         colCtrl.Init(ChangeCollisionCondition, ChangeCollisionCondition, KnockBack, playerData, BoundaryTrigger);
-        statHp.Init(IsDead, _hpUpdateCallback, volumeProfile);
+        statHp.Init(IsDead, _hpUpdateCallback, volumeProfile, colCtrl.Invincible);
         missileCamCtrl.Init();
         virtualMouse.Init(playerData);
 

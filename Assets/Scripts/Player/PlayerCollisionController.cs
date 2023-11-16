@@ -61,7 +61,7 @@ public class PlayerCollisionController : MonoBehaviour
             boundaryCallback(true);
     }
 
-    private void Invincible()
+    public void Invincible()
     {
         gameObject.layer = LayerMask.NameToLayer(playerInvincibleLayer);
         StopCoroutine("FinishInvincible");

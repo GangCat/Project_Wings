@@ -36,7 +36,6 @@ namespace TheKiwiCoder {
 
         public static Context CreateFromGameObject(
             Transform _playerTr, 
-            AnimationControllerBase _anim, 
             BossCollider _bossCollider, 
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
@@ -52,7 +51,7 @@ namespace TheKiwiCoder {
             context.gatlingHolderGo = _bossCtrl.GatlingHolder;
             context.gatlingHeadGo = _bossCtrl.GatlingHead;
             context.gunMuzzleTr = _bossCtrl.GunMuzzle;
-            context.anim = _anim;
+            context.anim = null;
             context.isPhaseEnd = false;
             context.giantHomingMissileSpawnTr = _giantHomingMissileSpawnTr;
             context.arrGroupHomingMissileSpawnPos = _arrGroupHomingMissileSpawnPos;

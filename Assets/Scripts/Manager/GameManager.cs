@@ -88,7 +88,17 @@ public class GameManager : MonoBehaviour, IPublisher
             bossMng.GameStart();
         else if (Input.GetKeyDown(jumpToNextPatternKeyCode))
             bossMng.JumpToNextPattern();
-            
+
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            bac.OpenMissileDoor();
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            bac.CloseMissileDoor();
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            bac.OpenBodyUnder();
+
+
     }
 
     [SerializeField]
@@ -108,4 +118,7 @@ public class GameManager : MonoBehaviour, IPublisher
     private ObstacleManager obstacleMng = null;
     private PauseManager pauseMng = null;
     private MarbleManager marbleMng = null;
+
+    public BossAnimationController bac;
+
 }

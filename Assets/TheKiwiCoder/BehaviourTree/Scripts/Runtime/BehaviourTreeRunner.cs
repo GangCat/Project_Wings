@@ -9,13 +9,12 @@ namespace TheKiwiCoder
         // Start is called before the first frame update
         public void Init(
             Transform _playerTr, 
-            BossAnimationController _anim, 
             BossCollider _bossCollider, 
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
             BossController _bossCtrl)
         {
-            context = CreateBehaviourTreeContext(_playerTr, _anim, _bossCollider, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _bossCtrl);
+            context = CreateBehaviourTreeContext(_playerTr, _bossCollider, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _bossCtrl);
             tree = tree.Clone();
             tree.Bind(context);
             tree.blackboard.isPhaseEnd = false;
@@ -48,13 +47,12 @@ namespace TheKiwiCoder
 
         Context CreateBehaviourTreeContext(
             Transform _playerTr, 
-            BossAnimationController _anim, 
             BossCollider _bossCollider, 
             Transform _giantHomingMissileSpawnTr,
             GroupHomingMissileSpawnPos[] _arrGroupHomingMissileSpawnPos,
             BossController _bossCtrl)
         {
-            return Context.CreateFromGameObject(_playerTr, _anim, _bossCollider, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _bossCtrl);
+            return Context.CreateFromGameObject(_playerTr, _bossCollider, _giantHomingMissileSpawnTr, _arrGroupHomingMissileSpawnPos, _bossCtrl);
         }
 
         private void OnDrawGizmosSelected()

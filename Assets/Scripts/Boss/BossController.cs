@@ -31,7 +31,7 @@ public class BossController : MonoBehaviour, IPublisher
         InitMemoryPools();
 
         myRunner = GetComponent<BehaviourTreeRunner>();
-        myRunner.Init(_playerTr, animCtrl, bossCollider, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos, this);
+        myRunner.Init(_playerTr, bossCollider, giantHomingMissileSpawnTr, arrGroupHomingMissileSpawnPos, this);
 
         curShieldGeneratorPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();

@@ -6,7 +6,6 @@ public class LastPatternController : MonoBehaviour
 { 
     public void Init(VoidVoidDelegate _patternFinishCallback)
     {
-        lastPatternCollider = GetComponentInChildren<LastPatternCollider>();
         lastPatternCollider.Init(_patternFinishCallback);
     }
 
@@ -16,6 +15,6 @@ public class LastPatternController : MonoBehaviour
     }
 
 
-
+    [SerializeField]
     private LastPatternCollider lastPatternCollider = null;
 }

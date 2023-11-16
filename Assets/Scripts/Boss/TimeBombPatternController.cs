@@ -89,10 +89,15 @@ public class TimeBombPatternController : MonoBehaviour
 
         while (laserCount < 4)
         {
-            if (Time.time - laserStartTime > laserDelay)
+            if (Time.time - laserStartTime > laserDelay - 1f)
             {
                 bossRotationCallback?.Invoke(false);
-                laserGo = LaunchLaser();
+                Quaternion laserRotation = CalcLaserRotation();
+
+                while (Time.time - laserStartTime < laserDelay)
+                    yield return waitFixedTime;
+
+                laserGo = LaunchLaser(laserRotation);
                 ++laserCount;
             }
 
@@ -132,13 +137,10 @@ public class TimeBombPatternController : MonoBehaviour
         FinishPattern();
     }
 
-    private GameObject LaunchLaser()
+    private GameObject LaunchLaser(Quaternion _laserRotation)
     {
-        float angleToPlayer = Mathf.Asin((targetTr.position.y - laserLaunchTr.position.y) / Vector3.Distance(laserLaunchTr.position, targetTr.position));
-        angleToPlayer = Mathf.Clamp(angleToPlayer * Mathf.Rad2Deg, -launchAngleLimit, launchAngleLimit);
-        Quaternion newRotation = Quaternion.Euler(Vector3.left * angleToPlayer);
 
-        GameObject laserGo = Instantiate(laserPrefab, laserLaunchTr.position, laserLaunchTr.rotation * newRotation);
+        GameObject laserGo = Instantiate(laserPrefab, laserLaunchTr.position, laserLaunchTr.rotation * _laserRotation);
         laserGo.GetComponent<LaserController>().Init(laserDuration, laserLengthPerSec,
             _value =>
         {
@@ -153,6 +155,13 @@ public class TimeBombPatternController : MonoBehaviour
 
         Destroy(laserGo, laserDuration);
         return laserGo;
+    }
+
+    private Quaternion CalcLaserRotation()
+    {
+        float angleToPlayer = Mathf.Asin((targetTr.position.y - laserLaunchTr.position.y) / Vector3.Distance(laserLaunchTr.position, targetTr.position));
+        angleToPlayer = Mathf.Clamp(angleToPlayer * Mathf.Rad2Deg, -launchAngleLimit, launchAngleLimit);
+        return Quaternion.Euler(Vector3.left * angleToPlayer);
     }
 
 

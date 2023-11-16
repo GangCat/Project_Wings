@@ -10,12 +10,13 @@ using UnityEngine.Rendering.Universal;
 /// </summary>
 public class PlayerStatusHp : StatusHp, IPlayerDamageable
 {
-    public void Init(VoidVoidDelegate _deadCallback, VoidFloatDelegate _hpUpdateCallback, VolumeProfile _globalVolume)
+    public void Init(VoidVoidDelegate _deadCallback, VoidFloatDelegate _hpUpdateCallback, VolumeProfile _globalVolume, VoidVoidDelegate _invincibleCallback)
     {
         curHp = maxHp;
         deadCallback = _deadCallback;
         hpUpdateCallback = _hpUpdateCallback;
         volumeProfile = _globalVolume;
+        invincibleCallback = _invincibleCallback;
         volumeProfile.TryGet(out colorAd);
         colorAd.saturation.value = 30f;
     }
@@ -26,6 +27,8 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
     {
         if (gameObject.layer.Equals(LayerMask.NameToLayer("PlayerInvincible")))
             return;
+
+        invincibleCallback?.Invoke();
 
         curHp -= _dmg;
 
@@ -65,6 +68,8 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
     private VoidFloatDelegate hpUpdateCallback = null;
     private VolumeProfile volumeProfile = null;
     private ColorAdjustments colorAd;
+    private VoidVoidDelegate invincibleCallback = null;
+
     [SerializeField]
     private float saturationTime = 2f;
 }

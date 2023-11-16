@@ -131,6 +131,11 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
             isBodyTrigger = false;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Explosion();
+    }
+
     public void GetDamage(float _dmg)
     {
         Explosion();
