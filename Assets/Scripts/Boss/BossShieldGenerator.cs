@@ -15,6 +15,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
 
     private IEnumerator GenIndicatorCoroutine(Vector3 _bossPos)
     {
+        //플레이어와의 거리계산 > 가까울수록 소리 증폭 > 낮은 진동소리 발생 
         Vector3 indicatorPos = transform.position;
         indicatorPos.y += 35f;
         RaycastHit hit;
@@ -44,12 +45,13 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     {
         if (curHp < 0)
             return;
-
+        //플레이어와의 거리 계산 > 가까울수록 소리 크게 > 긴 진동 소리 발생
         curHp -= _dmg;
 
         if (curHp < 0)
         {
             destroyCallback?.Invoke(gameObject);
+            //쉴드 재생기 파괴되는소리 재생
             Destroy(gameObject);
         }
     }

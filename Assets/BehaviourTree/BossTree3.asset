@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d668820401dbce64d90f6faad36f88e3
-  position: {x: 33, y: 637}
+  position: {x: 34.12252, y: 638.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 432c800be9f6f104b9c2e642fdf9de3a
-  position: {x: 1557, y: 1165}
+  position: {x: 1558.1226, y: 1166.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b6078a8ea6b0678439d66670557fc758
-  position: {x: -1189.2574, y: 780}
+  position: {x: -1188.2775, y: 781.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a06dc81f4ebf9574e92e4559cba09852
-  position: {x: 1106, y: 637}
+  position: {x: 1107.7225, y: 638.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0017d1c3ad1dfdc4c874ce79b6cb358e
-  position: {x: 33.000187, y: 501}
+  position: {x: 34.12252, y: 502.12256}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0ad5dd1d47386674c817af05efa69579
-  position: {x: 699, y: 637}
+  position: {x: 700.52246, y: 638.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6e432a4c9f0c43d43b502c2e5b65cd97
-  position: {x: -328, y: 1184}
+  position: {x: -326.6775, y: 1185.3225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 45dc2d070a6c6e24085c7cb096217d22
-  position: {x: 308, y: 637}
+  position: {x: 309.32263, y: 638.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 11ad1928565f99c499dfe4d6e94358e7
-  position: {x: 275.31, y: 392.99603}
+  position: {x: 276.52255, y: 394.12256}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5615cef58512e1c4ea59d37e78122220
-  position: {x: 2773, y: 1354}
+  position: {x: 2774.1226, y: 1354.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1de11659f2ab5204e821e1497e94437c
-  position: {x: 1795, y: 758}
+  position: {x: 1796.5227, y: 758.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e45aa594bc6bfeb4982d425187b776de
-  position: {x: 1106, y: 824}
+  position: {x: 1107.7225, y: 825.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 958237faa024f1847b026216a52f4b05
-  position: {x: 246.31006, y: 500.996}
+  position: {x: 247.72258, y: 502.12256}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ef5380999ef5fb847a30308be212449d
-  position: {x: -1264.2574, y: 1056}
+  position: {x: -1262.6775, y: 1057.3226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e3162a5072f2c9d45b5ceebf1ebbf89b
-  position: {x: -1562.4674, y: 1056}
+  position: {x: -1561.0775, y: 1057.3226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -471,7 +471,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: eb6caf9c04c64b54489f7942cabc6832
-  position: {x: 3120, y: 1121}
+  position: {x: 3121.3228, y: 1122.1226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -498,7 +498,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f8f05494b1fb3fb448a2508b03871e51
-  position: {x: -422, y: 501.00003}
+  position: {x: -420.27744, y: 502.12256}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3504b42bbed75c242badc323efa56cc9
-  position: {x: -1487.4674, y: 912}
+  position: {x: -1485.8774, y: 913.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -582,7 +582,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 484b985cd8bb3ac4e907781fa776e27e
-  position: {x: 1373, y: 1354}
+  position: {x: 1374.1228, y: 1354.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -608,7 +608,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c93426dfd7354f647be0f003a736e075
-  position: {x: 1556, y: 974}
+  position: {x: 1557.3226, y: 974.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -636,7 +636,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 41e424d5a24eac54b93aaaeda8989dc1
-  position: {x: 1706, y: 1354}
+  position: {x: 1707.7228, y: 1354.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -662,7 +662,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e64ba17db06cf6a45b43cfe64c36d436
-  position: {x: -422.00003, y: 393}
+  position: {x: -420.27744, y: 394.12256}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -689,7 +689,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c5e047faa5ebd2d4db53482a7bcae293
-  position: {x: 1795, y: 637}
+  position: {x: 1796.5227, y: 638.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -716,7 +716,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3b6acb76305aab54ebe6683a7845a405
-  position: {x: -1487.4674, y: 780.00006}
+  position: {x: -1485.8774, y: 781.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -743,7 +743,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: eb8c0b277d54b7646937fd1a16e932a4
-  position: {x: 160, y: 972}
+  position: {x: 161.3225, y: 973.3225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -768,7 +768,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d39c84b972a365d4cb0efbb4c94f5918
-  position: {x: -1502.42, y: 637}
+  position: {x: -1501.0775, y: 638.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -792,7 +792,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e526b4cc0e8575246bab0e11f1d80584
-  position: {x: 699, y: 974}
+  position: {x: 700.52246, y: 974.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -848,7 +848,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 67e12d99acb41a744b261a2cd66c9e33
-  position: {x: 1532, y: 1354}
+  position: {x: 1533.3228, y: 1354.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -902,7 +902,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e27a830fefef7df4c8cae68df7d17ab8
-  position: {x: -145.00002, y: 1183.6777}
+  position: {x: -143.47746, y: 1184.5226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: dd115b554d2f2264783ed78c6bffaa41
-  position: {x: -215.13254, y: 780}
+  position: {x: -213.87747, y: 781.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -979,7 +979,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 21e7984bab466754093b4844c6164419
-  position: {x: -25.600098, y: 146.71997}
+  position: {x: -24.27751, y: 147.7225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e058ee7a701487543bbba7f289e12f91
-  position: {x: 309.99997, y: 971.9999}
+  position: {x: 311.72256, y: 973.3225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6b33e672795d0ba4c910c20dfae4cb66
-  position: {x: 2242, y: 1141}
+  position: {x: 2243.723, y: 1142.1228}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1199,7 +1199,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: da9c959e04b9aa745b3363dec149a7a9
-  position: {x: 2092, y: 1141}
+  position: {x: 2093.3228, y: 1142.1228}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1224,7 +1224,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 263b82ce9c685b5418c2980bbf0b50d5
-  position: {x: 1887, y: 1141}
+  position: {x: 1888.5225, y: 1142.1228}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 50c38d1a65ba1134382ec9e6d1dd144e
-  position: {x: 1347, y: 1165}
+  position: {x: 1348.5225, y: 1166.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1276,7 +1276,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4de0973ae547a8c4a849641c3252a346
-  position: {x: 699, y: 824}
+  position: {x: 700.52246, y: 825.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b87c524bccf17f948bd771e232331934
-  position: {x: -1783.4674, y: 780.00006}
+  position: {x: -1781.8774, y: 781.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 54b7283d7e96e994e838736c47bcbebb
-  position: {x: 4.7999663, y: 821.9885}
+  position: {x: 6.1224737, y: 822.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2f05f287039c44c469a2cdbb457f2473
-  position: {x: -963.4674, y: 1056}
+  position: {x: -961.8775, y: 1057.3226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 33ac117dc82b85143b837fd8dcbf1b63
-  position: {x: 2589, y: 1175}
+  position: {x: 2590.1226, y: 1175.7225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1459,7 +1459,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9bfb50657511eff40946fe0a10ead54f
-  position: {x: 1106, y: 972}
+  position: {x: 1107.7225, y: 973.3225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1484,7 +1484,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 68834bc568e562745b4edc94c377baa9
-  position: {x: -840.46735, y: 912}
+  position: {x: -839.4775, y: 913.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1511,7 +1511,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 82743604a5eb9e246b12a9409a71f167
-  position: {x: 2739, y: 1175}
+  position: {x: 2740.5225, y: 1175.7225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1536,7 +1536,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 977840c85b1671e4fae8560c66a1f535
-  position: {x: 552, y: 974}
+  position: {x: 553.3225, y: 974.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1561,7 +1561,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 38c1dbfc88a709040b5f811d597186a3
-  position: {x: -840.46735, y: 780.00006}
+  position: {x: -839.4775, y: 781.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 54efcb9e402424f409e078d269f8ae44
-  position: {x: -1783.4674, y: 912}
+  position: {x: -1781.8774, y: 913.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6c1f494de66f6504c945205e4f7b4d63
-  position: {x: 3420, y: 1256}
+  position: {x: 3421.3225, y: 1257.3225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1652,7 +1652,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 19dd5a3c094e56d49840556e44e64c38
-  position: {x: 2439, y: 1175}
+  position: {x: 2440.5225, y: 1175.7225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 128d478ba36e0c941baa72e03c615683
-  position: {x: -1862.4674, y: 1056}
+  position: {x: -1861.0775, y: 1057.3226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1762,7 +1762,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e335242dde037ad4cb014930726676de
-  position: {x: 2332, y: 1354}
+  position: {x: 2333.3225, y: 1354.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 972c3b887bbd4cc47b0fe326de45671b
-  position: {x: 2589, y: 976}
+  position: {x: 2590.1226, y: 977.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1817,7 +1817,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 58266a377bb69da4892aca7aa34d0601
-  position: {x: -816, y: 1056}
+  position: {x: -814.6775, y: 1057.3226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1846,7 +1846,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 98b90d94569af4c45af77f74e008cfa7
-  position: {x: -25.600098, y: 5.919983}
+  position: {x: -24.27751, y: 6.9225106}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1873,7 +1873,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 36981391b53d9fb4d8deaf4e32e437ea
-  position: {x: 2092, y: 974}
+  position: {x: 2093.3228, y: 974.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b8402ff37c911bf44bc17b71b4078d1d
-  position: {x: -365.0001, y: 912.00006}
+  position: {x: -363.47745, y: 913.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1926,7 +1926,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f080f486fc517fd4aa9b16a4120ebff1
-  position: {x: -215, y: 1041}
+  position: {x: -213.87747, y: 1042.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1953,7 +1953,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a47bfd33d39be8d408b0f312ee97e1d0
-  position: {x: -1113.9998, y: 1056}
+  position: {x: -1112.2775, y: 1057.3226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1988,7 +1988,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 925768e2f49d95b41a51fa97e01759b8
-  position: {x: -1413.9998, y: 1056}
+  position: {x: -1412.2775, y: 1057.3226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2025,7 +2025,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: af63c3e958be1014799d56d076546007
-  position: {x: 682.3208, y: 1229.2642}
+  position: {x: 683.7226, y: 1230.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2053,7 +2053,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4a863bf72c2bfff4aa5e2f796a113fc3
-  position: {x: -1188.9999, y: 911.9999}
+  position: {x: -1187.4775, y: 913.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2080,7 +2080,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 84addfb7f5b157142bd01f6ba70b9c80
-  position: {x: 3120, y: 1256}
+  position: {x: 3121.3228, y: 1257.3225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2114,7 +2114,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c3deaecef4f9f7c418342a7c7ab709f0
-  position: {x: -1712, y: 1056}
+  position: {x: -1710.6775, y: 1057.3226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2148,7 +2148,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 854ee4ba16070fb4ab81d4f93b1462d0
-  position: {x: 956.0002, y: 972.0001}
+  position: {x: 957.3225, y: 973.3225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2173,7 +2173,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: cc5ae9abc2b7f664987e3e2cfb47be60
-  position: {x: 3120, y: 976}
+  position: {x: 3121.3228, y: 977.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2200,7 +2200,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3e7d5e52b8e1de6439160968793ea450
-  position: {x: -215, y: 912}
+  position: {x: -213.87747, y: 913.32263}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2227,7 +2227,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: db43a344593cb5f4991217841bb0267f
-  position: {x: 310.40002, y: 821.6871}
+  position: {x: 311.72256, y: 822.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2254,7 +2254,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 99f2d88d4b702194c8809794671f48ba
-  position: {x: 486, y: 1177}
+  position: {x: 487.72266, y: 1178.1227}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2313,7 +2313,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 589a5d3feddbe9146bcd95a9734120d9
-  position: {x: 2554, y: 1354}
+  position: {x: 2555.7224, y: 1354.9226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 51a5755b15126724c8d377cd59ba51b3
-  position: {x: 1701.1165, y: 1161.7583}
+  position: {x: 1702.1228, y: 1162.9225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2369,7 +2369,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3af9c4a51ae432b4e9c7c4df56cfafa3
-  position: {x: 3270, y: 1121}
+  position: {x: 3271.723, y: 1122.1226}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2394,7 +2394,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 636369a1f3f13e140a092dca5139e783
-  position: {x: -422.00003, y: 637}
+  position: {x: -422.31305, y: 637.60004}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0

@@ -44,6 +44,7 @@ public class CannonRainActionNode : ActionNode
             Vector3 spawnPositionWithHeight = rndAttackPos + new Vector3(0, Random.Range(attackMinHeight, attackMaxHeight), 0);
             GameObject bullet = context.cannonRainMemoryPool.ActivateCannonBall();
             bullet.GetComponent<CannonRainBallController>().Init(cannonBallSpeed, spawnPositionWithHeight, context.cannonRainMemoryPool, attackAreaPrefab);
+            //플레이어와의 거리 계산 > 가까울 수록 볼륨은 커진다 > 캐논을 발사하는 소리
         }
     }
 

@@ -60,6 +60,7 @@ public class CannonActionNode : ActionNode
                 
                 for (int i=0; i < cannonBallCnt; ++i)
                 {
+                    //플레이어와의 거리계산 > 가까울 수록 소리 증폭 > 폭탄 발사 소리 재생
                     Vector2 rnd2 = Random.insideUnitCircle * radious;
                     Vector3 spawnPositionWithHeight = rndAttackPos + new Vector3(rnd2.x, Random.Range(attackMinHeight, attackMaxHeight), rnd2.y);
                     GameObject cannonBall = context.cannonMemoryPool.ActivateCannonBall();

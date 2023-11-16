@@ -23,6 +23,7 @@ public class AirPushAcionNode : ActionNode
         if (blackboard.curPhaseNum > 1)
         {
             context.airPushGo.SetActive(true);
+            //플레이어와 airPushGo와의 거리 계산 > 가까울수록 볼륨 커짐 > 바람이 고막을 때리는 소리
             curDurationTime = durationTime;
         }
     }
@@ -30,6 +31,7 @@ public class AirPushAcionNode : ActionNode
     protected override void OnStop() {
         if(blackboard.curPhaseNum > 1)
             context.airPushGo.SetActive(false);
+        //바람이 고막을 때리는 소리 끄기
     }
 
     protected override State OnUpdate() {

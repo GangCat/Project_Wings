@@ -29,6 +29,7 @@ public class CannonRainBallController : AttackableObject, ISubscriber
         StartCoroutine(UpdateCoroutine());
     }
 
+    
     private IEnumerator UpdateCoroutine()
     {
         while (true)
@@ -50,6 +51,7 @@ public class CannonRainBallController : AttackableObject, ISubscriber
                 memoryPool.DeactivateCannonBall(gameObject);
                 Destroy(attackAreaPrefab);
             }
+            //캐논이 떨어지면서 생기는 바람 소리, 플레이어와의 거리 계산, 가까울 수록 볼륨은 커진다.
         }
     }
 
@@ -58,6 +60,8 @@ public class CannonRainBallController : AttackableObject, ISubscriber
         if (AttackDmg(_other))
         {
             memoryPool.DeactivateCannonBall(gameObject);
+            // 물과의 충돌일 경우 > 캐논이 물에서 폭발하는 소리재생
+            // 물을 제외한 모든 콜라이더일 경우 > 플레이어와의 거리 계산 > 가까울 수록 볼륨은 커진다 > 캐논이 폭발하는 소리 재생
             Destroy(attackAreaPrefab);
         }
     }

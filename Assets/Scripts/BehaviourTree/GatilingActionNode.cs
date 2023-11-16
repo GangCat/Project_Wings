@@ -52,15 +52,18 @@ public class GatilingActionNode : ActionNode
         {
             RotateTurretToPlayer();
             RotateTurretHeadToPlayer();
+            // 플레이어와의 거리계산 > 가까울수록 큼 > 게틀린건 회전하는 기어 혹은 기계음 소리
         }
         else
         {
             RotateTurretHeadRandom();
+            // 플레이어와의 거리계산 > 가까울수록 큼 > 게틀린건 회전하는 기어 혹은 기계음 소리
         }
 
         if (CanFire())
         {
             FireBullet();
+            //플레이어와의 거리계산 > 가까울수록 큼 > 총알 발사하는 소리재생
         }
 
         if (blackboard.isPhaseEnd)
