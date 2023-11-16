@@ -48,8 +48,11 @@ public class BulletController : AttackableObject, ISubscriber
 
         if (_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
             DeactivateBullet();
-        else if(AttackDmg(_other))
+        else
+        {
+            AttackDmg(_other);
             DeactivateBullet();
+        }
 
         // 플레이어에 피격, 물에 피격, 그외의 물체 피격 조건 검사 > 물 혹은 그외의 물체일 경우 거리 계산 후 소리 증폭 > 알맞는 소리 삽입
     }

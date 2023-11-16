@@ -23,8 +23,8 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     private Vector3 standardPrediction, deviatedPrediction;
 
     [Header("DEVIATION")]
-    [SerializeField] private float deviationAmount = 50;
-    [SerializeField] private float deviationSpeed = 2;
+    [SerializeField] private float deviationAmount = 0;
+    [SerializeField] private float deviationSpeed = 0;
 
     private bool isPhaseChanged = false;
     private bool isShieldBreak = false;
@@ -56,8 +56,8 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         else
             isFirstTrigger = true;
 
-        deviationAmount = UnityEngine.Random.Range(5f, 20f);
-        deviationSpeed = UnityEngine.Random.Range(0.1f, 1f);
+        //deviationAmount = UnityEngine.Random.Range(5f, 20f);
+        //deviationSpeed = UnityEngine.Random.Range(0.1f, 1f);
 
         Subscribe();
         StartCoroutine("FixedUpdateCoroutine");
@@ -74,11 +74,11 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
                 yield break;
             }
 
-            dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (target.transform.position - transform.position).normalized), -1f, 1f);
-            normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
-            mappedValue = 1f - normalizedAngle;
+            //dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (target.transform.position - transform.position).normalized), -1f, 1f);
+            //normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
+            //mappedValue = 1f - normalizedAngle;
 
-            speed = oriSpeed * (mappedValue * 0.5f + 0.5f);
+            //speed = oriSpeed * (mappedValue * 0.5f + 0.5f);
 
             rb.velocity = transform.forward * speed;
 

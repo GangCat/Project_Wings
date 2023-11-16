@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 5
-  speed: 350
+  speed: 1300
 --- !u!1 &7620544338611520829
 GameObject:
   m_ObjectHideFlags: 0

@@ -218,11 +218,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8384
   speed: 300
-  rotateSpeed: 150
-  maxDistancePredict: 1
-  minDistancePredict: 0
+  rotateSpeed: 200
+  maxDistancePredict: 5
+  minDistancePredict: 0.1
   maxTimePrediction: 0.1
-  deviationAmount: 10
+  deviationAmount: 50
   deviationSpeed: 2
 --- !u!1 &7620544338611520829
 GameObject:
