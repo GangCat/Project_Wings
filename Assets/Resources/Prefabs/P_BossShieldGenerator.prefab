@@ -205,6 +205,10 @@ MonoBehaviour:
   - {fileID: 426631774162260529}
   - {fileID: 7805349772369339984}
   - {fileID: 4474505051335628673}
+  ringGo:
+  - {fileID: 8196639960065424751}
+  - {fileID: 4147591124226904337}
+  - {fileID: 8772676096663125211}
 --- !u!135 &2508578022077990387
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -336,6 +340,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7495896413970699143}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4147591124226904337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3347878535258537322, guid: eb6aec627868018468c69903ecdf4bd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7495896413970699143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4474505051335628673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3017863984870849530, guid: eb6aec627868018468c69903ecdf4bd2,
@@ -351,6 +361,18 @@ Transform:
 --- !u!4 &8037939552576631916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb6aec627868018468c69903ecdf4bd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7495896413970699143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8196639960065424751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7366034597972168984, guid: eb6aec627868018468c69903ecdf4bd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7495896413970699143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8772676096663125211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1276779827138096988, guid: eb6aec627868018468c69903ecdf4bd2,
     type: 3}
   m_PrefabInstance: {fileID: 7495896413970699143}
   m_PrefabAsset: {fileID: 0}

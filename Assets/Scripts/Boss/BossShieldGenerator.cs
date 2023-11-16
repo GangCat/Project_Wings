@@ -15,7 +15,6 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
 
     private IEnumerator GenIndicatorCoroutine(Vector3 _bossPos)
     {
-        //플레이어와의 거리계산 > 가까울수록 소리 증폭 > 낮은 진동소리 발생 
         Vector3 indicatorPos = transform.position;
         indicatorPos.y += 35f;
         RaycastHit hit;
@@ -39,14 +38,16 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         }
     }
 
+
     public float GetCurHp => curHp;
 
     public void GetDamage(float _dmg)
     {
         if (curHp < 0)
             return;
-        //플레이어와의 거리 계산 > 가까울수록 소리 크게 > 긴 진동 소리 발생
         curHp -= _dmg;
+
+        BreakRing();
 
         if (curHp < 0)
         {
@@ -54,6 +55,19 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
             //쉴드 재생기 파괴되는소리 재생
             Destroy(gameObject);
         }
+    }
+
+    private void BreakRing()
+    {
+
+        if (curHp < maxHp * 0.7f)
+            ringGo[0].SetActive(false);
+
+        if (curHp < maxHp * 0.4f)
+            ringGo[1].SetActive(false);
+
+        if (curHp < maxHp * 0.1f)
+            ringGo[2].SetActive(false);
     }
 
     private VoidGameObjectDelegate destroyCallback = null;
@@ -70,4 +84,6 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     [Header("InformationForRotation")]
     [SerializeField]
     private Transform[] rotateModelTr = null;
+    [SerializeField]
+    private GameObject[] ringGo = null;
 }
