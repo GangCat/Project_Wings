@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour, IPublisher
         camMng = FindFirstObjectByType<CameraManager>();
         playerMng = FindFirstObjectByType<PlayerManager>();
         obstacleMng = FindFirstObjectByType<ObstacleManager>();
+        marbleMng = FindFirstObjectByType<MarbleManager>();
        // pauseMng = FindFirstObjectByType<PauseManager>();
     }
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour, IPublisher
         bossMng.Init(playerTr, CameraAction, value => { uiMng.BossHpUpdate(value); }, value => { uiMng.BossShieldUpdate(value); }, () => { uiMng.RemoveBossShield(); }, GetRandomSpawnPoint, BossClear);
         playerMng.Init(value => { uiMng.UpdateSp(value); }, value => { uiMng.UpdateHp(value); }, audioMng.PlayPlayerAudio); 
         obstacleMng.Init();
+        marbleMng.Init();
     }
 
     public void CameraAction(int _curPhaseNum)
@@ -104,4 +106,5 @@ public class GameManager : MonoBehaviour, IPublisher
     private PlayerManager playerMng = null;
     private ObstacleManager obstacleMng = null;
     private PauseManager pauseMng = null;
+    private MarbleManager marbleMng = null;
 }

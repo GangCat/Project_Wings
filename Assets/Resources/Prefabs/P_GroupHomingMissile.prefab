@@ -217,8 +217,8 @@ MonoBehaviour:
   explosionLayer:
     serializedVersion: 2
     m_Bits: 8384
-  speed: 400
-  rotateSpeed: 95
+  speed: 300
+  rotateSpeed: 150
   maxDistancePredict: 1
   minDistancePredict: 0
   maxTimePrediction: 0.1

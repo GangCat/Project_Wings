@@ -41,6 +41,8 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("HealMarble"))
+            return;
         if (other.CompareTag("Boundary"))
         // 즉사 코루틴 정지
         {

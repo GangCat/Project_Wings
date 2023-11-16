@@ -2036,7 +2036,7 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveSpeed: 300
+  moveSpeed: 302
   rotateSpeed_Degree: 150
 --- !u!114 &6871036271617449570
 MonoBehaviour:
@@ -2254,7 +2254,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 99f2d88d4b702194c8809794671f48ba
-  position: {x: 487.72266, y: 1178.1227}
+  position: {x: 489.00006, y: 1230.0001}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -2265,7 +2265,7 @@ MonoBehaviour:
   drawGizmos: 0
   missilePrefab: {fileID: 6519272339437649605, guid: a206188b9df11604cb460e77e58be909,
     type: 3}
-  moveSpeed: 300
+  moveSpeed: 302
   rotateSpeed_Degree: 150
   spawnRate: 1
 --- !u!114 &8191662739534080280

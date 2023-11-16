@@ -79,17 +79,17 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPlayerAudio(EPlayerAudio _playerAudio)
     {
-        arrAudioPlayer[(int)EAudioPlayer.PLAYER_AUDIO].PlayAudio(_playerAudio);
+        //arrAudioPlayer[(int)EAudioPlayer.PLAYER_AUDIO].PlayAudio(_playerAudio);
     }
 
     public void PlayBackgroundAudio(EBackgroundAudio _backgroundAudio)
     {
-        arrAudioPlayer[(int)EAudioPlayer.BACKGROUND_AUDIO].PlayAudio(_backgroundAudio);
+        //arrAudioPlayer[(int)EAudioPlayer.BACKGROUND_AUDIO].PlayAudio(_backgroundAudio);
     }
 
     public void PlayEffectAudio(EEffectAudio _effectAudio)
     {
-        arrAudioPlayer[(int)EAudioPlayer.EFFECT_AUDIO].PlayAudio(_effectAudio);
+        //arrAudioPlayer[(int)EAudioPlayer.EFFECT_AUDIO].PlayAudio(_effectAudio);
     }
 
     public void SetBGMVolume(float _bgmVolume)

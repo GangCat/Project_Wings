@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
@@ -31,18 +32,21 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     private bool isExplosed = false;
     private GroupMissileMemoryPool groupMissileMemoryPool = null;
 
+    float dotProduct = 0f;
+    float normalizedAngle = 0f;
+    float mappedValue = 0f;
+    private float oriSpeed = 0f;
 
     public float GetCurHp => throw new NotImplementedException();
 
-    public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
+    public void Init(GameObject _target, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
     {
         target = _target;
-        speed = _speed;
-        rotateSpeed = _rotateSpeed;
         groupMissileMemoryPool = _groupMissileMemoryPool;
         transform.position = _spawnPos;
         transform.rotation = _spawnRot;
 
+        oriSpeed = speed;
         isPhaseChanged = false;
         isBodyTrigger = true;
         isExplosed = false;
@@ -69,6 +73,12 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
                 groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
                 yield break;
             }
+
+            dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (target.transform.position - transform.position).normalized), -1f, 1f);
+            normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
+            mappedValue = 1f - normalizedAngle;
+
+            speed = oriSpeed * (mappedValue * 0.5f + 0.5f);
 
             rb.velocity = transform.forward * speed;
 
@@ -105,6 +115,8 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 
         var rotation = Quaternion.LookRotation(heading);
         rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.deltaTime));
+
+
     }
 
     private void OnTriggerEnter(Collider _other)

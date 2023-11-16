@@ -373,7 +373,7 @@ public class PlayerMovementController : MonoBehaviour
                 DecreaseStamina(1);
                 isDash = true;
                 SpeedEffect.Play();
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(1f);
                 SpeedEffect.Stop();
                 isDash = false;
             }

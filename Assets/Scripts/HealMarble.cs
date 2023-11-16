@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class HealMarble : MonoBehaviour
 {
+    public void SetActive(bool _isActive)
+    {
+        gameObject.SetActive(_isActive);
+    }
+
     private void OnTriggerEnter(Collider _other)
     {
-        if (_other.CompareTag("Player"))
-            _other.GetComponent<StatusHp>().HealHp(healAmount);
+        if (_other.TryGetComponent<PlayerStatusHp>(out var component))
+        {
+            component.HealHp(healAmount);
+            gameObject.SetActive(false);
+        }
+    }
+
+    public bool IsActive()
+    {
+        return gameObject.activeSelf;
     }
 
     [SerializeField]
