@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public void Init()
+    public void Init(VoidVoidDelegate _resumeCallback)
     {
         canvasBoss = GetComponentInChildren<CanvasBoss>();
         canvasPlayer = GetComponentInChildren<CanvasPlayer>();
@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
         canvasPlayer.Init();
         canvasUI.Init();
         canvasAlert.Init();
-        canvasPause.Init();
+        canvasPause.Init(_resumeCallback);
     }
 
     public void BossHpUpdate(float _ratio)
