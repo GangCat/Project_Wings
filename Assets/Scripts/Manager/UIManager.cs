@@ -10,10 +10,12 @@ public class UIManager : MonoBehaviour
         canvasPlayer = GetComponentInChildren<CanvasPlayer>();
         canvasUI = GetComponentInChildren<CanvasUI>();
         canvasAlert = GetComponentInChildren<CanvasAlertMessage>();
+        canvasPause = GetComponentInChildren<CanvasPauseMenu>();
         canvasBoss.Init();
         canvasPlayer.Init();
         canvasUI.Init();
         canvasAlert.Init();
+        canvasPause.Init();
     }
 
     public void BossHpUpdate(float _ratio)
@@ -47,9 +49,14 @@ public class UIManager : MonoBehaviour
         canvasUI.GameClear();
         //canvasInformation.GameClear();
     }
+    public void SetPauseManger(bool _bool)
+    {
+        canvasPause.SetPauseMenu(_bool);
+    }
 
     private CanvasBoss canvasBoss = null;
     private CanvasPlayer canvasPlayer = null;
     private CanvasUI canvasUI = null;
     private CanvasAlertMessage canvasAlert = null;
+    private CanvasPauseMenu canvasPause = null;
 }

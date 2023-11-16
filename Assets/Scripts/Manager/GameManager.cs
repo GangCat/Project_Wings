@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour, IPublisher
         playerMng = FindFirstObjectByType<PlayerManager>();
         obstacleMng = FindFirstObjectByType<ObstacleManager>();
         marbleMng = FindFirstObjectByType<MarbleManager>();
-       // pauseMng = FindFirstObjectByType<PauseManager>();
+        pauseMng = FindFirstObjectByType<PauseManager>();
     }
 
     private void InitManagers()
@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour, IPublisher
         playerMng.Init(value => { uiMng.UpdateSp(value); }, value => { uiMng.UpdateHp(value); }, audioMng.PlayPlayerAudio); 
         obstacleMng.Init();
         marbleMng.Init();
+        pauseMng.Init(value => { uiMng.SetPauseManger(value); }); 
     }
 
     public void CameraAction(int _curPhaseNum)
