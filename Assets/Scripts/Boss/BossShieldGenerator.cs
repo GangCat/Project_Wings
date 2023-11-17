@@ -33,7 +33,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         while (true)
         {
             for(int i = 0; i < rotateModelTr.Length; ++i)
-                rotateModelTr[i].rotation *= Quaternion.Euler(Vector3.one * (i + 1) * 8f * Time.deltaTime);
+                rotateModelTr[i].rotation *= Quaternion.Euler(Vector3.one * (i + 1) * rotateSpeed * Time.deltaTime);
 
             yield return new WaitForFixedUpdate();
         }
@@ -89,4 +89,6 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     private Transform[] rotateModelTr = null;
     [SerializeField]
     private GameObject[] ringGo = null;
+    [SerializeField]
+    private float rotateSpeed = 20f;
 }

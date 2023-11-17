@@ -106,13 +106,13 @@ MonoBehaviour:
   explosionLayer:
     serializedVersion: 2
     m_Bits: 8384
-  speed: 150
+  speed: 300
   rotateSpeed: 200
-  maxDistancePredict: 10
-  minDistancePredict: 0.5
-  maxTimePrediction: 0.5
-  deviationAmount: 5
-  deviationSpeed: 0.2
+  maxDistancePredict: 5
+  minDistancePredict: 0.25
+  maxTimePrediction: 0.25
+  deviationAmount: 2.5
+  deviationSpeed: 0.1
 --- !u!1 &7497792970494708919
 GameObject:
   m_ObjectHideFlags: 0

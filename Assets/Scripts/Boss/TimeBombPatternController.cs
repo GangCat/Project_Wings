@@ -90,6 +90,8 @@ public class TimeBombPatternController : MonoBehaviour
         GameObject laserGo = null;
         Debug.Log("StartLaserCharge");
         //레이저 기모으는 사운드 재생(루프)
+
+
         for(int i = 0; i < arrBombGo.Length; ++i)
             arrBombGo[i].GetComponent<TimeBomb>().StartTimer((i + 1) * 12);
 
