@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TimeBombPatternController : MonoBehaviour
 {
@@ -88,11 +89,13 @@ public class TimeBombPatternController : MonoBehaviour
         float laserStartTime = Time.time;
         int laserCount = 0;
         GameObject laserGo = null;
+        GameObject ChargeGo = null;
         Debug.Log("StartLaserCharge");
+        ChargeGo = ChargeLaser();
         //레이저 기모으는 사운드 재생(루프)
 
 
-        for(int i = 0; i < arrBombGo.Length; ++i)
+        for (int i = 0; i < arrBombGo.Length; ++i)
             arrBombGo[i].GetComponent<TimeBomb>().StartTimer((i + 1) * 12);
 
         while (true)
@@ -120,6 +123,7 @@ public class TimeBombPatternController : MonoBehaviour
 
                 //레이저 기모으는 사운드 재생(루프)
                 Debug.Log("StartLaserCharge");
+                ChargeGo = ChargeLaser();
                 laserStartTime = Time.time;
                 bossRotationCallback?.Invoke(true);
             }
@@ -170,6 +174,18 @@ public class TimeBombPatternController : MonoBehaviour
         return laserGo;
     }
 
+    private GameObject ChargeLaser()
+    {
+        GameObject laserGo = Instantiate(laserChargePrefab, laserLaunchTr.position+ laserLaunchTr.forward*5f, laserLaunchTr.rotation,transform);
+        VisualEffect vfx = laserChargePrefab.GetComponent<VisualEffect>();
+        vfx.SetFloat("Duration", laserDelay);
+        float decreaseChargeDuration = laserDelay - 2f;
+        vfx.SetFloat("ChargeDuration", decreaseChargeDuration);
+        vfx.Reinit();
+        Destroy(laserGo, laserDelay); //지속시간 10초 라는 뜻인데 따로 패턴 변수가 없는거같음.
+        return laserGo;
+    }
+
     private Quaternion CalcLaserRotation()
     {
         float angleToPlayer = Mathf.Asin((targetTr.position.y - laserLaunchTr.position.y) / Vector3.Distance(laserLaunchTr.position, targetTr.position));
@@ -198,6 +214,8 @@ public class TimeBombPatternController : MonoBehaviour
     [Header("-Laser")]
     [SerializeField]
     private GameObject laserPrefab = null;
+    [SerializeField]
+    private GameObject laserChargePrefab = null;
     [SerializeField]
     private Transform laserLaunchTr = null;
     [SerializeField]

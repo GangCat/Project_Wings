@@ -20878,6 +20878,8 @@ MonoBehaviour:
   explosionTime: 50
   laserPrefab: {fileID: 8151265587540947119, guid: 569b216cc8c7ddb4a862708fefbb2f4e,
     type: 3}
+  laserChargePrefab: {fileID: 2491813132510051092, guid: d6d32f8c199a37d498842f3d0c23cf12,
+    type: 3}
   laserLaunchTr: {fileID: 381053478}
   laserDelay: 10
   laserDuration: 2
