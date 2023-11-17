@@ -23940,10 +23940,11 @@ MonoBehaviour:
   posSmoothZ: 100
   rotSmoothX: 0.1
   rotSmoothY: 0.05
-  rotSmoothZ: 0.1
+  rotSmoothZ: 15
   offset: 10
   upOffset: 3
   freeLockSensitive: 300
+  rotCamreaZ: 10
 --- !u!114 &1381941530
 MonoBehaviour:
   m_ObjectHideFlags: 0
