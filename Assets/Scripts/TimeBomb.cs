@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class TimeBomb : MonoBehaviour
 {
-    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, float _explosionTime, Transform _targetTr, Color _color)
+    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, Transform _targetTr, Color _color)
     {
         launchAngle = _launchAngle;
         targetPos = _targetPos;
         gravity = _gravity;
-        timer = _explosionTime;
         targetTr = _targetTr;
         myColor = _color;
         waitFixedTime = new WaitForFixedUpdate();
@@ -119,7 +118,6 @@ public class TimeBomb : MonoBehaviour
     private Vector3 targetPos;
     private float launchAngle = 45.0f;
     private float gravity = 9.81f;
-    private float timer = 0f; // 터질때까지 걸리는 시간
 
 
     private WaitForFixedUpdate waitFixedTime = null;

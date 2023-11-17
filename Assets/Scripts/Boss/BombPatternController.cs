@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TimeBombPatternController : MonoBehaviour
+public class BombPatternController : MonoBehaviour
 {
     public void Init(
         VoidVoidDelegate _patternFinishDelegate, 
@@ -73,7 +73,7 @@ public class TimeBombPatternController : MonoBehaviour
             {
                 //Á¡ÂøÆøÅº ¹ß»ç »ç¿îµå Àç»ý
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
-                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, explosionTime, targetTr, colors[bombIdx]);
+                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, targetTr, colors[bombIdx]);
                 arrBombGo[bombIdx] = bombGo;
                 ++bombIdx;
                 spawnTime = Time.time;
@@ -193,8 +193,6 @@ public class TimeBombPatternController : MonoBehaviour
     private float launchAngle = 45f;
     [SerializeField]
     private float gravity = 9.81f;
-    [SerializeField]
-    private float explosionTime = 0f;
     [SerializeField]
     [ColorUsage(true,true)]
     private Color[] colors = null;

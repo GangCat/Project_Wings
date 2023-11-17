@@ -20665,7 +20665,7 @@ MonoBehaviour:
   - {fileID: 879915977}
   - {fileID: 1453752597}
   timeBombSpawnTr: {fileID: 1138999916}
-  spawnBombDelay: 3
+  spawnBombDelay: 5
   launchAngle: 50
   gravity: 500
   explosionTime: 50

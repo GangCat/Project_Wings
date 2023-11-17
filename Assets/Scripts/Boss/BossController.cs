@@ -15,7 +15,7 @@ public class BossController : MonoBehaviour, IPublisher
         bossCollider = GetComponentInChildren<BossCollider>();
         statHp = GetComponent<BossStatusHp>();
         shield = GetComponentInChildren<BossShield>();
-        timeBombPatternCtrl = GetComponentInChildren<TimeBombPatternController>();
+        timeBombPatternCtrl = GetComponentInChildren<BombPatternController>();
         bossRb = GetComponent<Rigidbody>();
         lastPatternCtrl = GetComponentInChildren<LastPatternController>();
 
@@ -371,7 +371,7 @@ public class BossController : MonoBehaviour, IPublisher
     private VoidIntDelegate cameraActionCallback = null;
     private BossStatusHp statHp = null;
     private BossShield shield = null;
-    private TimeBombPatternController timeBombPatternCtrl = null;
+    private BombPatternController timeBombPatternCtrl = null;
     private GetRandomSpawnPointDelegate getRandomSpawnPointCallback = null;
     private BossShieldGeneratorSpawnPoint[] arrCurShieldGeneratorSpawnPoints = null;
     private LastPatternController lastPatternCtrl = null;
