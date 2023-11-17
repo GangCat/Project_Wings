@@ -26,7 +26,6 @@ public class CameraMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab) && !playerData.isFreeLock) 
         {
-            Debug.Log("ег ON");
             backMirror = true;
         }
         else if (Input.GetKeyUp(KeyCode.Tab)) 
@@ -86,11 +85,13 @@ public class CameraMovement : MonoBehaviour
 
     private void FollowPlayerRot()
     {
+        Vector2 mousePos = playerData.currentMousePos;
         currentRotation = transform.rotation.eulerAngles;
+        Vector3 cameraZ = new Vector3(0f, 0f, -10 * (mousePos.x / 100));
         if(backMirror)
-            desiredRotation = Quaternion.LookRotation(-playerTr.forward).eulerAngles;
+            desiredRotation = Quaternion.LookRotation(-playerTr.forward).eulerAngles+cameraZ;
         else
-        desiredRotation = Quaternion.LookRotation(playerTr.forward).eulerAngles;
+        desiredRotation = Quaternion.LookRotation(playerTr.forward).eulerAngles+cameraZ;
 
         float xRot = Mathf.SmoothDampAngle(currentRotation.x, desiredRotation.x, ref rotVectorVelocity.x, rotSmoothX * Time.deltaTime);
         float yRot = Mathf.SmoothDampAngle(currentRotation.y, desiredRotation.y, ref rotVectorVelocity.y, rotSmoothY * Time.deltaTime);

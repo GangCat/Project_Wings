@@ -1691,7 +1691,6 @@ GameObject:
   - component: {fileID: 105508243}
   - component: {fileID: 105508242}
   - component: {fileID: 105508241}
-  - component: {fileID: 105508245}
   m_Layer: 14
   m_Name: Obstacle (11)
   m_TagString: Obstacle
@@ -3646,6 +3645,7 @@ Transform:
   - {fileID: 474689786}
   - {fileID: 334750600}
   - {fileID: 919070131}
+  - {fileID: 105624370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &233755257
@@ -12205,6 +12205,7 @@ MonoBehaviour:
   sensitiveSlider: {fileID: 1231232679}
   freeLookSensitiveSlider: {fileID: 44697364}
   vm: {fileID: 1288603236}
+  cameraMove: {fileID: 1381941529}
 --- !u!1 &481605743
 GameObject:
   m_ObjectHideFlags: 0
@@ -23942,6 +23943,7 @@ MonoBehaviour:
   rotSmoothZ: 0.1
   offset: 10
   upOffset: 3
+  freeLockSensitive: 300
 --- !u!114 &1381941530
 MonoBehaviour:
   m_ObjectHideFlags: 0
