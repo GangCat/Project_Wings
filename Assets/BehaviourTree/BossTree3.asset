@@ -743,7 +743,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: eb8c0b277d54b7646937fd1a16e932a4
-  position: {x: 161.3225, y: 973.3225}
+  position: {x: 161.60002, y: 972.0791}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -752,7 +752,7 @@ MonoBehaviour:
     isShieldDestroy: 0
   description: 
   drawGizmos: 0
-  duration: 15
+  duration: 0
 --- !u!114 &-2728791916863248245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,7 +1762,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e335242dde037ad4cb014930726676de
-  position: {x: 2333.3225, y: 1354.9226}
+  position: {x: 2329, y: 1350.9502}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0

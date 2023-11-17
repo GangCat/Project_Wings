@@ -18,12 +18,17 @@ public class AirPushAcionNode : ActionNode
     private float durationTime = 5f;
 
     private float curDurationTime = 0f;
+    private enum EAirPushAudio
+    {
+        NONE = -1,
+        AIRPUSHSOUND
+    }
     protected override void OnStart() {
 
         if (blackboard.curPhaseNum > 1)
         {
             context.airPushGo.SetActive(true);
-            //플레이어와 airPushGo와의 거리 계산 > 가까울수록 볼륨 커짐 > 바람이 고막을 때리는 소리
+            context.airPushAudioManager.PlayAudio((int)EAirPushAudio.AIRPUSHSOUND,true);
             curDurationTime = durationTime;
         }
     }

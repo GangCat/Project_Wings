@@ -11,6 +11,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
 
         StartCoroutine(GenIndicatorCoroutine(_bossPos));
         StartCoroutine(RotateCoroutine());
+        // 아이들 사운드 루프 실행
     }
 
     private IEnumerator GenIndicatorCoroutine(Vector3 _bossPos)
@@ -45,6 +46,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     {
         if (curHp < 0)
             return;
+        //피격 사운드 실행  일단 보류하기
         curHp -= _dmg;
 
         BreakRing();
@@ -52,6 +54,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         if (curHp < 0)
         {
             destroyCallback?.Invoke(gameObject);
+            // 아이들 사운드 루프 실행 사운드 끝날때까지 파괴 대기
             //쉴드 재생기 파괴되는소리 재생
             Destroy(gameObject);
         }

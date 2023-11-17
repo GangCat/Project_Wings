@@ -31,6 +31,8 @@ public class ShakeBodyFastRotationActionNode : ActionNode
         curRotationAngle = bossTr.rotation.eulerAngles.y;
         bossRb = context.physics;
         windAttackInit();
+        //몸 움직이는 사운드 스타트(루프)
+        //바람 사운드 스타트(루프)
     }
 
     protected override void OnStop() {
@@ -38,7 +40,10 @@ public class ShakeBodyFastRotationActionNode : ActionNode
         {
             bossCollider.ResetAll();
             Destroy(tornadoGo);
+            //몸 움직이는 사운드 스탑(루프)
+            //바람 사운드 스탑(루프)
         }
+
     }
 
     protected override State OnUpdate() {

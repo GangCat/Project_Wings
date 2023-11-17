@@ -12,6 +12,7 @@ public class ImageAlertMessage : MonoBehaviour
 
     public void AlertDanger()
     {
+        //경고 사운드 재생
         textAlert.AlertDanger(alertMessage);
     }
 

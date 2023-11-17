@@ -19,7 +19,7 @@ public class NewLaunchMissileActionNode : ActionNode
         context.anim.OpenBigMissileDoor();
         spawnTr = context.giantHomingMissileSpawnTr;
         crossLaserGo = Instantiate(giantHomingMissilePrefab, spawnTr.position, spawnTr.rotation);
-        crossLaserGo.GetComponent<GiantHomingMissileController>().Init(context.playerTr.gameObject, moveSpeed, rotateSpeed_Degree, spawnTr.position, spawnTr.rotation, blackboard.isShieldDestroy);
+        crossLaserGo.GetComponent<GiantHomingMissileController>().Init(context.playerTr.gameObject, moveSpeed, rotateSpeed_Degree, spawnTr.position, spawnTr.rotation, blackboard.isShieldDestroy, context.playerTr);
         context.bossCtrl.DangerAlert();
     }
 

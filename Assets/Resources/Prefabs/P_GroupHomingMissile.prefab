@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 2773770674558850998}
   - component: {fileID: -3175506910698676958}
   - component: {fileID: -55450454294902379}
+  - component: {fileID: 6236578275377471286}
   m_Layer: 12
   m_Name: P_GroupHomingMissile
   m_TagString: GroupHomingMissile
@@ -224,6 +225,20 @@ MonoBehaviour:
   maxTimePrediction: 0.1
   deviationAmount: 50
   deviationSpeed: 2
+--- !u!114 &6236578275377471286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519272339437649605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307683bbb718c8441af9d6074f28b4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips: []
+  volumes: []
 --- !u!1 &7620544338611520829
 GameObject:
   m_ObjectHideFlags: 0

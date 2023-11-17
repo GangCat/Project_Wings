@@ -32,6 +32,9 @@ namespace TheKiwiCoder {
         public Transform[] footWindTr;
         public GameObject footWindGo;
         public GameObject sitDownGo;
+        public CannonAudioManager cannonAudioManager;
+        public CustomAudioManager airPushAudioManager;
+        public GameObject[] cannonSoundSpawnGOs;
         // Add other game specific systems here
 
         public static Context CreateFromGameObject(
@@ -63,6 +66,9 @@ namespace TheKiwiCoder {
             context.footWindTr = _bossCtrl.FootWindTr;
             context.footWindGo = _bossCtrl.FootWindGo;
             context.sitDownGo = _bossCtrl.SitDownGo;
+            context.cannonAudioManager = _bossCtrl.CannonAudioManager;
+            context.airPushAudioManager = _bossCtrl.AirPushAudioManager;
+            context.cannonSoundSpawnGOs = _bossCtrl.CannonSoundSpawnGOs;
             // Add whatever else you need here...
 
             return context;
