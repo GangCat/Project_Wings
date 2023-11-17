@@ -19,6 +19,7 @@ public class TimeBombPatternController : MonoBehaviour
         windBlowHolder.Init();
         arrBombGo = new GameObject[4];
         waitFixedTime = new WaitForFixedUpdate();
+
     }
 
     public void StartPattern()
@@ -69,9 +70,10 @@ public class TimeBombPatternController : MonoBehaviour
         while (bombIdx < 4)
         {
             if (Time.time - spawnTime > spawnBombDelay)
-            {//Á¡ÂøÆøÅº ¹ß»ç »ç¿îµå Àç»ý
+            {
+                //Á¡ÂøÆøÅº ¹ß»ç »ç¿îµå Àç»ý
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
-                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, explosionTime, targetTr);
+                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, explosionTime, targetTr, colors[bombIdx]);
                 arrBombGo[bombIdx] = bombGo;
                 ++bombIdx;
                 spawnTime = Time.time;
@@ -193,6 +195,9 @@ public class TimeBombPatternController : MonoBehaviour
     private float gravity = 9.81f;
     [SerializeField]
     private float explosionTime = 0f;
+    [SerializeField]
+    [ColorUsage(true,true)]
+    private Color[] colors = null;
 
 
     [Header("-Laser")]

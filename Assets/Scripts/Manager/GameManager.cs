@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour, IPublisher
         Screen.SetResolution(1920, 1080, true);
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
 
+        if (Time.timeScale == 0)
+            Debug.Log("0");
+
         StartGame();
     }
 

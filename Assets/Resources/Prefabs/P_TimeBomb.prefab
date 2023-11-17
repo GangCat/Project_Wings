@@ -51,6 +51,7 @@ MonoBehaviour:
   projectile: {fileID: 2433025337043198025}
   explosionPrefab: {fileID: 8892962482691636397, guid: 8860735a010aa9d479ecc26dfffe0d53,
     type: 3}
+  modelGo: {fileID: 269997590397969872}
 --- !u!54 &4222107536252209743
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -182,6 +183,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7dffbfa10b6baf4582b8a6923b4df14, type: 3}
+--- !u!1 &269997590397969872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b7dffbfa10b6baf4582b8a6923b4df14,
+    type: 3}
+  m_PrefabInstance: {fileID: 1116418479410174081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &645397710535507818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b7dffbfa10b6baf4582b8a6923b4df14,
@@ -246,6 +253,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -264.847
       objectReference: {fileID: 0}
+    - target: {fileID: 2469431353670797303, guid: b6dbcce3e38ca374aa33b48d8b769ee6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e4fc47a75a57a874e9ade0b73cb217c0, type: 2}
     - target: {fileID: 2803844235779252444, guid: b6dbcce3e38ca374aa33b48d8b769ee6,
         type: 3}
       propertyPath: m_Name

@@ -1,21 +1,28 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TimeBomb : MonoBehaviour
 {
-    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, float _explosionTime, Transform _targetTr)
+    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, float _explosionTime, Transform _targetTr, Color _color)
     {
         launchAngle = _launchAngle;
         targetPos = _targetPos;
         gravity = _gravity;
         timer = _explosionTime;
         targetTr = _targetTr;
+        myColor = _color;
         waitFixedTime = new WaitForFixedUpdate();
         rb = GetComponent<Rigidbody>();
 
         //Test();
         StartCoroutine(SimulateProjectile());
+        StartCoroutine("SpinModelCoroutine");
+    }
+
+    private void SetColor()
+    {
+        GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_BaseColor", myColor);
+        GetComponentInChildren<ParticleSystemRenderer>().material.SetFloat("_Dissolve", 0.8f);
     }
 
     IEnumerator SimulateProjectile()
@@ -49,6 +56,18 @@ public class TimeBomb : MonoBehaviour
             transform.Translate(0, (VerticalVelocity - (gravity * elapsedtime)) * Time.fixedDeltaTime, HorizontalVelocity * Time.fixedDeltaTime);
             elapsedtime += Time.fixedDeltaTime;
 
+            yield return waitFixedTime;
+        }
+
+        StopCoroutine("SpinModelCoroutine");
+        SetColor();
+    }
+
+    private IEnumerator SpinModelCoroutine()
+    {
+        while (true)
+        {
+            modelGo.transform.localRotation *= Quaternion.Euler(Vector3.one * 50f * Time.fixedDeltaTime);
             yield return waitFixedTime;
         }
     }
@@ -90,17 +109,21 @@ public class TimeBomb : MonoBehaviour
     }
 
 
+    [SerializeField]
+    private Transform projectile;
+    [SerializeField]
+    private GameObject explosionPrefab = null;
+    [SerializeField]
+    private GameObject modelGo = null;
+
     private Vector3 targetPos;
     private float launchAngle = 45.0f;
     private float gravity = 9.81f;
     private float timer = 0f; // 터질때까지 걸리는 시간
 
-    [SerializeField]
-    private Transform projectile;
-    [SerializeField]
-    private GameObject explosionPrefab = null;
 
     private WaitForFixedUpdate waitFixedTime = null;
     private Rigidbody rb = null;
     private Transform targetTr = null;
+    private Color myColor = Color.black;
 }
