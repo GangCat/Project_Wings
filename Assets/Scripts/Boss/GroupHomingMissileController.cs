@@ -30,12 +30,22 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     private bool isBodyTrigger = true;
     private bool isExplosed = false;
     private GroupMissileMemoryPool groupMissileMemoryPool = null;
+    private CustomAudioManager customAudioManager = null;
+    private Transform playerTr;
+    private enum EGroupMissileAudio
+    {
+        NONE = -1,
+        NORMALEXPLOSIONSOUND,
+        HOMINGMISSILEPASSINGSOUND
+    }
 
 
     public float GetCurHp => throw new NotImplementedException();
 
-    public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
+    public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak, Transform _playerTr)
     {
+        playerTr = _playerTr;
+        customAudioManager = GetComponent<CustomAudioManager>();
         target = _target;
         speed = _speed;
         rotateSpeed = _rotateSpeed;
@@ -71,7 +81,15 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             }
 
             rb.velocity = transform.forward * speed;
-
+            float distanceBetweenPlayer = Vector3.Distance(gameObject.transform.position, playerTr.position);
+            if(distanceBetweenPlayer < 15f)
+            {
+                customAudioManager.PlayAudio((int)EGroupMissileAudio.HOMINGMISSILEPASSINGSOUND,true);
+            }
+            else
+            {
+                customAudioManager.StopAllAudio();
+            }
             var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(transform.position, target.transform.position));
 
             PredictMovement(leadTimePercentage);
@@ -152,8 +170,9 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         isExplosed = true;
         GameObject go = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         go.transform.localScale = Vector3.one * explosionRange;
+        
         Destroy(go, 5f);
-
+        customAudioManager.PlayAudio((int)EGroupMissileAudio.NORMALEXPLOSIONSOUND);
         Collider[] arrTempCollider = Physics.OverlapSphere(transform.position, explosionRange, explosionLayer);
         foreach (Collider col in arrTempCollider)
         {

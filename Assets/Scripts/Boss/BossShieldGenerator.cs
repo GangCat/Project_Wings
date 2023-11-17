@@ -10,11 +10,11 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         curHp = maxHp;
 
         StartCoroutine(GenIndicatorCoroutine(_bossPos));
+        // 아이들 사운드 루프 실행
     }
 
     private IEnumerator GenIndicatorCoroutine(Vector3 _bossPos)
     {
-        //플레이어와의 거리계산 > 가까울수록 소리 증폭 > 낮은 진동소리 발생 
         Vector3 indicatorPos = transform.position;
         indicatorPos.y += 35f;
         RaycastHit hit;
@@ -33,12 +33,13 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     {
         if (curHp < 0)
             return;
-        //플레이어와의 거리 계산 > 가까울수록 소리 크게 > 긴 진동 소리 발생
+        //피격 사운드 실행  일단 보류하기
         curHp -= _dmg;
 
         if (curHp < 0)
         {
             destroyCallback?.Invoke(gameObject);
+            // 아이들 사운드 루프 실행 사운드 끝날때까지 파괴 대기
             //쉴드 재생기 파괴되는소리 재생
             Destroy(gameObject);
         }

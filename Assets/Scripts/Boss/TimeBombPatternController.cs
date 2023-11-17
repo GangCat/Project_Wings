@@ -65,7 +65,7 @@ public class TimeBombPatternController : MonoBehaviour
         while (bombIdx < 4)
         {
             if (Time.time - spawnTime > spawnBombDelay)
-            {
+            {//점착폭탄 발사 사운드 재생
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
                 bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, explosionTime, targetTr);
                 arrBombGo[bombIdx] = bombGo;
@@ -84,13 +84,15 @@ public class TimeBombPatternController : MonoBehaviour
         int laserCount = 0;
         GameObject laserGo = null;
         Debug.Log("StartLaserCharge");
+        //레이저 기모으는 사운드 재생(루프)
         for(int i = 0; i < arrBombGo.Length; ++i)
             arrBombGo[i].GetComponent<TimeBomb>().StartTimer((i + 1) * 12);
 
-        while (laserCount < 4)
+        while (true)
         {
             if (Time.time - laserStartTime > laserDelay)
             {
+                //레이저 기모으는 사운드 정지
                 bossRotationCallback?.Invoke(false);
                 laserGo = LaunchLaser();
                 ++laserCount;
@@ -101,6 +103,10 @@ public class TimeBombPatternController : MonoBehaviour
                 while (laserGo)
                     yield return waitFixedTime;
 
+                if(laserCount >= 4)
+                    break;
+
+                //레이저 기모으는 사운드 재생(루프)
                 Debug.Log("StartLaserCharge");
                 laserStartTime = Time.time;
                 bossRotationCallback?.Invoke(true);

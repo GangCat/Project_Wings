@@ -68,7 +68,7 @@ public class LaunchMissileGroupActionNode : ActionNode
             arrMissileGroup[i] = context.groupMissileMemoryPool.ActivateGroupMissile();
             Vector3 spawnPos = arrGroupHomingMissileSpawnPos[i].GetPos();
             Quaternion spawnRot = arrGroupHomingMissileSpawnPos[i].GetRot();
-            arrMissileGroup[i].GetComponent<GroupHomingMissile>().Init(playerTr.gameObject, moveSpeed, rotateSpeed_Degree, spawnPos, spawnRot, memoryPool, blackboard.isShieldDestroy);
+            arrMissileGroup[i].GetComponent<GroupHomingMissile>().Init(playerTr.gameObject, moveSpeed, rotateSpeed_Degree, spawnPos, spawnRot, memoryPool, blackboard.isShieldDestroy, context.playerTr);
         }
 
         ++missileSpawnIdx;

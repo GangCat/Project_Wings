@@ -31,11 +31,14 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     private bool isBodyTrigger = true;
     private bool isExplosed = false;
 
-
+    private CustomAudioManager customAudioManager;
+    private Transform playerTr = null;
     public float GetCurHp => throw new NotImplementedException();
 
-    public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, bool _isShieldBreak)
+    public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, bool _isShieldBreak, Transform _playerTr)
     {
+        customAudioManager = GetComponent<CustomAudioManager>();
+        playerTr = _playerTr;
         target = _target;
         speed = _speed;
         rotateSpeed = _rotateSpeed;

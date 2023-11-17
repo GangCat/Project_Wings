@@ -18,7 +18,7 @@ public class NewLaunchMissileActionNode : ActionNode
     protected override void OnStart() {
         spawnTr = context.giantHomingMissileSpawnTr;
         crossLaserGo = Instantiate(giantHomingMissilePrefab, spawnTr.position, spawnTr.rotation);
-        crossLaserGo.GetComponent<GiantHomingMissileController>().Init(context.playerTr.gameObject, moveSpeed, rotateSpeed_Degree, spawnTr.position, spawnTr.rotation, blackboard.isShieldDestroy);
+        crossLaserGo.GetComponent<GiantHomingMissileController>().Init(context.playerTr.gameObject, moveSpeed, rotateSpeed_Degree, spawnTr.position, spawnTr.rotation, blackboard.isShieldDestroy, context.playerTr);
         context.bossCtrl.DangerAlert();
     }
 

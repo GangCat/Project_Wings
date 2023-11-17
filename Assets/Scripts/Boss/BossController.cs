@@ -44,6 +44,7 @@ public class BossController : MonoBehaviour, IPublisher
         //StartPhaseChange();
 
         //StartCoroutine("UpdateCoroutine");
+
     }
 
     public BossShieldGeneratorSpawnPoint[] CurSpawnPoints => arrCurShieldGeneratorSpawnPoints;
@@ -58,8 +59,11 @@ public class BossController : MonoBehaviour, IPublisher
     public Transform[] FootWindTr => arrFootWindSpawnTr;
 
     public GameObject FootWindGo => footWindGo;
-
     public GameObject SitDownGo => sitDownGo;
+    public GameObject[] CannonSoundSpawnGOs => cannonSoundSpawnGOs;
+
+    public CannonAudioManager CannonAudioManager => cannonAudioManager;
+    public CustomAudioManager AirPushAudioManager => airPushAudioManager;
 
     public void DangerAlert()
     {
@@ -111,15 +115,31 @@ public class BossController : MonoBehaviour, IPublisher
         while (true)
         {
             //보스 페이즈 스위치로 검사 > 각 페이즈에 맞는 브금 재생 3페이즈의 경우 폭풍우 브금 등
-            //플레이어와의 거리 검사 > 가까울수록 소리 증폭 > 보스 기계혹은 기어 소리 재생
             if (isBossStartRotation)
+            {
                 RotateToTarget();
+                PlayRotateSound();
+            }
+            else
+            {
+                StopRotateSound();
+            }
 
             myRunner.RunnerUpdate();
             yield return waitFixedUpdate;
         }
     }
+    private void PlayRotateSound()
+    {
+        //로테이트 오디오 소스가 isPlaying인지 검사
+        //isPlaying이 false면 로테이트 사운드 루프 재생
 
+    }
+    private void StopRotateSound()
+    {
+        //로테이트 오디오 소스가 isPlaying인지 검사
+        //isPlaying이 true면  로테이트 사운드 루프 스탑
+    }
     private void RotateToTarget()
     {
         // 플레이어의 위치와 보스의 위치 사이의 벡터를 계산
@@ -129,7 +149,6 @@ public class BossController : MonoBehaviour, IPublisher
         directionToPlayer.y = 0f;
 
         // 방향 벡터를 사용하여 보스를 회전시킵니다.
-        // 플레이어와의 거리 계산 > 가까울수록 소리 증폭 > 보스 회전하는 소리 추가
         if (curPhaseNum >= 2)
             transform.localRotation *= Quaternion.Euler(new Vector3(0f, autoRotateDegree * Time.deltaTime, 0f));
         else if (directionToPlayer != Vector3.zero)
@@ -309,6 +328,12 @@ public class BossController : MonoBehaviour, IPublisher
     private GameObject footWindGo = null;
     [SerializeField]
     private GameObject sitDownGo = null;
+    [SerializeField]
+    private CannonAudioManager cannonAudioManager = null;
+    [SerializeField]
+    private CustomAudioManager airPushAudioManager = null;
+    [SerializeField]
+    private GameObject[] cannonSoundSpawnGOs = null;
 
     [Header("-InformationForBossController")]
     [SerializeField]

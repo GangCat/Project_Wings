@@ -24,7 +24,8 @@ public class CannonRainAttackAreaController : MonoBehaviour
         float t = (Time.time - startTime) / duration; // 올바른 시간 계산
 
         // Mathf.Lerp를 사용하여 크기 보간
-        float newScaleXZ = Mathf.Lerp(max, min, t);
+        float newScaleXZ = Mathf.Lerp(max, 0, t);
         transform.localScale = new Vector3(newScaleXZ, transform.localScale.y, newScaleXZ);
+        if (transform.localScale.x == 0) Destroy(gameObject);
     }
 }

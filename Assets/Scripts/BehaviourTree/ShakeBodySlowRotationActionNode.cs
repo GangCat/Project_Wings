@@ -22,10 +22,12 @@ public class ShakeBodySlowRotationActionNode : ActionNode
         bossTr = context.transform;
         bossRb = context.physics;
         //bossRb.maxAngularVelocity = maxRotSpeed * Mathf.Rad2Deg;
+        //움직이는 사운드 시작(루프)
         curRotationDegree = bossTr.rotation.eulerAngles.y;
     }
 
     protected override void OnStop() {
+        //움직이는 사운드 끄기(루프)
     }
 
     protected override State OnUpdate() {
