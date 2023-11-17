@@ -8,7 +8,14 @@ using UnityEngine;
 public class BossController : MonoBehaviour, IPublisher
 {
     public delegate BossShieldGeneratorSpawnPoint[] GetRandomSpawnPointDelegate();
-    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, VoidFloatDelegate _shieldUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, VoidVoidDelegate _bossClearCalblack, VoidVoidDelegate _removeShieldCallback)
+    public void Init(
+        Transform _playerTr, 
+        VoidIntDelegate _cameraActionCallback, 
+        VoidFloatDelegate _hpUpdateCallback, 
+        VoidFloatDelegate _shieldUpdateCallback, 
+        GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, 
+        VoidVoidDelegate _bossClearCalblack, 
+        VoidVoidDelegate _removeShieldCallback)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -63,7 +70,6 @@ public class BossController : MonoBehaviour, IPublisher
     public GameObject SitDownGo => sitDownGo;
     public Transform RotateTr => rotateBody.transform;
     public GameObject[] CannonSoundSpawnGOs => cannonSoundSpawnGOs;
-
     public CannonAudioManager CannonAudioManager => cannonAudioManager;
     public CustomAudioManager AirPushAudioManager => airPushAudioManager;
 

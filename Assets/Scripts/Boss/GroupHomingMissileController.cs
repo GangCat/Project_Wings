@@ -6,25 +6,40 @@ using UnityEngine.VFX;
 public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 {
     [Header("REFERENCES")]
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private float explosionRange = 0f;
-    [SerializeField] private LayerMask explosionLayer;
+    [SerializeField] 
+    private Rigidbody rb;
+    [SerializeField] 
+    private GameObject explosionPrefab;
+    [SerializeField] 
+    private float explosionRange = 0f;
+    [SerializeField] 
+    private LayerMask explosionLayer;
+    [SerializeField]
+    private float effectDisableDelay = 2f;
 
     [Header("MOVEMENT")]
-    [SerializeField] private float speed = 15;
-    [SerializeField] private float rotateSpeed = 95;
+    [SerializeField] 
+    private float speed = 15;
+    [SerializeField] 
+    private float rotateSpeed = 95;
 
     [Header("PREDICTION")]
-    [SerializeField] private float maxDistancePredict = 100;
-    [SerializeField] private float minDistancePredict = 5;
-    [SerializeField] private float maxTimePrediction = 5;
-    private Vector3 standardPrediction, deviatedPrediction;
+    [SerializeField] 
+    private float maxDistancePredict = 100;
+    [SerializeField] 
+    private float minDistancePredict = 5;
+    [SerializeField] 
+    private float maxTimePrediction = 5;
 
     [Header("DEVIATION")]
-    [SerializeField] private float deviationAmount = 0;
-    [SerializeField] private float deviationSpeed = 0;
+    [SerializeField] 
+    private float deviationAmount = 0;
+    [SerializeField] 
+    private float deviationSpeed = 0;
 
+
+
+    private Vector3 standardPrediction, deviatedPrediction;
     private bool isPhaseChanged = false;
     private bool isShieldBreak = false;
     private bool isBodyTrigger = true;
@@ -32,6 +47,10 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     private GroupMissileMemoryPool groupMissileMemoryPool = null;
     private CustomAudioManager customAudioManager = null;
     private Transform playerTr;
+    private VisualEffect vfx = null;
+    private MeshRenderer mr = null;
+
+
     private enum EGroupMissileAudio
     {
         NONE = -1,
@@ -39,22 +58,22 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         HOMINGMISSILEPASSINGSOUND
     }
 
-    float dotProduct = 0f;
-    float normalizedAngle = 0f;
-    float mappedValue = 0f;
-    private float oriSpeed = 0f;
-
     public float GetCurHp => throw new NotImplementedException();
 
     public void Init(Transform _playerTr, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
     {
+        if(!customAudioManager)
+            customAudioManager = GetComponent<CustomAudioManager>();
+        if (!vfx)
+            vfx = GetComponentInChildren<VisualEffect>();
+        if (!mr)
+            mr = GetComponentInChildren<MeshRenderer>();
+
         playerTr = _playerTr;
-        customAudioManager = GetComponent<CustomAudioManager>();
         groupMissileMemoryPool = _groupMissileMemoryPool;
         transform.position = _spawnPos;
         transform.rotation = _spawnRot;
 
-        oriSpeed = speed;
         isPhaseChanged = false;
         isBodyTrigger = true;
         isExplosed = false;
@@ -64,7 +83,8 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         else
             isFirstTrigger = true;
 
-        GetComponentInChildren<VisualEffect>().Play();
+        vfx.Play();
+        mr.enabled = true;
 
         //deviationAmount = UnityEngine.Random.Range(5f, 20f);
         //deviationSpeed = UnityEngine.Random.Range(0.1f, 1f);
@@ -72,6 +92,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         Subscribe();
         StartCoroutine("FixedUpdateCoroutine");
     }
+
 
     private IEnumerator FixedUpdateCoroutine()
     {
@@ -84,17 +105,11 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
                 yield break;
             }
 
-            //dotProduct = Mathf.Clamp(Vector3.Dot(transform.forward, (target.transform.position - transform.position).normalized), -1f, 1f);
-            //normalizedAngle = Mathf.Acos(dotProduct) / Mathf.PI;
-            //mappedValue = 1f - normalizedAngle;
-
-            //speed = oriSpeed * (mappedValue * 0.5f + 0.5f);
-
             rb.velocity = transform.forward * speed;
             float distanceBetweenPlayer = Vector3.Distance(gameObject.transform.position, playerTr.position);
-            if(distanceBetweenPlayer < 15f)
+            if (distanceBetweenPlayer < 15f)
             {
-                customAudioManager.PlayAudio((int)EGroupMissileAudio.HOMINGMISSILEPASSINGSOUND,true);
+                customAudioManager.PlayAudio((int)EGroupMissileAudio.HOMINGMISSILEPASSINGSOUND, true);
             }
             else
             {
@@ -192,12 +207,26 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             KnockBack(col);
             AttackDmg(col);
         }
-        groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
+
+        StartCoroutine(DeactivateCoroutine());
+        //groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
         // 플레이어와의 거리 계산 > 가까울 수록 볼륨은 커진다 > 미사일이 폭발하는 소리 재생
+    }
+
+    private IEnumerator DeactivateCoroutine()
+    {
+        vfx.Stop();
+        mr.enabled = false;
+
+        yield return new WaitForSeconds(effectDisableDelay);
+
+        groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
     }
 
     private void OnDisable()
     {
+        if(vfx)
+            vfx.Stop();
         Broker.UnSubscribe(this, EPublisherType.BOSS_CONTROLLER);
     }
 

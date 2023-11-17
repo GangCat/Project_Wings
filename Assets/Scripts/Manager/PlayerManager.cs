@@ -21,6 +21,8 @@ public class PlayerManager : MonoBehaviour
         pmc.PlayerModelRotate();
     }
 
+    public PlayerController PC => playerCtrl;
+
 
 
     [SerializeField]

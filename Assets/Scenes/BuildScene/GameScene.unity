@@ -21469,7 +21469,6 @@ MonoBehaviour:
   startGameKeyCode: 293
   nextPhaseKeyCode: 292
   jumpToNextPatternKeyCode: 291
-  bac: {fileID: 1295538139}
 --- !u!4 &1213160876
 Transform:
   m_ObjectHideFlags: 0
