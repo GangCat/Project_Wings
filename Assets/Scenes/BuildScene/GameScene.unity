@@ -20623,7 +20623,7 @@ GameObject:
   - component: {fileID: 1158119500}
   - component: {fileID: 1158119501}
   m_Layer: 13
-  m_Name: TimeBombController
+  m_Name: BombPatternController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20668,7 +20668,6 @@ MonoBehaviour:
   spawnBombDelay: 5
   launchAngle: 50
   gravity: 500
-  explosionTime: 50
   colors:
   - {r: 1367.1202, g: 0, b: 0, a: 1}
   - {r: 1214.5427, g: 1300.1877, b: 0, a: 1}

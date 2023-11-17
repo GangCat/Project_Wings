@@ -108,7 +108,7 @@ public class BombPatternController : MonoBehaviour
                 while (Time.time - laserStartTime < laserDelay)
                     yield return waitFixedTime;
 
-                laserGo = LaunchLaser(laserRotation);
+                laserGo = LaunchLaser(laserRotation, colors[laserCount]);
                 ++laserCount;
             }
 
@@ -152,7 +152,7 @@ public class BombPatternController : MonoBehaviour
         FinishPattern();
     }
 
-    private GameObject LaunchLaser(Quaternion _laserRotation)
+    private GameObject LaunchLaser(Quaternion _laserRotation, Color _curColor)
     {
 
         GameObject laserGo = Instantiate(laserPrefab, laserLaunchTr.position, laserLaunchTr.rotation * _laserRotation);
@@ -166,7 +166,7 @@ public class BombPatternController : MonoBehaviour
 
                 Destroy(go);
             }
-        }, initWidth, initHeight);
+        }, initWidth, initHeight, _curColor);
 
         Destroy(laserGo, laserDuration);
         return laserGo;

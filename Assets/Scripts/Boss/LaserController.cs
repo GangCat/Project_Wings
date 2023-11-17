@@ -5,7 +5,7 @@ using UnityEngine;
 public class LaserController : MonoBehaviour
 {
     public delegate void DestroyBombDelegate(GameObject _bombGo);
-    public void Init(float _launchDuration, float _lengthPerSec, DestroyBombDelegate _destroyBombCallback, float _initWidth, float _initHeight)
+    public void Init(float _launchDuration, float _lengthPerSec, DestroyBombDelegate _destroyBombCallback, float _initWidth, float _initHeight, Color _curColor)
     {
         destroyBombCallback = _destroyBombCallback;
         launchDuration = _launchDuration;
@@ -14,7 +14,7 @@ public class LaserController : MonoBehaviour
         initHeight = _initHeight;
 
         waitFixedTime = new WaitForFixedUpdate();
-
+        GetComponent<MeshRenderer>().material.SetColor("_BaseColor", _curColor);
         mf = GetComponent<MeshFilter>();
         mc = GetComponent<MeshCollider>();
         Mesh mesh = new Mesh();
