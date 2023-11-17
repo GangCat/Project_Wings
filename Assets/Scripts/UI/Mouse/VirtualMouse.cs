@@ -67,7 +67,7 @@ public class VirtualMouse : MonoBehaviour
     [SerializeField]
     private float returnSpeed = 100f;
     [SerializeField]
-    private float sensitive = 3f;
+    public float sensitive = 3f;
     [SerializeField]
     private float maxMouseSpeed = 3f;
     [SerializeField]
@@ -83,6 +83,7 @@ public class VirtualMouse : MonoBehaviour
     private Vector2 newInput;
 
     private PlayerData playerData;
+
 
 
 
