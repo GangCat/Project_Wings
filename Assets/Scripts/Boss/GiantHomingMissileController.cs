@@ -7,37 +7,57 @@ using UnityEngine.VFX;
 public class GiantHomingMissileController : AttackableObject, IDamageable, ISubscriber
 {
     [Header("REFERENCES")]
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private float explosionRange = 0f;
-    [SerializeField] private LayerMask explosionLayer;
+    [SerializeField] 
+    private Rigidbody rb;
+    [SerializeField] 
+    private GameObject explosionPrefab;
+    [SerializeField] 
+    private float explosionRange = 0f;
+    [SerializeField] 
+    private LayerMask explosionLayer;
+    [SerializeField]
+    private float effectDisableDelay = 2f;
 
     [Header("MOVEMENT")]
-    [SerializeField] private float speed = 15;
-    [SerializeField] private float rotateSpeed = 95;
+    [SerializeField] 
+    private float speed = 15;
+    [SerializeField] 
+    private float rotateSpeed = 95;
 
     [Header("PREDICTION")]
-    [SerializeField] private float maxDistancePredict = 100;
-    [SerializeField] private float minDistancePredict = 5;
-    [SerializeField] private float maxTimePrediction = 5;
-    private Vector3 standardPrediction, deviatedPrediction;
+    [SerializeField] 
+    private float maxDistancePredict = 100;
+    [SerializeField] 
+    private float minDistancePredict = 5;
+    [SerializeField] 
+    private float maxTimePrediction = 5;
 
     [Header("DEVIATION")]
-    [SerializeField] private float deviationAmount = 50;
-    [SerializeField] private float deviationSpeed = 2;
+    [SerializeField] 
+    private float deviationAmount = 50;
+    [SerializeField] 
+    private float deviationSpeed = 2;
 
+    private Vector3 standardPrediction, deviatedPrediction;
     private bool isPhaseChanged = false;
     private bool isShieldBreak = false;
     private bool isBodyTrigger = true;
     private bool isExplosed = false;
-
-    private CustomAudioManager customAudioManager;
     private Transform playerTr = null;
-    public float GetCurHp => throw new NotImplementedException();
+    private CustomAudioManager customAudioManager;
+    private VisualEffect vfx = null;
+    private MeshRenderer mr = null;
+
 
     public void Init(Vector3 _spawnPos, Quaternion _spawnRot, bool _isShieldBreak, Transform _playerTr)
     {
-        customAudioManager = GetComponent<CustomAudioManager>();
+        if (!customAudioManager)
+            customAudioManager = GetComponent<CustomAudioManager>();
+        if (!vfx)
+            vfx = GetComponentInChildren<VisualEffect>();
+        if (!mr)
+            mr = GetComponentInChildren<MeshRenderer>();
+
         playerTr = _playerTr;
         transform.position = _spawnPos;
         transform.rotation = _spawnRot;
@@ -51,7 +71,8 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         else
             isFirstTrigger = true;
 
-        GetComponentInChildren<VisualEffect>().Play();
+        vfx.Play();
+        mr.enabled = true;
 
         //deviationAmount = UnityEngine.Random.Range(30f, 70f);
         //deviationSpeed = UnityEngine.Random.Range(1f, 3f);
@@ -59,6 +80,9 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         Subscribe();
         StartCoroutine("FixedUpdateCoroutine");
     }
+
+    public float GetCurHp => throw new NotImplementedException();
+
 
     private IEnumerator FixedUpdateCoroutine()
     {
@@ -162,11 +186,23 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
             KnockBack(col);
             AttackDmg(col);
         }
+        StartCoroutine(DeactivateCoroutine());
+    }
+
+    private IEnumerator DeactivateCoroutine()
+    {
+        vfx.Stop();
+        mr.enabled = false;
+
+        yield return new WaitForSeconds(effectDisableDelay);
+
         Destroy(gameObject);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
+        if (vfx)
+            vfx.Stop();
         Broker.UnSubscribe(this, EPublisherType.BOSS_CONTROLLER);
     }
 

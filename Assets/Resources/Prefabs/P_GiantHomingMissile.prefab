@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 8155922586333366446}
   - {fileID: 543043544553022368}
+  - {fileID: 34559357151421076}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2294510696366887271
@@ -106,6 +107,7 @@ MonoBehaviour:
   explosionLayer:
     serializedVersion: 2
     m_Bits: 8384
+  effectDisableDelay: 2
   speed: 300
   rotateSpeed: 200
   maxDistancePredict: 5
@@ -139,12 +141,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7497792970494708919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.02, z: 0.04}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.59999996, z: -37.21852}
+  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 543043544553022368}
+  m_Father: {fileID: 5147824405307316662}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!2083052967 &6535683895160566197
 VisualEffect:
@@ -154,7 +156,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7497792970494708919}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: a41d54dd51c127c4cbc67a9ad5496918, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 6ce6c653b3913784891472107a3c6fce, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -402,11 +404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e77d911d6086ae44fb89832cb9c9a6a7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 34559357151421076}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e77d911d6086ae44fb89832cb9c9a6a7, type: 3}
 --- !u!4 &543043544553022368 stripped

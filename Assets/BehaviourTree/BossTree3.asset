@@ -800,7 +800,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: 8083542919116634970}
+  - {fileID: 2642999057511555080}
   - {fileID: 6670595513324080788}
   groupMissileRatio: 0.7
   curGroupMissileRatio: 0.7
@@ -1149,6 +1149,7 @@ MonoBehaviour:
   - {fileID: 337930231209408144}
   - {fileID: 2252517665493931189}
   - {fileID: 3974864600644938813}
+  - {fileID: 2642999057511555080}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
@@ -1494,6 +1495,32 @@ MonoBehaviour:
   children:
   - {fileID: 2042534252602397742}
   - {fileID: 4432137894282874548}
+--- !u!114 &2642999057511555080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5474b84443faaca4aba449936e7d37dd, type: 3}
+  m_Name: NewLaunchMissileActionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f714f4b3647ffe949a274c62e09739e7
+  position: {x: 500, y: 1230}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    isPhaseEnd: 0
+    curPhaseNum: 0
+    curClosedWeakPoint: 0
+    isShieldDestroy: 0
+  description: 
+  drawGizmos: 0
+  giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
+    type: 3}
 --- !u!114 &2663481157983243140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,7 +2275,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 99f2d88d4b702194c8809794671f48ba
-  position: {x: 489.00006, y: 1230.0001}
+  position: {x: 444, y: 1318}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     isPhaseEnd: 0
