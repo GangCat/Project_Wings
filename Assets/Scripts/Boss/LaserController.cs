@@ -12,9 +12,10 @@ public class LaserController : MonoBehaviour
         lengthPerSec = _lengthPerSec;
         initWidth = _initWidth;
         initHeight = _initHeight;
+        myColor = _curColor;
 
         waitFixedTime = new WaitForFixedUpdate();
-        GetComponent<MeshRenderer>().material.SetColor("_BaseColor", _curColor);
+        GetComponent<MeshRenderer>().material.SetColor("_BaseColor", myColor);
         mf = GetComponent<MeshFilter>();
         mc = GetComponent<MeshCollider>();
         Mesh mesh = new Mesh();
@@ -23,6 +24,8 @@ public class LaserController : MonoBehaviour
 
         StartCoroutine(LaunchLaserCoroutine(Time.time));
     }
+
+    public Color GetColor => myColor;
 
     private IEnumerator LaunchLaserCoroutine(float _startTime)
     {
@@ -190,4 +193,5 @@ public class LaserController : MonoBehaviour
     private float initWidth = 0f;
     private float initHeight = 0f;
     private float curHeight = 0f;
+    private Color myColor = Color.white;
 }

@@ -20676,7 +20676,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 8151265587540947119, guid: 569b216cc8c7ddb4a862708fefbb2f4e,
     type: 3}
   laserLaunchTr: {fileID: 381053478}
-  laserDelay: 10
+  laserDelay: 15
   laserDuration: 2
   laserLengthPerSec: 1500
   initWidth: 150
@@ -22540,7 +22540,7 @@ MonoBehaviour:
   - {fileID: 1056058681}
   bossShieldGeneratorPrefab: {fileID: 8195064967662265529, guid: f980ee72ce8b4f443ab1e9b9366ac527,
     type: 3}
-  rotationSpeed: 20
+  rotationSpeed: 2
   respawnShieldGeneratorTime: 30
   arrModelGo:
   - {fileID: 1038160870}

@@ -71,36 +71,21 @@ public class TimeBomb : MonoBehaviour
         }
     }
 
-    public void StartTimer(float _time)
-    {
-        StartCoroutine("TimerCoroutine", _time);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trig");
 
-        if (other.CompareTag("BossLaser"))
-            Destroy(gameObject);
+        if (other.TryGetComponent<LaserController>(out var comp))
+        {
+            if (comp.GetColor.Equals(myColor))
+                Destroy(gameObject);
+        }
     }
 
-    private IEnumerator TimerCoroutine(float _time)
-    {
-        Debug.Log("TriggerTimer");
-
-        yield return new WaitForSeconds(_time);
-        //float startTime = Time.time;
-        //while (Time.time - startTime < timer)
-        //{
-        //    yield return waitFixedTime;
-        //}
-        Explosion();
-    }
-
-    private void Explosion()
+    public void Explosion()
     {
         // 폭발하며 플레이어에게 큰 데미지
-        targetTr.GetComponent<IDamageable>().GetDamage(150);
+        targetTr.GetComponent<IPlayerDamageable>().ForceGetDmg(150);
         // 화면 연출
         Destroy(Instantiate(explosionPrefab, transform.position, Quaternion.identity), 5f);
         Debug.Log("Explosion!");

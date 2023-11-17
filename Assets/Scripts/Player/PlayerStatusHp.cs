@@ -34,6 +34,7 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
 
         CameraShake.Instance.ShakeCamera(1f, 3f);
 
+        StopCoroutine("SaturationCoroutine");
         StartCoroutine("SaturationCoroutine");
 
         hpUpdateCallback?.Invoke(curHp / maxHp);
@@ -41,6 +42,21 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
         if (curHp <= 0)
             deadCallback?.Invoke();
 
+    }
+
+    public void ForceGetDmg(float _dmg)
+    {
+        curHp -= _dmg;
+
+        CameraShake.Instance.ShakeCamera(1f, 3f);
+
+        StopCoroutine("SaturationCoroutine");
+        StartCoroutine("SaturationCoroutine");
+
+        hpUpdateCallback?.Invoke(curHp / maxHp);
+
+        if (curHp <= 0)
+            deadCallback?.Invoke();
     }
 
     private IEnumerator SaturationCoroutine()

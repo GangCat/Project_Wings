@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class GiantHomingMissileController : AttackableObject, IDamageable, ISubscriber
 {
@@ -49,6 +50,8 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
             isFirstTrigger = false;
         else
             isFirstTrigger = true;
+
+        GetComponentInChildren<VisualEffect>().Play();
 
         //deviationAmount = UnityEngine.Random.Range(30f, 70f);
         //deviationSpeed = UnityEngine.Random.Range(1f, 3f);

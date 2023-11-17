@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 {
@@ -63,6 +63,8 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             isFirstTrigger = false;
         else
             isFirstTrigger = true;
+
+        GetComponentInChildren<VisualEffect>().Play();
 
         //deviationAmount = UnityEngine.Random.Range(5f, 20f);
         //deviationSpeed = UnityEngine.Random.Range(0.1f, 1f);

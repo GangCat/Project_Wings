@@ -154,7 +154,7 @@ public class BossController : MonoBehaviour, IPublisher
         if (curPhaseNum >= 2)
             rotateBody.transform.localRotation *= Quaternion.Euler(new Vector3(0f, autoRotateDegree * Time.deltaTime, 0f));
         else if (directionToPlayer != Vector3.zero)
-            rotateBody.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
+            rotateBody.transform.rotation = Quaternion.Slerp(rotateBody.transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
 
     }
 

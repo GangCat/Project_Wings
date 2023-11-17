@@ -93,9 +93,10 @@ public class BombPatternController : MonoBehaviour
         Debug.Log("StartLaserCharge");
         //레이저 기모으는 사운드 재생(루프)
 
-
-        for(int i = 0; i < arrBombGo.Length; ++i)
-            arrBombGo[i].GetComponent<TimeBomb>().StartTimer((i + 1) * 12);
+        // 0~3 숫자를 랜덤으로 선택해서 순서를 만들어 ranSelect배열에 저장 / 0 - 2 - 3 - 1 과 같이 저장됨
+        GenerateUniqueRandomNumbers();
+        //for(int i = 0; i < arrBombGo.Length; ++i)
+        //    arrBombGo[i].GetComponent<TimeBomb>().StartTimer((i + 1) * 12);
 
         while (true)
         {
@@ -108,8 +109,7 @@ public class BombPatternController : MonoBehaviour
                 while (Time.time - laserStartTime < laserDelay)
                     yield return waitFixedTime;
 
-                laserGo = LaunchLaser(laserRotation, colors[laserCount]);
-                ++laserCount;
+                laserGo = LaunchLaser(laserRotation, colors[ranSelect[laserCount]]);
             }
 
             if (laserGo)
@@ -117,7 +117,11 @@ public class BombPatternController : MonoBehaviour
                 while (laserGo)
                     yield return waitFixedTime;
 
-                if(laserCount >= 4)
+                if (arrBombGo[ranSelect[laserCount]].activeSelf)
+                    arrBombGo[ranSelect[laserCount]].GetComponent<TimeBomb>().Explosion();
+
+                ++laserCount;
+                if (laserCount >= 4)
                     break;
 
                 //레이저 기모으는 사운드 재생(루프)
@@ -130,24 +134,24 @@ public class BombPatternController : MonoBehaviour
         }
 
         bossRotationCallback?.Invoke(false);
-        bool isPatternFinish = false;
-        while (true)
-        {
-            isPatternFinish = true;
-            foreach(GameObject go in arrBombGo)
-            {
-                if (go != null)
-                {
-                    isPatternFinish = false;
-                    break;
-                }
-            }
+        //bool isPatternFinish = true;
+        //while (true)
+        //{
+        //    isPatternFinish = true;
+        //    foreach(GameObject go in arrBombGo)
+        //    {
+        //        if (go != null)
+        //        {
+        //            isPatternFinish = false;
+        //            break;
+        //        }
+        //    }
 
-            if (isPatternFinish)
-                break;
+        //    if (isPatternFinish)
+        //        break;
 
-            yield return waitFixedTime;
-        }
+        //    yield return waitFixedTime;
+        //}
 
         FinishPattern();
     }
@@ -177,6 +181,19 @@ public class BombPatternController : MonoBehaviour
         float angleToPlayer = Mathf.Asin((targetTr.position.y - laserLaunchTr.position.y) / Vector3.Distance(laserLaunchTr.position, targetTr.position));
         angleToPlayer = Mathf.Clamp(angleToPlayer * Mathf.Rad2Deg, -launchAngleLimit, launchAngleLimit);
         return Quaternion.Euler(Vector3.left * angleToPlayer);
+    }
+
+    private void GenerateUniqueRandomNumbers()
+    {
+        List<int> availableNumbers = new List<int>() { 0, 1, 2, 3 }; // 가능한 숫자들의 리스트
+
+        for (int i = 0; i < 4; i++)
+        {
+            int randomIndex = Random.Range(0, availableNumbers.Count); // 가능한 숫자 중에서 랜덤하게 선택
+
+            ranSelect[i] = availableNumbers[randomIndex]; // 선택된 숫자를 배열에 추가
+            availableNumbers.RemoveAt(randomIndex); // 사용된 숫자는 가능한 숫자 리스트에서 제거
+        }
     }
 
 
@@ -230,6 +247,7 @@ public class BombPatternController : MonoBehaviour
     private VoidVoidDelegate reloadCannonCallback = null;
     private WaitForFixedUpdate waitFixedTime = null;
     private Transform targetTr = null;
+    private int[] ranSelect = new int[4];
 
     private float curLaserLength = 0f;
 }
