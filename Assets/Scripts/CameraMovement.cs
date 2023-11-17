@@ -87,7 +87,7 @@ public class CameraMovement : MonoBehaviour
     {
         Vector2 mousePos = playerData.currentMousePos;
         currentRotation = transform.rotation.eulerAngles;
-        Vector3 cameraZ = new Vector3(0f, 0f, -10 * (mousePos.x / 100));
+        Vector3 cameraZ = new Vector3(0f, 0f, -rotCamreaZ * (mousePos.x / 100));
         if(backMirror)
             desiredRotation = Quaternion.LookRotation(-playerTr.forward).eulerAngles+cameraZ;
         else
@@ -162,4 +162,6 @@ public class CameraMovement : MonoBehaviour
     private PlayerData playerData = null;
     private bool backMirror = false;
 
+    [SerializeField]
+    private float rotCamreaZ = 15f;
 }
