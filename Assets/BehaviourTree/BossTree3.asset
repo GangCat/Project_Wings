@@ -192,8 +192,6 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveSpeed: 300
-  rotateSpeed_Degree: 150
 --- !u!114 &-6789884967937151623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1828,8 +1826,6 @@ MonoBehaviour:
   drawGizmos: 0
   missilePrefab: {fileID: 6519272339437649605, guid: a206188b9df11604cb460e77e58be909,
     type: 3}
-  moveSpeed: 300
-  rotateSpeed_Degree: 150
   spawnRate: 1
 --- !u!114 &4456204010451904621
 MonoBehaviour:
@@ -2036,8 +2032,6 @@ MonoBehaviour:
   drawGizmos: 0
   giantHomingMissilePrefab: {fileID: 6519272339437649605, guid: d884fe74de305374d90e7e2a48159a9a,
     type: 3}
-  moveSpeed: 300
-  rotateSpeed_Degree: 80
 --- !u!114 &6871036271617449570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2265,8 +2259,6 @@ MonoBehaviour:
   drawGizmos: 0
   missilePrefab: {fileID: 6519272339437649605, guid: a206188b9df11604cb460e77e58be909,
     type: 3}
-  moveSpeed: 300
-  rotateSpeed_Degree: 80
   spawnRate: 1
 --- !u!114 &8191662739534080280
 MonoBehaviour:

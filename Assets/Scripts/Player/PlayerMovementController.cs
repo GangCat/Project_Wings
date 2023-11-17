@@ -76,7 +76,7 @@ public class PlayerMovementController : MonoBehaviour
                 float forwardY = playerTr.forward.y;
                 if (forwardY >= 0.3f)
                 {
-                    gravitySpeed = -playerData.gravitySpeed * 0.5f;
+                    gravitySpeed = -playerData.gravitySpeed * 0.2f;
                 }
                 else if (forwardY <= -0.2f)
                 {
@@ -204,6 +204,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (isLastPattern)
             playerVelocity += suckSpeed * (bossCoreEnterance.position - transform.position).normalized;
+
+        //if(moveSpeed > 150f && SpeedEffect.)
 
         rb.velocity = playerVelocity;
         playerData.currentMoveSpeed = moveSpeed; // 현재 속도 공유

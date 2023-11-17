@@ -187,6 +187,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         foreach (Collider col in arrTempCollider)
         {
             Debug.Log(col.name);
+            KnockBack(col);
             AttackDmg(col);
         }
         groupMissileMemoryPool.DeactivateGroupMissile(gameObject);

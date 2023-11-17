@@ -48,6 +48,8 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    public float Volume { get; set; }
+
     public void Init(GameObject _other)
     {
         AudioSource representAudioSource = GetComponent<AudioSource>();

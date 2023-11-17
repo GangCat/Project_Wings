@@ -7,7 +7,6 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
 {
     [Header("REFERENCES")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private GameObject target;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private float explosionRange = 0f;
     [SerializeField] private LayerMask explosionLayer;
@@ -35,13 +34,10 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     private Transform playerTr = null;
     public float GetCurHp => throw new NotImplementedException();
 
-    public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, bool _isShieldBreak, Transform _playerTr)
+    public void Init(Vector3 _spawnPos, Quaternion _spawnRot, bool _isShieldBreak, Transform _playerTr)
     {
         customAudioManager = GetComponent<CustomAudioManager>();
         playerTr = _playerTr;
-        target = _target;
-        speed = _speed;
-        rotateSpeed = _rotateSpeed;
         transform.position = _spawnPos;
         transform.rotation = _spawnRot;
 
@@ -54,8 +50,8 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         else
             isFirstTrigger = true;
 
-        deviationAmount = UnityEngine.Random.Range(30f, 70f);
-        deviationSpeed = UnityEngine.Random.Range(1f, 3f);
+        //deviationAmount = UnityEngine.Random.Range(30f, 70f);
+        //deviationSpeed = UnityEngine.Random.Range(1f, 3f);
 
         Subscribe();
         StartCoroutine("FixedUpdateCoroutine");
@@ -74,7 +70,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
 
             rb.velocity = transform.forward * speed;
 
-            var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(transform.position, target.transform.position));
+            var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(transform.position, playerTr.position));
 
             PredictMovement(leadTimePercentage);
             AddDeviation(leadTimePercentage);
@@ -89,7 +85,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     {
         var predictionTime = Mathf.Lerp(0, maxTimePrediction, _leadTimePercentage);
 
-        standardPrediction = target.transform.position + target.GetComponent<Rigidbody>().velocity * predictionTime;
+        standardPrediction = playerTr.position + playerTr.GetComponent<Rigidbody>().velocity * predictionTime;
     }
 
     private void AddDeviation(float _leadTimePercentage)
@@ -160,6 +156,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         foreach (Collider col in arrTempCollider)
         {
             Debug.Log(col.name);
+            KnockBack(col);
             AttackDmg(col);
         }
         Destroy(gameObject);

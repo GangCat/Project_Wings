@@ -25,10 +25,8 @@ public class MarbleManager : MonoBehaviour
 
             yield return new WaitForSeconds(healSpawnDelay);
         }
+
     }
-
-
-
 
     [SerializeField]
     private GameObject healMarblePrefab = null;

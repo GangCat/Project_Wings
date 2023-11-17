@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IKnockBackable
 {
     public delegate void PlayAudioDelegate(EPlayerAudio _playerAudio);
     private PlayAudioDelegate playAudioCallback = null;
@@ -81,63 +81,72 @@ public class PlayerController : MonoBehaviour
         moveCtrl.ChangeCollisionCondition(null, false);
     }
 
-    private void KnockBack(GameObject _colliderGo)
+    public void KnockBack(GameObject _go)
     {
         if (gameObject.layer.Equals(LayerMask.NameToLayer("PlayerInvincible")))
-            if (_colliderGo.GetComponent<AttackableObject>())
+            if (_go.GetComponent<AttackableObject>())
                 return;
 
-        Vector3 knockBackDir = (transform.position - _colliderGo.transform.position).normalized;
+        Vector3 knockBackDir = (transform.position - _go.transform.position).normalized;
         float knockBackAmount = 0f;
         float knockBackDelay = 2f;
 
-        if (_colliderGo.CompareTag("CannonBall"))
+        if (_go.CompareTag("CannonBall"))
         {
             knockBackAmount = 50f;
             knockBackDir = Vector3.down;
             Debug.Log("Hit");
         }
-        else if (_colliderGo.CompareTag("GatlingGunBullet"))
+        else if (_go.CompareTag("GatlingGunBullet"))
         {
             knockBackAmount = 50f;
-            knockBackDir = _colliderGo.transform.forward;
+            knockBackDir = _go.transform.forward;
             Debug.Log("Hit");
         }
-        else if (_colliderGo.CompareTag("ShakeBodyCollider"))
+        else if (_go.CompareTag("ShakeBodyCollider"))
         {
             knockBackAmount = 500f;
             knockBackDir = Vector3.up;
             knockBackDelay = 4f;
         }
-        else if (_colliderGo.CompareTag("WindBlow"))
+        else if (_go.CompareTag("WindBlow"))
         {
             knockBackAmount = 250f;
             knockBackDir = Vector3.up;
             knockBackDelay = 4f;
         }
-        else if (_colliderGo.CompareTag("WindBlowForPattern"))
+        else if (_go.CompareTag("WindBlowForPattern"))
         {
             knockBackAmount = 1000f;
             knockBackDir = Vector3.up;
             knockBackDelay = 3f;
         }
-        else if (_colliderGo.CompareTag("CrossLaser"))
+        else if (_go.CompareTag("CrossLaser"))
         {
             knockBackAmount = 100f;
-            knockBackDir = _colliderGo.transform.forward;
+            knockBackDir = _go.transform.forward;
             Debug.Log("Hit");
         }
-        else if (_colliderGo.CompareTag("BossShield"))
+        else if (_go.CompareTag("BossShield"))
         {
             knockBackAmount = 50f;
         }
-        else if (_colliderGo.CompareTag("AirPush"))
+        else if (_go.CompareTag("AirPush"))
         {
             knockBackAmount = 1000f;
             knockBackDir = new Vector3(transform.position.x, 0f, transform.position.z).normalized;
             knockBackDelay = 4f;
         }
-        else if (_colliderGo.CompareTag("Obstacle") || _colliderGo.CompareTag("Boss") || _colliderGo.CompareTag("BossBody") || _colliderGo.CompareTag("Floor"))
+        else if (_go.CompareTag("GroupHomingMissile"))
+        {
+            knockBackAmount = 100f;
+        }
+        else if (_go.CompareTag("GiantHomingMissile"))
+        {
+            knockBackAmount = 300f;
+            knockBackDelay = 3f;
+        }
+        else if (_go.CompareTag("Obstacle") || _go.CompareTag("Boss") || _go.CompareTag("BossBody") || _go.CompareTag("Floor"))
         {
             moveCtrl.ReduceSpeed();
             return;

@@ -15,10 +15,10 @@ MonoBehaviour:
   tr: {fileID: 0}
   input: {fileID: 0}
   maxHealth: 100
-  stamina: 2
+  stamina: 3
   moveBackVelocityLimit: -50
-  moveForwardVelocityLimit: 300
-  moveAccel: 300
+  moveForwardVelocityLimit: 150
+  moveAccel: 150
   moveDashSpeed: 150
   moveDashAccel: 100
   moveStopAccel: 40
@@ -40,10 +40,10 @@ MonoBehaviour:
   maxMouseSpeed: 6
   maxMouseRadius: 100
   returnMouseRadius: 90
-  currentMousePos: {x: 0, y: 0}
+  currentMousePos: {x: 75.99999, y: -15.600002}
   rollAccel: 1000
   rollMaxVelocity: 150
   rollMaxAngle: 80
   rollReturnAccel: 100
   currentRotZ: 0
-  currentMoveSpeed: 174.56357
+  currentMoveSpeed: 132

@@ -100,20 +100,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 60
   rb: {fileID: 7731077181299898714}
-  target: {fileID: 0}
   explosionPrefab: {fileID: 8892962482691636397, guid: efbb3c64fa77aab49ae3b22d772f9554,
     type: 3}
   explosionRange: 100
   explosionLayer:
     serializedVersion: 2
     m_Bits: 8384
-  speed: 15
-  rotateSpeed: 95
-  maxDistancePredict: 5
-  minDistancePredict: 0.1
-  maxTimePrediction: 0.1
-  deviationAmount: 50
-  deviationSpeed: 2
+  speed: 150
+  rotateSpeed: 200
+  maxDistancePredict: 10
+  minDistancePredict: 0.5
+  maxTimePrediction: 0.5
+  deviationAmount: 5
+  deviationSpeed: 0.2
 --- !u!1 &7497792970494708919
 GameObject:
   m_ObjectHideFlags: 0

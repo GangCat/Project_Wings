@@ -40,9 +40,12 @@ public class GatilingActionNode : ActionNode
         gunMuzzleTr = context.gunMuzzleTr;
         gatlingHolder = context.gatlingHolderGo;
         gatlinGeadTr = context.gatlingHeadGo.transform;
+
+        context.bossCtrl.GatlinGun.GetComponent<GatilinSpinController>().StartSpin();
     }
 
     protected override void OnStop() {
+        context.bossCtrl.GatlinGun.GetComponent<GatilinSpinController>().StopSpin();
     }
 
     protected override State OnUpdate() {

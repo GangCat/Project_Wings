@@ -50,6 +50,7 @@ public class BossController : MonoBehaviour, IPublisher
     public BossShieldGeneratorSpawnPoint[] CurSpawnPoints => arrCurShieldGeneratorSpawnPoints;
     public GameObject GatlingHolder => gatlingHolderGo;
     public GameObject GatlingHead => gatlingHeadGo;
+    public GameObject GatlinGun => gatlinGunGo;
     public GameObject AirPush => airPush;
     public Transform GunMuzzle => gunMuzzleTr;
     public CannonMemoryPool CannonMemoryPool => cannonMemoryPool;
@@ -307,6 +308,8 @@ public class BossController : MonoBehaviour, IPublisher
     private GameObject gatlingHolderGo = null;
     [SerializeField]
     private GameObject gatlingHeadGo = null;
+    [SerializeField]
+    private GameObject gatlinGunGo = null;
     [SerializeField]
     private Transform gunMuzzleTr = null;
     [SerializeField]

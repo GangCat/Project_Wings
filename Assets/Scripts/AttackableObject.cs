@@ -15,6 +15,17 @@ public class AttackableObject : MonoBehaviour
         return false;
     }
 
+    protected virtual bool KnockBack(Collider _other)
+    {
+        IKnockBackable damagable = FindInterfaceInParents<IKnockBackable>(_other.transform);
+        if (damagable != null)
+        {
+            damagable.KnockBack(gameObject);
+            return true;
+        }
+        return false;
+    }
+
     protected T FindInterfaceInParents<T>(Transform currentTransform) where T : class
     {
         // 현재 오브젝트에서 특정 인터페이스를 구현한 컴포넌트 찾기 시도
