@@ -7,6 +7,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 {
     [Header("REFERENCES")]
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private GameObject target;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private float explosionRange = 0f;
     [SerializeField] private LayerMask explosionLayer;
@@ -46,10 +47,15 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 
     public float GetCurHp => throw new NotImplementedException();
 
-    public void Init(Transform _playerTr, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
+<<<<<<< HEAD
+    public void Init(GameObject _target, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
+=======
+    public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak, Transform _playerTr)
+>>>>>>> origin/geohyung02
     {
         playerTr = _playerTr;
         customAudioManager = GetComponent<CustomAudioManager>();
+        target = _target;
         groupMissileMemoryPool = _groupMissileMemoryPool;
         transform.position = _spawnPos;
         transform.rotation = _spawnRot;
@@ -98,7 +104,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             {
                 customAudioManager.StopAllAudio();
             }
-            var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(transform.position, playerTr.position));
+            var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(transform.position, target.transform.position));
 
             PredictMovement(leadTimePercentage);
             AddDeviation(leadTimePercentage);
@@ -113,7 +119,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     {
         var predictionTime = Mathf.Lerp(0, maxTimePrediction, _leadTimePercentage);
 
-        standardPrediction = playerTr.position + playerTr.GetComponent<Rigidbody>().velocity * predictionTime;
+        standardPrediction = target.transform.position + target.GetComponent<Rigidbody>().velocity * predictionTime;
     }
 
     private void AddDeviation(float _leadTimePercentage)
