@@ -35,8 +35,14 @@ namespace TheKiwiCoder {
         public CannonAudioManager cannonAudioManager;
         public CustomAudioManager airPushAudioManager;
         public GameObject[] cannonSoundSpawnGOs;
+        public GameObject airPushSoundSpawnGO;
+        public GameObject windBlowSoundSpawnGO;
+        public GameObject sitDownSoundSpawnGO;
+        public GameObject gatlingLaunchSoundSpawnGO;
+        public GameObject gatlingRotationSoundSpawnGO;
+        public GameObject tornadoSoundSpawnGO;
+        public GameObject giantTornadeSoundSpawnGO;
         // Add other game specific systems here
-
         public static Context CreateFromGameObject(
             Transform _playerTr, 
             BossCollider _bossCollider, 
@@ -66,10 +72,16 @@ namespace TheKiwiCoder {
             context.footWindTr = _bossCtrl.FootWindTr;
             context.footWindGo = _bossCtrl.FootWindGo;
             context.sitDownGo = _bossCtrl.SitDownGo;
-            context.cannonAudioManager = _bossCtrl.CannonAudioManager;
-            context.airPushAudioManager = _bossCtrl.AirPushAudioManager;
             context.cannonSoundSpawnGOs = _bossCtrl.CannonSoundSpawnGOs;
+            context.airPushSoundSpawnGO = _bossCtrl.AirPushSoundSpawnGO;
+            context.windBlowSoundSpawnGO = _bossCtrl.WindBlowSoundSpawnGO;
+            context.windBlowSoundSpawnGO = _bossCtrl.SitDownSoundSpawnGO;
+            context.sitDownSoundSpawnGO = _bossCtrl.GatlingLaunchSoundSpawnGO;
+            context.gatlingLaunchSoundSpawnGO = _bossCtrl.GatlingRotationSoundSpawnGO;
+            context.gatlingRotationSoundSpawnGO = _bossCtrl.TornadoSoundSpawnGO;
+            context.tornadoSoundSpawnGO = _bossCtrl.GiantTornadeSoundSpawnGO;
             // Add whatever else you need here...
+
 
             return context;
         }

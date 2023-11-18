@@ -6,6 +6,7 @@ public class ActionCamera : MonoBehaviour
 {
     public void Init(VoidBoolDelegate _actionFinishCallback)
     {
+        soundManager.Init(gameObject);
         anim = GetComponent<Animator>();
         cam = GetComponent<Camera>();
         subCam = GetComponentInChildren<Camera>();
@@ -33,21 +34,25 @@ public class ActionCamera : MonoBehaviour
     {
         if(_curPhaseNum == 0)
         {
+            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASECHANGESOUND_01);
             SetPos(230, 539, -405);
             SetRot(10.902f, -80, 0f);
         }
         else if(_curPhaseNum == 1)
         {
+            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASECHANGESOUND_02_01);
             SetPos(-594, 190, -862);
             SetRot(10.902f, 34.582f, 0);
         }
         else if(_curPhaseNum == 2)
         {
+            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASECHANGESOUND_02_02);
             SetPos(-4.3f, 122f, -162.6f);
             SetRot(-45f, 0f, 0f);
         }
         else if(_curPhaseNum >= 3)
         {
+            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASECHANGESOUND_03);
             SetPos(0f, 597f, -972f);
             SetRot(14.354f, 0f, 0f);
         }
@@ -73,6 +78,7 @@ public class ActionCamera : MonoBehaviour
 
         actionFinishCallback?.Invoke(isLastAction);
     }
+    private SoundManager soundManager = SoundManager.Instance;
 
     private Animator anim = null;
     private VoidBoolDelegate actionFinishCallback = null;

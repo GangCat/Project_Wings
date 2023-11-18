@@ -11,13 +11,19 @@ public class WindBlowAnimActionNode : ActionNode
     private bool isWindBlow = false;
 
     private float finishTime = 0f;
+
+    private SoundManager soundManager = SoundManager.Instance;
     protected override void OnStart() {
+        soundManager.Init(context.windBlowSoundSpawnGO);
+        soundManager.PlayAudio(context.windBlowSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSTORNADOSOUND, true);
         //context.anim.SetBool("isWindBlowStart", isWindBlow);
         Debug.Log("start");
         finishTime = Time.time + animTime;
     }
 
     protected override void OnStop() {
+        soundManager.PlayAudio(context.windBlowSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSTORNADOSOUND, false);
+
     }
 
     protected override State OnUpdate() {

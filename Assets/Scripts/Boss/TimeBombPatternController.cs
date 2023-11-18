@@ -11,6 +11,7 @@ public class TimeBombPatternController : MonoBehaviour
         VoidVoidDelegate _reloadCannonCallback,
         Transform _targetTr)
     {
+        soundManager.Init(gameObject);
         patternFinishCallback = _patternFinishDelegate;
         bossRotationCallback = _bossRotationCallback;
         reloadCannonCallback = _reloadCannonCallback;
@@ -69,7 +70,7 @@ public class TimeBombPatternController : MonoBehaviour
         while (bombIdx < 4)
         {
             if (Time.time - spawnTime > spawnBombDelay)
-            {//점착폭탄 발사 사운드 재생
+            {
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
                 bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, explosionTime, targetTr);
                 arrBombGo[bombIdx] = bombGo;
@@ -90,7 +91,8 @@ public class TimeBombPatternController : MonoBehaviour
         GameObject laserGo = null;
         Debug.Log("StartLaserCharge");
         //레이저 기모으는 사운드 재생(루프)
-        for(int i = 0; i < arrBombGo.Length; ++i)
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.LASERPREPERATIONSOUND,true);
+        for (int i = 0; i < arrBombGo.Length; ++i)
             arrBombGo[i].GetComponent<TimeBomb>().StartTimer((i + 1) * 12);
 
         while (true)
@@ -98,6 +100,7 @@ public class TimeBombPatternController : MonoBehaviour
             if (Time.time - laserStartTime > laserDelay - 1f)
             {
                 //레이저 기모으는 사운드 정지
+                soundManager.StopAllAudio(GetComponent<AudioSource>());
                 bossRotationCallback?.Invoke(false);
                 Quaternion laserRotation = CalcLaserRotation();
 
@@ -117,6 +120,7 @@ public class TimeBombPatternController : MonoBehaviour
                     break;
 
                 //레이저 기모으는 사운드 재생(루프)
+                soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.LASERPREPERATIONSOUND,true);
                 Debug.Log("StartLaserCharge");
                 laserStartTime = Time.time;
                 bossRotationCallback?.Invoke(true);
@@ -226,5 +230,6 @@ public class TimeBombPatternController : MonoBehaviour
     private WaitForFixedUpdate waitFixedTime = null;
     private Transform targetTr = null;
 
+    private SoundManager soundManager = SoundManager.Instance;
     private float curLaserLength = 0f;
 }

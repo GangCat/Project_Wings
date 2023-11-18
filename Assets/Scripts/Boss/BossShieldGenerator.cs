@@ -6,6 +6,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
 {
     public void Init(VoidGameObjectDelegate _destroyCallback, Vector3 _bossPos)
     {
+        soundManager.Init(gameObject);
         destroyCallback = _destroyCallback;
         curHp = maxHp;
 
@@ -47,6 +48,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         if (curHp < 0)
             return;
         //피격 사운드 실행  일단 보류하기
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSSHIELDGENERATORHITSOUND);
         curHp -= _dmg;
 
         BreakRing();
@@ -56,6 +58,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
             destroyCallback?.Invoke(gameObject);
             // 아이들 사운드 루프 실행 사운드 끝날때까지 파괴 대기
             //쉴드 재생기 파괴되는소리 재생
+            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSSHIELDGENERATORDESTROYSOUND);
             Destroy(gameObject);
         }
     }
@@ -72,7 +75,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         if (curHp < maxHp * 0.1f)
             ringGo[2].SetActive(false);
     }
-
+    private SoundManager soundManager = SoundManager.Instance;
     private VoidGameObjectDelegate destroyCallback = null;
 
     [SerializeField]

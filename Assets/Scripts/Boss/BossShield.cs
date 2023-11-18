@@ -6,6 +6,7 @@ public class BossShield : MonoBehaviour, IDamageable
 {
     public void Init(VoidVoidDelegate _restorShieldFinishCallback, VoidFloatDelegate _shieldUpdateCallback, VoidVoidDelegate _removeShieldCallback)
     {
+        soundManager.Init(gameObject);
         mr = GetComponent<MeshRenderer>();
         mc = GetComponent<MeshCollider>();
         //brokenLayer = LayerMask.NameToLayer("BossShieldBroken");
@@ -32,6 +33,7 @@ public class BossShield : MonoBehaviour, IDamageable
 
     public void StopRestorShield()
     {
+        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.BOSSSHIELDDESTROYSOUND); 
         StopCoroutine("RestoreShieldCoroutine");
         removeShieldCallback?.Invoke();
         gameObject.SetActive(false);
@@ -73,6 +75,7 @@ public class BossShield : MonoBehaviour, IDamageable
 
     public void GetDamage(float _dmg)
     {
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSSHIELDHITSOUND); 
         Debug.Log($"Shield Hit!");
     }
 
@@ -83,5 +86,7 @@ public class BossShield : MonoBehaviour, IDamageable
     private VoidVoidDelegate restorShieldFinishCallback = null;
     private VoidVoidDelegate removeShieldCallback = null;
     private VoidFloatDelegate shieldUpdateCallback = null;
+
+    private SoundManager soundManager = SoundManager.Instance;
 
 }

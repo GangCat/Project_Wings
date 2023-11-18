@@ -34,7 +34,11 @@ public class GatilingActionNode : ActionNode
     private float cetha;
     private Vector3 rndRebound;
 
+    private SoundManager soundManager = SoundManager.Instance;
+
+
     protected override void OnStart() {
+
         curBulletCnt = maxBulletCnt;
         playerTr = context.playerTr;
         gunMuzzleTr = context.gunMuzzleTr;
@@ -43,6 +47,8 @@ public class GatilingActionNode : ActionNode
     }
 
     protected override void OnStop() {
+        soundManager.PlayAudio(context.gatlingLaunchSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGSHOOTINGSOUND, false);
+        soundManager.PlayAudio(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGSHOOTINGSOUND, false);
     }
 
     protected override State OnUpdate() {
@@ -50,18 +56,24 @@ public class GatilingActionNode : ActionNode
 
         if (!isRandomShoot)
         {
+            soundManager.PlayAudio(context.gatlingLaunchSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGSHOOTINGSOUND, true);
+
             RotateTurretToPlayer();
             RotateTurretHeadToPlayer();
             // 플레이어와의 거리계산 > 가까울수록 큼 > 게틀린건 회전하는 기어 혹은 기계음 소리
         }
         else
         {
+            soundManager.PlayAudio(context.gatlingLaunchSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGSHOOTINGSOUND, true);
+
             RotateTurretHeadRandom();
             // 플레이어와의 거리계산 > 가까울수록 큼 > 게틀린건 회전하는 기어 혹은 기계음 소리
         }
 
         if (CanFire())
         {
+            soundManager.PlayAudio(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGSHOOTINGSOUND, true);
+
             FireBullet();
             //플레이어와의 거리계산 > 가까울수록 큼 > 총알 발사하는 소리재생
         }

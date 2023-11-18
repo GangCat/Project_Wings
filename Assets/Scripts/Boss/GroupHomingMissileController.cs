@@ -32,6 +32,8 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     private GroupMissileMemoryPool groupMissileMemoryPool = null;
     private CustomAudioManager customAudioManager = null;
     private Transform playerTr;
+
+    private SoundManager soundManager = SoundManager.Instance;
     private enum EGroupMissileAudio
     {
         NONE = -1,
@@ -48,6 +50,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 
     public void Init(Transform _playerTr, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
     {
+        soundManager.Init(gameObject);
         playerTr = _playerTr;
         customAudioManager = GetComponent<CustomAudioManager>();
         groupMissileMemoryPool = _groupMissileMemoryPool;
@@ -75,6 +78,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     {
         while (true)
         {
+            soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.GROUPHOMINGMISSILEPASSINGSOUND);
             // 미사일의 뒤에 불꽃 점화소리(타는 소리), 플레이어와의 거리 계산, 가까울 수록 볼륨은 커진다.
             if (isPhaseChanged)
             {
@@ -189,6 +193,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             Debug.Log(col.name);
             AttackDmg(col);
         }
+        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.GROUPHOMINGMISSILEEXPLOSIONSOUND) ;
         groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
         // 플레이어와의 거리 계산 > 가까울 수록 볼륨은 커진다 > 미사일이 폭발하는 소리 재생
     }

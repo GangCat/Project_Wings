@@ -35,8 +35,11 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     private Transform playerTr = null;
     public float GetCurHp => throw new NotImplementedException();
 
+    private SoundManager soundManager = SoundManager.Instance;
+
     public void Init(GameObject _target, float _speed, float _rotateSpeed, Vector3 _spawnPos, Quaternion _spawnRot, bool _isShieldBreak, Transform _playerTr)
     {
+        soundManager.Init(gameObject);
         customAudioManager = GetComponent<CustomAudioManager>();
         playerTr = _playerTr;
         target = _target;
@@ -65,6 +68,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     {
         while (true)
         {
+            soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.GIANTHOMINGMISSILEPASSINGSOUND);
             // 플레이어와의 거리계산 > 가까울 수록 볼륨 크게 > 미사일 점화소리
             if (isPhaseChanged)
             {
@@ -138,18 +142,19 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     {
         Explosion();
     }
-
     public void GetDamage(float _dmg)
     {
         Explosion();
     }
 
-    public void Explosion()
+
+    private void Explosion()
     {
         if (isExplosed)
             return;
 
         // 플레이어와의 거리 계산 > 가까울 수록 볼륨 크게 > 대형 미사일 폭발 소리
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.GIANTHOMINGMISSILEXPLOSIONSOUND);
         //StopCoroutine("AutoExplosionCorutine");
         isExplosed = true;
         GameObject go = Instantiate(explosionPrefab, transform.position, Quaternion.identity);

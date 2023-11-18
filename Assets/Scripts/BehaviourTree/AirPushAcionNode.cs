@@ -18,25 +18,29 @@ public class AirPushAcionNode : ActionNode
     private float durationTime = 5f;
 
     private float curDurationTime = 0f;
+
+    private SoundManager soundManager = SoundManager.Instance;
     private enum EAirPushAudio
     {
         NONE = -1,
         AIRPUSHSOUND
     }
     protected override void OnStart() {
-
+        soundManager.Init(context.airPushSoundSpawnGO);
         if (blackboard.curPhaseNum > 1)
         {
             context.airPushGo.SetActive(true);
-            context.airPushAudioManager.PlayAudio((int)EAirPushAudio.AIRPUSHSOUND,true);
+            soundManager.PlayAudio(context.airPushSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONWATERCRUSHSOUND,true);
             curDurationTime = durationTime;
         }
     }
 
     protected override void OnStop() {
         if(blackboard.curPhaseNum > 1)
+        {
             context.airPushGo.SetActive(false);
-        //바람이 고막을 때리는 소리 끄기
+            soundManager.PlayAudio(context.airPushSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONWATERCRUSHSOUND, false);
+        }
     }
 
     protected override State OnUpdate() {
