@@ -48,13 +48,14 @@ public class GatilingActionNode : ActionNode
         soundManager.Init(context.gatlingLaunchSoundSpawnGO);
         soundManager.Init(context.gatlingRotationSoundSpawnGO);
 
+        soundManager.PlayAudio(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGROTATESOUND, true);
         context.bossCtrl.GatlinGun.GetComponent<GatilinSpinController>().StartSpin();
     }
 
     protected override void OnStop() {
         context.bossCtrl.GatlinGun.GetComponent<GatilinSpinController>().StopSpin();
         soundManager.PlayAudio(context.gatlingLaunchSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGSHOOTINGSOUND, false);
-        soundManager.PlayAudio(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGSHOOTINGSOUND, false);
+        soundManager.PlayAudio(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.GATLINGROTATESOUND, false);
     }
 
     protected override State OnUpdate() {

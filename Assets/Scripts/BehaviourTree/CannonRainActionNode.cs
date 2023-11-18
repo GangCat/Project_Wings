@@ -40,6 +40,7 @@ public class CannonRainActionNode : ActionNode
     }
     protected override void OnStart()
     {
+        launchSoundPlayTime = 0;
         startTime = Time.time;
         lastSoundPlayTime = Time.time;
         soundManager = SoundManager.Instance;
