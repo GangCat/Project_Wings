@@ -8,6 +8,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     {
         destroyCallback = _destroyCallback;
         curHp = maxHp;
+        myCollider = GetComponent<SphereCollider>();
 
         StartCoroutine(GenIndicatorCoroutine(_bossPos));
         StartCoroutine(RotateCoroutine());
@@ -64,16 +65,27 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     {
 
         if (curHp < maxHp * 0.7f)
+        {
             ringGo[0].SetActive(false);
-
+            SetColliderSize(0);
+        }
         if (curHp < maxHp * 0.4f)
+        {
             ringGo[1].SetActive(false);
-
+            SetColliderSize(1);
+        }
         if (curHp < maxHp * 0.1f)
+        {
             ringGo[2].SetActive(false);
+            SetColliderSize(2);
+        }
     }
 
-    private VoidGameObjectDelegate destroyCallback = null;
+    private void SetColliderSize(int _radiusIdx)
+    {
+        myCollider.radius = sphereColliderRadius[_radiusIdx];
+    }
+
 
     [SerializeField]
     private float curHp = 0;
@@ -83,6 +95,8 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     private GameObject shieldGenIndicatorPrefab = null;
     [SerializeField]
     private LayerMask bossLayer;
+    [SerializeField]
+    private float[] sphereColliderRadius = null;
 
     [Header("InformationForRotation")]
     [SerializeField]
@@ -91,4 +105,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     private GameObject[] ringGo = null;
     [SerializeField]
     private float rotateSpeed = 20f;
+
+    private VoidGameObjectDelegate destroyCallback = null;
+    private SphereCollider myCollider = null;
 }
