@@ -393,6 +393,7 @@ public class PlayerMovementController : MonoBehaviour
                 yield return new WaitForSeconds(5f);
                 playerData.stamina++;
                 spUpdateDelegate.Invoke(playerData.stamina);
+                staminaUp.SetActive(true);
             }
             yield return null;
         }
@@ -472,7 +473,8 @@ public class PlayerMovementController : MonoBehaviour
     private float suckSpeed = 100f;
     [SerializeField]
     private VisualEffect SpeedEffect = null;
-
+    [SerializeField]
+    private GameObject staminaUp = null;
 
     [SerializeField]
     private GameObject cam = null;
