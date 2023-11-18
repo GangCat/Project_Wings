@@ -108,7 +108,10 @@ public class BombPatternController : MonoBehaviour
             if (Time.time - laserStartTime > laserDelay - 1f)
             {
                 //레이저 기모으는 사운드 정지
-                soundManager.StopAllAudio(GetComponent<AudioSource>());
+                if (soundManager.IsPlaying(GetComponent<AudioSource>()))
+                {
+                    soundManager.StopAudio(GetComponent<AudioSource>());
+                }
                 bossRotationCallback?.Invoke(false);
                 Quaternion laserRotation = CalcLaserRotation();
 

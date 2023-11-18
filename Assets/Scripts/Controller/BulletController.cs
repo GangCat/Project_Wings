@@ -26,6 +26,8 @@ public class BulletController : AttackableObject, ISubscriber
         gatlinMemoryPool = _gatlinMemoryPooll;
         isPhaseChange = false;
         isBodyTrigger = true;
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BULLETPASSINGSOUND,true);
+        //플레이오와의 거리계산 > 가까울수록 소리 증폭 > 총알이 지나가는 소리
     }
     //private void Start()
     //{
@@ -34,8 +36,6 @@ public class BulletController : AttackableObject, ISubscriber
 
     private void FixedUpdate()
     {
-        //플레이오와의 거리계산 > 가까울수록 소리 증폭 > 총알이 지나가는 소리
-        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BULLETPASSINGSOUND);
         transform.position += transform.forward * speed * Time.fixedDeltaTime;
 
         if (isPhaseChange)
@@ -80,6 +80,10 @@ public class BulletController : AttackableObject, ISubscriber
 
     private void DeactivateBullet()
     {
+        if (soundManager.IsPlaying(GetComponent<AudioSource>()))
+        {
+            soundManager.StopAudio(GetComponent<AudioSource>());
+        }
         gatlinMemoryPool.DeactivateBullet(gameObject);
     }
 

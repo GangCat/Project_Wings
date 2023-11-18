@@ -31,7 +31,10 @@ public class WindBlowActionSecondNode : ActionNode
     protected override void OnStop() {
         if (windBlowPoints != null)
         {
-            soundManager.PlayAudio(context.windBlowSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSTORNADOSOUND, false);
+            if (soundManager.IsPlaying(context.windBlowSoundSpawnGO.GetComponent<AudioSource>()))
+            {
+                soundManager.StopAudio(context.windBlowSoundSpawnGO.GetComponent<AudioSource>());
+            }
 
             //사운드 널 검사 한번하고 널아니면 사운드 끄기
             foreach (WindBlowPoint wbp in windBlowPoints)

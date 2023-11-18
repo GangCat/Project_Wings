@@ -23,8 +23,10 @@ public class WindBlowAnimActionNode : ActionNode
     }
 
     protected override void OnStop() {
-        soundManager.PlayAudio(context.windBlowSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSTORNADOSOUND, false);
-
+        if (soundManager.IsPlaying(context.windBlowSoundSpawnGO.GetComponent<AudioSource>()))
+        {
+            soundManager.StopAudio(context.windBlowSoundSpawnGO.GetComponent<AudioSource>());
+        }
     }
 
     protected override State OnUpdate() {

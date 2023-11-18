@@ -26,6 +26,10 @@ public class SitDownActionNode : ActionNode
 
     protected override void OnStop()
     {
+        if (soundManager.IsPlaying(context.sitDownSoundSpawnGO.GetComponent<AudioSource>()))
+        {
+            soundManager.StopAudio(context.sitDownSoundSpawnGO.GetComponent<AudioSource>());
+        }
         context.sitDownGo.SetActive(false);
         // 보스 기계음 정지
     }

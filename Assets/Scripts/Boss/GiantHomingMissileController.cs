@@ -182,6 +182,10 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         isExplosed = true;
         GameObject go = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         go.transform.localScale = Vector3.one * explosionRange;
+        if (soundManager.IsPlaying(GetComponent<AudioSource>()))
+        {
+            soundManager.StopAudio(GetComponent<AudioSource>());
+        }
         Destroy(go, 5f);
 
         Collider[] arrTempCollider = Physics.OverlapSphere(transform.position, explosionRange, explosionLayer);
