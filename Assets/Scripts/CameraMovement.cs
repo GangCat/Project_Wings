@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -87,8 +88,11 @@ public class CameraMovement : MonoBehaviour
     {
         Vector2 mousePos = playerData.currentMousePos;
         currentRotation = transform.rotation.eulerAngles;
-        Vector3 cameraZ = new Vector3(0f, 0f, -rotCamreaZ * (mousePos.x / 100));
-        if(backMirror)
+        if (playerData.currentMoveSpeed >= 1)
+            cameraZ = new Vector3(0f, 0f, -rotCamreaZ * (mousePos.x / 100));
+        else
+            cameraZ = Vector3.zero;
+        if (backMirror)
             desiredRotation = Quaternion.LookRotation(-playerTr.forward).eulerAngles+cameraZ;
         else
         desiredRotation = Quaternion.LookRotation(playerTr.forward).eulerAngles+cameraZ;
@@ -156,6 +160,7 @@ public class CameraMovement : MonoBehaviour
     private Vector3 desiredRotation = Vector3.zero;
     private Vector3 calcPos = Vector3.zero;
     private Vector3 cameraPos = Vector3.zero;
+    private Vector3 cameraZ = Vector3.zero;
     private Vector3 rotVectorVelocity;
     private Quaternion quaternion = Quaternion.identity;
     private Transform playerTr = null;
