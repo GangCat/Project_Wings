@@ -51,6 +51,8 @@ public class CannonRainBallController : AttackableObject, ISubscriber
         soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
 
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONPASSINGSOUND, true);
+
         StartCoroutine("UpdateCoroutine");
     }
 
@@ -70,7 +72,9 @@ public class CannonRainBallController : AttackableObject, ISubscriber
             //{
             //    customAudioManger.PlayAudio((int)ECannonAudio.CANNONBALLPASSINGSOUND);
             //}
-            soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.CANNONPASSINGSOUND);
+
+
+            
             yield return waitFixedUpdate;
 
             if (isPhaseChanged)

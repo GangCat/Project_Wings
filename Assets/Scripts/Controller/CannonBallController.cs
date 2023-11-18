@@ -27,6 +27,7 @@ public class CannonBallController : AttackableObject, ISubscriber
         waitFixedUpdate = new WaitForFixedUpdate();
         isPhaseChanged = false;
         audioCallback = _audioCallback;
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONPASSINGSOUND, true);
 
         Subscribe();
         StartCoroutine(UpdateCoroutine());
@@ -36,7 +37,7 @@ public class CannonBallController : AttackableObject, ISubscriber
     {
         while (true)
         {
-            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONPASSINGSOUND);
+            
             //플레이어와의 거리계산 > 가까울 수록 소리 증폭 > 포탄지나가는 바람 소리
             if (transform.position.y < 0)
             {

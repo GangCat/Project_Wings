@@ -79,19 +79,19 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
 
         //deviationAmount = UnityEngine.Random.Range(30f, 70f);
         //deviationSpeed = UnityEngine.Random.Range(1f, 3f);
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.GIANTHOMINGMISSILEPASSINGSOUND, true);
 
         Subscribe();
         StartCoroutine("FixedUpdateCoroutine");
     }
 
-    public float GetCurHp => throw new NotImplementedException();
+    public float GetCurHp => 100f;
 
 
     private IEnumerator FixedUpdateCoroutine()
     {
         while (true)
         {
-            soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.GIANTHOMINGMISSILEPASSINGSOUND);
             // 플레이어와의 거리계산 > 가까울 수록 볼륨 크게 > 미사일 점화소리
             if (isPhaseChanged)
             {

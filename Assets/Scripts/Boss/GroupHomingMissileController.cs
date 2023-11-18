@@ -91,6 +91,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 
         //deviationAmount = UnityEngine.Random.Range(5f, 20f);
         //deviationSpeed = UnityEngine.Random.Range(0.1f, 1f);
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.GROUPHOMINGMISSILEPASSINGSOUND, true);
 
         Subscribe();
         StartCoroutine("FixedUpdateCoroutine");
@@ -101,7 +102,6 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     {
         while (true)
         {
-            soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.GROUPHOMINGMISSILEPASSINGSOUND);
             // 미사일의 뒤에 불꽃 점화소리(타는 소리), 플레이어와의 거리 계산, 가까울 수록 볼륨은 커진다.
             if (isPhaseChanged)
             {

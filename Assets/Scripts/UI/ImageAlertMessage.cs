@@ -15,14 +15,19 @@ public class ImageAlertMessage : MonoBehaviour
     public void AlertDanger()
     {
         //경고 사운드 재생
-        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.SCREENWARNINGSOUND) ;
-        textAlert.AlertDanger(alertMessage);
+        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.SCREENWARNINGSOUND);
+        textAlert.AlertDanger(alertMessage[0]);
+    }
+
+    public void FirstPatternAlert()
+    {
+        textAlert.AlertDanger(alertMessage[1]);
     }
 
 
     [SerializeField]
     [TextArea]
-    private string alertMessage = "";
+    private string[] alertMessage = null;
 
     private TextAlertMessage textAlert = null;
 

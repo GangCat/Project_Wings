@@ -116,7 +116,7 @@ public class SoundManager : MonoBehaviour
         audioSource.playOnAwake = false;
     }
 
-
+    int i = 0;
     public void PlayAudio(AudioSource _otherAudioSource, int _audioIdx, bool _isLoop = false, bool _canFeelDistance = true)
     {
         if (_canFeelDistance) _otherAudioSource.spatialBlend = 1;
@@ -127,6 +127,9 @@ public class SoundManager : MonoBehaviour
         _otherAudioSource.volume = Mathf.InverseLerp(0, 100, volumes[_audioIdx]);
         _otherAudioSource.loop = _isLoop;
         _otherAudioSource.Play();
+
+        ++i;
+        Debug.Log($"AudioCount: {i}");
     }
     public void StopAllAudio(AudioSource _otherAudioSource)
     {
