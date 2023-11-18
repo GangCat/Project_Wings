@@ -13,10 +13,11 @@ public class BulletController : AttackableObject, ISubscriber
     private bool isPhaseChange = false;
     private bool isBodyTrigger = true;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
     public void Init(float _destroyTime, Vector3 _position, Quaternion _rotation,GatlinMemoryPool _gatlinMemoryPooll = null)
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
         //Destroy(gameObject, _destroyTime);
         Invoke("DeactivateBullet", _destroyTime);

@@ -50,7 +50,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     private VisualEffect vfx = null;
     private MeshRenderer mr = null;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
 
     private enum EGroupMissileAudio
@@ -64,6 +64,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 
     public void Init(Transform _playerTr, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
             customAudioManager = GetComponent<CustomAudioManager>();
         if (!vfx)

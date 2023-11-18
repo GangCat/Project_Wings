@@ -6,6 +6,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
 {
     public void Init(VoidGameObjectDelegate _destroyCallback, Vector3 _bossPos)
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
         destroyCallback = _destroyCallback;
         curHp = maxHp;
@@ -88,7 +89,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     {
         myCollider.radius = sphereColliderRadius[_radiusIdx];
     }
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
     [SerializeField]
     private float curHp = 0;

@@ -6,6 +6,7 @@ public class ImageAlertMessage : MonoBehaviour
 {
     public void Init()
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
         textAlert = GetComponentInChildren<TextAlertMessage>();
         textAlert.Init();
@@ -25,5 +26,5 @@ public class ImageAlertMessage : MonoBehaviour
 
     private TextAlertMessage textAlert = null;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 }

@@ -115,6 +115,6 @@ public class TimeBomb : MonoBehaviour
     private Rigidbody rb = null;
     private Transform targetTr = null;
     private Color myColor = Color.black;
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
     private int myIdx = -1;
 }

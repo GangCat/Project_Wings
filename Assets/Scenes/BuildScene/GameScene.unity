@@ -17899,6 +17899,13 @@ MonoBehaviour:
   - {fileID: 322155149}
   - {fileID: 513219127}
   - {fileID: 1056058681}
+  airPushSoundSpawnGO: {fileID: 0}
+  windBlowSoundSpawnGO: {fileID: 0}
+  sitDownSoundSpawnGO: {fileID: 0}
+  gatlingLaunchSoundSpawnGO: {fileID: 0}
+  gatlingRotationSoundSpawnGO: {fileID: 0}
+  tornadoSoundSpawnGO: {fileID: 0}
+  giantTornadeSoundSpawnGO: {fileID: 0}
   bossShieldGeneratorPrefab: {fileID: 8195064967662265529, guid: f980ee72ce8b4f443ab1e9b9366ac527,
     type: 3}
   rotationSpeed: 2

@@ -16,9 +16,10 @@ public class CannonBallController : AttackableObject, ISubscriber
     private bool isPhaseChanged = false;
     private PlayEffectAudioDelegate audioCallback = null;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
     public void Init(float _speed, Vector3 _spawnPos, CannonMemoryPool _memoryPool = null, PlayEffectAudioDelegate _audioCallback = null)
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
         speed = _speed;
         transform.position = _spawnPos;

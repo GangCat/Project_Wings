@@ -12,6 +12,7 @@ public class BombPatternController : MonoBehaviour
         VoidVoidDelegate _reloadCannonCallback,
         Transform _targetTr)
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
         patternFinishCallback = _patternFinishDelegate;
         bossRotationCallback = _bossRotationCallback;
@@ -285,6 +286,6 @@ public class BombPatternController : MonoBehaviour
     private Transform targetTr = null;
     private int[] ranSelect = new int[4];
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
     private float curLaserLength = 0f;
 }

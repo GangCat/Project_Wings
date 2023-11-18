@@ -13,9 +13,10 @@ public class WindBlowActionSecondNode : ActionNode
     private WindBlowPoint[] windBlowPoints = null;
     private float finishTime = 0f;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
     protected override void OnStart() {
+        soundManager = SoundManager.Instance;
         soundManager.Init(context.windBlowSoundSpawnGO);
 
         windBlowPoints = context.bossCtrl.CurSpawnPoints[blackboard.curClosedWeakPoint].GetWindBlowHolder().WindBlowPoints;

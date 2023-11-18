@@ -10,10 +10,11 @@ public class SitDownActionNode : ActionNode
 
     private float curDurationtime = 0f;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
     protected override void OnStart()
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(context.sitDownSoundSpawnGO);
         soundManager.PlayAudio(context.sitDownSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSSITDOWNSOUND, true);
 

@@ -6,6 +6,7 @@ public class ActionCamera : MonoBehaviour
 {
     public void Init(VoidBoolDelegate _actionFinishCallback)
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
         anim = GetComponent<Animator>();
         cam = GetComponent<Camera>();
@@ -78,7 +79,7 @@ public class ActionCamera : MonoBehaviour
 
         actionFinishCallback?.Invoke(isLastAction);
     }
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
     private Animator anim = null;
     private VoidBoolDelegate actionFinishCallback = null;

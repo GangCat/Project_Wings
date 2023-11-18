@@ -8,14 +8,21 @@ using UnityEngine;
 public class BossController : MonoBehaviour, IPublisher
 {
     public delegate BossShieldGeneratorSpawnPoint[] GetRandomSpawnPointDelegate();
-    public void Init(Transform _playerTr, VoidIntDelegate _cameraActionCallback, VoidFloatDelegate _hpUpdateCallback, VoidFloatDelegate _shieldUpdateCallback, GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, VoidVoidDelegate _bossClearCalblack, VoidVoidDelegate _removeShieldCallback)
+    public void Init(
+        Transform _playerTr, 
+        VoidIntDelegate _cameraActionCallback, 
+        VoidFloatDelegate _hpUpdateCallback, 
+        VoidFloatDelegate _shieldUpdateCallback, 
+        GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, 
+        VoidVoidDelegate _bossClearCalblack, 
+        VoidVoidDelegate _removeShieldCallback)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
         bossCollider = GetComponentInChildren<BossCollider>();
         statHp = GetComponent<BossStatusHp>();
         shield = GetComponentInChildren<BossShield>();
-        timeBombPatternCtrl = GetComponentInChildren<TimeBombPatternController>();
+        timeBombPatternCtrl = GetComponentInChildren<BombPatternController>();
         bossRb = GetComponent<Rigidbody>();
         lastPatternCtrl = GetComponentInChildren<LastPatternController>();
 
@@ -50,6 +57,7 @@ public class BossController : MonoBehaviour, IPublisher
     public BossShieldGeneratorSpawnPoint[] CurSpawnPoints => arrCurShieldGeneratorSpawnPoints;
     public GameObject GatlingHolder => gatlingHolderGo;
     public GameObject GatlingHead => gatlingHeadGo;
+    public GameObject GatlinGun => gatlinGunGo;
     public GameObject AirPush => airPush;
     public Transform GunMuzzle => gunMuzzleTr;
     public CannonMemoryPool CannonMemoryPool => cannonMemoryPool;
@@ -60,13 +68,19 @@ public class BossController : MonoBehaviour, IPublisher
     public BossAnimationController BossAnim => animCtrl;
     public GameObject FootWindGo => footWindGo;
     public GameObject SitDownGo => sitDownGo;
-<<<<<<< HEAD
     public Transform RotateTr => rotateBody.transform;
-=======
     public GameObject[] CannonSoundSpawnGOs => cannonSoundSpawnGOs;
-
+<<<<<<< HEAD
     public CannonAudioManager CannonAudioManager => cannonAudioManager;
     public CustomAudioManager AirPushAudioManager => airPushAudioManager;
+=======
+    public GameObject AirPushSoundSpawnGO => airPushSoundSpawnGO;
+    public GameObject WindBlowSoundSpawnGO => windBlowSoundSpawnGO;
+    public GameObject SitDownSoundSpawnGO => sitDownSoundSpawnGO;
+    public GameObject GatlingLaunchSoundSpawnGO => gatlingLaunchSoundSpawnGO;
+    public GameObject GatlingRotationSoundSpawnGO => gatlingRotationSoundSpawnGO;
+    public GameObject TornadoSoundSpawnGO => tornadoSoundSpawnGO;
+    public GameObject GiantTornadeSoundSpawnGO => giantTornadeSoundSpawnGO;
 >>>>>>> origin/geohyung02
 
     public void DangerAlert()
@@ -156,7 +170,7 @@ public class BossController : MonoBehaviour, IPublisher
         if (curPhaseNum >= 2)
             rotateBody.transform.localRotation *= Quaternion.Euler(new Vector3(0f, autoRotateDegree * Time.deltaTime, 0f));
         else if (directionToPlayer != Vector3.zero)
-            rotateBody.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
+            rotateBody.transform.rotation = Quaternion.Slerp(rotateBody.transform.rotation, Quaternion.LookRotation(directionToPlayer), rotationSpeed * Time.fixedDeltaTime);
 
     }
 
@@ -210,12 +224,14 @@ public class BossController : MonoBehaviour, IPublisher
 
         if (curPhaseNum == 1)
         {
+            //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_01);
             timeBombPatternCtrl.StartPattern();
             return;
         }
         
         if (curPhaseNum >= 2)
         {
+            //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_02);
             playerTr.GetComponent<PlayerMovementController>().IsLastPattern = true;
             lastPatternCtrl.StartPattern();
         }
@@ -311,6 +327,8 @@ public class BossController : MonoBehaviour, IPublisher
     [SerializeField]
     private GameObject gatlingHeadGo = null;
     [SerializeField]
+    private GameObject gatlinGunGo = null;
+    [SerializeField]
     private Transform gunMuzzleTr = null;
     [SerializeField]
     private Transform giantHomingMissileSpawnTr = null;
@@ -340,6 +358,20 @@ public class BossController : MonoBehaviour, IPublisher
     private CustomAudioManager airPushAudioManager = null;
     [SerializeField]
     private GameObject[] cannonSoundSpawnGOs = null;
+    [SerializeField]
+    private GameObject airPushSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject windBlowSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject sitDownSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject gatlingLaunchSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject gatlingRotationSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject tornadoSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject giantTornadeSoundSpawnGO = null;
 
     [Header("-InformationForBossController")]
     [SerializeField]
@@ -371,7 +403,7 @@ public class BossController : MonoBehaviour, IPublisher
     private VoidIntDelegate cameraActionCallback = null;
     private BossStatusHp statHp = null;
     private BossShield shield = null;
-    private TimeBombPatternController timeBombPatternCtrl = null;
+    private BombPatternController timeBombPatternCtrl = null;
     private GetRandomSpawnPointDelegate getRandomSpawnPointCallback = null;
     private BossShieldGeneratorSpawnPoint[] arrCurShieldGeneratorSpawnPoints = null;
     private LastPatternController lastPatternCtrl = null;

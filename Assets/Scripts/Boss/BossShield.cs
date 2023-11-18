@@ -6,6 +6,7 @@ public class BossShield : MonoBehaviour, IDamageable
 {
     public void Init(VoidVoidDelegate _restorShieldFinishCallback, VoidFloatDelegate _shieldUpdateCallback, VoidVoidDelegate _removeShieldCallback)
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
         mr = GetComponent<MeshRenderer>();
         mc = GetComponent<MeshCollider>();
@@ -87,6 +88,6 @@ public class BossShield : MonoBehaviour, IDamageable
     private VoidVoidDelegate removeShieldCallback = null;
     private VoidFloatDelegate shieldUpdateCallback = null;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
 }

@@ -32,7 +32,7 @@ public class CannonRainActionNode : ActionNode
     private float lastSoundPlayTime = 0f;
     private int launchSoundPlayTime = 0;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
     private enum ECannonAudio
     {
         NONE = -1,
@@ -42,6 +42,7 @@ public class CannonRainActionNode : ActionNode
     {
         startTime = Time.time;
         lastSoundPlayTime = Time.time;
+        soundManager = SoundManager.Instance;
         //context.cannonAudioManager.Init();
         //context.cannonAudioManager.PlayAudio((int)ECannonAudio.CANNONBALLMULTYFIRESOUND);
         //SoundManager.PlayAudio((int)SoundManager.ESounds.CANNONLAUNCHSOUND);

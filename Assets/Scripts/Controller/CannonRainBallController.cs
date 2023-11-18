@@ -30,7 +30,7 @@ public class CannonRainBallController : AttackableObject, ISubscriber
     private MeshRenderer mr = null;
     private Collider col = null;
     private Transform playerTr = null;
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
     public void Init(float _speed, Vector3 _spawnPos, CannonRainMemoryPool _memoryPool = null, GameObject _attackAreaPrefab = null, Transform _playerTr= null)
     {
@@ -48,6 +48,7 @@ public class CannonRainBallController : AttackableObject, ISubscriber
         playerTr = _playerTr;
         mr = GetComponent<MeshRenderer>();
         col = GetComponent<Collider>();
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
 
         StartCoroutine("UpdateCoroutine");

@@ -48,11 +48,12 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     private VisualEffect vfx = null;
     private MeshRenderer mr = null;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
 
     public void Init(Vector3 _spawnPos, Quaternion _spawnRot, bool _isShieldBreak, Transform _playerTr)
     {
+        soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);
             customAudioManager = GetComponent<CustomAudioManager>();
         if (!vfx)

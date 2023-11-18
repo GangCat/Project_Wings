@@ -19,13 +19,14 @@ public class AirPushAcionNode : ActionNode
 
     private float curDurationTime = 0f;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
     private enum EAirPushAudio
     {
         NONE = -1,
         AIRPUSHSOUND
     }
     protected override void OnStart() {
+        soundManager = SoundManager.Instance;
         soundManager.Init(context.airPushSoundSpawnGO);
         if (blackboard.curPhaseNum > 1)
         {

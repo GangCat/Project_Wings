@@ -34,7 +34,7 @@ public class GatilingActionNode : ActionNode
     private float cetha;
     private Vector3 rndRebound;
 
-    private SoundManager soundManager = SoundManager.Instance;
+    private SoundManager soundManager = null;
 
 
     protected override void OnStart() {
@@ -44,6 +44,9 @@ public class GatilingActionNode : ActionNode
         gunMuzzleTr = context.gunMuzzleTr;
         gatlingHolder = context.gatlingHolderGo;
         gatlinGeadTr = context.gatlingHeadGo.transform;
+        soundManager = SoundManager.Instance;
+        soundManager.Init(context.gatlingLaunchSoundSpawnGO);
+        soundManager.Init(context.gatlingRotationSoundSpawnGO);
 
         context.bossCtrl.GatlinGun.GetComponent<GatilinSpinController>().StartSpin();
     }
