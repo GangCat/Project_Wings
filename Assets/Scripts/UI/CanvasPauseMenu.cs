@@ -34,11 +34,15 @@ public class CanvasPauseMenu : MonoBehaviour
         ResumeCallback = _resumeCallback;
         pauseMenu = GetComponentInChildren<Image>().gameObject;
         sensitiveSlider.value = vm.sensitive;
+
         float slidertextValue = Mathf.Round(Map(sensitiveSlider.value, sensitiveSlider.minValue, sensitiveSlider.maxValue, 0f, 100f));
         sensitiveText.text = slidertextValue.ToString();
+
         freeLookSensitiveSlider.value = cameraMove.freeLockSensitive/100f;
-        float slidertextValue = Mathf.Round(Map(freeLookSensitiveSlider.value, freeLookSensitiveSlider.minValue, freeLookSensitiveSlider.maxValue, 0f, 100f));
+
+        slidertextValue = Mathf.Round(Map(freeLookSensitiveSlider.value, freeLookSensitiveSlider.minValue, freeLookSensitiveSlider.maxValue, 0f, 100f));
         freeSensitiveText.text = slidertextValue.ToString();
+
         //volumeSlider.onValueChanged.AddListener(delegate { ChangeVolumeCallback(volumeSlider.value); });
         sensitiveSlider.onValueChanged.AddListener(delegate { ChangeSensitive(); });
         freeLookSensitiveSlider.onValueChanged.AddListener(delegate { ChangeFreeLookSensitive(); });

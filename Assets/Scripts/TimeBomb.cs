@@ -58,6 +58,7 @@ public class TimeBomb : MonoBehaviour
             yield return waitFixedTime;
         }
 
+        particleGo.transform.rotation = Quaternion.Euler(Vector3.left * 90f);
         StopCoroutine("SpinModelCoroutine");
         SetColor();
     }
@@ -99,6 +100,8 @@ public class TimeBomb : MonoBehaviour
     private GameObject explosionPrefab = null;
     [SerializeField]
     private GameObject modelGo = null;
+    [SerializeField]
+    private GameObject particleGo = null;
 
     private Vector3 targetPos;
     private float launchAngle = 45.0f;
