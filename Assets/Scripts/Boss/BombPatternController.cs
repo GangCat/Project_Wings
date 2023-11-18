@@ -87,17 +87,17 @@ public class BombPatternController : MonoBehaviour
         // 시한 폭탄이 다 떨어지기까지 기다리는 겸 플레이어 확인하라는 의미의 대기시간
         yield return new WaitForSeconds(4f);
         bossRotationCallback?.Invoke(true);
+        // 0~3 숫자를 랜덤으로 선택해서 순서를 만들어 ranSelect배열에 저장 / 0 - 2 - 3 - 1 과 같이 저장됨
+        GenerateUniqueRandomNumbers();
 
         float laserStartTime = Time.time;
         int laserCount = 0;
         GameObject laserGo = null;
         GameObject ChargeGo = null;
         Debug.Log("StartLaserCharge");
-        ChargeGo = ChargeLaser();
+        ChargeGo = ChargeLaser(colors[ranSelect[laserCount]]);
         //레이저 기모으는 사운드 재생(루프)
 
-        // 0~3 숫자를 랜덤으로 선택해서 순서를 만들어 ranSelect배열에 저장 / 0 - 2 - 3 - 1 과 같이 저장됨
-        GenerateUniqueRandomNumbers();
 
         while (true)
         {
@@ -127,7 +127,7 @@ public class BombPatternController : MonoBehaviour
 
                 //레이저 기모으는 사운드 재생(루프)
                 Debug.Log("StartLaserCharge");
-                ChargeGo = ChargeLaser();
+                ChargeGo = ChargeLaser(colors[ranSelect[laserCount]]);
                 laserStartTime = Time.time;
                 bossRotationCallback?.Invoke(true);
             }
@@ -168,16 +168,43 @@ public class BombPatternController : MonoBehaviour
         return laserGo;
     }
 
-    private GameObject ChargeLaser()
+    private GameObject ChargeLaser(Color _curColor)
     {
-        GameObject laserGo = Instantiate(laserChargePrefab, laserLaunchTr.position+ laserLaunchTr.forward*5f, laserLaunchTr.rotation,transform);
-        VisualEffect vfx = laserChargePrefab.GetComponent<VisualEffect>();
+        GameObject laserChargeGo = Instantiate(laserChargePrefab, laserLaunchTr.position+ laserLaunchTr.forward*5f, laserLaunchTr.rotation,transform);
+        VisualEffect vfx = laserChargeGo.GetComponent<VisualEffect>();
+
         vfx.SetFloat("Duration", laserDelay);
         float decreaseChargeDuration = laserDelay - 2f;
         vfx.SetFloat("ChargeDuration", decreaseChargeDuration);
+        vfx.SetGradient("Color", SetColorGradient(_curColor));
+        vfx.SetGradient("Core Color", SetColorGradient(_curColor * 30f));
         vfx.Reinit();
-        Destroy(laserGo, laserDelay); //지속시간 10초 라는 뜻인데 따로 패턴 변수가 없는거같음.
-        return laserGo;
+        Destroy(laserChargeGo, laserDelay); //지속시간 10초 라는 뜻인데 따로 패턴 변수가 없는거같음.
+        return laserChargeGo;
+    }
+
+    private Gradient SetColorGradient(Color _curColor)
+    {
+        GradientColorKey[] colorKeys = new GradientColorKey[2];
+        GradientAlphaKey[] alphaKeys = new GradientAlphaKey[4];
+
+        colorKeys[0].color = _curColor;
+        colorKeys[0].time = 0f;
+        colorKeys[1].color = _curColor;
+        colorKeys[1].time = 0f;
+
+        alphaKeys[0].alpha = 0f;
+        alphaKeys[0].time = 0f;
+        alphaKeys[1].alpha = 1f;
+        alphaKeys[1].time = 0.1f;
+        alphaKeys[2].alpha = 0.8f;
+        alphaKeys[2].time = 0.8f;
+        alphaKeys[3].alpha = 0f;
+        alphaKeys[3].time = 1f;
+
+        var gradient = new Gradient();
+        gradient.SetKeys(colorKeys, alphaKeys);
+        return gradient;
     }
 
     private Quaternion CalcLaserRotation()
@@ -201,7 +228,7 @@ public class BombPatternController : MonoBehaviour
     }
 
 
-    [Header("-TimeBomb")]
+    [Header("-Bomb")]
     [SerializeField]
     private GameObject timeBombPrefab = null;
     [SerializeField]
