@@ -11,6 +11,7 @@ public class ImageProgressbar : MonoBehaviour
         maxLength = imageBack.GetComponent<RectTransform>().rect.width;
         myRt = GetComponent<RectTransform>();
         myHeight = myRt.rect.height;
+        currentLength = maxLength;
     }
 
     /// <summary>
