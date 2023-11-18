@@ -11589,11 +11589,11 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4096
-  findDistance: 250
+  findDistance: 300
   minOffset: 200
   maxOffset: 200
   maxUpOffset: 40
-  smooth: 0.5
+  smooth: 0.8
 --- !u!1 &803560142
 GameObject:
   m_ObjectHideFlags: 0

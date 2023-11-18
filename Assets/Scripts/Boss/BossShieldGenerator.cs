@@ -18,7 +18,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     private IEnumerator GenIndicatorCoroutine(Vector3 _bossPos)
     {
         Vector3 indicatorPos = transform.position;
-        indicatorPos.y += 35f;
+        indicatorPos.y += 58f;
         RaycastHit hit;
 
         while (!Physics.Raycast(indicatorPos, (_bossPos - indicatorPos).normalized, out hit, 10000f, 1 << LayerMask.NameToLayer("Boss")))
