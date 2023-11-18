@@ -113,7 +113,7 @@ public class SoundManager : MonoBehaviour
             audioSource = _other.GetComponent<AudioSource>();
         }
         audioSource.rolloffMode = representAudioSource.rolloffMode;
-
+        audioSource.playOnAwake = false;
     }
 
 

@@ -75,13 +75,12 @@ namespace TheKiwiCoder {
             context.cannonSoundSpawnGOs = _bossCtrl.CannonSoundSpawnGOs;
             context.airPushSoundSpawnGO = _bossCtrl.AirPushSoundSpawnGO;
             context.windBlowSoundSpawnGO = _bossCtrl.WindBlowSoundSpawnGO;
-            context.windBlowSoundSpawnGO = _bossCtrl.SitDownSoundSpawnGO;
-            context.sitDownSoundSpawnGO = _bossCtrl.GatlingLaunchSoundSpawnGO;
-            context.gatlingLaunchSoundSpawnGO = _bossCtrl.GatlingRotationSoundSpawnGO;
-            context.gatlingRotationSoundSpawnGO = _bossCtrl.TornadoSoundSpawnGO;
-            context.tornadoSoundSpawnGO = _bossCtrl.GiantTornadeSoundSpawnGO;
+            context.sitDownSoundSpawnGO = _bossCtrl.SitDownSoundSpawnGO;
+            context.gatlingLaunchSoundSpawnGO = _bossCtrl.GatlingLaunchSoundSpawnGO;
+            context.gatlingRotationSoundSpawnGO = _bossCtrl.GatlingRotationSoundSpawnGO;
+            context.tornadoSoundSpawnGO = _bossCtrl.TornadoSoundSpawnGO;
+            context.giantTornadeSoundSpawnGO = _bossCtrl.GiantTornadeSoundSpawnGO;
             // Add whatever else you need here...
-
 
             return context;
         }

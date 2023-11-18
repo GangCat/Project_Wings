@@ -31,7 +31,7 @@ public class AirPushAcionNode : ActionNode
         if (blackboard.curPhaseNum > 1)
         {
             context.airPushGo.SetActive(true);
-            soundManager.PlayAudio(context.airPushSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONWATERCRUSHSOUND,true);
+            soundManager.PlayAudio(context.airPushSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.AIRPUSHWINDSOUND,true);
             curDurationTime = durationTime;
         }
     }
@@ -40,7 +40,7 @@ public class AirPushAcionNode : ActionNode
         if(blackboard.curPhaseNum > 1)
         {
             context.airPushGo.SetActive(false);
-            soundManager.PlayAudio(context.airPushSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONWATERCRUSHSOUND, false);
+            soundManager.PlayAudio(context.airPushSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.AIRPUSHWINDSOUND, false);
         }
     }
 
