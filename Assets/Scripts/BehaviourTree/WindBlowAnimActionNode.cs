@@ -23,9 +23,12 @@ public class WindBlowAnimActionNode : ActionNode
     }
 
     protected override void OnStop() {
-        if (soundManager.IsPlaying(context.windBlowSoundSpawnGO.GetComponent<AudioSource>()))
+        if (soundManager)
         {
-            soundManager.StopAudio(context.windBlowSoundSpawnGO.GetComponent<AudioSource>());
+            if (soundManager.IsPlaying(context.windBlowSoundSpawnGO.GetComponent<AudioSource>()))
+            {
+                soundManager.StopAudio(context.windBlowSoundSpawnGO.GetComponent<AudioSource>());
+            }
         }
     }
 

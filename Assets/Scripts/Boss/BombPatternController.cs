@@ -76,7 +76,7 @@ public class BombPatternController : MonoBehaviour
             {
                 //Á¡ÂøÆøÅº ¹ß»ç »ç¿îµå Àç»ý
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
-                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, targetTr, colors[bombIdx], bombIdx);
+                bombGo.GetComponent<Bomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, targetTr, colors[bombIdx], bombIdx);
                 arrBombGo[bombIdx] = bombGo;
                 ++bombIdx;
                 spawnTime = Time.time;
@@ -127,7 +127,7 @@ public class BombPatternController : MonoBehaviour
                     yield return waitFixedTime;
 
                 if (arrBombGo[ranSelect[laserCount]] != null)
-                    arrBombGo[ranSelect[laserCount]].GetComponent<TimeBomb>().Explosion();
+                    arrBombGo[ranSelect[laserCount]].GetComponent<Bomb>().Explosion();
 
                 ++laserCount;
                 if (laserCount >= 4)

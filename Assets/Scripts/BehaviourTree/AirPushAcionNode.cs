@@ -40,9 +40,12 @@ public class AirPushAcionNode : ActionNode
         if(blackboard.curPhaseNum > 1)
         {
             context.airPushGo.SetActive(false);
-            if (soundManager.IsPlaying(context.airPushSoundSpawnGO.GetComponent<AudioSource>()))
+            if (soundManager)
             {
-                soundManager.StopAudio(context.airPushSoundSpawnGO.GetComponent<AudioSource>());
+                if (soundManager.IsPlaying(context.airPushSoundSpawnGO.GetComponent<AudioSource>()))
+                {
+                    soundManager.StopAudio(context.airPushSoundSpawnGO.GetComponent<AudioSource>());
+                }
             }
         }
     }

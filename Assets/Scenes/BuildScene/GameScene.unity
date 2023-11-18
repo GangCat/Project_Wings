@@ -11409,7 +11409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossAnims:
-  - {fileID: 0}
+  - {fileID: 1419586779}
   - {fileID: 40364379}
   - {fileID: 40364378}
   - {fileID: 40364377}
@@ -12612,6 +12612,12 @@ Transform:
 --- !u!1 &1419586777 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1812440339601030623, guid: b5f7a8377cdec8d41abfcfe893688250,
+    type: 3}
+  m_PrefabInstance: {fileID: 6513498613988819662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1419586779 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 894718631144554051, guid: b5f7a8377cdec8d41abfcfe893688250,
     type: 3}
   m_PrefabInstance: {fileID: 6513498613988819662}
   m_PrefabAsset: {fileID: 0}
@@ -13865,9 +13871,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1584442409}
+  - component: {fileID: 1584442410}
   - component: {fileID: 1584442412}
   - component: {fileID: 1584442411}
-  - component: {fileID: 1584442410}
   - component: {fileID: 1584442413}
   m_Layer: 0
   m_Name: ActionCamera

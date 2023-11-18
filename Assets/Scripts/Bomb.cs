@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class TimeBomb : MonoBehaviour
+public class Bomb : MonoBehaviour
 {
     public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, Transform _targetTr, Color _color, int _idx)
     {
@@ -12,6 +12,9 @@ public class TimeBomb : MonoBehaviour
         myColor = new Color(_color.r * 500f, _color.g * 500f, _color.b * 500f, _color.a);
         myIdx = _idx;
         waitFixedTime = new WaitForFixedUpdate();
+        soundManager = SoundManager.Instance;
+        soundManager.Init(gameObject);
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
 
         //Test();
@@ -89,8 +92,8 @@ public class TimeBomb : MonoBehaviour
         // 폭발하며 플레이어에게 큰 데미지
         targetTr.GetComponent<IPlayerDamageable>().ForceGetDmg(150);
         // 화면 연출
-        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.TIMEBOMBTIMEFLOWSOUND);
-        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.TIMEBOMBEXPLOSIONSOUND);
+        soundManager.PlayAudio(audioSource, (int)SoundManager.ESounds.TIMEBOMBTIMEFLOWSOUND);
+        soundManager.PlayAudio(audioSource, (int)SoundManager.ESounds.TIMEBOMBEXPLOSIONSOUND);
         Destroy(Instantiate(explosionPrefab, transform.position, Quaternion.identity), 5f);
         Debug.Log("Explosion!");
         Destroy(gameObject);
@@ -116,5 +119,6 @@ public class TimeBomb : MonoBehaviour
     private Transform targetTr = null;
     private Color myColor = Color.black;
     private SoundManager soundManager = null;
+    private AudioSource audioSource = null;
     private int myIdx = -1;
 }

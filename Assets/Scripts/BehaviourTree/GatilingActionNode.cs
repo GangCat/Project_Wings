@@ -58,13 +58,17 @@ public class GatilingActionNode : ActionNode
 
     protected override void OnStop() {
         context.bossCtrl.GatlinGun.GetComponent<GatilinSpinController>().StopSpin();
-        if (soundManager.IsPlaying(context.gatlingLaunchSoundSpawnGO.GetComponent<AudioSource>()))
+
+        if (soundManager)
         {
-            soundManager.StopAudio(context.gatlingLaunchSoundSpawnGO.GetComponent<AudioSource>());
-        }
-        if (soundManager.IsPlaying(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>()))
-        {
-            soundManager.StopAudio(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>());
+            if (soundManager.IsPlaying(context.gatlingLaunchSoundSpawnGO.GetComponent<AudioSource>()))
+            {
+                soundManager.StopAudio(context.gatlingLaunchSoundSpawnGO.GetComponent<AudioSource>());
+            }
+            if (soundManager.IsPlaying(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>()))
+            {
+                soundManager.StopAudio(context.gatlingRotationSoundSpawnGO.GetComponent<AudioSource>());
+            }
         }
     }
 
