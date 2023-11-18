@@ -89,6 +89,8 @@ public class TimeBomb : MonoBehaviour
         // 폭발하며 플레이어에게 큰 데미지
         targetTr.GetComponent<IPlayerDamageable>().ForceGetDmg(150);
         // 화면 연출
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.TIMEBOMBTIMEFLOWSOUND);
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.TIMEBOMBEXPLOSIONSOUND);
         Destroy(Instantiate(explosionPrefab, transform.position, Quaternion.identity), 5f);
         Debug.Log("Explosion!");
         Destroy(gameObject);
@@ -113,5 +115,6 @@ public class TimeBomb : MonoBehaviour
     private Rigidbody rb = null;
     private Transform targetTr = null;
     private Color myColor = Color.black;
+    private SoundManager soundManager = SoundManager.Instance;
     private int myIdx = -1;
 }

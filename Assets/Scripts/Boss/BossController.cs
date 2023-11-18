@@ -70,8 +70,13 @@ public class BossController : MonoBehaviour, IPublisher
     public GameObject SitDownGo => sitDownGo;
     public Transform RotateTr => rotateBody.transform;
     public GameObject[] CannonSoundSpawnGOs => cannonSoundSpawnGOs;
-    public CannonAudioManager CannonAudioManager => cannonAudioManager;
-    public CustomAudioManager AirPushAudioManager => airPushAudioManager;
+    public GameObject AirPushSoundSpawnGO => airPushSoundSpawnGO;
+    public GameObject WindBlowSoundSpawnGO => windBlowSoundSpawnGO;
+    public GameObject SitDownSoundSpawnGO => sitDownSoundSpawnGO;
+    public GameObject GatlingLaunchSoundSpawnGO => gatlingLaunchSoundSpawnGO;
+    public GameObject GatlingRotationSoundSpawnGO => gatlingRotationSoundSpawnGO;
+    public GameObject TornadoSoundSpawnGO => tornadoSoundSpawnGO;
+    public GameObject GiantTornadeSoundSpawnGO => giantTornadeSoundSpawnGO;
 
     public void DangerAlert()
     {
@@ -214,12 +219,14 @@ public class BossController : MonoBehaviour, IPublisher
 
         if (curPhaseNum == 1)
         {
+            //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_01);
             timeBombPatternCtrl.StartPattern();
             return;
         }
         
         if (curPhaseNum >= 2)
         {
+            //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_02);
             playerTr.GetComponent<PlayerMovementController>().IsLastPattern = true;
             lastPatternCtrl.StartPattern();
         }
@@ -346,6 +353,20 @@ public class BossController : MonoBehaviour, IPublisher
     private CustomAudioManager airPushAudioManager = null;
     [SerializeField]
     private GameObject[] cannonSoundSpawnGOs = null;
+    [SerializeField]
+    private GameObject airPushSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject windBlowSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject sitDownSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject gatlingLaunchSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject gatlingRotationSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject tornadoSoundSpawnGO = null;
+    [SerializeField]
+    private GameObject giantTornadeSoundSpawnGO = null;
 
     [Header("-InformationForBossController")]
     [SerializeField]

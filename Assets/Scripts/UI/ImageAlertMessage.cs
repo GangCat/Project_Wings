@@ -6,6 +6,7 @@ public class ImageAlertMessage : MonoBehaviour
 {
     public void Init()
     {
+        soundManager.Init(gameObject);
         textAlert = GetComponentInChildren<TextAlertMessage>();
         textAlert.Init();
     }
@@ -13,6 +14,7 @@ public class ImageAlertMessage : MonoBehaviour
     public void AlertDanger()
     {
         //경고 사운드 재생
+        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.SCREENWARNINGSOUND) ;
         textAlert.AlertDanger(alertMessage);
     }
 
@@ -22,4 +24,6 @@ public class ImageAlertMessage : MonoBehaviour
     private string alertMessage = "";
 
     private TextAlertMessage textAlert = null;
+
+    private SoundManager soundManager = SoundManager.Instance;
 }

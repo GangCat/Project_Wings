@@ -12,6 +12,7 @@ public class BombPatternController : MonoBehaviour
         VoidVoidDelegate _reloadCannonCallback,
         Transform _targetTr)
     {
+        soundManager.Init(gameObject);
         patternFinishCallback = _patternFinishDelegate;
         bossRotationCallback = _bossRotationCallback;
         reloadCannonCallback = _reloadCannonCallback;
@@ -97,13 +98,14 @@ public class BombPatternController : MonoBehaviour
         Debug.Log("StartLaserCharge");
         ChargeGo = ChargeLaser(colors[ranSelect[laserCount]]);
         //레이저 기모으는 사운드 재생(루프)
-
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.LASERPREPERATIONSOUND,true);
 
         while (true)
         {
             if (Time.time - laserStartTime > laserDelay - 1f)
             {
                 //레이저 기모으는 사운드 정지
+                soundManager.StopAllAudio(GetComponent<AudioSource>());
                 bossRotationCallback?.Invoke(false);
                 Quaternion laserRotation = CalcLaserRotation();
 
@@ -126,6 +128,7 @@ public class BombPatternController : MonoBehaviour
                     break;
 
                 //레이저 기모으는 사운드 재생(루프)
+                soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.LASERPREPERATIONSOUND,true);
                 Debug.Log("StartLaserCharge");
                 ChargeGo = ChargeLaser(colors[ranSelect[laserCount]]);
                 laserStartTime = Time.time;
@@ -282,5 +285,6 @@ public class BombPatternController : MonoBehaviour
     private Transform targetTr = null;
     private int[] ranSelect = new int[4];
 
+    private SoundManager soundManager = SoundManager.Instance;
     private float curLaserLength = 0f;
 }

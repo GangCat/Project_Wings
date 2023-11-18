@@ -85,7 +85,7 @@ public class CannonRainBallController : AttackableObject, ISubscriber
         StopCoroutine("UpdateCoroutine");
 
         //customAudioManger.PlayAudio((int)ECannonAudio.UNDERWATEREXPLOSIONSOUND);
-        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONUNDERWATEREXPLOIONSOUND);
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONWATERCRUSHSOUND);
         mr.enabled = false;
         col.enabled = false;
         //while (customAudioManger.IsPlaying())
@@ -113,7 +113,7 @@ public class CannonRainBallController : AttackableObject, ISubscriber
         StopCoroutine("UpdateCoroutine");
 
         //customAudioManger.PlayAudio((int)ECannonAudio.NORMALEXPLOSIONSOUND);
-        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONEXPOSIONSOUND);
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONCRUSHSOUND);
         mr.enabled = false;
         col.enabled = false;
         //while (customAudioManger.IsPlaying())

@@ -13,8 +13,11 @@ public class BulletController : AttackableObject, ISubscriber
     private bool isPhaseChange = false;
     private bool isBodyTrigger = true;
 
+    private SoundManager soundManager = SoundManager.Instance;
+
     public void Init(float _destroyTime, Vector3 _position, Quaternion _rotation,GatlinMemoryPool _gatlinMemoryPooll = null)
     {
+        soundManager.Init(gameObject);
         //Destroy(gameObject, _destroyTime);
         Invoke("DeactivateBullet", _destroyTime);
         gameObject.transform.position = _position;
@@ -31,6 +34,7 @@ public class BulletController : AttackableObject, ISubscriber
     private void FixedUpdate()
     {
         //플레이오와의 거리계산 > 가까울수록 소리 증폭 > 총알이 지나가는 소리
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BULLETPASSINGSOUND);
         transform.position += transform.forward * speed * Time.fixedDeltaTime;
 
         if (isPhaseChange)
@@ -45,7 +49,19 @@ public class BulletController : AttackableObject, ISubscriber
             return;
         else if (isBodyTrigger && _other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
             return;
-
+        // 플레이어에 피격, 물에 피격, 그외의 물체 피격 조건 검사 > 물 혹은 그외의 물체일 경우 거리 계산 후 소리 증폭 > 알맞는 소리 삽입
+        if (_other.CompareTag("Floor"))
+        {
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BULLETWATERHITSOUND);
+        }
+        else if (_other.CompareTag("Player"))
+        { 
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BULLETPLAYERHITSOUND);
+        }
+        else
+        {
+        soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BULLETHARDOBJECTHITSOUND);
+        }
         if (_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
             DeactivateBullet();
         else
@@ -53,8 +69,6 @@ public class BulletController : AttackableObject, ISubscriber
             AttackDmg(_other);
             DeactivateBullet();
         }
-
-        // 플레이어에 피격, 물에 피격, 그외의 물체 피격 조건 검사 > 물 혹은 그외의 물체일 경우 거리 계산 후 소리 증폭 > 알맞는 소리 삽입
     }
 
     private void OnTriggerExit(Collider _other)

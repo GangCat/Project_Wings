@@ -16,8 +16,10 @@ public class CannonBallController : AttackableObject, ISubscriber
     private bool isPhaseChanged = false;
     private PlayEffectAudioDelegate audioCallback = null;
 
+    private SoundManager soundManager = SoundManager.Instance;
     public void Init(float _speed, Vector3 _spawnPos, CannonMemoryPool _memoryPool = null, PlayEffectAudioDelegate _audioCallback = null)
     {
+        soundManager.Init(gameObject);
         speed = _speed;
         transform.position = _spawnPos;
         memoryPool = _memoryPool;
@@ -33,8 +35,9 @@ public class CannonBallController : AttackableObject, ISubscriber
     {
         while (true)
         {
+            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONPASSINGSOUND);
             //플레이어와의 거리계산 > 가까울 수록 소리 증폭 > 포탄지나가는 바람 소리
-            if(transform.position.y < 0)
+            if (transform.position.y < 0)
             {
                 memoryPool.DeactivateCannonBall(gameObject);
                 yield break;
@@ -54,8 +57,17 @@ public class CannonBallController : AttackableObject, ISubscriber
 
     private void OnTriggerEnter(Collider _other)
     {
-        
-        if(_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
+        if (_other.CompareTag("Floor"))
+        {
+            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONWATERCRUSHSOUND);
+        }
+        else
+        {
+            soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.CANNONCRUSHSOUND);
+        }
+
+
+        if (_other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
             memoryPool.DeactivateCannonBall(gameObject);
 
         if (AttackDmg(_other))

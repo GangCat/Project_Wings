@@ -50,6 +50,8 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     private VisualEffect vfx = null;
     private MeshRenderer mr = null;
 
+    private SoundManager soundManager = SoundManager.Instance;
+
 
     private enum EGroupMissileAudio
     {
@@ -62,7 +64,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 
     public void Init(Transform _playerTr, Vector3 _spawnPos, Quaternion _spawnRot, GroupMissileMemoryPool _groupMissileMemoryPool, bool _isShieldBreak)
     {
-        if(!customAudioManager)
+        soundManager.Init(gameObject);
             customAudioManager = GetComponent<CustomAudioManager>();
         if (!vfx)
             vfx = GetComponentInChildren<VisualEffect>();
@@ -98,6 +100,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     {
         while (true)
         {
+            soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.GROUPHOMINGMISSILEPASSINGSOUND);
             // 미사일의 뒤에 불꽃 점화소리(타는 소리), 플레이어와의 거리 계산, 가까울 수록 볼륨은 커진다.
             if (isPhaseChanged)
             {
@@ -207,7 +210,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             KnockBack(col);
             AttackDmg(col);
         }
-
+        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.GROUPHOMINGMISSILEEXPLOSIONSOUND) ;
         StartCoroutine(DeactivateCoroutine());
         //groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
         // 플레이어와의 거리 계산 > 가까울 수록 볼륨은 커진다 > 미사일이 폭발하는 소리 재생
