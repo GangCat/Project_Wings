@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class BombPatternController : MonoBehaviour
 {
@@ -90,7 +91,9 @@ public class BombPatternController : MonoBehaviour
         float laserStartTime = Time.time;
         int laserCount = 0;
         GameObject laserGo = null;
+        GameObject ChargeGo = null;
         Debug.Log("StartLaserCharge");
+        ChargeGo = ChargeLaser();
         //레이저 기모으는 사운드 재생(루프)
 
         // 0~3 숫자를 랜덤으로 선택해서 순서를 만들어 ranSelect배열에 저장 / 0 - 2 - 3 - 1 과 같이 저장됨
@@ -126,6 +129,7 @@ public class BombPatternController : MonoBehaviour
 
                 //레이저 기모으는 사운드 재생(루프)
                 Debug.Log("StartLaserCharge");
+                ChargeGo = ChargeLaser();
                 laserStartTime = Time.time;
                 bossRotationCallback?.Invoke(true);
             }
@@ -176,6 +180,18 @@ public class BombPatternController : MonoBehaviour
         return laserGo;
     }
 
+    private GameObject ChargeLaser()
+    {
+        GameObject laserGo = Instantiate(laserChargePrefab, laserLaunchTr.position+ laserLaunchTr.forward*5f, laserLaunchTr.rotation,transform);
+        VisualEffect vfx = laserChargePrefab.GetComponent<VisualEffect>();
+        vfx.SetFloat("Duration", laserDelay);
+        float decreaseChargeDuration = laserDelay - 2f;
+        vfx.SetFloat("ChargeDuration", decreaseChargeDuration);
+        vfx.Reinit();
+        Destroy(laserGo, laserDelay); //지속시간 10초 라는 뜻인데 따로 패턴 변수가 없는거같음.
+        return laserGo;
+    }
+
     private Quaternion CalcLaserRotation()
     {
         float angleToPlayer = Mathf.Asin((targetTr.position.y - laserLaunchTr.position.y) / Vector3.Distance(laserLaunchTr.position, targetTr.position));
@@ -218,6 +234,8 @@ public class BombPatternController : MonoBehaviour
     [Header("-Laser")]
     [SerializeField]
     private GameObject laserPrefab = null;
+    [SerializeField]
+    private GameObject laserChargePrefab = null;
     [SerializeField]
     private Transform laserLaunchTr = null;
     [SerializeField]

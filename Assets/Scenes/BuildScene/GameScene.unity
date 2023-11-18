@@ -20675,6 +20675,8 @@ MonoBehaviour:
   - {r: 1569.3326, g: 1547.1251, b: 1547.1251, a: 1}
   laserPrefab: {fileID: 8151265587540947119, guid: 569b216cc8c7ddb4a862708fefbb2f4e,
     type: 3}
+  laserChargePrefab: {fileID: 2491813132510051092, guid: d6d32f8c199a37d498842f3d0c23cf12,
+    type: 3}
   laserLaunchTr: {fileID: 381053478}
   laserDelay: 15
   laserDuration: 2
@@ -23588,10 +23590,11 @@ MonoBehaviour:
   posSmoothZ: 100
   rotSmoothX: 0.1
   rotSmoothY: 0.05
-  rotSmoothZ: 0.1
+  rotSmoothZ: 15
   offset: 10
   upOffset: 3
   freeLockSensitive: 300
+  rotCamreaZ: 10
 --- !u!114 &1381941530
 MonoBehaviour:
   m_ObjectHideFlags: 0
