@@ -26,8 +26,6 @@ public class SitDownActionNode : ActionNode
 
     protected override void OnStop()
     {
-        soundManager.PlayAudio(context.sitDownSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSSITDOWNSOUND, false);
-
         context.sitDownGo.SetActive(false);
         // 보스 기계음 정지
     }
@@ -39,6 +37,8 @@ public class SitDownActionNode : ActionNode
         if (curDurationtime <= 0)
         {
             context.anim.BossStandUp();
+            // 보스 기계음 정지
+            soundManager.PlayAudio(context.sitDownSoundSpawnGO.GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSSITDOWNSOUND, false);
             return State.Success;
         }
 

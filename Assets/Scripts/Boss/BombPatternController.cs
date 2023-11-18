@@ -89,6 +89,7 @@ public class BombPatternController : MonoBehaviour
         // 시한 폭탄이 다 떨어지기까지 기다리는 겸 플레이어 확인하라는 의미의 대기시간
         yield return new WaitForSeconds(4f);
         bossRotationCallback?.Invoke(true);
+
         // 0~3 숫자를 랜덤으로 선택해서 순서를 만들어 ranSelect배열에 저장 / 0 - 2 - 3 - 1 과 같이 저장됨
         GenerateUniqueRandomNumbers();
 
@@ -98,6 +99,7 @@ public class BombPatternController : MonoBehaviour
         GameObject ChargeGo = null;
         Debug.Log("StartLaserCharge");
         ChargeGo = ChargeLaser(colors[ranSelect[laserCount]]);
+        ChargeGo.transform.parent = laserLaunchTr;
         //레이저 기모으는 사운드 재생(루프)
         soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.LASERPREPERATIONSOUND,true);
 
@@ -132,6 +134,7 @@ public class BombPatternController : MonoBehaviour
                 soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.LASERPREPERATIONSOUND,true);
                 Debug.Log("StartLaserCharge");
                 ChargeGo = ChargeLaser(colors[ranSelect[laserCount]]);
+                ChargeGo.transform.parent = laserLaunchTr;
                 laserStartTime = Time.time;
                 bossRotationCallback?.Invoke(true);
             }
