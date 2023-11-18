@@ -8,6 +8,7 @@ public class PlayerStaminaVer2 : MonoBehaviour
     [SerializeField]
     private Image[] arrImageSp = null;
 
+
     private int maxSp = 3;  // 최대 스테미너 수
     private int curSp = 3;  // 현재 스테미너 수
 
