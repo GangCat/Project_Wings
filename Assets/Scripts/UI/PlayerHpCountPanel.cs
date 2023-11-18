@@ -16,5 +16,6 @@ public class PlayerHpCountPanel : MonoBehaviour
         imageProgress.UpdateLength(_curHpRatio);
     }
 
+
     private ImageProgressbar imageProgress = null;
 }

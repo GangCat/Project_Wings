@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,26 @@ public class ImageProgressbar : MonoBehaviour
     /// <param name="_ratio"></param>
     public virtual void UpdateLength(float _ratio)
     {
-          myRt.sizeDelta = new Vector2(maxLength * _ratio, myHeight);
+        targetLength = maxLength * _ratio;
+        StartCoroutine(UpdateLerpLength(targetLength));
+        //myRt.sizeDelta = new Vector2(maxLength * _ratio, myHeight);
+    }
+
+    private IEnumerator UpdateLerpLength(float _target)
+    {
+        float initialLength = currentLength;
+        float timer = 0.0f;
+
+        while (timer <= transitionDuration)
+        {
+            timer += Time.deltaTime;
+            currentLength = Mathf.Lerp(initialLength, _target, timer / transitionDuration);
+            myRt.sizeDelta = new Vector2(currentLength, myHeight);
+            yield return null;
+        }
+        currentLength = targetLength;
+
+
     }
 
     [SerializeField]
@@ -26,5 +46,10 @@ public class ImageProgressbar : MonoBehaviour
 
     protected float maxLength = 0f;
     protected float myHeight = 0f;
+    protected float currentLength = 0f;
+    protected float targetLength = 0f;
+
+    [SerializeField]
+    private float transitionDuration = 0.5f;
     protected RectTransform myRt;
 }
