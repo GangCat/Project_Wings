@@ -15847,10 +15847,10 @@ MonoBehaviour:
   launchAngle: 50
   gravity: 500
   colors:
-  - {r: 1367.1202, g: 0, b: 0, a: 1}
-  - {r: 1214.5427, g: 1300.1877, b: 0, a: 1}
-  - {r: 0, g: 1024, b: 0, a: 1}
-  - {r: 1569.3326, g: 1547.1251, b: 1547.1251, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   laserPrefab: {fileID: 8151265587540947119, guid: 569b216cc8c7ddb4a862708fefbb2f4e,
     type: 3}
   laserChargePrefab: {fileID: 2491813132510051092, guid: d6d32f8c199a37d498842f3d0c23cf12,

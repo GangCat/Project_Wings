@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class TimeBomb : MonoBehaviour
 {
-    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, Transform _targetTr, Color _color)
+    public void Init(Vector3 _targetPos, float _launchAngle, float _gravity, Transform _targetTr, Color _color, int _idx)
     {
         launchAngle = _launchAngle;
         targetPos = _targetPos;
         gravity = _gravity;
         targetTr = _targetTr;
-        myColor = _color;
+        myColor = new Color(_color.r * 500f, _color.g * 500f, _color.b * 500f, _color.a);
+        myIdx = _idx;
         waitFixedTime = new WaitForFixedUpdate();
         rb = GetComponent<Rigidbody>();
 
@@ -78,7 +79,7 @@ public class TimeBomb : MonoBehaviour
 
         if (other.TryGetComponent<LaserController>(out var comp))
         {
-            if (comp.GetColor.Equals(myColor))
+            if (comp.GetIdx.Equals(myIdx))
                 Destroy(gameObject);
         }
     }
@@ -112,4 +113,5 @@ public class TimeBomb : MonoBehaviour
     private Rigidbody rb = null;
     private Transform targetTr = null;
     private Color myColor = Color.black;
+    private int myIdx = -1;
 }

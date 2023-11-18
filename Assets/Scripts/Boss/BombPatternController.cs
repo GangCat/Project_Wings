@@ -74,7 +74,7 @@ public class BombPatternController : MonoBehaviour
             {
                 //점착폭탄 발사 사운드 재생
                 GameObject bombGo = Instantiate(timeBombPrefab, timeBombSpawnTr.position, Quaternion.identity);
-                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, targetTr, colors[bombIdx]);
+                bombGo.GetComponent<TimeBomb>().Init(timeBombDestTr[bombIdx].position, launchAngle, gravity, targetTr, colors[bombIdx], bombIdx);
                 arrBombGo[bombIdx] = bombGo;
                 ++bombIdx;
                 spawnTime = Time.time;
@@ -98,8 +98,6 @@ public class BombPatternController : MonoBehaviour
 
         // 0~3 숫자를 랜덤으로 선택해서 순서를 만들어 ranSelect배열에 저장 / 0 - 2 - 3 - 1 과 같이 저장됨
         GenerateUniqueRandomNumbers();
-        //for(int i = 0; i < arrBombGo.Length; ++i)
-        //    arrBombGo[i].GetComponent<TimeBomb>().StartTimer((i + 1) * 12);
 
         while (true)
         {
@@ -112,7 +110,7 @@ public class BombPatternController : MonoBehaviour
                 while (Time.time - laserStartTime < laserDelay)
                     yield return waitFixedTime;
 
-                laserGo = LaunchLaser(laserRotation, colors[ranSelect[laserCount]]);
+                laserGo = LaunchLaser(laserRotation, colors[ranSelect[laserCount]], ranSelect[laserCount]);
             }
 
             if (laserGo)
@@ -120,7 +118,7 @@ public class BombPatternController : MonoBehaviour
                 while (laserGo)
                     yield return waitFixedTime;
 
-                if (arrBombGo[ranSelect[laserCount]].activeSelf)
+                if (arrBombGo[ranSelect[laserCount]] != null)
                     arrBombGo[ranSelect[laserCount]].GetComponent<TimeBomb>().Explosion();
 
                 ++laserCount;
@@ -160,21 +158,11 @@ public class BombPatternController : MonoBehaviour
         FinishPattern();
     }
 
-    private GameObject LaunchLaser(Quaternion _laserRotation, Color _curColor)
+    private GameObject LaunchLaser(Quaternion _laserRotation, Color _curColor, int _idx)
     {
 
         GameObject laserGo = Instantiate(laserPrefab, laserLaunchTr.position, laserLaunchTr.rotation * _laserRotation);
-        laserGo.GetComponent<LaserController>().Init(laserDuration, laserLengthPerSec,
-            _value =>
-        {
-            foreach (GameObject go in arrBombGo)
-            {
-                if (!go.Equals(_value))
-                    continue;
-
-                Destroy(go);
-            }
-        }, initWidth, initHeight, _curColor);
+        laserGo.GetComponent<LaserController>().Init(laserDuration, laserLengthPerSec, initWidth, initHeight, _curColor, _idx);
 
         Destroy(laserGo, laserDuration);
         return laserGo;
@@ -227,7 +215,7 @@ public class BombPatternController : MonoBehaviour
     [SerializeField]
     private float gravity = 9.81f;
     [SerializeField]
-    [ColorUsage(true,true)]
+    //[ColorUsage(true,true)]
     private Color[] colors = null;
 
 
