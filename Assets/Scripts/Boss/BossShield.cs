@@ -34,7 +34,7 @@ public class BossShield : MonoBehaviour, IDamageable
 
     public void StopRestorShield()
     {
-        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.BOSSSHIELDDESTROYSOUND); 
+        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.BOSSSHIELDIDLESOUND,true); 
         StopCoroutine("RestoreShieldCoroutine");
         removeShieldCallback?.Invoke();
         gameObject.SetActive(false);

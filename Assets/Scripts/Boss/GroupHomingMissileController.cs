@@ -211,7 +211,10 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
             KnockBack(col);
             AttackDmg(col);
         }
-        soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.GROUPHOMINGMISSILEEXPLOSIONSOUND) ;
+        if (soundManager.IsPlaying(GetComponent<AudioSource>()))
+        {
+            soundManager.StopAudio(GetComponent<AudioSource>());
+        }
         StartCoroutine(DeactivateCoroutine());
         //groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
         // 플레이어와의 거리 계산 > 가까울 수록 볼륨은 커진다 > 미사일이 폭발하는 소리 재생

@@ -131,7 +131,7 @@ public class SoundManager : MonoBehaviour
         ++i;
         Debug.Log($"AudioCount: {i}");
     }
-    public void StopAllAudio(AudioSource _otherAudioSource)
+    public void StopAudio(AudioSource _otherAudioSource)
     {
         _otherAudioSource.Stop();
     }
