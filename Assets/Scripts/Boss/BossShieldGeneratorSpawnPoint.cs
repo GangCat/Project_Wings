@@ -6,8 +6,8 @@ public class BossShieldGeneratorSpawnPoint : MonoBehaviour
 {
     public void Init()
     {
-        windBlowHolder = GetComponentInChildren<WindBlowHolder>();
-        windBlowHolder.Init();
+    //    windBlowHolder = GetComponentInChildren<WindBlowHolder>();
+    //    windBlowHolder.Init();
     }
 
     public Vector3 GetPos()
@@ -17,8 +17,9 @@ public class BossShieldGeneratorSpawnPoint : MonoBehaviour
 
     public WindBlowHolder GetWindBlowHolder()
     {
-        return windBlowHolder;
+        //return windBlowHolder;
+        return null;
     }
 
-    private WindBlowHolder windBlowHolder = null;
+    //private WindBlowHolder windBlowHolder = null;
 }

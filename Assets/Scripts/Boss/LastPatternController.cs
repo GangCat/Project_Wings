@@ -12,9 +12,15 @@ public class LastPatternController : MonoBehaviour
     public void StartPattern()
     {
         lastPatternCollider.Enable(true);
+        pullTrigger.Init();
+        destroytrigger.Init();
     }
 
 
     [SerializeField]
     private LastPatternCollider lastPatternCollider = null;
+    [SerializeField]
+    private TempPull pullTrigger = null;
+    [SerializeField]
+    private TempDestroyTrigger destroytrigger = null;
 }

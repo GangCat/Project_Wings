@@ -4,34 +4,38 @@ using UnityEngine;
 
 public class TempPull : MonoBehaviour
 {
+    public void Init()
+    {
+        waitDelay = new WaitForSeconds(0.2f);
+        gameObject.SetActive(true);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        // 거리가 10 이하이면
-        // 위로 주는 속도 추가
         StartCoroutine(SetVelocity(other));
         
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.localScale += Vector3.one * 5f * Time.deltaTime;
+        transform.localScale += Vector3.one * scaleIncreaseRatio * Time.fixedDeltaTime;
     }
 
 
     private IEnumerator SetVelocity(Collider _other)
     {
+        // 커브에서 해당 시간의 값 가져옴
         pullForce = curve.Evaluate((Time.time * 0.1f) % curve.length);
 
         Vector3 forceDir = transform.position - _other.transform.position;
-
         _other.GetComponent<Rigidbody>().AddForce(forceDir.normalized * pullForce * pullForceAmount);
-
-
-        yield return new WaitForSeconds(0.2f);
+        // 힘 주는 주기
+        yield return waitDelay;
 
         if (!_other.gameObject.activeSelf)
             yield break;
 
+        // 
         if(Vector3.SqrMagnitude(transform.position - _other.transform.position) < Mathf.Pow(3f, 2f))
             StartCoroutine(SetVelocityUp(_other));
         else
@@ -41,17 +45,22 @@ public class TempPull : MonoBehaviour
     private IEnumerator SetVelocityUp(Collider _other)
     {
         _other.GetComponent<Rigidbody>().AddForce(Vector3.up * upForce);
-        yield return new WaitForSeconds(0.2f);
-
+        yield return waitDelay;
         StartCoroutine(SetVelocityUp(_other));
     }
 
 
-    public AnimationCurve curve;
-    float pullForce;
+    [SerializeField]
+    private AnimationCurve curve;
+    [SerializeField]
+    private float pullForceAmount = 200f;
+    [SerializeField]
+    private  float upForce = 2000f;
+    [SerializeField]
+    private float rightForce = 100f;
+    [SerializeField]
+    private float scaleIncreaseRatio = 50f;
 
-    public float pullForceAmount = 200f;
-    public float upForce = 2000f;
-    public float rightForce = 100f;
-    public SphereCollider box;
+    private WaitForSeconds waitDelay = null;
+    private float pullForce;
 }

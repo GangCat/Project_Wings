@@ -52,8 +52,8 @@ TagManager:
   - HealMarble
   - PlayerWing
   - BossSitDownAction
-  - 
-  - 
+  - PullTrigger
+  - DestroyTrigger
   - 
   - 
   - 

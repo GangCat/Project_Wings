@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class TempDestroyTrigger : MonoBehaviour
 {
+    public void Init()
+    {
+        gameObject.SetActive(true);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SetActive(false);
+        Destroy(other.gameObject);
     }
 }
