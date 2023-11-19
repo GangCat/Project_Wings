@@ -565,6 +565,7 @@ MonoBehaviour:
   - {fileID: 2798612881451706824}
   - {fileID: 7414985332677084162}
   rotateSpeed: 20
+  shieldHpbar: {fileID: 3086435957373494773}
 --- !u!135 &2508578022077990387
 SphereCollider:
   m_ObjectHideFlags: 0

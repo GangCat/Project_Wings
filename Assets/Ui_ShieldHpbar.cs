@@ -10,13 +10,14 @@ public class Ui_ShieldHpbar : MonoBehaviour
     [SerializeField]
     private RectTransform uiTransform = null;
     [SerializeField]
-    private float initialSpeed = 50.0f;
+    private float initialSpeed = 500f;
     [SerializeField]
-    private float acceleration = 0.5f;
+    private float acceleration = 500f;
     [SerializeField]
     private Vector3 targetPosition = Vector3.zero;
     [SerializeField]
     private BossShieldGenerator boss = null;
+    private Vector3 beforePos = Vector3.zero;
     private RectTransform rectTr = null;
 
     void Start()
@@ -24,26 +25,12 @@ public class Ui_ShieldHpbar : MonoBehaviour
         rectTr = GetComponent<RectTransform>();
         uiHp = boss.GetCurHp;
         curHp = boss.GetCurHp;
-        StartCoroutine(MoveUI());
+        beforePos = uiTransform.localPosition;
     }
+
     private void Update()
     {
-        if (boss != null)
-        {
-            float bossHp = boss.GetCurHp;
 
-            if(curHp != bossHp) 
-            {
-                curHp = bossHp;
-                uiHp = Mathf.Clamp01(bossHp / 100);
-                StartCoroutine(MoveUI());
-                if (hpBar != null)
-                {
-
-                hpBar.fillAmount = uiHp;
-                }
-            }
-        }
 
         //// 카메라를 바라보도록 UI를 조정합니다.
         //if (Camera.main != null)
@@ -52,10 +39,43 @@ public class Ui_ShieldHpbar : MonoBehaviour
         //}
     }
 
+    public void Damaged()
+    {
+        if (boss != null)
+        {
+            float bossHp = boss.GetCurHp;
+
+            if (curHp != bossHp)
+            {
+                curHp = bossHp;
+                uiHp = Mathf.Clamp01(bossHp / 100);
+                StartMove();
+                if (hpBar != null)
+                {
+                    hpBar.fillAmount = uiHp;
+                }
+            }
+            else if (curHp <= 0)
+            {
+                StopMove();
+            }
+        }
+    }
+
+    private void StartMove()
+    {
+        StopAllCoroutines();
+        StartCoroutine(MoveUI());
+    }
+    private void StopMove()
+    {
+        StopAllCoroutines();
+        StartCoroutine(MoveReturn());
+    }
+
     private IEnumerator MoveUI()
     {
         float currentSpeed = initialSpeed;
-        Vector3 beforePos = uiTransform.localPosition;
         Debug.Log(beforePos);
 
         while (Vector3.Distance(uiTransform.localPosition, targetPosition) > 0.1f)
@@ -78,9 +98,20 @@ public class Ui_ShieldHpbar : MonoBehaviour
 
             yield return null;
         }
-
     }
 
+    private IEnumerator MoveReturn()
+    {
+        float currentSpeed = initialSpeed;
+        while (Vector3.Distance(uiTransform.localPosition, beforePos) > 0.1f)
+        {
+            Vector3 direction = (beforePos - uiTransform.localPosition).normalized;
+            currentSpeed += acceleration * Time.deltaTime;
+            uiTransform.localPosition += direction * currentSpeed * Time.deltaTime;
+
+            yield return null;
+        }
+    }
     private float uiHp = 0f;
     private float curHp = 0f;
 }

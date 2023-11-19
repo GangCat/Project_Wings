@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour, IKnockBackable
 {
     public delegate void PlayAudioDelegate(EPlayerAudio _playerAudio);
     private PlayAudioDelegate playAudioCallback = null;
-    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback, PlayAudioDelegate _playAudioCallback, VolumeProfile _volumeProfile)
+    private VoidVoidDelegate gameoverCallback = null;
+    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback, VoidVoidDelegate _gameoverCallback, PlayAudioDelegate _playAudioCallback, VolumeProfile _volumeProfile)
     {
         playerData = _playerData;
         volumeProfile = _volumeProfile;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour, IKnockBackable
 
         playerData.tr = transform;
         playAudioCallback = _playAudioCallback;
+        gameoverCallback = _gameoverCallback;
 
         moveCtrl.Init(playerData,_spUpdateCallback);
         rotCtrl.Init(playerData);
@@ -69,7 +71,9 @@ public class PlayerController : MonoBehaviour, IKnockBackable
     {
         Debug.Log("플레이어 사망");
         playAudioCallback?.Invoke(EPlayerAudio.PLAYER_DEAD);
-        //Time.timeScale = 0f;
+        gameoverCallback?.Invoke();
+        statHp.SetSaturation(-80f);
+        Time.timeScale = 0f;
     }
 
     private void ChangeCollisionCondition(Collision _coli)

@@ -52,7 +52,7 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
         //피격 사운드 실행  일단 보류하기
         soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.BOSSSHIELDGENERATORHITSOUND);
         curHp -= _dmg;
-
+        shieldHpbar.Damaged();
         BreakRing();
 
         if (curHp < 0)
@@ -109,6 +109,8 @@ public class BossShieldGenerator : MonoBehaviour, IDamageable
     private GameObject[] ringGo = null;
     [SerializeField]
     private float rotateSpeed = 20f;
+    [SerializeField]
+    private Ui_ShieldHpbar shieldHpbar = null;
 
     private VoidGameObjectDelegate destroyCallback = null;
     private SphereCollider myCollider = null;

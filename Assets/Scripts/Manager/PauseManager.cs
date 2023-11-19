@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PauseManager : MonoBehaviour
 {
+    private bool isGameOver = false;
     private bool isPaused = false;
     private VoidBoolDelegate OnPauseCallback;
     public void Init(VoidBoolDelegate _OnPauseDelegate)
@@ -15,7 +16,7 @@ public class PauseManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver) 
         {
             TogglePause();
         }
@@ -57,5 +58,15 @@ public class PauseManager : MonoBehaviour
     {
         isPaused = false;
         ResumeGame();
+    }
+
+    public void SetGameOver(bool gameOver)
+    {
+        isGameOver = gameOver;
+    }
+
+    public bool IsGameOver()
+    {
+        return isGameOver;
     }
 }
