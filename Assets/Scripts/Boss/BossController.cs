@@ -248,6 +248,7 @@ public class BossController : MonoBehaviour, IPublisher
         {
             //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_02);
             AlertLastPattern();
+            animCtrl.ResetBoss();
             playerTr.GetComponent<PlayerMovementController>().IsLastPattern = true;
             lastPatternCtrl.StartPattern();
         }

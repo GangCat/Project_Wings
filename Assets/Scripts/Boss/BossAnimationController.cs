@@ -34,6 +34,12 @@ public class BossAnimationController : MonoBehaviour
         bossAnims[(int)EBossAnimator.Leg].SetTrigger("doSitDown");
     }
 
+    public void ResetBoss()
+    {
+        bossAnims[(int)EBossAnimator.Body].Play("BodySit");
+        bossAnims[(int)EBossAnimator.Leg].Play("LegSit");
+    }
+
     public void OpenMissileDoor()
     {
         bossAnims[(int)EBossAnimator.Missile_Door].SetTrigger("doOpen");

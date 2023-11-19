@@ -17,6 +17,10 @@ public class Bomb : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
 
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        block.SetColor("_EmissionColor", _color * 2f);
+        decoSphereGo.GetComponent<MeshRenderer>().SetPropertyBlock(block);
+
         //Test();
         StartCoroutine(SimulateProjectile());
         StartCoroutine("SpinModelCoroutine");
@@ -108,6 +112,8 @@ public class Bomb : MonoBehaviour
     private GameObject modelGo = null;
     [SerializeField]
     private GameObject particleGo = null;
+    [SerializeField]
+    private GameObject decoSphereGo = null;
 
     private Vector3 targetPos;
     private float launchAngle = 45.0f;

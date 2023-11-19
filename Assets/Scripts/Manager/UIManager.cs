@@ -8,13 +8,13 @@ public class UIManager : MonoBehaviour
     {
         canvasBoss = GetComponentInChildren<CanvasBoss>();
         canvasPlayer = GetComponentInChildren<CanvasPlayer>();
-        canvasUI = GetComponentInChildren<CanvasUI>();
+        canvasGameClear = GetComponentInChildren<CanvasGameClear>();
         canvasAlert = GetComponentInChildren<CanvasAlertMessage>();
         canvasPause = GetComponentInChildren<CanvasPauseMenu>();
         canvasGameOver = GetComponentInChildren<CanvasGameOver>();
         canvasBoss.Init();
         canvasPlayer.Init();
-        canvasUI.Init();
+        canvasGameClear.Init();
         canvasAlert.Init();
         canvasGameOver.Init();
         canvasPause.Init(_resumeCallback);
@@ -47,9 +47,7 @@ public class UIManager : MonoBehaviour
 
     public void GameClear()
     {
-        Debug.Log("GameClear");
-        canvasUI.GameClear();
-        //canvasInformation.GameClear();
+        canvasGameClear.GameClear();
     }
 
     public void GameOver()
@@ -63,7 +61,7 @@ public class UIManager : MonoBehaviour
 
     private CanvasBoss canvasBoss = null;
     private CanvasPlayer canvasPlayer = null;
-    private CanvasUI canvasUI = null;
+    private CanvasGameClear canvasGameClear = null;
     private CanvasGameOver canvasGameOver = null;
     private CanvasAlertMessage canvasAlert = null;
     private CanvasPauseMenu canvasPause = null;

@@ -76,7 +76,8 @@ public class PlayerMovementController : MonoBehaviour
                 float forwardY = playerTr.forward.y;
                 if (forwardY >= 0.3f)
                 {
-                    gravitySpeed = -playerData.gravitySpeed * 0.2f;
+                    //gravitySpeed = -playerData.gravitySpeed * 0.2f;
+                    gravitySpeed = 0f;
                 }
                 else if (forwardY <= -0.2f)
                 {

@@ -713,14 +713,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3090153455373489350}
   - component: {fileID: 134657601511081724}
-  - component: {fileID: 3563941852358133111}
+  - component: {fileID: 5739151386254642972}
   m_Layer: 22
   m_Name: PullTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3090153455373489350
 Transform:
   m_ObjectHideFlags: 0
@@ -884,8 +884,8 @@ MonoBehaviour:
   upForce: 2000
   rightForce: 100
   scaleIncreaseRatio: 50
---- !u!135 &3563941852358133111
-SphereCollider:
+--- !u!65 &5739151386254642972
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -903,7 +903,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1805335923266096352
 GameObject:
@@ -2739,17 +2739,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5866498ea9e03a54d8712d9a90b20860,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1234802
+      value: 0.123
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5866498ea9e03a54d8712d9a90b20860,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.721373
+      value: 0.651
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5866498ea9e03a54d8712d9a90b20860,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.6325334
+      value: -0.633
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5866498ea9e03a54d8712d9a90b20860,
         type: 3}

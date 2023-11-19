@@ -80,7 +80,7 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
         colorAd.saturation.value = _value;
     }
 
-    public void MaxHeal()
+    public override void HealHp(float _heal)
     {
         base.HealHp(_heal);
         hpUpdateCallback?.Invoke(curHp / maxHp);

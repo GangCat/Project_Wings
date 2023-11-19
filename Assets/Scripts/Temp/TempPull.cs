@@ -12,8 +12,11 @@ public class TempPull : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<Rigidbody>().isKinematic = false;
-        StartCoroutine(SetVelocity(other));
+        if (other.TryGetComponent<Rigidbody>(out var _component))
+        {
+            _component.isKinematic = false;
+            StartCoroutine(SetVelocity(other));
+        }
         
     }
 

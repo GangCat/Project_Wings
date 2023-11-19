@@ -111,7 +111,7 @@ MonoBehaviour:
   autoDestroyDelay: 15
   bodyTriggerChangeDelay: 0.5
   firstTriggerChangeDelay: 0.5
-  speed: 300
+  speed: 310
   rotateSpeed: 105
   maxDistancePredict: 5
   minDistancePredict: 0.25
