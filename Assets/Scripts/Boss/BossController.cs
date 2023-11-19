@@ -32,7 +32,7 @@ public class BossController : MonoBehaviour, IPublisher
         bossCollider.Init();
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
         shield.Init(RestorShieldFinish, _shieldUpdateCallback, _removeShieldCallback);
-        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, ()=> { animCtrl.ReloadTimeBomb(); }, AlertFirstPatternLaser, _playerTr);
+        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, ()=> { animCtrl.ReloadTimeBomb(); }, AlertFirstPatternLaser, value => { eyeGo.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", value * 5); },_playerTr);
         lastPatternCtrl.Init(_bossClearCalblack);
         RegisterBroker();
         InitMemoryPools();
@@ -405,6 +405,8 @@ public class BossController : MonoBehaviour, IPublisher
     private float autoRotateDegree = 30f;
     [SerializeField]
     private GameObject rotateBody = null;
+    [SerializeField]
+    private GameObject eyeGo = null;
 
 
     private Transform playerTr = null;

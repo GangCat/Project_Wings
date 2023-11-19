@@ -6,11 +6,15 @@ using UnityEngine.VFX;
 
 public class BombPatternController : MonoBehaviour
 {
+    public delegate void VoidColorDelegate(Color _color);
+    VoidColorDelegate changeBodyEyeColorCallback = null;
+
     public void Init(
         VoidVoidDelegate _patternFinishDelegate, 
         VoidBoolDelegate _bossRotationCallback, 
         VoidVoidDelegate _reloadCannonCallback,
         VoidVoidDelegate _alertFirstPatternCallback,
+        VoidColorDelegate _changeBodyEyeColorCallback,
         Transform _targetTr)
     {
         soundManager = SoundManager.Instance;
@@ -19,6 +23,7 @@ public class BombPatternController : MonoBehaviour
         bossRotationCallback = _bossRotationCallback;
         reloadCannonCallback = _reloadCannonCallback;
         alertFirstPatternCallback = _alertFirstPatternCallback;
+        changeBodyEyeColorCallback = _changeBodyEyeColorCallback;
         targetTr = _targetTr;
 
         windBlowHolder.Init();
@@ -101,6 +106,7 @@ public class BombPatternController : MonoBehaviour
         GameObject laserGo = null;
         GameObject ChargeGo = null;
         Debug.Log("StartLaserCharge");
+        changeBodyEyeColorCallback?.Invoke(colors[ranSelect[laserCount]]);
         ChargeGo = ChargeLaser(colors[ranSelect[laserCount]]);
         ChargeGo.transform.parent = laserLaunchTr;
         //레이저 기모으는 사운드 재생(루프)
@@ -139,6 +145,7 @@ public class BombPatternController : MonoBehaviour
                 //레이저 기모으는 사운드 재생(루프)
                 soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.LASERPREPERATIONSOUND,true);
                 Debug.Log("StartLaserCharge");
+                changeBodyEyeColorCallback?.Invoke(colors[ranSelect[laserCount]]);
                 ChargeGo = ChargeLaser(colors[ranSelect[laserCount]]);
                 ChargeGo.transform.parent = laserLaunchTr;
                 laserStartTime = Time.time;
@@ -148,6 +155,7 @@ public class BombPatternController : MonoBehaviour
             yield return waitFixedTime;
         }
 
+        changeBodyEyeColorCallback?.Invoke(Color.red);
         bossRotationCallback?.Invoke(false);
         //bool isPatternFinish = true;
         //while (true)
