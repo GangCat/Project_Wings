@@ -180,7 +180,7 @@ public class BombPatternController : MonoBehaviour
 
     private GameObject ChargeLaser(Color _curColor)
     {
-        GameObject laserChargeGo = Instantiate(laserChargePrefab, laserLaunchTr.position+ laserLaunchTr.forward*5f, laserLaunchTr.rotation,transform);
+        GameObject laserChargeGo = Instantiate(laserChargePrefab, laserLaunchTr.position+ laserLaunchTr.forward*80f, laserLaunchTr.rotation,transform);
         VisualEffect vfx = laserChargeGo.GetComponent<VisualEffect>();
 
         vfx.SetFloat("Duration", laserDelay);
