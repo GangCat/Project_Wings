@@ -12,13 +12,14 @@ public class TempPull : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        other.GetComponent<Rigidbody>().isKinematic = false;
         StartCoroutine(SetVelocity(other));
         
     }
 
     private void FixedUpdate()
     {
-        transform.localScale += Vector3.one * scaleIncreaseRatio * Time.fixedDeltaTime;
+        transform.localScale += Vector3.one * Time.fixedDeltaTime;
     }
 
 
@@ -32,14 +33,14 @@ public class TempPull : MonoBehaviour
         // Èû ÁÖ´Â ÁÖ±â
         yield return waitDelay;
 
-        if (!_other.gameObject.activeSelf)
+        if (_other == null)
             yield break;
 
         // 
-        if(Vector3.SqrMagnitude(transform.position - _other.transform.position) < Mathf.Pow(3f, 2f))
-            StartCoroutine(SetVelocityUp(_other));
-        else
-            StartCoroutine(SetVelocity(_other));
+        //if(Vector3.SqrMagnitude(transform.position - _other.transform.position) < Mathf.Pow(3f, 2f))
+        //    StartCoroutine(SetVelocityUp(_other));
+        //else
+        StartCoroutine(SetVelocity(_other));
     }
 
     private IEnumerator SetVelocityUp(Collider _other)

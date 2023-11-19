@@ -75,9 +75,9 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 0.48668075, b: 1.1350579, a: 0}
-          key1: {r: 0.60784316, g: 0, b: 0.4324269, a: 1}
-          key2: {r: 0.78396505, g: 0.29539284, b: 1.5398247, a: 0.52288026}
+          key0: {r: 0, g: 0.15967977, b: 1.1350579, a: 0}
+          key1: {r: 0.60784316, g: 0, b: 0.5393943, a: 1}
+          key2: {r: 0.29829058, g: 0.5961948, b: 1.5398247, a: 0.52288026}
           key3: {r: 0, g: 0, b: 0, a: 0.031827837}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
@@ -658,6 +658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a28a4062395ddd949a176986e9750862,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4798030623285775711, guid: a28a4062395ddd949a176986e9750862,
         type: 3}

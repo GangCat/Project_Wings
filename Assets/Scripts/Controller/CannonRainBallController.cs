@@ -1,9 +1,7 @@
 using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 /// <summary>
 /// 아래로 떨어지는 속도 값을 준다
@@ -79,6 +77,7 @@ public class CannonRainBallController : AttackableObject, ISubscriber
 
             if (isPhaseChanged)
             {
+                StopAllCoroutines();
                 memoryPool.DeactivateCannonBall(gameObject);
             }
             //캐논이 떨어지면서 생기는 바람 소리, 플레이어와의 거리 계산, 가까울 수록 볼륨은 커진다.

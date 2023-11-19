@@ -189,6 +189,10 @@ public class BossController : MonoBehaviour, IPublisher
             shield.StopRestorShield();
             StartCoroutine(TempBossUP());
         }
+        else if(curPhaseNum == 2)
+        {
+            animCtrl.OpenBodyUnder();
+        }
     }
 
     IEnumerator TempBossUP()
@@ -196,7 +200,7 @@ public class BossController : MonoBehaviour, IPublisher
         //거대 보스가 움직이는 소리 & 물결 치는 소리 등
         float t = 0f;
         float oriY = transform.position.y; // 60
-        float targetY = 430f;
+        float targetY = 370f;
         float startTime = Time.time;
         Vector3 oriPos = transform.position;
         Vector3 targetPos = new Vector3(oriPos.x, targetY, oriPos.z);

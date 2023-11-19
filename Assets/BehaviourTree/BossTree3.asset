@@ -1412,7 +1412,7 @@ MonoBehaviour:
     isShieldDestroy: 0
   description: 
   drawGizmos: 0
-  duration: 6
+  duration: 15
 --- !u!114 &2055624564037474365
 MonoBehaviour:
   m_ObjectHideFlags: 0

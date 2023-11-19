@@ -106,7 +106,7 @@ MonoBehaviour:
   explosionRange: 100
   explosionLayer:
     serializedVersion: 2
-    m_Bits: 8384
+    m_Bits: 16785600
   effectDisableDelay: 2
   speed: 300
   rotateSpeed: 200

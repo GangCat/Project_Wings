@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 {
-    [Header("REFERENCES")]
+    [Header("-Information")]
     [SerializeField] 
     private Rigidbody rb;
     [SerializeField] 
@@ -16,14 +16,16 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     private LayerMask explosionLayer;
     [SerializeField]
     private float effectDisableDelay = 2f;
+    [SerializeField]
+    private float autoDestroyTime = 15f;
 
-    [Header("MOVEMENT")]
+    [Header("-Move")]
     [SerializeField] 
     private float speed = 15;
     [SerializeField] 
     private float rotateSpeed = 95;
 
-    [Header("PREDICTION")]
+    [Header("-Predict")]
     [SerializeField] 
     private float maxDistancePredict = 100;
     [SerializeField] 
@@ -31,7 +33,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     [SerializeField] 
     private float maxTimePrediction = 5;
 
-    [Header("DEVIATION")]
+    [Header("-Deviate")]
     [SerializeField] 
     private float deviationAmount = 0;
     [SerializeField] 
@@ -94,7 +96,24 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.GROUPHOMINGMISSILEPASSINGSOUND, true);
 
         Subscribe();
+        StartCoroutine(SetTriggerOptionCoroutine());
+        StartCoroutine(AutoDestroyCoroutine());
         StartCoroutine("FixedUpdateCoroutine");
+    }
+
+    private IEnumerator SetTriggerOptionCoroutine()
+    {
+        yield return new WaitForSeconds(4f);
+
+        isFirstTrigger = false;
+        isBodyTrigger = false;
+    }
+
+    private IEnumerator AutoDestroyCoroutine()
+    {
+        yield return new WaitForSeconds(autoDestroyTime);
+
+        Explosion();
     }
 
 
@@ -187,6 +206,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         Explosion();
     }
 
+
     public void GetDamage(float _dmg)
     {
         Explosion();
@@ -226,7 +246,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         mr.enabled = false;
 
         yield return new WaitForSeconds(effectDisableDelay);
-
+        StopAllCoroutines();
         groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
     }
 

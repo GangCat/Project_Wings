@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 
 public class GiantHomingMissileController : AttackableObject, IDamageable, ISubscriber
 {
-    [Header("REFERENCES")]
+    [Header("-Information")]
     [SerializeField] 
     private Rigidbody rb;
     [SerializeField] 
@@ -17,14 +17,16 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     private LayerMask explosionLayer;
     [SerializeField]
     private float effectDisableDelay = 2f;
+    [SerializeField]
+    private float autoDestroyTime = 15f;
 
-    [Header("MOVEMENT")]
+    [Header("-Move")]
     [SerializeField] 
     private float speed = 15;
     [SerializeField] 
     private float rotateSpeed = 95;
 
-    [Header("PREDICTION")]
+    [Header("-Predict")]
     [SerializeField] 
     private float maxDistancePredict = 100;
     [SerializeField] 
@@ -32,7 +34,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
     [SerializeField] 
     private float maxTimePrediction = 5;
 
-    [Header("DEVIATION")]
+    [Header("-Deviate")]
     [SerializeField] 
     private float deviationAmount = 50;
     [SerializeField] 
@@ -82,10 +84,27 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
         soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.GIANTHOMINGMISSILEPASSINGSOUND, true);
 
         Subscribe();
+        StartCoroutine(SetTriggerOptionCoroutine());
+        StartCoroutine(AutoDestroyCoroutine());
         StartCoroutine("FixedUpdateCoroutine");
     }
 
     public float GetCurHp => 100f;
+
+    private IEnumerator SetTriggerOptionCoroutine()
+    {
+        yield return new WaitForSeconds(4f);
+
+        isFirstTrigger = false;
+        isBodyTrigger = false;
+    }
+
+    private IEnumerator AutoDestroyCoroutine()
+    {
+        yield return new WaitForSeconds(autoDestroyTime);
+
+        Explosion();
+    }
 
 
     private IEnumerator FixedUpdateCoroutine()
@@ -205,6 +224,7 @@ public class GiantHomingMissileController : AttackableObject, IDamageable, ISubs
 
         yield return new WaitForSeconds(effectDisableDelay);
 
+        StopAllCoroutines();
         Destroy(gameObject);
     }
 
