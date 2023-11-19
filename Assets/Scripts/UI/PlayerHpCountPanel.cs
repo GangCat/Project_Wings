@@ -30,7 +30,7 @@ public class PlayerHpCountPanel : MonoBehaviour
 
             rectTr.anchoredPosition = new Vector2(originalPosition.x + x, originalPosition.y + y);
 
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
 
             yield return null;
         }
