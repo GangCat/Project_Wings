@@ -10,6 +10,7 @@ public class BombPatternController : MonoBehaviour
         VoidVoidDelegate _patternFinishDelegate, 
         VoidBoolDelegate _bossRotationCallback, 
         VoidVoidDelegate _reloadCannonCallback,
+        VoidVoidDelegate _alertFirstPatternCallback,
         Transform _targetTr)
     {
         soundManager = SoundManager.Instance;
@@ -17,6 +18,7 @@ public class BombPatternController : MonoBehaviour
         patternFinishCallback = _patternFinishDelegate;
         bossRotationCallback = _bossRotationCallback;
         reloadCannonCallback = _reloadCannonCallback;
+        alertFirstPatternCallback = _alertFirstPatternCallback;
         targetTr = _targetTr;
 
         windBlowHolder.Init();
@@ -86,6 +88,7 @@ public class BombPatternController : MonoBehaviour
             yield return waitFixedTime;
         }
 
+        alertFirstPatternCallback?.Invoke();
         // 시한 폭탄이 다 떨어지기까지 기다리는 겸 플레이어 확인하라는 의미의 대기시간
         yield return new WaitForSeconds(4f);
         bossRotationCallback?.Invoke(true);
@@ -288,6 +291,7 @@ public class BombPatternController : MonoBehaviour
     private VoidVoidDelegate patternFinishCallback = null;
     private VoidBoolDelegate bossRotationCallback = null;
     private VoidVoidDelegate reloadCannonCallback = null;
+    private VoidVoidDelegate alertFirstPatternCallback = null;
     private WaitForFixedUpdate waitFixedTime = null;
     private Transform targetTr = null;
     private int[] ranSelect = new int[4];

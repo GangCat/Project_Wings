@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -75,9 +74,10 @@ public class PlayerStatusHp : StatusHp, IPlayerDamageable
         colorAd.saturation.value = 30f;
     }
 
-    public void MaxHeal()
+    public override void HealHp(float _heal)
     {
-        curHp = maxHp;
+        base.HealHp(_heal);
+        hpUpdateCallback?.Invoke(curHp / maxHp);
     }
 
     private VoidVoidDelegate deadCallback = null;

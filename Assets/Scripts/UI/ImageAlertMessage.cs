@@ -12,16 +12,11 @@ public class ImageAlertMessage : MonoBehaviour
         textAlert.Init();
     }
 
-    public void AlertDanger()
+    public void AlertDanger(int _idx)
     {
         //경고 사운드 재생
         soundManager.PlayAudio(GetComponent<AudioSource>(),(int)SoundManager.ESounds.SCREENWARNINGSOUND);
-        textAlert.AlertDanger(alertMessage[0]);
-    }
-
-    public void FirstPatternAlert()
-    {
-        textAlert.AlertDanger(alertMessage[1]);
+        textAlert.AlertDanger(alertMessage[_idx]);
     }
 
 

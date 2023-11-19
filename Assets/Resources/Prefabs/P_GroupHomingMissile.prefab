@@ -220,8 +220,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8384
   effectDisableDelay: 2
+  autoDestroyDelay: 15
+  bodyTriggerChangeDelay: 0.5
+  firstTriggerChangeDelay: 0.5
   speed: 300
-  rotateSpeed: 200
+  rotateSpeed: 105
   maxDistancePredict: 5
   minDistancePredict: 0.25
   maxTimePrediction: 0.25

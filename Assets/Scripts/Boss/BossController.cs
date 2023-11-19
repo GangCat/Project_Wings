@@ -32,8 +32,8 @@ public class BossController : MonoBehaviour, IPublisher
         bossCollider.Init();
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
         shield.Init(RestorShieldFinish, _shieldUpdateCallback, _removeShieldCallback);
+        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, ()=> { animCtrl.ReloadTimeBomb(); }, AlertFirstPatternLaser, _playerTr);
         lastPatternCtrl.Init(_bossClearCalblack);
-        timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, ()=> { animCtrl.ReloadTimeBomb(); }, _playerTr);
         RegisterBroker();
         InitMemoryPools();
 
@@ -78,9 +78,24 @@ public class BossController : MonoBehaviour, IPublisher
     public GameObject TornadoSoundSpawnGO => tornadoSoundSpawnGO;
     public GameObject GiantTornadeSoundSpawnGO => giantTornadeSoundSpawnGO;
 
-    public void DangerAlert()
+    public void AlertGiantMissileLaunch()
     {
-        PushMessageToBroker(EMessageType.DANGER_ALERT);
+        PushMessageToBroker(EMessageType.GIANT_MISSILE_ALERT);
+    }
+
+    private void AlertFirstPatternBomb()
+    {
+        PushMessageToBroker(EMessageType.FIRST_PATTERN_1_ALERT);
+    }
+
+    private void AlertFirstPatternLaser()
+    {
+        PushMessageToBroker(EMessageType.FIRST_PATTERN_2_ALERT);
+    }
+
+    private void AlertLastPattern()
+    {
+        PushMessageToBroker(EMessageType.LAST_PATTERN_ALERT);
     }
 
     public void SetBossRotationBoolean(bool _canRotation)
@@ -224,6 +239,7 @@ public class BossController : MonoBehaviour, IPublisher
         if (curPhaseNum == 1)
         {
             //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_01);
+            AlertFirstPatternBomb();
             timeBombPatternCtrl.StartPattern();
             return;
         }
@@ -231,6 +247,7 @@ public class BossController : MonoBehaviour, IPublisher
         if (curPhaseNum >= 2)
         {
             //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_02);
+            AlertLastPattern();
             playerTr.GetComponent<PlayerMovementController>().IsLastPattern = true;
             lastPatternCtrl.StartPattern();
         }
@@ -263,7 +280,7 @@ public class BossController : MonoBehaviour, IPublisher
         else if(curPhaseNum >= 2)
         {
             foreach (GameObject go in arrModelGo)
-                go.layer = LayerMask.NameToLayer("BossBody");
+                go.layer = LayerMask.NameToLayer("Boss");
 
             isBossStartRotation = true;
         }

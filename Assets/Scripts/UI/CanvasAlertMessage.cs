@@ -20,22 +20,37 @@ public class CanvasAlertMessage : MonoBehaviour, ISubscriber
 
     public void ReceiveMessage(EMessageType _message)
     {
-        if (_message.Equals(EMessageType.DANGER_ALERT))
+        if (_message.Equals(EMessageType.GIANT_MISSILE_ALERT))
         {
             gameObject.SetActive(true);
-            StartCoroutine(AlertDangerCoroutine());
+            StartCoroutine(AlertDangerCoroutine(0));
+        }
+        else if (_message.Equals(EMessageType.FIRST_PATTERN_1_ALERT))
+        {
+            gameObject.SetActive(true);
+            StartCoroutine(AlertDangerCoroutine(1));
+        }
+        else if (_message.Equals(EMessageType.FIRST_PATTERN_2_ALERT))
+        {
+            gameObject.SetActive(true);
+            StartCoroutine(AlertDangerCoroutine(2));
+        }
+        else if (_message.Equals(EMessageType.LAST_PATTERN_ALERT))
+        {
+            gameObject.SetActive(true);
+            StartCoroutine(AlertDangerCoroutine(3));
         }
     }
 
-    private IEnumerator AlertDangerCoroutine()
+    private IEnumerator AlertDangerCoroutine(int _idx)
     {
-        imageAlert.AlertDanger();
-        yield return new WaitForSeconds(alertDelay);
+        imageAlert.AlertDanger(_idx);
+        yield return new WaitForSeconds(alertDelays[_idx]);
 
         gameObject.SetActive(false);
     }
 
     private ImageAlertMessage imageAlert = null;
     [SerializeField]
-    private float alertDelay = 3f;
+    private float[] alertDelays = null;
 }

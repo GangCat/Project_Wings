@@ -1168,7 +1168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281a7d37158a7fd4891fd3178726cf24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alertDelay: 3
+  alertDelays:
+  - 3
+  - 7
+  - 7
+  - 7
 --- !u!114 &105624372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2742,8 +2746,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertMessage:
   - "\uC801\uC774 \uAC15\uB825\uD55C \uC720\uB3C4 \uBBF8\uC0AC\uC77C\uC744 \uBC1C\uC0AC\uD588\uC2B5\uB2C8\uB2E4!"
+  - "\uC801\uC774 \uAC15\uB825\uD55C \uC2DC\uD55C \uD3ED\uD0C4\uC744 \uBC1C\uC0AC\uD558\uB824
+    \uD569\uB2C8\uB2E4."
   - "\uC801\uC758 \uB808\uC774\uC800 \uACF5\uACA9\uC758 \uC0C9\uC0C1\uC744 \uC8FC\uC758\uD574\uC11C
     \uAD00\uCC30\uD558\uC138\uC694!"
+  - "\uC801\uC774 \uC8FC\uC704\uC758 \uBAA8\uB4E0 \uAC83\uC744 \uBE68\uC544\uB4E4\uC774\uACE0
+    \uC788\uC2B5\uB2C8\uB2E4.\n\uC801\uC758 \uAC15\uB825\uD55C \uACF5\uACA9\uC744
+    \uC774\uC6A9\uD574 \uC801\uC758 \uC911\uC2EC\uC744 \uACF5\uACA9\uD558\uC138\uC694!"
 --- !u!114 &262120751
 MonoBehaviour:
   m_ObjectHideFlags: 0

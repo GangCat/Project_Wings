@@ -5,6 +5,8 @@ using UnityEngine.VFX;
 
 public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
 {
+    
+
     [Header("-Information")]
     [SerializeField] 
     private Rigidbody rb;
@@ -17,7 +19,11 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     [SerializeField]
     private float effectDisableDelay = 2f;
     [SerializeField]
-    private float autoDestroyTime = 15f;
+    private float autoDestroyDelay = 15f;
+    [SerializeField]
+    private float bodyTriggerChangeDelay = 0.5f;
+    [SerializeField]
+    private float firstTriggerChangeDelay = 2f;
 
     [Header("-Move")]
     [SerializeField] 
@@ -96,22 +102,27 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.GROUPHOMINGMISSILEPASSINGSOUND, true);
 
         Subscribe();
-        StartCoroutine(SetTriggerOptionCoroutine());
+        StartCoroutine(SetIsfirstTriggerFalseCoroutine());
+        StartCoroutine(SetIsbodyTriggerFalseCoroutine());
         StartCoroutine(AutoDestroyCoroutine());
         StartCoroutine("FixedUpdateCoroutine");
     }
 
-    private IEnumerator SetTriggerOptionCoroutine()
+    private IEnumerator SetIsfirstTriggerFalseCoroutine()
     {
-        yield return new WaitForSeconds(4f);
-
+        yield return new WaitForSeconds(firstTriggerChangeDelay);
         isFirstTrigger = false;
+    }
+
+    private IEnumerator SetIsbodyTriggerFalseCoroutine()
+    {
+        yield return new WaitForSeconds(bodyTriggerChangeDelay);
         isBodyTrigger = false;
     }
 
     private IEnumerator AutoDestroyCoroutine()
     {
-        yield return new WaitForSeconds(autoDestroyTime);
+        yield return new WaitForSeconds(autoDestroyDelay);
 
         Explosion();
     }
@@ -181,7 +192,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         if (!isShieldBreak && isFirstTrigger)
             return;
 
-        else if (isBodyTrigger && _other.gameObject.layer == LayerMask.NameToLayer("BossBody"))
+        else if (isBodyTrigger && _other.CompareTag("BossBody"))
             return;
 
         Explosion();
@@ -197,13 +208,14 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
     {
         if (other.CompareTag("BossShield"))
             isFirstTrigger = false;
-        else if (other.CompareTag("BossBody"))
-            isBodyTrigger = false;
+        //else if (other.CompareTag("BossBody"))
+        //    isBodyTrigger = false;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Explosion();
+        if(!isBodyTrigger)
+            Explosion();
     }
 
 
@@ -235,6 +247,8 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         {
             soundManager.StopAudio(GetComponent<AudioSource>());
         }
+        StopAllCoroutines();
+        rb.velocity = Vector3.zero;
         StartCoroutine(DeactivateCoroutine());
         //groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
         // 플레이어와의 거리 계산 > 가까울 수록 볼륨은 커진다 > 미사일이 폭발하는 소리 재생
@@ -246,7 +260,6 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         mr.enabled = false;
 
         yield return new WaitForSeconds(effectDisableDelay);
-        StopAllCoroutines();
         groupMissileMemoryPool.DeactivateGroupMissile(gameObject);
     }
 

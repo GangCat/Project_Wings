@@ -39,6 +39,7 @@ public class ShakeBodyFastRotationActionNode : ActionNode
         if (bossCollider)
         {
             bossCollider.ResetAll();
+            bossTr.rotation = Quaternion.identity;
             Destroy(tornadoGo);
             //몸 움직이는 사운드 스탑(루프)
             //바람 사운드 스탑(루프)
@@ -48,7 +49,7 @@ public class ShakeBodyFastRotationActionNode : ActionNode
 
     protected override State OnUpdate() {
         curRotationSpeed += curRotationSpeed < maxRotSpeed ? rotationAccel * Time.deltaTime : 0;
-        bossRb.MoveRotation(bossRb.rotation * Quaternion.Euler(Vector3.down * curRotationSpeed * Mathf.Deg2Rad));
+        bossTr.rotation = bossTr.rotation * Quaternion.Euler(Vector3.down * curRotationSpeed * Mathf.Deg2Rad);
         //curRotationSpeed += rotationAccel * Time.deltaTime;
         //curRotationSpeed = Mathf.Min(curRotationSpeed, maxRotSpeed);
         //curRotationAngle -= curRotationSpeed * Time.deltaTime;

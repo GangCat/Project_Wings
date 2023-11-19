@@ -5,5 +5,4 @@ using UnityEngine;
 public interface IPlayerDamageable : IDamageable
 {
     public void ForceGetDmg(float _dmg);
-    public void MaxHeal();
 }
