@@ -66,7 +66,7 @@ public class SoundManager : MonoBehaviour
         PHASECHANGESOUND_02_01,
         PHASECHANGESOUND_02_02,
         PHASECHANGESOUND_03,
-        PHASESOUND_01,
+        PHASESOUND_01, 
         PHASESOUND_02
 
     }
