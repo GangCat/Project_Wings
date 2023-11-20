@@ -20,6 +20,7 @@ public class CanvasAlertMessage : MonoBehaviour, ISubscriber
 
     public void ReceiveMessage(EMessageType _message)
     {
+
         if (_message.Equals(EMessageType.GIANT_MISSILE_ALERT))
         {
             gameObject.SetActive(true);
@@ -39,6 +40,11 @@ public class CanvasAlertMessage : MonoBehaviour, ISubscriber
         {
             gameObject.SetActive(true);
             StartCoroutine(AlertDangerCoroutine(3));
+        }
+        else if (_message.Equals(EMessageType.GAME_START_ALERT))
+        {
+            gameObject.SetActive(true);
+            StartCoroutine(AlertDangerCoroutine(4));
         }
     }
 

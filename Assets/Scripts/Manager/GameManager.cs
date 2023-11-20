@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour, IPublisher
     {
         FindManager();
         InitManagers();
+        bossMng.GameStart();
     }
 
     private void FindManager()

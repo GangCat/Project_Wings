@@ -78,6 +78,12 @@ public class BossController : MonoBehaviour, IPublisher
     public GameObject TornadoSoundSpawnGO => tornadoSoundSpawnGO;
     public GameObject GiantTornadeSoundSpawnGO => giantTornadeSoundSpawnGO;
 
+
+    public void AlertGameStart()
+    {
+        PushMessageToBroker(EMessageType.GAME_START_ALERT);
+    }
+
     public void AlertGiantMissileLaunch()
     {
         PushMessageToBroker(EMessageType.GIANT_MISSILE_ALERT);
@@ -243,8 +249,7 @@ public class BossController : MonoBehaviour, IPublisher
             timeBombPatternCtrl.StartPattern();
             return;
         }
-        
-        if (curPhaseNum >= 2)
+        else if (curPhaseNum >= 2)
         {
             //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_02);
             AlertLastPattern();
@@ -269,6 +274,8 @@ public class BossController : MonoBehaviour, IPublisher
         {
             shield.RespawnGenerator();
             InitShieldGeneratorPoint();
+            AlertGameStart();
+
         }
         else if (curPhaseNum == 1)
         {
