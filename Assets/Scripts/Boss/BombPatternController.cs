@@ -34,6 +34,12 @@ public class BombPatternController : MonoBehaviour
 
     public void StartPattern()
     {
+        if (isDebugMode)
+        {
+            FinishPattern();
+            return;
+        }
+
         StartWindBlow();
         StartCoroutine(PatternCoroutine());
         Debug.Log("PatterStart");
@@ -294,6 +300,8 @@ public class BombPatternController : MonoBehaviour
     private float startDelay = 10f;
     [SerializeField]
     private WindBlowHolder windBlowHolder = null;
+    [SerializeField]
+    private bool isDebugMode = false;
 
     private GameObject[] arrBombGo = null;
     private VoidVoidDelegate patternFinishCallback = null;

@@ -46,15 +46,8 @@ public class BossController : MonoBehaviour, IPublisher
         curShieldGeneratorPoint = new List<GameObject>();
         waitFixedUpdate = new WaitForFixedUpdate();
 
-        //InitShieldGeneratorPoint();
-
         cameraActionCallback = _cameraActionCallback;
         playerTr = _playerTr;
-        //myRunner.FinishCurrentPhase();
-        //StartPhaseChange();
-
-        //StartCoroutine("UpdateCoroutine");
-
     }
 
     public BossShieldGeneratorSpawnPoint[] CurSpawnPoints => arrCurShieldGeneratorSpawnPoints;
@@ -85,6 +78,7 @@ public class BossController : MonoBehaviour, IPublisher
     {
         StopCoroutine("UpdateCoroutine");
         bossClearCallback?.Invoke();
+        AlertGameClear();
         StartCoroutine("BossExplosion");
     }
 
@@ -117,6 +111,11 @@ public class BossController : MonoBehaviour, IPublisher
     private void AlertLastPattern()
     {
         PushMessageToBroker(EMessageType.LAST_PATTERN_ALERT);
+    }
+
+    private void AlertGameClear()
+    {
+        PushMessageToBroker(EMessageType.GAME_CLEAR_ALERT);
     }
 
     public void SetBossRotationBoolean(bool _canRotation)

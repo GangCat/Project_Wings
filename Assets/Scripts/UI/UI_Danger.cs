@@ -19,6 +19,8 @@ public class UI_Danger : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+            Destroy(gameObject);
         Collider[] missiles = Physics.OverlapSphere(player.position, 10000f, layer);
         if (missiles != null)
         {

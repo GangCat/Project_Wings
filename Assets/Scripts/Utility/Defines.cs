@@ -26,5 +26,6 @@ public enum EMessageType
     FIRST_PATTERN_1_ALERT,
     FIRST_PATTERN_2_ALERT,
     LAST_PATTERN_ALERT,
+    GAME_CLEAR_ALERT,
     LENGTH
 }

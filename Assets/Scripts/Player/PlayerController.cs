@@ -5,12 +5,12 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class PlayerController : MonoBehaviour, IKnockBackable
+public class PlayerController : MonoBehaviour, IKnockBackable, ISubscriber
 {
     public delegate void PlayAudioDelegate(EPlayerAudio _playerAudio);
     private PlayAudioDelegate playAudioCallback = null;
     private VoidVoidDelegate gameoverCallback = null;
-    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback, VoidVoidDelegate _gameoverCallback, PlayAudioDelegate _playAudioCallback, VolumeProfile _volumeProfile)
+    public void Init(PlayerData _playerData, VoidIntDelegate _spUpdateCallback, VoidFloatDelegate _hpUpdateCallback, VoidVoidDelegate _gameoverCallback, PlayAudioDelegate _playAudioCallback, VolumeProfile _volumeProfile, VoidVoidDelegate _gameClearCallback)
     {
         playerData = _playerData;
         volumeProfile = _volumeProfile;
@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour, IKnockBackable
         virtualMouse = GetComponentInChildren<VirtualMouse>();
         missileCamCtrl = GetComponentInChildren<PlayerMissileCam>();
 
-
         playerMesh = GetComponentInChildren<MeshRenderer>();
 
         camShake = CameraShake.Instance;
@@ -30,6 +29,7 @@ public class PlayerController : MonoBehaviour, IKnockBackable
         playerData.tr = transform;
         playAudioCallback = _playAudioCallback;
         gameoverCallback = _gameoverCallback;
+        gameClearCallback = _gameClearCallback;
 
         moveCtrl.Init(playerData,_spUpdateCallback);
         rotCtrl.Init(playerData);
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour, IKnockBackable
         missileCamCtrl.Init();
         virtualMouse.Init(playerData);
 
+        Subscribe();
     }
 
     private void BoundaryTrigger(bool _isExit)
@@ -174,6 +175,9 @@ public class PlayerController : MonoBehaviour, IKnockBackable
 
     private void Update()
     {
+        if (isGameClear)
+            return;
+
         DebugColorChange();
         moveCtrl.PlayerDodge(playerData.input.InputQ, playerData.input.InputE);
         virtualMouse.UpdateMouseInput();
@@ -182,6 +186,9 @@ public class PlayerController : MonoBehaviour, IKnockBackable
 
     private void FixedUpdate()
     {
+        if (isGameClear)
+            return;
+
         virtualMouse.FixedUpdateMouseInput();
         rotCtrl.PlayerRotate();
         rotCtrl.PlayerFixedRotate();
@@ -196,9 +203,6 @@ public class PlayerController : MonoBehaviour, IKnockBackable
             screenMat.SetFloat("_isDash", 0);
     }
 
-    private void AnimatorTest()
-    {
-    }
 
 
     private void DebugColorChange()
@@ -221,6 +225,20 @@ public class PlayerController : MonoBehaviour, IKnockBackable
         }
     }
 
+    public void Subscribe()
+    {
+        Broker.Subscribe(this, EPublisherType.BOSS_CONTROLLER);
+    }
+
+    public void ReceiveMessage(EMessageType _message)
+    {
+        if (_message.Equals(EMessageType.GAME_CLEAR_ALERT))
+        {
+            isGameClear = true;
+            gameClearCallback?.Invoke();
+        }
+    }
+
     private PlayerMovementController moveCtrl = null;
     private PlayerRotateController rotCtrl = null;
     private PlayerAnimationController animCtrl = null;
@@ -235,6 +253,9 @@ public class PlayerController : MonoBehaviour, IKnockBackable
 
     private PlayerData playerData = null;
     private CameraShake camShake = null;
+    private bool isGameClear = false;
+
+    private VoidVoidDelegate gameClearCallback = null;
 
     [SerializeField]
     private Material screenMat = null;
