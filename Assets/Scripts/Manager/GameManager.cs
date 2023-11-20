@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour, IPublisher
             Time.timeScale = 1f;
         }
 
+        Broker.Clear();
         StartGame();
     }
 

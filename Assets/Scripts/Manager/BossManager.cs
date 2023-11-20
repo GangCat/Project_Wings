@@ -13,8 +13,10 @@ public class BossManager : MonoBehaviour
         BossController.GetRandomSpawnPointDelegate _callback, 
         VoidVoidDelegate _bossClearCallback)
     {
+        exCtrl = GetComponentInChildren<ExplosionEffectController>();
+        exCtrl.Init();
         bossCtrl = GetComponentInChildren<BossController>();
-        bossCtrl.Init(_PlayerTr, _cameraActionCallback, _hpUpdateCallback, _shieldUpdateCallback, _callback, _bossClearCallback, _removeShieldCallback);
+        bossCtrl.Init(_PlayerTr, _cameraActionCallback, _hpUpdateCallback, _shieldUpdateCallback, _callback, _bossClearCallback, _removeShieldCallback, exCtrl.StartExplosion);
     }
 
     public void ClearCurPhase()
@@ -38,4 +40,5 @@ public class BossManager : MonoBehaviour
     }
 
     private BossController bossCtrl = null;
+    private ExplosionEffectController exCtrl = null;
 }

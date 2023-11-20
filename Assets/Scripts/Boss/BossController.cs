@@ -15,7 +15,8 @@ public class BossController : MonoBehaviour, IPublisher
         VoidFloatDelegate _shieldUpdateCallback, 
         GetRandomSpawnPointDelegate _getRandomSpawnPointCallback, 
         VoidVoidDelegate _bossClearCalblack, 
-        VoidVoidDelegate _removeShieldCallback)
+        VoidVoidDelegate _removeShieldCallback,
+        VoidVoidDelegate _startExplosionCallback)
     {
         curPhaseNum = 0;
         animCtrl = GetComponentInChildren<BossAnimationController>();
@@ -28,6 +29,7 @@ public class BossController : MonoBehaviour, IPublisher
 
         getRandomSpawnPointCallback = _getRandomSpawnPointCallback;
         bossClearCallback = _bossClearCalblack;
+        startExplosionCallback = _startExplosionCallback;
 
         animCtrl.Init();
         bossCollider.Init();
@@ -89,7 +91,7 @@ public class BossController : MonoBehaviour, IPublisher
     private IEnumerator BossExplosion()
     {
         yield return new WaitForSeconds(2f);
-        // Æø¹ß ÀÌÆåÆ® »ðÀÔ
+        startExplosionCallback?.Invoke();
     }
 
     public void AlertGameStart()
@@ -445,6 +447,7 @@ public class BossController : MonoBehaviour, IPublisher
     private BombPatternController timeBombPatternCtrl = null;
     private GetRandomSpawnPointDelegate getRandomSpawnPointCallback = null;
     private VoidVoidDelegate bossClearCallback = null;
+    private VoidVoidDelegate startExplosionCallback = null;
     private BossShieldGeneratorSpawnPoint[] arrCurShieldGeneratorSpawnPoints = null;
     private LastPatternController lastPatternCtrl = null;
 
