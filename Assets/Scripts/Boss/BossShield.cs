@@ -68,8 +68,8 @@ public class BossShield : MonoBehaviour, IDamageable
             yield return new WaitForFixedUpdate();
         }
 
-        restorShieldFinishCallback?.Invoke();
         RespawnGenerator();
+        restorShieldFinishCallback?.Invoke();
     }
 
     public float GetCurHp => 99999;
