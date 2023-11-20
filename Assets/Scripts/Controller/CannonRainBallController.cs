@@ -44,7 +44,7 @@ public class CannonRainBallController : AttackableObject, ISubscriber
         customAudioManger = GetComponent<CustomAudioManager>();
         customAudioManger.Init();
         playerTr = _playerTr;
-        mr = GetComponent<MeshRenderer>();
+        mr = GetComponentInChildren<MeshRenderer>();
         col = GetComponent<Collider>();
         soundManager = SoundManager.Instance;
         soundManager.Init(gameObject);

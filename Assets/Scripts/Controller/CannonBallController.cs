@@ -104,12 +104,12 @@ public class CannonBallController : AttackableObject, ISubscriber
     }
     private void SetObjectToInvisible()
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
     }
     private void SetObjectToVisible()
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponentInChildren<MeshRenderer>().enabled = true;
         gameObject.GetComponent<Collider>().enabled = true;
     }
 }

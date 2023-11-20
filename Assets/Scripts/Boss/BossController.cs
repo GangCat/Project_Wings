@@ -27,13 +27,14 @@ public class BossController : MonoBehaviour, IPublisher
         lastPatternCtrl = GetComponentInChildren<LastPatternController>();
 
         getRandomSpawnPointCallback = _getRandomSpawnPointCallback;
+        bossClearCallback = _bossClearCalblack;
 
         animCtrl.Init();
         bossCollider.Init();
         statHp.Init(StartPhaseChange, _hpUpdateCallback);
         shield.Init(RestorShieldFinish, _shieldUpdateCallback, _removeShieldCallback);
         timeBombPatternCtrl.Init(FinishPhaseChange, value => { isBossStartRotation = value; }, ()=> { animCtrl.ReloadTimeBomb(); }, AlertFirstPatternLaser, value => { eyeGo.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", value * 5); },_playerTr);
-        lastPatternCtrl.Init(_bossClearCalblack);
+        lastPatternCtrl.Init(BossClear);
         RegisterBroker();
         InitMemoryPools();
 
@@ -78,6 +79,18 @@ public class BossController : MonoBehaviour, IPublisher
     public GameObject TornadoSoundSpawnGO => tornadoSoundSpawnGO;
     public GameObject GiantTornadeSoundSpawnGO => giantTornadeSoundSpawnGO;
 
+    private void BossClear()
+    {
+        StopCoroutine("UpdateCoroutine");
+        bossClearCallback?.Invoke();
+        StartCoroutine("BossExplosion");
+    }
+
+    private IEnumerator BossExplosion()
+    {
+        yield return new WaitForSeconds(2f);
+        // Æø¹ß ÀÌÆåÆ® »ðÀÔ
+    }
 
     public void AlertGameStart()
     {
@@ -431,6 +444,7 @@ public class BossController : MonoBehaviour, IPublisher
     private BossShield shield = null;
     private BombPatternController timeBombPatternCtrl = null;
     private GetRandomSpawnPointDelegate getRandomSpawnPointCallback = null;
+    private VoidVoidDelegate bossClearCallback = null;
     private BossShieldGeneratorSpawnPoint[] arrCurShieldGeneratorSpawnPoints = null;
     private LastPatternController lastPatternCtrl = null;
 
