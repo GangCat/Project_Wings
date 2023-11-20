@@ -94,7 +94,7 @@ public class GroupHomingMissile : AttackableObject, IDamageable, ISubscriber
         else
             isFirstTrigger = true;
 
-        vfx.Play();
+        vfx.Reinit();
         mr.enabled = true;
 
         //deviationAmount = UnityEngine.Random.Range(5f, 20f);

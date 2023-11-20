@@ -12,6 +12,7 @@ public class CanvasGameOver : MonoBehaviour
 
     public void GameOver()
     {
+        Cursor.visible = true;
         gameObject.SetActive(true);
     }
 

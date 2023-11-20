@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3442217625578933912}
   - component: {fileID: 4394729703927895954}
   - component: {fileID: 1879907451431236476}
-  m_Layer: 9
+  m_Layer: 25
   m_Name: GameObject
   m_TagString: WindBlow
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8056366466029694415}
-  m_Layer: 9
+  m_Layer: 25
   m_Name: P_WindBlowCylinder
   m_TagString: WindBlow
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 139532075809159877}
   - component: {fileID: 2236530005058966592}
   - component: {fileID: 6747620402145686242}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

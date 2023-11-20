@@ -3328,7 +3328,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8481038540646886741, guid: d879577d6811d5740b1c51414e91c542, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4000,7 +4001,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892f4e242869582419f17cf42e652161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
 --- !u!114 &395491286 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1037286944491532481, guid: b5f7a8377cdec8d41abfcfe893688250,
@@ -4789,7 +4789,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4317576537411854438, guid: 60f8af022ec82b342a147fea8ff59539, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5371,7 +5372,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Building4Obstacle (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1009732945309976961, guid: 41e26cb9ec3acf445b1a640455284517, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7219,7 +7221,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8932275102590047087, guid: f6b21ff682ce4d74196e51a7f66443fc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7847,9 +7850,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d109d3e40a00b514482f31b9d02479d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 12534
+  maxHp: 300
   curHp: 0
   saturationTime: 2
+  fullHpKey: 290
 --- !u!114 &798473347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11827,7 +11831,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Building5Obstacle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1486545984523511880, guid: e89a681e232f31d488a474f94d98cd49, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13278,17 +13283,17 @@ PrefabInstance:
     - target: {fileID: 1129710654972918788, guid: ac2b217365c69364791f2b9e1736d817,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1333334
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 1129710654972918788, guid: ac2b217365c69364791f2b9e1736d817,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2133303
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1129710654972918788, guid: ac2b217365c69364791f2b9e1736d817,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 79.686676
+      value: 77.9
       objectReference: {fileID: 0}
     - target: {fileID: 1129710654972918788, guid: ac2b217365c69364791f2b9e1736d817,
         type: 3}
@@ -13594,12 +13599,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512748858}
   m_CullTransparentMesh: 1
---- !u!1 &1517752493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1508074742890580064, guid: 9faf5f35b5945ea48a3fb2a38476fe30,
-    type: 3}
-  m_PrefabInstance: {fileID: 1977558323}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1533657923
 GameObject:
   m_ObjectHideFlags: 0
@@ -15072,7 +15071,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Building4Obstacle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1009732945309976961, guid: 41e26cb9ec3acf445b1a640455284517, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17028,7 +17028,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8481038540646886741, guid: d879577d6811d5740b1c51414e91c542, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17683,11 +17684,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1508074742890580064, guid: 9faf5f35b5945ea48a3fb2a38476fe30,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1977558328}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9faf5f35b5945ea48a3fb2a38476fe30, type: 3}
 --- !u!4 &1977558324 stripped
 Transform:
@@ -17695,33 +17692,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1977558323}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1977558328
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517752493}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1979315851
 GameObject:
   m_ObjectHideFlags: 0
@@ -18623,7 +18593,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1486545984523511880, guid: e89a681e232f31d488a474f94d98cd49, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21323,7 +21294,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8932275102590047087, guid: f6b21ff682ce4d74196e51a7f66443fc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

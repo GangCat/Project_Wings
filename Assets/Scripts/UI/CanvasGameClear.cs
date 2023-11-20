@@ -13,6 +13,7 @@ public class CanvasGameClear : MonoBehaviour
 
     public void GameClear()
     {
+        Cursor.visible = true;
         gameObject.SetActive(true);
     }
 
@@ -20,7 +21,4 @@ public class CanvasGameClear : MonoBehaviour
     {
         SceneManager.LoadScene("CampusScene");
     }
-
-    [SerializeField]
-    private Image image = null;
 }

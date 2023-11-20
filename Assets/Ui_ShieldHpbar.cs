@@ -41,6 +41,8 @@ public class Ui_ShieldHpbar : MonoBehaviour
 
     public void Damaged()
     {
+        return;
+
         if (boss != null)
         {
             float bossHp = boss.GetCurHp;
