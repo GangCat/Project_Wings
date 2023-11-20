@@ -11632,7 +11632,7 @@ MonoBehaviour:
   - {fileID: 6513498613988819711}
   autoRotateDegree: 30
   rotateBody: {fileID: 1276497682}
-  eyeGo: {fileID: 0}
+  eyeGo: {fileID: 6513498613988819683}
 --- !u!114 &1295538136
 MonoBehaviour:
   m_ObjectHideFlags: 0
