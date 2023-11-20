@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour, IPublisher
     {
         FindManager();
         InitManagers();
-        bossMng.GameStart();
+        if(isAutoStart)
+            bossMng.GameStart();
     }
 
     private void FindManager()
@@ -109,6 +110,8 @@ public class GameManager : MonoBehaviour, IPublisher
     private KeyCode nextPhaseKeyCode = KeyCode.PageUp;
     [SerializeField]
     private KeyCode jumpToNextPatternKeyCode = KeyCode.PageDown;
+    [SerializeField]
+    private bool isAutoStart = false;
 
     private AudioManager audioMng = null;
     private BossManager bossMng = null;
