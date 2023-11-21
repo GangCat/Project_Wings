@@ -6,6 +6,6 @@ public class ShieldProgressbar : ImageProgressbar
 {
     public void RemoveBossShield()
     {
-        imageBack.gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(false);
     }
 }

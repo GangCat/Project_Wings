@@ -7,10 +7,7 @@ public class ImageProgressbar : MonoBehaviour
 {
     public void Init()
     {
-        maxLength = imageBack.GetComponent<RectTransform>().rect.width;
-        myRt = GetComponent<RectTransform>();
-        myHeight = myRt.rect.height;
-        currentLength = maxLength;
+        currentRatio = 1f;
     }
 
     /// <summary>
@@ -19,40 +16,29 @@ public class ImageProgressbar : MonoBehaviour
     /// <param name="_ratio"></param>
     public virtual void UpdateLength(float _ratio)
     {
-        targetLength = maxLength * _ratio;
-        StartCoroutine(UpdateLerpLength(targetLength));
-        //myRt.sizeDelta = new Vector2(maxLength * _ratio, myHeight);
+        StartCoroutine(UpdateLerpLength(_ratio));
     }
 
     protected IEnumerator UpdateLerpLength(float _target)
     {
-        float initialLength = currentLength;
+        float initialLength = currentRatio;
         float timer = 0.0f;
 
         while (timer <= transitionDuration)
         {
             timer += Time.deltaTime;
-            currentLength = Mathf.Lerp(initialLength, _target, timer / transitionDuration);
-            myImage.fillAmount = currentLength;
-            //myRt.sizeDelta = new Vector2(currentLength, myHeight);
+            myImage.fillAmount = Mathf.Lerp(initialLength, _target, timer / transitionDuration);
             yield return null;
         }
-        currentLength = targetLength;
 
-
+        currentRatio = _target;
     }
 
     [SerializeField]
-    protected Image imageBack = null;
-    [SerializeField]
     protected Image myImage = null;
-
-    protected float maxLength = 0f;
-    protected float myHeight = 0f;
-    protected float currentLength = 0f;
-    protected float targetLength = 0f;
-
     [SerializeField]
-    private float transitionDuration = 0.5f;
-    protected RectTransform myRt;
+    protected float transitionDuration = 0.5f;
+
+    protected float currentRatio = 0f;
+
 }

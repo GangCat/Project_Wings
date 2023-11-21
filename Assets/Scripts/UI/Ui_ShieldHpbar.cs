@@ -14,18 +14,20 @@ public class Ui_ShieldHpbar : MonoBehaviour
     [SerializeField]
     private float acceleration = 500f;
     [SerializeField]
-    private Vector3 targetPosition = Vector3.zero;
+    private Vector2 targetPosition = Vector2.zero;
     [SerializeField]
-    private BossShieldGenerator boss = null;
-    private Vector3 beforePos = Vector3.zero;
+    private BossShieldGenerator shieldGenerator = null;
+    private Vector2 beforePos = Vector2.zero;
     private RectTransform rectTr = null;
+    private bool isMoving = false;
+    private bool isTimerOn = false;
 
     void Start()
     {
         rectTr = GetComponent<RectTransform>();
-        uiHp = boss.GetCurHp;
-        curHp = boss.GetCurHp;
-        beforePos = uiTransform.localPosition;
+        uiHp = shieldGenerator.GetCurHp;
+        curHp = shieldGenerator.GetCurHp;
+        beforePos = uiTransform.anchoredPosition;
     }
 
     private void Update()
@@ -41,16 +43,22 @@ public class Ui_ShieldHpbar : MonoBehaviour
 
     public void Damaged()
     {
-
-        if (boss != null)
+        if (shieldGenerator != null)
         {
-            float bossHp = boss.GetCurHp;
+            float shieldHp = shieldGenerator.GetCurHp;
 
-            if (curHp != bossHp)
+            if (curHp != shieldHp)
             {
-                curHp = bossHp;
-                uiHp = Mathf.Clamp01(bossHp / 100);
-                StartMove();
+                curHp = shieldHp;
+                uiHp = Mathf.Clamp01(shieldHp / 100);
+                if (isTimerOn)
+                {
+                    StopAllCoroutines();
+                    StartCoroutine(TimerThreeSecondsCorotuine());
+                }
+                else if(!isMoving)
+                    MoveRight();
+
                 if (hpBar != null)
                 {
                     hpBar.fillAmount = uiHp;
@@ -58,62 +66,72 @@ public class Ui_ShieldHpbar : MonoBehaviour
             }
             if (curHp <= 0)
             {
-                StopMove();
+                ForceMoveLeft();
             }
         }
 
     }
 
-    private void StartMove()
+    private void MoveRight()
     {
+        if (isMoving)
+            return;
+
         StopAllCoroutines();
-        StartCoroutine(MoveUI());
+        StartCoroutine(MoveRightCoroutine());
     }
-    private void StopMove()
+    private void MoveLeft()
     {
+        if (isMoving)
+            return;
+
         StopAllCoroutines();
-        StartCoroutine(MoveReturn());
+        StartCoroutine(MoveLeftCoroutine());
     }
 
-    private IEnumerator MoveUI()
+    private void ForceMoveLeft()
     {
-        float currentSpeed = initialSpeed;
-        Debug.Log(beforePos);
+        StopAllCoroutines();
+        StartCoroutine(MoveLeftCoroutine());
+    }
 
-        while (Vector3.Distance(uiTransform.localPosition, targetPosition) > 0.1f)
+    private IEnumerator MoveRightCoroutine()
+    {
+        isMoving = true;
+        float x = targetPosition.x;
+        while (uiTransform.anchoredPosition.x - x < 0.1f)
         {
-            Vector3 direction = (targetPosition - uiTransform.localPosition).normalized;
-            currentSpeed += acceleration * Time.deltaTime;
-            uiTransform.localPosition += direction * currentSpeed * Time.deltaTime;
-
+            uiTransform.anchoredPosition += Vector2.right * initialSpeed * Time.deltaTime;
             yield return null; 
         }
-        uiTransform.localPosition = targetPosition;
+        uiTransform.anchoredPosition = targetPosition;
+        isMoving = false;
+
+        StartCoroutine(TimerThreeSecondsCorotuine());
+    }
+
+    private IEnumerator MoveLeftCoroutine()
+    {
+        isMoving = true;
+        float x = beforePos.x;
+        while (uiTransform.anchoredPosition.x - x < 0.1f)
+        {
+            uiTransform.anchoredPosition -= Vector2.right * initialSpeed * Time.deltaTime;
+            yield return null;
+        }
+        uiTransform.anchoredPosition = beforePos;
+        isMoving = false;
+    }
+
+    private IEnumerator TimerThreeSecondsCorotuine()
+    {
+        isTimerOn = true;
         yield return new WaitForSeconds(3f);
 
-        currentSpeed = initialSpeed;
-        while (Vector3.Distance(uiTransform.localPosition, beforePos) > 0.1f)
-        {
-            Vector3 direction = (beforePos - uiTransform.localPosition).normalized;
-            currentSpeed += acceleration * Time.deltaTime;
-            uiTransform.localPosition += direction * currentSpeed * Time.deltaTime;
-
-            yield return null;
-        }
+        isTimerOn = false;
+        MoveLeft();
     }
 
-    private IEnumerator MoveReturn()
-    {
-        float currentSpeed = initialSpeed;
-        while (Vector3.Distance(uiTransform.localPosition, beforePos) > 0.1f)
-        {
-            Vector3 direction = (beforePos - uiTransform.localPosition).normalized;
-            currentSpeed += acceleration * Time.deltaTime;
-            uiTransform.localPosition += direction * currentSpeed * Time.deltaTime;
-
-            yield return null;
-        }
-    }
     private float uiHp = 0f;
     private float curHp = 0f;
 }

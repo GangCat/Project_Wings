@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class CampusPlayerController : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+    }
     private void Update()
     {
-        CC.SimpleMove(new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0f, Input.GetAxis("Vertical") * moveSpeed));
+        CC.SimpleMove(transform.forward * Input.GetAxis("Vertical") * moveSpeed);
+        cameraYaw += Input.GetAxis("Mouse X") * freeLookSensitive * Time.deltaTime;
+        cameraPitch -= Input.GetAxis("Mouse Y") * freeLookSensitive * Time.deltaTime;
+
+
+        // 카메라의 회전을 적용
+        quaternion = Quaternion.Euler(cameraPitch, cameraYaw, 0);
+        transform.rotation = quaternion;
     }
 
     [SerializeField]
@@ -15,4 +27,10 @@ public class CampusPlayerController : MonoBehaviour
     private float moveSpeed = 0f;
     [SerializeField]
     private Camera mainCam = null;
+    [SerializeField]
+    private float freeLookSensitive;
+
+    private float cameraYaw;
+    private float cameraPitch;
+    private Quaternion quaternion;
 }
