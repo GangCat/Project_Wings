@@ -38,6 +38,10 @@ public class BossManager : MonoBehaviour
     {
         bossCtrl.GameStart();
     }
+    public void FinishiDebug()
+    {
+        bossCtrl.BossClear();
+    }
 
     private BossController bossCtrl = null;
     private ExplosionEffectController exCtrl = null;

@@ -68,7 +68,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5cbb925d387feb644a2d1d8512aa8f09, type: 2}
+  m_Motion: {fileID: 7400000, guid: 557d5b0cfa431ee43a0dedbd416eeda8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -96,7 +96,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: df554a63463c0c94ab8830d67b521f94, type: 2}
+  m_Motion: {fileID: 7400000, guid: 58482b758550ae84ca667fe5aff61fcf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -164,7 +164,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 200
+    m_EventTreshold: 301
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3253972762436239160}
   m_Solo: 0
@@ -301,7 +301,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Player_StartMove
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2810469119406818485}
@@ -315,7 +315,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 994b7614c6b3772479fd9162114dcaa8, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1a7f019aa977e324e9315c227f1cd665, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -467,7 +467,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8373a91b09c74684cb6ee89ecb6229be, type: 2}
+  m_Motion: {fileID: 7400000, guid: f610118d1b12a2c4f9f35696e33752e7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -560,7 +560,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 300
+    m_EventTreshold: 301
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6167965013235542823}
   m_Solo: 0
@@ -700,7 +700,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8373a91b09c74684cb6ee89ecb6229be, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2d137bc9bbb070447809011e6638aa08, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

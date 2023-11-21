@@ -65,7 +65,10 @@ public class GameManager : MonoBehaviour, IPublisher
         if (!_isGameClear)
             bossMng.ActionFinish();
         else
+        {
             uiMng.GameClear();
+            pauseMng.SetGameOver(true);
+        }
     }
 
     public void RegisterBroker()
@@ -101,6 +104,8 @@ public class GameManager : MonoBehaviour, IPublisher
             bossMng.GameStart();
         else if (Input.GetKeyDown(jumpToNextPatternKeyCode))
             bossMng.JumpToNextPattern();
+        else if (Input.GetKeyDown(finishGameKeyCode))
+            bossMng.FinishiDebug();
     }
 
     [SerializeField]
@@ -111,6 +116,9 @@ public class GameManager : MonoBehaviour, IPublisher
     private KeyCode nextPhaseKeyCode = KeyCode.PageUp;
     [SerializeField]
     private KeyCode jumpToNextPatternKeyCode = KeyCode.PageDown;
+    [SerializeField]
+    private KeyCode finishGameKeyCode = KeyCode.Backspace;
+
     [SerializeField]
     private bool isAutoStart = false;
 

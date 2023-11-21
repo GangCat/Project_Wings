@@ -74,7 +74,7 @@ public class BossController : MonoBehaviour, IPublisher
     public GameObject TornadoSoundSpawnGO => tornadoSoundSpawnGO;
     public GameObject GiantTornadeSoundSpawnGO => giantTornadeSoundSpawnGO;
 
-    private void BossClear()
+    public void BossClear()
     {
         StopCoroutine("UpdateCoroutine");
         bossClearCallback?.Invoke();
