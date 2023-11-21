@@ -24,7 +24,7 @@ public class ImageProgressbar : MonoBehaviour
         //myRt.sizeDelta = new Vector2(maxLength * _ratio, myHeight);
     }
 
-    private IEnumerator UpdateLerpLength(float _target)
+    protected IEnumerator UpdateLerpLength(float _target)
     {
         float initialLength = currentLength;
         float timer = 0.0f;
@@ -33,7 +33,8 @@ public class ImageProgressbar : MonoBehaviour
         {
             timer += Time.deltaTime;
             currentLength = Mathf.Lerp(initialLength, _target, timer / transitionDuration);
-            myRt.sizeDelta = new Vector2(currentLength, myHeight);
+            myImage.fillAmount = currentLength;
+            //myRt.sizeDelta = new Vector2(currentLength, myHeight);
             yield return null;
         }
         currentLength = targetLength;
@@ -43,6 +44,8 @@ public class ImageProgressbar : MonoBehaviour
 
     [SerializeField]
     protected Image imageBack = null;
+    [SerializeField]
+    protected Image myImage = null;
 
     protected float maxLength = 0f;
     protected float myHeight = 0f;
