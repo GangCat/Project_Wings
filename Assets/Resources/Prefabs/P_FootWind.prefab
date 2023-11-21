@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7583262288442403906}
   - component: {fileID: 7003486200082836146}
   - component: {fileID: 5274305140109207116}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: P_FootWind
   m_TagString: AirPush
   m_Icon: {fileID: 0}

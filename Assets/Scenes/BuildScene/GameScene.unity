@@ -4883,7 +4883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be095366277ae2a408aae8d37c94b5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageBack: {fileID: 1563541309}
   myImage: {fileID: 444280966}
   transitionDuration: 0.5
 --- !u!1001 &464791345
@@ -9355,7 +9354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be095366277ae2a408aae8d37c94b5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageBack: {fileID: 1496439227}
   myImage: {fileID: 957166017}
   transitionDuration: 0.5
 --- !u!114 &961796825 stripped
@@ -9487,7 +9485,7 @@ GameObject:
   - component: {fileID: 1027773054}
   - component: {fileID: 1027773055}
   - component: {fileID: 1027773056}
-  m_Layer: 13
+  m_Layer: 25
   m_Name: BossCollisionController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10581,7 +10579,7 @@ MonoBehaviour:
   nextPhaseKeyCode: 292
   jumpToNextPatternKeyCode: 291
   finishGameKeyCode: 289
-  isAutoStart: 0
+  isAutoStart: 1
 --- !u!4 &1213160876
 Transform:
   m_ObjectHideFlags: 0
@@ -12329,7 +12327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013155fd67936604899f641a9b578667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageBack: {fileID: 124553795}
   myImage: {fileID: 1352311894}
   transitionDuration: 0.5
 --- !u!1 &1377907733 stripped
@@ -33360,9 +33357,9 @@ SkinnedMeshRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1213160876}
   - {fileID: 504719581}
   - {fileID: 2011758207}
-  - {fileID: 1213160876}
   - {fileID: 1724471569}
   - {fileID: 229973551}
   - {fileID: 1806946443}

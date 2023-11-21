@@ -260,6 +260,7 @@ public class BossController : MonoBehaviour, IPublisher
         {
             //soundManager.PlayAudio(GetComponent<AudioSource>(), (int)SoundManager.ESounds.PHASESOUND_01);
             AlertFirstPatternBomb();
+            ClearShieldGenerator();
             timeBombPatternCtrl.StartPattern();
             return;
         }
