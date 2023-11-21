@@ -41,7 +41,6 @@ public class Ui_ShieldHpbar : MonoBehaviour
 
     public void Damaged()
     {
-        return;
 
         if (boss != null)
         {
@@ -57,11 +56,12 @@ public class Ui_ShieldHpbar : MonoBehaviour
                     hpBar.fillAmount = uiHp;
                 }
             }
-            else if (curHp <= 0)
+            if (curHp <= 0)
             {
                 StopMove();
             }
         }
+
     }
 
     private void StartMove()

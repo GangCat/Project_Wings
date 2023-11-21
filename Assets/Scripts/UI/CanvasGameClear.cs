@@ -15,10 +15,12 @@ public class CanvasGameClear : MonoBehaviour
     {
         Cursor.visible = true;
         gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ExitGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("CampusScene");
     }
 }
