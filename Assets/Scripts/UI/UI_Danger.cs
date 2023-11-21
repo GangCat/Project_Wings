@@ -31,7 +31,7 @@ public class UI_Danger : MonoBehaviour
                 Vector3 toMissile = missilePosition - player.position;
                 float angle = Vector3.Angle(player.transform.forward, toMissile);
 
-                if (angle > 90 && angle < 270 && distance < 800)
+                if (angle > 90 && angle < 270 && distance < 500)
                 {
                     dangerImage.enabled = true;
                     Vector3 middlePoint = (player.position + missilePosition) / 2f;
@@ -46,6 +46,10 @@ public class UI_Danger : MonoBehaviour
                 }
             }
             
+        }
+        else
+        {
+            dangerImage.enabled = false;
         }
 
 
