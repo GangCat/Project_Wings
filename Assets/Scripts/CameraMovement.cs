@@ -43,14 +43,19 @@ public class CameraMovement : MonoBehaviour
         {
             FollowPlayerRot();
             FollowPlayerPos();
+            targetPos = cameraPos;
+            CameraRay();
         }
         else
         {
             FreeLock();
         }
+        
+        //transform.position = cameraPos;
 
+        Vector3 smoothedPosition = Vector3.Lerp(cameraPos, targetPos, 1f * Time.deltaTime);
         transform.rotation = quaternion;
-        transform.position = cameraPos;
+        transform.position = smoothedPosition;
     }
 
     private void LateUpdate()
@@ -69,9 +74,6 @@ public class CameraMovement : MonoBehaviour
             calcPos = playerTr.position + playerTr.forward * offset + transform.up * upOffset;
         else
         calcPos = playerTr.position - playerTr.forward * offset + transform.up * upOffset;
-        float smoothedPosX = Mathf.Lerp(transform.position.x, calcPos.x, posSmoothX * Time.deltaTime);
-        float smoothedPosY = Mathf.Lerp(transform.position.y, calcPos.y, posSmoothY * Time.deltaTime);
-        float smoothedPosZ = Mathf.Lerp(transform.position.z, calcPos.z, posSmoothZ * Time.deltaTime);
         cameraPos = calcPos;
         //cameraPos = new Vector3(smoothedPosX, smoothedPosY, smoothedPosZ);
     }
@@ -108,14 +110,15 @@ public class CameraMovement : MonoBehaviour
     private bool CameraRay()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, playerTr.position - transform.position, out hit))
+        Vector3 raydir = playerTr.position - transform.position;
+        if (Physics.Raycast(calcPos, raydir, out hit, offset, objectLayer))
         {
-            Debug.DrawRay(transform.position, playerTr.position - transform.position, Color.red);
-            if (hit.collider.gameObject != playerTr.gameObject)
-            {
-                transform.position = hit.point;
-                return true;
-            }
+            Debug.DrawRay(calcPos, raydir, Color.red);
+            targetPos = hit.point;
+                Debug.Log(hit.transform.name);
+            float distanceToPlayer = offset - Vector3.Distance(hit.point, playerTr.position);
+            offset = distanceToPlayer;
+            return true;
         }
         return false;
     }
@@ -162,6 +165,7 @@ public class CameraMovement : MonoBehaviour
     private Vector3 cameraPos = Vector3.zero;
     private Vector3 cameraZ = Vector3.zero;
     private Vector3 rotVectorVelocity;
+    private Vector3 targetPos = Vector3.zero;
     private Quaternion quaternion = Quaternion.identity;
     private Transform playerTr = null;
     private PlayerData playerData = null;
@@ -169,4 +173,6 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField]
     private float rotCamreaZ = 15f;
+    [SerializeField]
+    private LayerMask objectLayer;
 }
