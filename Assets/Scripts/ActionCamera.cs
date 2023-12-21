@@ -20,10 +20,7 @@ public class ActionCamera : MonoBehaviour
     {
         cam.enabled = true;
 
-        //SetStartPosAndRot(_curPhaseNum);
-
         anim.Play($"Phase{_curPhaseNum}", 0);
-        //anim.SetTrigger($"Phase{_curPhaseNum}");
 
         if (_curPhaseNum > 2)
             isLastAction = true;

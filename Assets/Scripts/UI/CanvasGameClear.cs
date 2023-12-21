@@ -21,6 +21,7 @@ public class CanvasGameClear : MonoBehaviour
     public void ExitGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("CampusScene");
+        Application.Quit();
+        //SceneManager.LoadScene("CampusScene");
     }
 }

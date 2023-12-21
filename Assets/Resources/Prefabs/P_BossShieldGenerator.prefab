@@ -343,7 +343,7 @@ MonoBehaviour:
   uiTransform: {fileID: 1537725454884608192}
   initialSpeed: 450
   acceleration: 500
-  targetPosition: {x: 30, y: -260, z: 0}
+  targetPosition: {x: 30, y: -260}
   shieldGenerator: {fileID: 8097609008401287923}
 --- !u!1 &5244047540345966099
 GameObject:
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curHp: 0
-  maxHp: 100
+  maxHp: 80
   shieldGenIndicatorPrefab: {fileID: 6259324162897319515, guid: 962c81832fef4a14ab8001c309bff7c6,
     type: 3}
   bossLayer:

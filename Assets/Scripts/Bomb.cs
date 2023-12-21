@@ -60,7 +60,9 @@ public class Bomb : MonoBehaviour
         float elapsedtime = 0;
         while (elapsedtime < flightDuration)
         {
-            transform.Translate(0, (VerticalVelocity - (gravity * elapsedtime)) * Time.fixedDeltaTime, HorizontalVelocity * Time.fixedDeltaTime);
+            transform.Translate(0,
+                (VerticalVelocity - (gravity * elapsedtime)) * Time.fixedDeltaTime, 
+                HorizontalVelocity * Time.fixedDeltaTime);
             elapsedtime += Time.fixedDeltaTime;
 
             yield return waitFixedTime;
@@ -96,8 +98,12 @@ public class Bomb : MonoBehaviour
         // 폭발하며 플레이어에게 큰 데미지
         targetTr.GetComponent<IPlayerDamageable>().ForceGetDmg(150);
         // 화면 연출
-        soundManager.PlayAudio(audioSource, (int)SoundManager.ESounds.TIMEBOMBTIMEFLOWSOUND);
-        soundManager.PlayAudio(audioSource, (int)SoundManager.ESounds.TIMEBOMBEXPLOSIONSOUND);
+        soundManager.PlayAudio(
+            audioSource, 
+            (int)SoundManager.ESounds.TIMEBOMBTIMEFLOWSOUND);
+        soundManager.PlayAudio(
+            audioSource, 
+            (int)SoundManager.ESounds.TIMEBOMBEXPLOSIONSOUND);
         Destroy(Instantiate(explosionPrefab, transform.position, Quaternion.identity), 5f);
         Debug.Log("Explosion!");
         Destroy(gameObject);

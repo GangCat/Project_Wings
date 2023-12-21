@@ -23,7 +23,8 @@ public class CanvasGameOver : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene("CampusScene");
+        Application.Quit();
+        //SceneManager.LoadScene("CampusScene");
     }
 
 }

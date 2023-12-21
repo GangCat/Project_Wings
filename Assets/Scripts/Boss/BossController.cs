@@ -206,19 +206,24 @@ public class BossController : MonoBehaviour, IPublisher
 
     private void StartPhaseChange()
     {
-        // 현재 페이즈 검사 > 알맞는 소리 재생 // 1페이즈 시작 연출 , 2페이즈 시작 연출, 3페이즈 시작 연출
         if (isChangingPhase)
             return;
 
+        // 페이즈 변경을 행동트리에 알림
         myRunner.FinishCurrentPhase();
         myRunner.RunnerUpdate();
         isChangingPhase = true;
+        // 쉴드 재생성 중지
         StopCoroutine("ResapwnShieldGeneratorCoroutine");
+        // 레이어 변경하여 충돌 방지
         foreach (GameObject go in arrModelGo)
             go.layer = LayerMask.NameToLayer("BossInvincible");
+        // 현재 페이즈를 전달해 해당하는 카메라 액션 수행
         cameraActionCallback?.Invoke(curPhaseNum);
+        // 페이즈 체인지 브로커에 전달, 발행
         PushMessageToBroker(EMessageType.PHASE_CHANGE);
 
+        // 각 페이즈에 따라 함수 호출
         if (curPhaseNum == 1)
         {
             shield.StopRestorShield();

@@ -22,8 +22,10 @@ public class BossStatusHp : StatusHp, IBossDamageable
 
         curHp -= _dmg;
 
+        // 1페이즈에서 2페이즈 넘어가는 조건
         if (curPhaseNum == 1 && curHp < maxHp * 0.5f)
             ChangePhase();
+        // 2페이즈에서 마지막 패턴으로 넘어가는 조건
         else if (curPhaseNum == 2 && curHp < 0)
         {
             ChangePhase();
